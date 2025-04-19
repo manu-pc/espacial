@@ -94,10 +94,10 @@ INSERT INTO Aficionado (id, tier) VALUES
 INSERT INTO Estudiante (id, centro, num_est) VALUES
 (2, 'Universidade de Santiago de Compostela', 12345678); -- no en serio qué coño é num_est?
 
-INSERT INTO Científico (id, centro) VALUES
+INSERT INTO Cientifico (id, centro) VALUES
 (3, 'Centro Astronómico de Trevinca');
 
-INSERT INTO Colaboracion (fechaInicio, fechaFin, científico, agencia) VALUES
+INSERT INTO Colaboracion (fechaInicio, fechaFin, cientifico, agencia) VALUES
 ('2023-01-01', NULL, 3, 1);
 
 INSERT INTO Administrador (id, rango) VALUES

@@ -2,7 +2,7 @@ CREATE VIEW CientificoConArticulos AS
 SELECT c.id,
     c.centro,
     COUNT(a.id) AS num_articulos
-FROM Científico c
+FROM Cientifico c
     LEFT JOIN Artículo a ON c.id = a.autor
 GROUP BY c.id,
     c.centro;

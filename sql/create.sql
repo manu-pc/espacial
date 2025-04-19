@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Colaboracion;
 DROP TABLE IF EXISTS Artículo;
 DROP TABLE IF EXISTS EntradaForo;
 DROP TABLE IF EXISTS Administrador;
-DROP TABLE IF EXISTS Científico;
+DROP TABLE IF EXISTS Cientifico;
 DROP TABLE IF EXISTS Estudiante;
 DROP TABLE IF EXISTS Aficionado;
 DROP TABLE IF EXISTS Usuario;
@@ -117,7 +117,7 @@ CREATE TABLE Estudiante(
     -- qué coño é num_est?
     FOREIGN KEY (id) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-CREATE TABLE Científico(
+CREATE TABLE Cientifico(
     id INT PRIMARY KEY,
     centro VARCHAR(50) NOT NULL,
     -- para evitar trigger, num_articulos irá nunha vista
@@ -144,15 +144,15 @@ CREATE TABLE Artículo(
     cuerpo VARCHAR(50) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     numPaginas INT NOT NULL,
-    FOREIGN KEY (autor) REFERENCES Científico(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (autor) REFERENCES Cientifico(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (cuerpo) REFERENCES CuerpoCeleste(nombre) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 CREATE TABLE Colaboracion(
     fechaInicio DATE NOT NULL,
     fechaFin DATE,
-    científico INT NOT NULL,
+    cientifico INT NOT NULL,
     agencia INT NOT NULL,
-    FOREIGN KEY (científico) REFERENCES Científico(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (cientifico) REFERENCES Cientifico(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (agencia) REFERENCES Agencia(id) ON DELETE NO ACTION ON UPDATE CASCADE,
-    PRIMARY KEY (científico, agencia, fechaInicio)
+    PRIMARY KEY (cientifico, agencia, fechaInicio)
 );
