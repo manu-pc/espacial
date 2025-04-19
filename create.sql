@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS Colaboracion;
 DROP TABLE IF EXISTS Artículo;
 DROP TABLE IF EXISTS EntradaForo;
@@ -23,12 +22,14 @@ CREATE TABLE Galaxia(
     ubicacion VARCHAR(50) NOT NULL,
     descripcion VARCHAR(255) NOT NULL
 );
+
 CREATE TABLE CuerpoCeleste (
     nombre VARCHAR(50) PRIMARY KEY,
     tipo VARCHAR(50) NOT NULL,
     -- planeta, estrella, luna, asteroide
     ubicacion VARCHAR(50) NOT NULL,
     habitabilidad BOOLEAN NOT NULL,
+    -- boolean é raro pero lol
     masa float NOT NULL,
     --kg
     tamano float NOT NULL,
@@ -40,6 +41,7 @@ CREATE TABLE CuerpoCeleste (
     galaxia VARCHAR(50) NOT NULL,
     FOREIGN KEY (galaxia) REFERENCES Galaxia(nombre) ON DELETE NO ACTION ON UPDATE CASCADE
 );
+
 CREATE TABLE OrbitaAlrededor(
     orbitador VARCHAR(50) NOT NULL,
     orbitaA VARCHAR(50) NOT NULL,
@@ -58,8 +60,7 @@ CREATE TABLE Nave(
     -- satélite, exploración, transporte
     tamano float NOT NULL,
     --metros
-    masa float NOT NULL
-    --kg
+    masa float NOT NULL --kg
 );
 CREATE TABLE Astronauta(
     id int PRIMARY KEY,
@@ -70,8 +71,7 @@ CREATE TABLE Astronauta(
 CREATE TABLE Agencia(
     id INT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    localizacion VARCHAR(50) NOT NULL,
-    num_astronautas INT NOT NULL
+    localizacion VARCHAR(50) NOT NULL -- para evitar trigger, num_astronautas irá nunha vista
 );
 CREATE TABLE PertenecerAgencia(
     fechaInicio DATE NOT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE Usuario(
 );
 CREATE TABLE Aficionado(
     id INT PRIMARY KEY,
-    tier VARCHAR(10) NOT NULL,
+    tier VARCHAR(20) NOT NULL,
     FOREIGN KEY (id) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE Estudiante(
@@ -120,7 +120,7 @@ CREATE TABLE Estudiante(
 CREATE TABLE Científico(
     id INT PRIMARY KEY,
     centro VARCHAR(50) NOT NULL,
-    num_articulos INT NOT NULL,
+    -- para evitar trigger, num_articulos irá nunha vista
     FOREIGN KEY (id) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE Administrador(
@@ -129,7 +129,7 @@ CREATE TABLE Administrador(
     FOREIGN KEY (id) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE EntradaForo(
-    numeroEntrada INT NOT NULL,
+    numeroEntrada INT GENERATED ALWAYS AS IDENTITY,
     autor INT NOT NULL,
     fecha DATE NOT NULL,
     titulo VARCHAR(50) NOT NULL,
@@ -137,10 +137,8 @@ CREATE TABLE EntradaForo(
     FOREIGN KEY (autor) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (numeroEntrada, autor)
 );
---comentario?
 CREATE TABLE Artículo(
-    -- entonces desto non se garda o contenido, solo unha descripcion e o num de paginas
-    id INT PRIMARY KEY,
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fechaPublicacion DATE NOT NULL,
     autor INT NOT NULL,
     cuerpo VARCHAR(50) NOT NULL,
@@ -158,4 +156,3 @@ CREATE TABLE Colaboracion(
     FOREIGN KEY (agencia) REFERENCES Agencia(id) ON DELETE NO ACTION ON UPDATE CASCADE,
     PRIMARY KEY (científico, agencia, fechaInicio)
 );
-
