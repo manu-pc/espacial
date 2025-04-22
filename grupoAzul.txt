@@ -1,0 +1,5 @@
+trasncaciones grupo azul:
+añadir/modificar/eliminar usuario (esto engloba implementacion de  cientifico, administrador...)
+"" cuerpo celeste
+"" articulo
+
