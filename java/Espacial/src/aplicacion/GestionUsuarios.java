@@ -42,5 +42,8 @@ public class GestionUsuarios {
     public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
         return fbd.buscarUsuariosPorNombre(nombre);
     }
+        public Usuario buscarUsuarioPorId(String id){
+        return fbd.buscarUsuarioPorId(id);
+    }
 
 }

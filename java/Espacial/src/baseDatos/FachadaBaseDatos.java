@@ -136,7 +136,9 @@ public class FachadaBaseDatos {
     public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
         return daoUsuarios.buscarUsuariosPorNombre(nombre);
     }
-
+    public Usuario buscarUsuarioPorId(String id){
+        return daoUsuarios.buscarUsuarioPorId(id);
+    }
 
 
 }

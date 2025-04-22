@@ -89,23 +89,23 @@ INSERT INTO Usuario (id, nombre, email, clave) VALUES
 ('DavidRuiz', 'David Ruiz', 'david@gmail.net', 'sudo000');
 
 INSERT INTO Aficionado (id, tier) VALUES
-(1, 'Principiante');
+(LauraPerez, 'Principiante');
 
 INSERT INTO Estudiante (id, centro, num_est) VALUES
-(2, 'Universidade de Santiago de Compostela', 12345678); -- no en serio qué coño é num_est?
+(CarlosMartinez, 'Universidade de Santiago de Compostela', 12345678); -- no en serio qué coño é num_est?
 
 INSERT INTO Cientifico (id, centro) VALUES
-(3, 'Centro Astronómico de Trevinca');
+(AnaTorres, 'Centro Astronómico de Trevinca');
 
 INSERT INTO Colaboracion (fechaInicio, fechaFin, cientifico, agencia) VALUES
-('2023-01-01', NULL, 3, 1);
+('2023-01-01', NULL, AnaTorres, 1);
 
 INSERT INTO Administrador (id, rango) VALUES
-(4, 'Moderador');
+(DavidRuiz, 'Moderador');
 
 -- a pagina de wikipedia de jupiter en catalán
 INSERT INTO EntradaForo (autor, fecha, titulo, contenido) VALUES
-(1, '2025-04-19', 'Júpiter', 'Júpiter és el cinquè planeta del sistema solar atenent la seva proximitat al Sol i el més gros de tots. Es tracta dun gegant gasós amb una massa equivalent a una mil·lèsima part de la massa del Sol o dues vegades i mitja la massa de tots els altres planetes del sistema solar junts. Júpiter, el tercer objecte natural més lluminós del cel nocturn, després de la Lluna i Venus, és conegut des de la prehistòria. Fou anomenat en honor de Júpiter, el déu suprem de la mitologia romana.');
+(LauraPerez, '2025-04-19', 'Júpiter', 'Júpiter és el cinquè planeta del sistema solar atenent la seva proximitat al Sol i el més gros de tots. Es tracta dun gegant gasós amb una massa equivalent a una mil·lèsima part de la massa del Sol o dues vegades i mitja la massa de tots els altres planetes del sistema solar junts. Júpiter, el tercer objecte natural més lluminós del cel nocturn, després de la Lluna i Venus, és conegut des de la prehistòria. Fou anomenat en honor de Júpiter, el déu suprem de la mitologia romana.');
 INSERT INTO Artículo (fechaPublicacion, autor, cuerpo, descripcion, numPaginas) VALUES
-('2025-03-01', 3, 'Marte', 'Análisis geoquímico de la superficie marciana recolectada por rovers.', 12);
+('2025-03-01', AnaTorres, 'Marte', 'Análisis geoquímico de la superficie marciana recolectada por rovers.', 12);
 

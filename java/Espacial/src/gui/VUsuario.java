@@ -213,25 +213,10 @@ public class VUsuario extends javax.swing.JDialog {
         );
 
         botonNuevo.setText("Nuevo");
-        botonNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonNuevoActionPerformed(evt);
-            }
-        });
 
         botonGuardar.setText("Guardar");
-        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarActionPerformed(evt);
-            }
-        });
 
         botonBorrar.setText("Borrar");
-        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBorrarActionPerformed(evt);
-            }
-        });
 
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -367,60 +352,9 @@ public class VUsuario extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
-    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-        if (botonNuevoPulsado){
-            return;
-        }
-        ModeloTablaUsuarios m = (ModeloTablaUsuarios) tablaUsuarios.getModel();
-        m.añadirFilaVacia();
-        tablaUsuarios.setModel(m);   
-        
-        // selecciona a nova columna (sólo estético, se está pulsado o botón nuevo o programa non presta atención á fila seleccionada e crea siempre unha nova entrada
-        
-        javax.swing.SwingUtilities.invokeLater(() -> {
-        tablaUsuarios.setRowSelectionInterval(m.getRowCount()-1, m.getRowCount()-1);
-        tablaUsuarios.scrollRectToVisible(tablaUsuarios.getCellRect(m.getRowCount()-1, 0, true));
-        });
-        botonNuevoPulsado = true;
-        vaciarCampos();
-        
-        
-    }//GEN-LAST:event_botonNuevoActionPerformed
-
     private void campo_ed_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_ed_direccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_ed_direccionActionPerformed
-
-    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        String id_nuevo = campo_ed_id.getText().trim();
-        String clave = campo_ed_clave.getText().trim();
-        String nombre = campo_ed_nombre.getText().trim();
-        String direccion = campo_ed_direccion.getText().trim();
-        String email = campo_ed_email.getText().trim();
-        String tipoString = (String) selec_ed_tipo.getSelectedItem();
-
-        if (id_nuevo==null || clave==null || nombre==null || direccion==null || email==null || tipoString==null) return;
-        if (id_nuevo.isEmpty() || clave.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || email.isEmpty() || tipoString.isEmpty()) return;
-        if (botonNuevoPulsado) { // non hai unha fila seleccionada
-            fa.insertarUsuario(id_nuevo, nombre, clave, email, direccion, tipoString);
-        }
-        else {
-            int selectedRow = tablaUsuarios.getSelectedRow();
-            if (selectedRow == -1)
-                return; //se vas a modificar unha entrada si ou si tes que seleccionar a súa fila (se é pa crear unha nova nn é obligatorio seleccionar a nova)
-            String id_previo = (String) tablaUsuarios.getValueAt(selectedRow, 0);
-            fa.modificarUsuario(id_nuevo, nombre, clave, email, direccion, tipoString, id_previo);
-        }
-        cargarUsuarios();
-        vaciarCampos();
-        botonNuevoPulsado = false;
-    }//GEN-LAST:event_botonGuardarActionPerformed
-
-    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-        String id = campo_ed_id.getText().trim();
-        fa.eliminarUsuario(id);
-        cargarUsuarios();
-    }//GEN-LAST:event_botonBorrarActionPerformed
     
     private void actualizarCampos() {
         int selectedRow = tablaUsuarios.getSelectedRow();
@@ -434,9 +368,7 @@ public class VUsuario extends javax.swing.JDialog {
             campo_ed_id.setText(usuario.getIdUsuario());
             campo_ed_clave.setText(usuario.getClave());
             campo_ed_nombre.setText(usuario.getNombre());
-            campo_ed_direccion.setText(usuario.getDireccion());
             campo_ed_email.setText(usuario.getEmail());
-            selec_ed_tipo.setSelectedItem(usuario.getTipoUsuario().toString());
         }
     }
 

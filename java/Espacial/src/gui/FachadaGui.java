@@ -70,8 +70,7 @@ public class FachadaGui {
     }
     
     public void nuevoPrestamo(Ejemplar ejemplar, java.awt.Dialog parent){
-        VPrestamo ve = new VPrestamo(parent, true, fa, ejemplar);
-        ve.setVisible(true);
+
     }
     
     

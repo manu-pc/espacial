@@ -644,7 +644,6 @@ public class VLibro extends javax.swing.JDialog {
         if (filaTabla != -1) { // Check if a row is selected
             ModeloTablaEjemplares modelo = (ModeloTablaEjemplares) tablaEjemplares.getModel();
             Ejemplar ejemplar = modelo.getEjemplar(filaTabla); // Assume a method to get an Ejemplar
-            fa.nuevoPrestamo(ejemplar, VLibro.this);
             
             actualizarEjemplares();
              
@@ -660,7 +659,6 @@ public class VLibro extends javax.swing.JDialog {
             int numEjemplar = (int) modelo.getValueAt(filaTabla, 0);
             java.time.LocalDate fechaPrestamo = (java.time.LocalDate) modelo.getValueAt(filaTabla, 4);
 
-            fa.devolverPrestamo(idUsuario, idLibro, numEjemplar, fechaPrestamo);
 
 
             actualizarEjemplares();

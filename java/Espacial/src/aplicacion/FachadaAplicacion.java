@@ -104,5 +104,9 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
         return cu.buscarUsuariosPorNombre(nombre);
     }
+    
+    public Usuario buscarUsuarioPorId(String id){
+        return cu.buscarUsuarioPorId(id);
+    }
 
 }

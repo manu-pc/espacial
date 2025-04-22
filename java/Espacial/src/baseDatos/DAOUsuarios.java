@@ -7,10 +7,6 @@ package baseDatos;
 
 import aplicacion.Usuario;
 import aplicacion.UsuarioFactory;
-import aplicacion.Administrador;
-import aplicacion.Aficionado;
-import aplicacion.Cientifico;
-import aplicacion.Estudiante;
 import java.sql.*;
 
 /**
@@ -160,5 +156,45 @@ public class DAOUsuarios extends AbstractDAO {
 
         return usuarios;
     }
+public Usuario buscarUsuarioPorId(String idUsuario) {
+    Usuario usuario = null;
+    Connection con = null;
+    PreparedStatement stm = null;
+    ResultSet rs = null;
+
+    try {
+        con = this.getConexion();
+        stm = con.prepareStatement(
+            "SELECT u.id_usuario, u.clave, u.nombre, u.direccion, u.email, u.tipo_usuario, " +
+            "       COALESCE(COUNT(p.usuario), 0) AS prestamos_vencidos, " +
+            "       a.institucion AS institucion, " +
+            "       e.fecha_nacimiento AS fecha_nacimiento, " +
+            "       c.campo_investigacion AS campo_investigacion " +
+            "FROM usuario u " +
+            "LEFT JOIN prestamo p ON u.id_usuario = p.usuario " +
+            "                    AND p.fecha_devolucion IS NULL " +
+            "                    AND p.fecha_prestamo < (CURRENT_DATE - INTERVAL '30 days') " +
+            "LEFT JOIN aficionado a ON u.id_usuario = a.usuario " +
+            "LEFT JOIN estudiante e ON u.id_usuario = e.usuario " +
+            "LEFT JOIN cientifico c ON u.id_usuario = c.usuario " +
+            "WHERE u.id_usuario = ? " +
+            "GROUP BY u.id_usuario, u.clave, u.nombre, u.direccion, u.email, u.tipo_usuario, " +
+            "         a.institucion, e.fecha_nacimiento, c.campo_investigacion"
+        );
+        stm.setString(1, idUsuario);
+        rs = stm.executeQuery();
+            if (rs.next()) {
+                usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rs);
+            }
+
+    } catch (SQLException e) {
+        System.out.println("Error buscando usuario por ID: " + e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try { if (stm != null) stm.close(); } catch (SQLException ignored) {}
+    }
+
+    return usuario;
+}
 
 }
