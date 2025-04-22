@@ -11,23 +11,19 @@ package aplicacion;
  *
  * @author basesdatos
  */
-public class Usuario {
+public abstract class Usuario {
     private String idUsuario;
     private String clave;
     private String nombre;
     private String direccion;
     private String email;
-    private TipoUsuario tipo;
-    private int prestamosVencidos;
 
-   public Usuario (String idUsuario, String clave, String nombre, String direccion, String email, TipoUsuario tipo, int prestamosVencidos){
+   public Usuario (String idUsuario, String clave, String nombre, String direccion, String email){
     this.idUsuario=idUsuario;
     this.clave=clave;
     this.nombre=nombre;
     this.direccion=direccion;
     this.email=email;
-    this.tipo=tipo;
-    this.prestamosVencidos = prestamosVencidos;
    }
 
    public String getIdUsuario(){
@@ -55,12 +51,5 @@ public class Usuario {
        return this.email;
    }
 
-   public TipoUsuario getTipoUsuario(){
 
-       return this.tipo;
-   }
-
-   public int getPrestamosVencidos(){
-       return this.prestamosVencidos;
-   }
 }
