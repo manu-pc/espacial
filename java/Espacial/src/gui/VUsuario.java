@@ -6,7 +6,6 @@ package gui;
 import aplicacion.Usuario;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
-import aplicacion.TipoUsuario;
 /**
  *
  * @author alumnogreibd

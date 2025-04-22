@@ -8,27 +8,19 @@ package aplicacion;
  *
  * @author alumnogreibd
  */
-public class Estudiante extends Usuario {
+public class Cientifico extends Usuario {
     private String centro;
-    private Integer num_est;
 
-    protected Estudiante(String idUsuario, String clave, String nombre, String email, String centro, Integer num_est) {
+    protected Cientifico(String idUsuario, String clave, String nombre, String email, String centro) {
         super(idUsuario, clave, nombre, email);
         this.centro = centro;
-        this.num_est = num_est;
     }
+
     public String getCentro() {
         return centro;
     }
+
     public void setCentro(String centro) {
         this.centro = centro;
     }
-    public Integer getNum_est() {
-        return num_est;
-    }
-    public void setNum_est(Integer num_est) {
-        this.num_est = num_est;
-    }
-
-    
 }

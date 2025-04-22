@@ -83,10 +83,10 @@ INSERT INTO ParticiparMision (mision, astronauta) VALUES
 --- USUARIOS (un de cada tipo)
 
 INSERT INTO Usuario (id, nombre, email, clave) VALUES
-(1, 'Laura Pérez', 'laura@gmail.com', 'clave123'),
-(2, 'Carlos Martínez', 'carlos@gmail.com', 'segura456'),
-(3, 'Ana Torres', 'ana@gmail.org', 'astro789'),
-(4, 'David Ruiz', 'david@gmail.net', 'sudo000');
+('LauraPerez', 'Laura Pérez', 'laura@gmail.com', 'clave123'),
+('CarlosMartinez', 'Carlos Martínez', 'carlos@gmail.com', 'segura456'),
+('AnaTorres', 'Ana Torres', 'ana@gmail.org', 'astro789'),
+('DavidRuiz', 'David Ruiz', 'david@gmail.net', 'sudo000');
 
 INSERT INTO Aficionado (id, tier) VALUES
 (1, 'Principiante');

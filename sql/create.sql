@@ -100,25 +100,25 @@ CREATE TABLE ParticiparMision(
     FOREIGN KEY (astronauta) REFERENCES Astronauta(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE Usuario(
-    id INT PRIMARY KEY,
+    id VARCHAR(50) PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
     clave VARCHAR(50) NOT NULL
 );
 CREATE TABLE Aficionado(
-    id INT PRIMARY KEY,
+    id VARCHAR(50) PRIMARY KEY,
     tier VARCHAR(20) NOT NULL,
     FOREIGN KEY (id) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE Estudiante(
-    id INT PRIMARY KEY,
+     id VARCHAR(50) PRIMARY KEY,
     centro VARCHAR(50) NOT NULL,
     num_est INT NOT NULL,
     -- qué coño é num_est?
     FOREIGN KEY (id) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE Cientifico(
-    id INT PRIMARY KEY,
+     id VARCHAR(50) PRIMARY KEY,
     centro VARCHAR(50) NOT NULL,
     -- para evitar trigger, num_articulos irá nunha vista
     FOREIGN KEY (id) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE

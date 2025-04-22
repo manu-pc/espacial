@@ -9,5 +9,19 @@ package aplicacion;
  * @author alumnogreibd
  */
 public class Aficionado extends Usuario {
-    
+    private String tier;
+
+    protected Aficionado(String idUsuario, String clave, String nombre, String email, String rango) {
+        super(idUsuario, clave, nombre, email);
+        this.tier = rango;
+    }
+
+    public String getTier() {
+        return tier;
+    }
+
+    public void setTier(String tier) {
+        this.tier = tier;
+    }
+
 }
