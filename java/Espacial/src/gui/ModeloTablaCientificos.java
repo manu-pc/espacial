@@ -26,7 +26,9 @@ public class ModeloTablaCientificos extends AbstractTableModel {
     public int getRowCount() {
         return cientificos.size();
     }
-
+    public void vaciar() {
+        cientificos.clear();
+    }
     public void añadirFilaVacia() {
         cientificos.add(null);
         fireTableRowsInserted(cientificos.size() - 1, cientificos.size() - 1);

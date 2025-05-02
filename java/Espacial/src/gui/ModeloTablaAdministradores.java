@@ -26,6 +26,9 @@ public class ModeloTablaAdministradores extends AbstractTableModel {
     public int getRowCount() {
         return administradors.size();
     }
+    public void vaciar() {
+        administradors.clear();
+    }
 
     public void añadirFilaVacia() {
         administradors.add(null);

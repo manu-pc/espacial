@@ -1181,7 +1181,7 @@ public class VUsuario extends javax.swing.JDialog {
     }// GEN-LAST:event_campo_ed_clave_esActionPerformed
 
     private void boton_buscar_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_adActionPerformed
-        String id = campo_id_af.getText().trim();
+        String id = campo_id_ad.getText().trim();
 
         if (!id.isEmpty()) {
             buscarUsuarioPorId(id);
@@ -1203,7 +1203,7 @@ public class VUsuario extends javax.swing.JDialog {
     }// GEN-LAST:event_campo_ed_clave_adActionPerformed
 
     private void boton_buscar_afActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_afActionPerformed
-        String id = campo_id_ad.getText().trim();
+        String id = campo_id_af.getText().trim();
 
         if (!id.isEmpty()) {
             buscarUsuarioPorId(id);
@@ -1323,26 +1323,33 @@ public class VUsuario extends javax.swing.JDialog {
     }
 
     private void vaciarCampos() {
+
         campo_ed_id_af.setText("");
         campo_ed_clave_af.setText("");
         campo_ed_nombre_af.setText("");
         campo_ed_email_af.setText("");
-
+        ModeloTablaAficionados m1 = (ModeloTablaAficionados) tablaUsuarios_af.getModel();
+        m1.vaciar();
         campo_ed_id_ad.setText("");
         campo_ed_clave_ad.setText("");
         campo_ed_nombre_ad.setText("");
         campo_ed_email_ad.setText("");
-
+        ModeloTablaAdministradores m2 = (ModeloTablaAdministradores) tablaUsuarios_ad.getModel();
+        m2.vaciar();
         campo_ed_id_ci.setText("");
         campo_ed_clave_ci.setText("");
         campo_ed_nombre_ci.setText("");
         campo_ed_email_ci.setText("");
-
+        ModeloTablaCientificos m3 = (ModeloTablaCientificos) tablaUsuarios_ci.getModel();
+        m3.vaciar();
+        
         campo_ed_id_es.setText("");
         campo_ed_clave_es.setText("");
         campo_ed_nombre_es.setText("");
         campo_ed_email_es.setText("");
         campo_ed_num_es.setText("");
+        ModeloTablaEstudiantes m4 = (ModeloTablaEstudiantes) tablaUsuarios_es.getModel();
+        m4.vaciar();
     }
 
     private void cargarUsuarios() {
@@ -1401,6 +1408,7 @@ public class VUsuario extends javax.swing.JDialog {
 
     private void buscarUsuarioPorId(String id) {
         Usuario u = fa.buscarUsuarioPorId(id);
+
         if (u != null) {
             if (u instanceof Aficionado) {
                 ModeloTablaAficionados m = new ModeloTablaAficionados();
@@ -1424,7 +1432,7 @@ public class VUsuario extends javax.swing.JDialog {
                 tablaUsuarios_es.setModel(m);
             }
         } else {
-            cargarUsuarios();
+            vaciarCampos();
         }
     }
 

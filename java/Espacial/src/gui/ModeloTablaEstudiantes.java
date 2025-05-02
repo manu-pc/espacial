@@ -22,7 +22,9 @@ public class ModeloTablaEstudiantes extends AbstractTableModel {
     public int getColumnCount() {
         return 4;
     }
-
+    public void vaciar() {
+        estudiantes.clear();
+    }
     public int getRowCount() {
         return estudiantes.size();
     }

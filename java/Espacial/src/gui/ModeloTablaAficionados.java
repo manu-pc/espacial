@@ -26,7 +26,9 @@ public class ModeloTablaAficionados extends AbstractTableModel {
     public int getRowCount() {
         return aficionados.size();
     }
-
+    public void vaciar() {
+        aficionados.clear();
+    }
     public void añadirFilaVacia() {
         aficionados.add(null);
         fireTableRowsInserted(aficionados.size() - 1, aficionados.size() - 1);
