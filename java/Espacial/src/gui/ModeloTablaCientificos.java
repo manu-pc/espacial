@@ -28,6 +28,8 @@ public class ModeloTablaCientificos extends AbstractTableModel {
     }
     public void vaciar() {
         cientificos.clear();
+                fireTableDataChanged();  
+
     }
     public void añadirFilaVacia() {
         cientificos.add(null);

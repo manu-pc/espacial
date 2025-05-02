@@ -24,6 +24,8 @@ public class ModeloTablaEstudiantes extends AbstractTableModel {
     }
     public void vaciar() {
         estudiantes.clear();
+                fireTableDataChanged();  
+
     }
     public int getRowCount() {
         return estudiantes.size();

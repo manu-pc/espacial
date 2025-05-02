@@ -28,6 +28,7 @@ public class ModeloTablaAficionados extends AbstractTableModel {
     }
     public void vaciar() {
         aficionados.clear();
+        fireTableDataChanged();  
     }
     public void añadirFilaVacia() {
         aficionados.add(null);

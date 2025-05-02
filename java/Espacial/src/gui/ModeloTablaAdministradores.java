@@ -28,6 +28,8 @@ public class ModeloTablaAdministradores extends AbstractTableModel {
     }
     public void vaciar() {
         administradors.clear();
+                fireTableDataChanged();  
+
     }
 
     public void añadirFilaVacia() {
