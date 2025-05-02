@@ -170,37 +170,37 @@ public Usuario buscarUsuarioPorId(String idUsuario) {
     try {
         con = this.getConexion();
         stm = con.prepareStatement(
-            "SELECT u.id_usuario, u.clave, u.nombre, u.direccion, u.email, u.tipo_usuario, " +
-            "       COALESCE(COUNT(p.usuario), 0) AS prestamos_vencidos, " +
-            "       a.institucion AS institucion, " +
-            "       e.fecha_nacimiento AS fecha_nacimiento, " +
-            "       c.campo_investigacion AS campo_investigacion " +
-            "FROM usuario u " +
-            "LEFT JOIN prestamo p ON u.id_usuario = p.usuario " +
-            "                    AND p.fecha_devolucion IS NULL " +
-            "                    AND p.fecha_prestamo < (CURRENT_DATE - INTERVAL '30 days') " +
-            "LEFT JOIN aficionado a ON u.id_usuario = a.usuario " +
-            "LEFT JOIN estudiante e ON u.id_usuario = e.usuario " +
-            "LEFT JOIN cientifico c ON u.id_usuario = c.usuario " +
-            "WHERE u.id_usuario = ? " +
-            "GROUP BY u.id_usuario, u.clave, u.nombre, u.direccion, u.email, u.tipo_usuario, " +
-            "         a.institucion, e.fecha_nacimiento, c.campo_investigacion"
+            "SELECT u.id, u.nombre, u.email, u.clave, " +
+            "       a.tier AS tier_aficionado, " +
+            "       e.centro AS centro_estudiante, e.num_est, " +
+            "       c.centro AS centro_cientifico, " +
+            "       ad.rango AS rango_admin " +
+            "FROM Usuario u " +
+            "LEFT JOIN Aficionado a ON u.id = a.id " +
+            "LEFT JOIN Estudiante e ON u.id = e.id " +
+            "LEFT JOIN Cientifico c ON u.id = c.id " +
+            "LEFT JOIN Administrador ad ON u.id = ad.id " +
+            "WHERE u.id = ?"
         );
         stm.setString(1, idUsuario);
         rs = stm.executeQuery();
-            if (rs.next()) {
-                usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rs);
-            }
+
+        if (rs.next()) {
+            usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rs);
+        }
 
     } catch (SQLException e) {
         System.out.println("Error buscando usuario por ID: " + e.getMessage());
         this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
     } finally {
-        try { if (stm != null) stm.close(); } catch (SQLException ignored) {}
+        try {
+            if (stm != null) stm.close();
+        } catch (SQLException ignored) {}
     }
 
     return usuario;
 }
+
 
 // VARIAS SQL
 public void crearUsuario(Usuario usuario) {

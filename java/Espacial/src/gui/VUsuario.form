@@ -31,11 +31,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="683" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="jTabbedPane1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -56,8 +52,8 @@
         <Container class="javax.swing.JPanel" name="Aficionado">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab4">
-                <Property name="tabTitle" type="java.lang.String" value="tab4"/>
+              <JTabbedPaneConstraints tabName="Aficionados">
+                <Property name="tabTitle" type="java.lang.String" value="Aficionados"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -72,9 +68,9 @@
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="50" max="32767" attributes="0"/>
+                          <EmptySpace pref="56" max="32767" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="45" max="32767" attributes="0"/>
+                          <EmptySpace pref="51" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
@@ -91,7 +87,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="422" max="32767" attributes="0"/>
+                      <EmptySpace pref="420" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
@@ -121,13 +117,13 @@
                               <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="botonNuevo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonNuevo_af" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botonGuardar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonGuardar_af" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="botonBorrar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonBorrar_af" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonSalir_af" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -140,10 +136,10 @@
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botonNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonBorrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonNuevo_af" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonGuardar_af" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonBorrar_af" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonSalir_af" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="31" max="32767" attributes="0"/>
                       </Group>
@@ -164,8 +160,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campo_ed_nombre" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_nombre_af" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_af" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -180,13 +176,13 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="campo_ed_clave" pref="136" max="32767" attributes="0"/>
+                                      <Component id="campo_ed_clave_af" pref="136" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                       <Component id="etiqueta_ed_tipo" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="selec_ed_tier" pref="161" max="32767" attributes="0"/>
+                                      <Component id="selec_ed_tier_af" pref="161" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="campo_ed_email" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_email_af" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -198,18 +194,18 @@
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_clave" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_af" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_tipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_af" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_id" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="selec_ed_tier" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="selec_ed_tier_af" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_nombre" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_email" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_email" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_email_af" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_nombre_af" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -228,7 +224,7 @@
                         <Property name="text" type="java.lang.String" value="ID"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_id">
+                    <Component class="javax.swing.JTextField" name="campo_ed_id_af">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_clave">
                       <Properties>
@@ -240,12 +236,12 @@
                         <Property name="text" type="java.lang.String" value="E-mail"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave">
+                    <Component class="javax.swing.JTextField" name="campo_ed_clave_af">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_claveActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_afActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_email">
+                    <Component class="javax.swing.JTextField" name="campo_ed_email_af">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_tipo">
                       <Properties>
@@ -253,9 +249,9 @@
                         <Property name="text" type="java.lang.String" value="Tier"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_nombre">
+                    <Component class="javax.swing.JTextField" name="campo_ed_nombre_af">
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="selec_ed_tier">
+                    <Component class="javax.swing.JComboBox" name="selec_ed_tier_af">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
@@ -267,7 +263,7 @@
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selec_ed_tierActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selec_ed_tier_afActionPerformed"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -275,27 +271,27 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="botonNuevo">
+                <Component class="javax.swing.JButton" name="botonNuevo_af">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonGuardar">
+                <Component class="javax.swing.JButton" name="botonGuardar_af">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonBorrar">
+                <Component class="javax.swing.JButton" name="botonBorrar_af">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Borrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonSalir">
+                <Component class="javax.swing.JButton" name="botonSalir_af">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Salir"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalirActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalir_afActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -325,14 +321,14 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaUsuarios">
+                    <Component class="javax.swing.JTable" name="tablaUsuarios_af">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
-                            <Column editable="false" title="ID" type="java.lang.Object"/>
-                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                            <Column editable="false" title="E-mail" type="java.lang.Object"/>
-                            <Column editable="false" title="Tier" type="java.lang.Object"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
+                            <Column editable="false" title="Nombre" type="java.lang.String"/>
+                            <Column editable="false" title="E-mail" type="java.lang.String"/>
+                            <Column editable="false" title="Tier" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -377,20 +373,20 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="etiqueta_id" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="campo_id" pref="546" max="32767" attributes="0"/>
+                          <Component id="campo_id_af" pref="558" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="boton_buscar" min="-2" max="-2" attributes="0"/>
+                          <Component id="boton_buscar_af" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="26" max="32767" attributes="0"/>
+                          <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="etiqueta_id" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="campo_id" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="boton_buscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campo_id_af" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boton_buscar_af" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -403,376 +399,25 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="campo_id">
+                <Component class="javax.swing.JTextField" name="campo_id_af">
                 </Component>
-                <Component class="javax.swing.JButton" name="boton_buscar">
+                <Component class="javax.swing.JButton" name="boton_buscar_af">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar_afActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="Cient&#xed;fico">
+        <Container class="javax.swing.JPanel" name="Administradores">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab4">
-                <Property name="tabTitle" type="java.lang.String" value="tab4"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel10" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
-                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="420" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="337" max="32767" attributes="0"/>
-                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="240" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel7">
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="botonNuevo1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botonGuardar1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="botonBorrar1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="botonSalir1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botonNuevo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonGuardar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonBorrar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonSalir1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Container class="javax.swing.JPanel" name="jPanel8">
-
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="etiqueta_ed_id1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="etiqueta_ed_nombre1" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campo_ed_nombre1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Component id="etiqueta_ed_email1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="etiqueta_ed_clave1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="campo_ed_clave1" pref="136" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Component id="etiqueta_ed_tipo1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="campo_ed_clave2" min="-2" pref="161" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="campo_ed_email1" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="etiqueta_ed_clave1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="etiqueta_ed_tipo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="etiqueta_ed_id1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="etiqueta_ed_nombre1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="etiqueta_ed_email1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_email1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_nombre1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
-                  <SubComponents>
-                    <Component class="javax.swing.JLabel" name="etiqueta_ed_nombre1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Nombre"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="etiqueta_ed_id1">
-                      <Properties>
-                        <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="ID"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_id1">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="etiqueta_ed_clave1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value=" Clave"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="etiqueta_ed_email1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="E-mail"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave1">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave1ActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_email1">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="etiqueta_ed_tipo1">
-                      <Properties>
-                        <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="Centro"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_nombre1">
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave2">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave2ActionPerformed"/>
-                      </Events>
-                    </Component>
-                  </SubComponents>
-                </Container>
-                <Component class="javax.swing.JButton" name="botonNuevo1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Nuevo"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="botonGuardar1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Guardar"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="botonBorrar1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Borrar"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="botonSalir1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Salir"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalir1ActionPerformed"/>
-                  </Events>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanel9">
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="663" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="90" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="176" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaUsuarios1">
-                      <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="0">
-                            <Column editable="false" title="ID" type="java.lang.Object"/>
-                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                            <Column editable="false" title="E-mail" type="java.lang.Object"/>
-                            <Column editable="false" title="Tier" type="java.lang.Object"/>
-                          </Table>
-                        </Property>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                          <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                          </TableColumnModel>
-                        </Property>
-                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanel10">
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="etiqueta_id1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="campo_id1" pref="546" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="boton_buscar1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="28" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="etiqueta_id1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="campo_id1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="boton_buscar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="etiqueta_id1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="ID:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="campo_id1">
-                </Component>
-                <Component class="javax.swing.JButton" name="boton_buscar1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Buscar"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar1ActionPerformed"/>
-                  </Events>
-                </Component>
-              </SubComponents>
-            </Container>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="Estudiante">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab4">
-                <Property name="tabTitle" type="java.lang.String" value="tab4"/>
+              <JTabbedPaneConstraints tabName="Administradores">
+                <Property name="tabTitle" type="java.lang.String" value="Administradores"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -787,9 +432,9 @@
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
                           <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <EmptySpace pref="40" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
@@ -836,13 +481,13 @@
                               <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="botonNuevo3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonNuevo_ad" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botonGuardar3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonGuardar_ad" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="botonBorrar3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonBorrar_ad" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="botonSalir3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonSalir_ad" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -855,10 +500,10 @@
                           <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botonNuevo3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonGuardar3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonBorrar3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonSalir3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonNuevo_ad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonGuardar_ad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonBorrar_ad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonSalir_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="31" max="32767" attributes="0"/>
                       </Group>
@@ -879,8 +524,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campo_ed_nombre3" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id3" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_nombre_ad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_ad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -895,13 +540,13 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="campo_ed_clave5" pref="135" max="32767" attributes="0"/>
+                                      <Component id="campo_ed_clave_ad" pref="135" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                       <Component id="etiqueta_ed_tipo3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="selec_ed_tier1" pref="165" max="32767" attributes="0"/>
+                                      <Component id="selec_ed_tier_ad" pref="165" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="campo_ed_email3" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_email_ad" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -913,18 +558,18 @@
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_clave3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_tipo3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_id3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="selec_ed_tier1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="selec_ed_tier_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_nombre3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_email3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_email3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_nombre3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_email_ad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_nombre_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -943,7 +588,7 @@
                         <Property name="text" type="java.lang.String" value="ID"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_id3">
+                    <Component class="javax.swing.JTextField" name="campo_ed_id_ad">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_clave3">
                       <Properties>
@@ -955,12 +600,12 @@
                         <Property name="text" type="java.lang.String" value="E-mail"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave5">
+                    <Component class="javax.swing.JTextField" name="campo_ed_clave_ad">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_adActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_email3">
+                    <Component class="javax.swing.JTextField" name="campo_ed_email_ad">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_tipo3">
                       <Properties>
@@ -968,9 +613,9 @@
                         <Property name="text" type="java.lang.String" value="Rango"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_nombre3">
+                    <Component class="javax.swing.JTextField" name="campo_ed_nombre_ad">
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="selec_ed_tier1">
+                    <Component class="javax.swing.JComboBox" name="selec_ed_tier_ad">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
@@ -981,7 +626,7 @@
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selec_ed_tier1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selec_ed_tier_adActionPerformed"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -989,27 +634,27 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="botonNuevo3">
+                <Component class="javax.swing.JButton" name="botonNuevo_ad">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonGuardar3">
+                <Component class="javax.swing.JButton" name="botonGuardar_ad">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonBorrar3">
+                <Component class="javax.swing.JButton" name="botonBorrar_ad">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Borrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonSalir3">
+                <Component class="javax.swing.JButton" name="botonSalir_ad">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Salir"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalir3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalir_adActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1039,14 +684,14 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaUsuarios3">
+                    <Component class="javax.swing.JTable" name="tablaUsuarios_ad">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
-                            <Column editable="false" title="ID" type="java.lang.Object"/>
-                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                            <Column editable="false" title="E-mail" type="java.lang.Object"/>
-                            <Column editable="false" title="Tier" type="java.lang.Object"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
+                            <Column editable="false" title="Nombre" type="java.lang.String"/>
+                            <Column editable="false" title="E-mail" type="java.lang.String"/>
+                            <Column editable="false" title="Rango" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1091,9 +736,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="etiqueta_id3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="campo_id3" pref="546" max="32767" attributes="0"/>
+                          <Component id="campo_id_ad" pref="558" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="boton_buscar3" min="-2" max="-2" attributes="0"/>
+                          <Component id="boton_buscar_ad" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1103,8 +748,8 @@
                           <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="etiqueta_id3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="campo_id3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="boton_buscar3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campo_id_ad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boton_buscar_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -1117,25 +762,25 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="campo_id3">
+                <Component class="javax.swing.JTextField" name="campo_id_ad">
                 </Component>
-                <Component class="javax.swing.JButton" name="boton_buscar3">
+                <Component class="javax.swing.JButton" name="boton_buscar_ad">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar_adActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="Administrador">
+        <Container class="javax.swing.JPanel" name="Estudiantes">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab4">
-                <Property name="tabTitle" type="java.lang.String" value="tab4"/>
+              <JTabbedPaneConstraints tabName="Estudiantes">
+                <Property name="tabTitle" type="java.lang.String" value="Estudiantes"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1143,16 +788,16 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel22" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
                           <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <EmptySpace pref="40" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
@@ -1199,13 +844,13 @@
                               <Component id="jPanel20" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="botonNuevo4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonNuevo_es" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botonGuardar4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonGuardar_es" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="botonBorrar4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonBorrar_es" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="botonSalir4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonSalir_es" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -1218,10 +863,10 @@
                           <Component id="jPanel20" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botonNuevo4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonGuardar4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonBorrar4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonSalir4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonNuevo_es" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonGuardar_es" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonBorrar_es" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonSalir_es" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="31" max="32767" attributes="0"/>
                       </Group>
@@ -1242,8 +887,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campo_ed_nombre4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_nombre_es" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_es" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -1257,13 +902,19 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campo_ed_clave8" alignment="0" pref="135" max="32767" attributes="0"/>
-                                  <Component id="campo_ed_email4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_clave_es" alignment="0" pref="135" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_email_es" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="etiqueta_ed_tipo6" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="etiqueta_ed_tipo6" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_clave1" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campo_ed_clave10" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="campo_ed_num_es" pref="161" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_clave_af1" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1271,21 +922,23 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_clave4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_id4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_es" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_es" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_id4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_clave1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_af1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_nombre4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_email4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_email4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_nombre4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_email_es" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_nombre_es" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_tipo6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_num_es" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1304,7 +957,7 @@
                         <Property name="text" type="java.lang.String" value="ID"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_id4">
+                    <Component class="javax.swing.JTextField" name="campo_ed_id_es">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_clave4">
                       <Properties>
@@ -1316,14 +969,14 @@
                         <Property name="text" type="java.lang.String" value="E-mail"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave8">
+                    <Component class="javax.swing.JTextField" name="campo_ed_clave_es">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave8ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_esActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_email4">
+                    <Component class="javax.swing.JTextField" name="campo_ed_email_es">
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_nombre4">
+                    <Component class="javax.swing.JTextField" name="campo_ed_nombre_es">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_tipo6">
                       <Properties>
@@ -1331,34 +984,44 @@
                         <Property name="text" type="java.lang.String" value="N&#xba; est."/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave10">
+                    <Component class="javax.swing.JTextField" name="campo_ed_num_es">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave10ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_num_esActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="etiqueta_ed_clave1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Centro"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campo_ed_clave_af1">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_af1ActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="botonNuevo4">
+                <Component class="javax.swing.JButton" name="botonNuevo_es">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonGuardar4">
+                <Component class="javax.swing.JButton" name="botonGuardar_es">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonBorrar4">
+                <Component class="javax.swing.JButton" name="botonBorrar_es">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Borrar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="botonSalir4">
+                <Component class="javax.swing.JButton" name="botonSalir_es">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Salir"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalir4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalir_esActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1388,14 +1051,14 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaUsuarios4">
+                    <Component class="javax.swing.JTable" name="tablaUsuarios_es">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
-                            <Column editable="false" title="ID" type="java.lang.Object"/>
-                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                            <Column editable="false" title="E-mail" type="java.lang.Object"/>
-                            <Column editable="false" title="Tier" type="java.lang.Object"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
+                            <Column editable="false" title="Nombre" type="java.lang.String"/>
+                            <Column editable="false" title="E-mail" type="java.lang.String"/>
+                            <Column editable="false" title="Centro" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1440,9 +1103,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="etiqueta_id4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="campo_id4" pref="546" max="32767" attributes="0"/>
+                          <Component id="campo_id_es" pref="558" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="boton_buscar4" min="-2" max="-2" attributes="0"/>
+                          <Component id="boton_buscar_es" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1452,8 +1115,8 @@
                           <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="etiqueta_id4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="campo_id4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="boton_buscar4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campo_id_es" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boton_buscar_es" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -1466,14 +1129,381 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="campo_id4">
+                <Component class="javax.swing.JTextField" name="campo_id_es">
                 </Component>
-                <Component class="javax.swing.JButton" name="boton_buscar4">
+                <Component class="javax.swing.JButton" name="boton_buscar_es">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar_esActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="Cient&#xed;ficos">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Cient&#xed;ficos">
+                <Property name="tabTitle" type="java.lang.String" value="Cient&#xed;ficos"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel26" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <Component id="jPanel23" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="420" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="337" max="32767" attributes="0"/>
+                          <Component id="jPanel23" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="240" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel23">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel24" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="botonNuevo5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="botonGuardar5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="botonBorrar5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="botonSalir5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel24" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="botonNuevo5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonGuardar5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonBorrar5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonSalir5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel24">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="etiqueta_ed_id5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_nombre5" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="campo_ed_nombre_ci" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_ci" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="etiqueta_ed_email5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="etiqueta_ed_clave5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="campo_ed_clave_ci" alignment="0" pref="135" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_email_ci" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="etiqueta_ed_tipo7" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_clave2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="campo_ed_clave11" pref="161" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_clave_af2" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="etiqueta_ed_clave5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_ci" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_id_ci" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_id5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_af2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_clave2" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="etiqueta_ed_nombre5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_email5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_email_ci" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_nombre_ci" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etiqueta_ed_tipo7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave11" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="etiqueta_ed_nombre5">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Nombre"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="etiqueta_ed_id5">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="ID"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campo_ed_id_ci">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="etiqueta_ed_clave5">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value=" Clave"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="etiqueta_ed_email5">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="E-mail"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campo_ed_clave_ci">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_ciActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campo_ed_email_ci">
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campo_ed_nombre_ci">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="etiqueta_ed_tipo7">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="N&#xba; est."/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campo_ed_clave11">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave11ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="etiqueta_ed_clave2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Centro"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="campo_ed_clave_af2">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_af2ActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="botonNuevo5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nuevo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="botonGuardar5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Guardar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="botonBorrar5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Borrar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="botonSalir5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Salir"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalir5ActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel25">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane6" alignment="0" pref="663" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jScrollPane6" min="-2" pref="176" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tablaUsuarios_ci">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="4" rowCount="0">
+                            <Column editable="false" title="ID" type="java.lang.String"/>
+                            <Column editable="false" title="Nombre" type="java.lang.String"/>
+                            <Column editable="false" title="E-mail" type="java.lang.String"/>
+                            <Column editable="false" title="N&#xba; art&#xed;culos" type="java.lang.Integer"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel26">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="etiqueta_id5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="campo_id_ci" pref="558" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="boton_buscar_ci" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="28" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="etiqueta_id5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campo_id_ci" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boton_buscar_ci" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="etiqueta_id5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="ID:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="campo_id_ci">
+                </Component>
+                <Component class="javax.swing.JButton" name="boton_buscar_ci">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Buscar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar_ciActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
