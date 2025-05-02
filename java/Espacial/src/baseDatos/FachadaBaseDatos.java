@@ -140,5 +140,35 @@ public class FachadaBaseDatos {
         return daoUsuarios.buscarUsuarioPorId(id);
     }
 
+    public void crearAficionado(aplicacion.Aficionado a) {
+        daoUsuarios.crearUsuario(a);
+    }
+    public void modificarAficionado(aplicacion.Aficionado a) {
+        daoUsuarios.modificarUsuario(a);
+    }
+    public void crearCientifico(aplicacion.Cientifico c) {
+        daoUsuarios.crearUsuario(c);
+    }
+
+    public void modificarCientifico(aplicacion.Cientifico c) {
+        daoUsuarios.modificarUsuario(c);
+    }
+
+    public void crearEstudiante(aplicacion.Estudiante e) {
+        daoUsuarios.crearUsuario(e);
+    }
+
+    public void modificarEstudiante(aplicacion.Estudiante e) {
+        daoUsuarios.modificarUsuario(e);
+    }
+
+    public void crearAdministrador(aplicacion.Administrador a) {
+        daoUsuarios.crearUsuario(a);
+    }
+
+    public void modificarAdministrador(aplicacion.Administrador a) {
+        daoUsuarios.modificarUsuario(a);
+    }
+
 
 }

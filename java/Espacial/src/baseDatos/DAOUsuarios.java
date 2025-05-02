@@ -280,5 +280,143 @@ public void crearUsuario(Usuario usuario) {
     }
 }
 
+public void modificarUsuario(Usuario usuario) {
+    Connection con = null;
+    PreparedStatement stmUsuario = null;
+    PreparedStatement stmSubtipo = null;
+
+    con = this.getConexion();
+    try {
+        con.setAutoCommit(false); // Transacción
+
+        // Modificar datos en Usuario
+        stmUsuario = con.prepareStatement(
+            "UPDATE Usuario SET nombre = ?, email = ?, clave = ? WHERE id = ?"
+        );
+        stmUsuario.setString(1, usuario.getNombre());
+        stmUsuario.setString(2, usuario.getEmail());
+        stmUsuario.setString(3, usuario.getClave());
+        stmUsuario.setString(4, usuario.getIdUsuario());
+        stmUsuario.executeUpdate();
+
+        // Modificar en tabla de subtipo correspondiente
+        if (usuario instanceof Aficionado) {
+            Aficionado aficionado = (Aficionado) usuario;
+            stmSubtipo = con.prepareStatement(
+                "UPDATE Aficionado SET tier = ? WHERE id = ?"
+            );
+            stmSubtipo.setString(1, aficionado.getTier());
+            stmSubtipo.setString(2, aficionado.getIdUsuario());
+            stmSubtipo.executeUpdate();
+
+        } else if (usuario instanceof Estudiante) {
+            Estudiante estudiante = (Estudiante) usuario;
+            stmSubtipo = con.prepareStatement(
+                "UPDATE Estudiante SET centro = ?, num_est = ? WHERE id = ?"
+            );
+            stmSubtipo.setString(1, estudiante.getCentro());
+            stmSubtipo.setInt(2, estudiante.getNumEst());
+            stmSubtipo.setString(3, estudiante.getIdUsuario());
+            stmSubtipo.executeUpdate();
+
+        } else if (usuario instanceof Cientifico) {
+            Cientifico cientifico = (Cientifico) usuario;
+            stmSubtipo = con.prepareStatement(
+                "UPDATE Cientifico SET centro = ? WHERE id = ?"
+            );
+            stmSubtipo.setString(1, cientifico.getCentro());
+            stmSubtipo.setString(2, cientifico.getIdUsuario());
+            stmSubtipo.executeUpdate();
+
+        } else if (usuario instanceof Administrador) {
+            Administrador administrador = (Administrador) usuario;
+            stmSubtipo = con.prepareStatement(
+                "UPDATE Administrador SET rango = ? WHERE id = ?"
+            );
+            stmSubtipo.setString(1, administrador.getDescripcion());
+            stmSubtipo.setString(2, administrador.getIdUsuario());
+            stmSubtipo.executeUpdate();
+        }
+
+        con.commit();
+
+    } catch (SQLException e) {
+        try { if (con != null) con.rollback(); } catch (SQLException ex) {}
+        System.out.println("Error modificando usuario: " + e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (stmUsuario != null) stmUsuario.close();
+            if (stmSubtipo != null) stmSubtipo.close();
+            if (con != null) con.setAutoCommit(true);
+        } catch (SQLException e) {
+            System.out.println("Error cerrando recursos.");
+        }
+    }
+}
+public void eliminarUsuario(String idUsuario) {
+    Connection con = null;
+    PreparedStatement stmSubtipo = null;
+    PreparedStatement stmUsuario = null;
+    PreparedStatement stmDetectar = null;
+    ResultSet rs = null;
+
+    con = this.getConexion();
+    try {
+        con.setAutoCommit(false); // Transacción
+
+        // Detectar subtipo al que pertenece el usuario
+        String tablaSubtipo = null;
+
+        String[] subtipos = {"Aficionado", "Estudiante", "Cientifico", "Administrador"};
+        for (String subtipo : subtipos) {
+            String consulta = "SELECT 1 FROM " + subtipo + " WHERE id = ?";
+            stmDetectar = con.prepareStatement(consulta);
+            stmDetectar.setString(1, idUsuario);
+            rs = stmDetectar.executeQuery();
+            if (rs.next()) {
+                tablaSubtipo = subtipo;
+                break;
+            }
+            rs.close();
+            stmDetectar.close();
+        }
+
+        if (tablaSubtipo == null) {
+            throw new SQLException("No se encontró subtipo para el usuario con id: " + idUsuario);
+        }
+
+        // Eliminar del subtipo detectado
+        stmSubtipo = con.prepareStatement("DELETE FROM " + tablaSubtipo + " WHERE id = ?");
+        stmSubtipo.setString(1, idUsuario);
+        stmSubtipo.executeUpdate();
+
+        // Eliminar de Usuario
+        stmUsuario = con.prepareStatement("DELETE FROM Usuario WHERE id = ?");
+        stmUsuario.setString(1, idUsuario);
+        stmUsuario.executeUpdate();
+
+        con.commit();
+
+    } catch (SQLException e) {
+        try { if (con != null) con.rollback(); } catch (SQLException ex) {}
+        System.out.println("Error eliminando usuario: " + e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (stmDetectar != null) stmDetectar.close();
+            if (stmSubtipo != null) stmSubtipo.close();
+            if (stmUsuario != null) stmUsuario.close();
+            if (con != null) con.setAutoCommit(true);
+        } catch (SQLException e) {
+            System.out.println("Error cerrando recursos.");
+        }
+    }
+}
+
+
+
+
 
 }

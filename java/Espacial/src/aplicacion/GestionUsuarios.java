@@ -7,6 +7,7 @@ package aplicacion;
 
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
+
 /**
  *
  * @author basesdatos
@@ -23,17 +24,16 @@ public class GestionUsuarios {
     public Boolean comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u;
         u = fbd.validarUsuario(idUsuario, clave);
-        if (u == null){
+        if (u == null) {
             fgui.actualizarAdmin(true);
             System.out.println("debug: auth fallida");
-            return true;}
-        else{
-            if (u instanceof Administrador){
-            fgui.actualizarAdmin(true);
-               System.out.println("Modo admin activado!");
-        }
-            else{
-            fgui.actualizarAdmin(false);
+            return true;
+        } else {
+            if (u instanceof Administrador) {
+                fgui.actualizarAdmin(true);
+                System.out.println("Modo admin activado!");
+            } else {
+                fgui.actualizarAdmin(false);
                 System.out.println("Modo admin desactivado");
             }
             return true;
@@ -52,8 +52,48 @@ public class GestionUsuarios {
     public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
         return fbd.buscarUsuariosPorNombre(nombre);
     }
-        public Usuario buscarUsuarioPorId(String id){
+
+    public Usuario buscarUsuarioPorId(String id) {
         return fbd.buscarUsuarioPorId(id);
     }
 
+    public void crearAficionado(String id, String clave, String nombre, String email, String tier) {
+        Aficionado a = new Aficionado(id, clave, nombre, email, tier);
+        fbd.crearAficionado(a);
+    }
+
+    public void modificarAficionado(String id, String clave, String nombre, String email, String tier) {
+        Aficionado a = new Aficionado(id, clave, nombre, email, tier);
+        fbd.modificarAficionado(a);
+    }
+
+    public void crearAdministrador(String id, String clave, String nombre, String email, String tier) {
+        Administrador a = new Administrador(id, clave, nombre, email, tier);
+        fbd.crearAdministrador(a);
+    }
+
+    public void modificarAdministrador(String id, String clave, String nombre, String email, String tier) {
+        Administrador a = new Administrador(id, clave, nombre, email, tier);
+        fbd.modificarAdministrador(a);
+    }
+    
+    public void crearCientifico(String id, String clave, String nombre, String email, String centro) {
+        Cientifico c = new Cientifico(id, clave, nombre, email, centro, 0);
+        fbd.crearCientifico(c);
+    }
+    public void modificarCientifico(String id, String clave, String nombre, String email, String centro) {
+        Cientifico c = new Cientifico(id, clave, nombre, email, centro, 0);
+        fbd.modificarCientifico(c);
+    }
+    public void crearEstudiante(String id, String clave, String nombre, String email, String centro, Integer num) {
+        Estudiante e = new Estudiante(id, clave, nombre, email, centro, num);
+        fbd.crearEstudiante(e);
+    }
+    public void modificarEstudiante(String id, String clave, String nombre, String email, String centro, Integer num) {
+        Estudiante e = new Estudiante(id, clave, nombre, email, centro, num);
+        fbd.modificarEstudiante(e);
+    }
+    public void eliminarUsuario(String id) {
+        fbd.eliminarUsuario(id);
+    }
 }

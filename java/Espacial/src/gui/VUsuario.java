@@ -1235,22 +1235,92 @@ public class VUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_botonNuevo5ActionPerformed
 
     private void botonGuardar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_esActionPerformed
+        int fila = tablaUsuarios_es.getSelectedRow();
+        String id = campo_ed_id_es.getText().trim();
+        String clave = campo_ed_clave_es.getText().trim();
+        String nombre = campo_ed_nombre_es.getText().trim();
+        String email = campo_ed_email_es.getText().trim();
+        String centro = campo_ed_centro_es.getText().trim();
+        String num = campo_ed_num_es.getText().trim();
+        int num_est;
+        try {
+            num_est = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            fa.muestraExcepcion("El número_estudante debe ser un valor numérico.");
+            return;
+        }
+        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty() || num.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
+        }
+        if (fila==-1){
+            fa.crearEstudiante(id, clave, nombre, email, centro, num_est);
+        }
+        else {
+            fa.modificarEstudiante(id, clave, nombre, email, centro, num_est);
+        }
 
     }//GEN-LAST:event_botonGuardar_esActionPerformed
 
     private void botonGuardar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_afActionPerformed
         int fila = tablaUsuarios_af.getSelectedRow();
-        if (fila==-1){
-            fa.crearUsuario();
+        String id = campo_ed_id_af.getText().trim();
+        String clave = campo_ed_clave_af.getText().trim();
+        String nombre = campo_ed_nombre_af.getText().trim();
+        String email = campo_ed_email_af.getText().trim();
+        String tier = (String) selec_ed_tier_af.getSelectedItem();
+        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
         }
+        if (fila==-1){
+            fa.crearAficionado(id, clave, nombre, email, tier);
+        }
+        else {
+            fa.modificarAficionado(id, clave, nombre, email, tier);
+        }
+
     }//GEN-LAST:event_botonGuardar_afActionPerformed
 
     private void botonGuardar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_adActionPerformed
-        // TODO add your handling code here:
+        int fila = tablaUsuarios_ad.getSelectedRow();
+        String id = campo_ed_id_ad.getText().trim();
+        String clave = campo_ed_clave_ad.getText().trim();
+        String nombre = campo_ed_nombre_ad.getText().trim();
+        String email = campo_ed_email_ad.getText().trim();
+        String tier = (String) selec_ed_tier_ad.getSelectedItem();
+        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
+        }
+        if (fila==-1){
+            fa.crearAdministrador(id, clave, nombre, email, tier);
+        }
+        else {
+            fa.modificarAdministrador(id, clave, nombre, email, tier);
+        }
+
     }//GEN-LAST:event_botonGuardar_adActionPerformed
 
     private void botonGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar5ActionPerformed
-        // TODO add your handling code here:
+        int fila = tablaUsuarios_ci.getSelectedRow();
+        String id = campo_ed_id_ci.getText().trim();
+        String clave = campo_ed_clave_ci.getText().trim();
+        String nombre = campo_ed_nombre_ci.getText().trim();
+        String email = campo_ed_email_ci.getText().trim();
+        String centro = campo_ed_centro_ci.getText().trim();
+
+        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
+        }
+        if (fila==-1){
+            fa.crearCientifico(id, clave, nombre, email, centro);
+        }
+        else {
+            fa.modificarCientifico(id, clave, nombre, email, centro);
+        }
+
     }//GEN-LAST:event_botonGuardar5ActionPerformed
 
     private void boton_buscar_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_esActionPerformed
