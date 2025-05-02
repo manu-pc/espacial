@@ -287,6 +287,11 @@ public class VUsuario extends javax.swing.JDialog {
         });
 
         botonBorrar_af.setText("Borrar");
+        botonBorrar_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar_afActionPerformed(evt);
+            }
+        });
 
         botonSalir_af.setText("Salir");
         botonSalir_af.addActionListener(new java.awt.event.ActionListener() {
@@ -533,6 +538,11 @@ public class VUsuario extends javax.swing.JDialog {
         });
 
         botonBorrar_ad.setText("Borrar");
+        botonBorrar_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar_adActionPerformed(evt);
+            }
+        });
 
         botonSalir_ad.setText("Salir");
         botonSalir_ad.addActionListener(new java.awt.event.ActionListener() {
@@ -794,6 +804,11 @@ public class VUsuario extends javax.swing.JDialog {
         });
 
         botonBorrar_es.setText("Borrar");
+        botonBorrar_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar_esActionPerformed(evt);
+            }
+        });
 
         botonSalir_es.setText("Salir");
         botonSalir_es.addActionListener(new java.awt.event.ActionListener() {
@@ -1034,6 +1049,11 @@ public class VUsuario extends javax.swing.JDialog {
         });
 
         botonBorrar5.setText("Borrar");
+        botonBorrar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar5ActionPerformed(evt);
+            }
+        });
 
         botonSalir5.setText("Salir");
         botonSalir5.addActionListener(new java.awt.event.ActionListener() {
@@ -1236,6 +1256,7 @@ public class VUsuario extends javax.swing.JDialog {
 
     private void botonGuardar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_esActionPerformed
         int fila = tablaUsuarios_es.getSelectedRow();
+        
         String id = campo_ed_id_es.getText().trim();
         String clave = campo_ed_clave_es.getText().trim();
         String nombre = campo_ed_nombre_es.getText().trim();
@@ -1259,6 +1280,8 @@ public class VUsuario extends javax.swing.JDialog {
         else {
             fa.modificarEstudiante(id, clave, nombre, email, centro, num_est);
         }
+            cargarUsuarios();
+
 
     }//GEN-LAST:event_botonGuardar_esActionPerformed
 
@@ -1279,6 +1302,7 @@ public class VUsuario extends javax.swing.JDialog {
         else {
             fa.modificarAficionado(id, clave, nombre, email, tier);
         }
+            cargarUsuarios();
 
     }//GEN-LAST:event_botonGuardar_afActionPerformed
 
@@ -1299,6 +1323,8 @@ public class VUsuario extends javax.swing.JDialog {
         else {
             fa.modificarAdministrador(id, clave, nombre, email, tier);
         }
+            cargarUsuarios();
+
 
     }//GEN-LAST:event_botonGuardar_adActionPerformed
 
@@ -1320,8 +1346,51 @@ public class VUsuario extends javax.swing.JDialog {
         else {
             fa.modificarCientifico(id, clave, nombre, email, centro);
         }
+            cargarUsuarios();
+
 
     }//GEN-LAST:event_botonGuardar5ActionPerformed
+
+    private void botonBorrar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_adActionPerformed
+        String id = campo_ed_id_ad.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+                actualizarCampos();
+
+    }//GEN-LAST:event_botonBorrar_adActionPerformed
+
+    private void botonBorrar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_afActionPerformed
+        String id = campo_ed_id_af.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+            cargarUsuarios();
+    }//GEN-LAST:event_botonBorrar_afActionPerformed
+
+    private void botonBorrar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_esActionPerformed
+        String id = campo_ed_id_es.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+            cargarUsuarios();
+    }//GEN-LAST:event_botonBorrar_esActionPerformed
+
+    private void botonBorrar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar5ActionPerformed
+        String id = campo_ed_id_ci.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+            cargarUsuarios();
+    }//GEN-LAST:event_botonBorrar5ActionPerformed
 
     private void boton_buscar_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_esActionPerformed
         String id = campo_id_es.getText().trim();
@@ -1428,6 +1497,7 @@ public class VUsuario extends javax.swing.JDialog {
     private void actualizarCampos() {
 
         int panel = jTabbedPane1.getSelectedIndex();
+        
         switch (panel) {
             case 0:
                 int selectedRow = tablaUsuarios_af.getSelectedRow();

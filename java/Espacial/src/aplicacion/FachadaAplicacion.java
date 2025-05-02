@@ -140,7 +140,7 @@ public class FachadaAplicacion {
     public void modificarEstudiante(String id, String clave, String nombre, String email, String centro, Integer num) {
         cu.modificarEstudiante(id, clave, nombre, email, centro, num);
     }
-    public void eliminarUsuario(String id) {
+    public void borrarUsuario(String id) {
         cu.eliminarUsuario(id);
     }
 

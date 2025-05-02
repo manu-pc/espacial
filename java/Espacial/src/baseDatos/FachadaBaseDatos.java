@@ -169,6 +169,9 @@ public class FachadaBaseDatos {
     public void modificarAdministrador(aplicacion.Administrador a) {
         daoUsuarios.modificarUsuario(a);
     }
+    public void eliminarUsuario(String id){
+        daoUsuarios.eliminarUsuario(id);
+    }
 
 
 }
