@@ -41,7 +41,7 @@ public class DAOUsuarios extends AbstractDAO {
                     "SELECT u.id, u.nombre, u.email, u.clave, " +
                             "       a.tier AS tier_aficionado, " +
                             "       e.centro AS centro_estudiante, e.num_est, " +
-                            "       c.centro AS centro_cientifico, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
                             "       ad.rango AS rango_admin " +
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
@@ -86,7 +86,7 @@ public class DAOUsuarios extends AbstractDAO {
                 "SELECT u.id, u.nombre, u.email, u.clave, " +
                 "       a.tier AS tier_aficionado, " +
                 "       e.centro AS centro_estudiante, e.num_est, " +
-                "       c.centro AS centro_cientifico, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
                 "       ad.rango AS rango_admin " +
                 "FROM Usuario u " +
                 "LEFT JOIN Aficionado a ON u.id = a.id " +
@@ -128,7 +128,7 @@ public class DAOUsuarios extends AbstractDAO {
                     "SELECT u.id, u.nombre, u.email, u.clave, " +
                             "       a.tier AS tier_aficionado, " +
                             "       e.centro AS centro_estudiante, e.num_est, " +
-                            "       c.centro AS centro_cientifico, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
                             "       ad.rango AS rango_admin " +
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
@@ -173,7 +173,7 @@ public class DAOUsuarios extends AbstractDAO {
                     "SELECT u.id, u.nombre, u.email, u.clave, " +
                             "       a.tier AS tier_aficionado, " +
                             "       e.centro AS centro_estudiante, e.num_est, " +
-                            "       c.centro AS centro_cientifico, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
                             "       ad.rango AS rango_admin " +
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
