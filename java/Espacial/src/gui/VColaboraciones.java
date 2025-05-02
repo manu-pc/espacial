@@ -26,7 +26,7 @@ public class VColaboraciones extends javax.swing.JDialog {
         initComponents();
         cargarUsuarios();
         
-        
+        //test
         
 
     }
