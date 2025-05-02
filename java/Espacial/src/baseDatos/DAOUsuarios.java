@@ -46,7 +46,7 @@ public class DAOUsuarios extends AbstractDAO {
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
                             "LEFT JOIN Estudiante e ON u.id = e.id " +
-                            "LEFT JOIN Cientifico c ON u.id = c.id " +
+                            "LEFT JOIN CientificoConArticulos c ON u.id = c.id "  +
                             "LEFT JOIN Administrador ad ON u.id = ad.id " +
                             "WHERE u.id = ? AND u.clave = ?");
 
@@ -74,6 +74,47 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
+    public Usuario buscarUsuarioPorId(String idUsuario) {
+        Usuario usuario = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+    
+        try {
+            con = this.getConexion();
+            stm = con.prepareStatement(
+                "SELECT u.id, u.nombre, u.email, u.clave, " +
+                "       a.tier AS tier_aficionado, " +
+                "       e.centro AS centro_estudiante, e.num_est, " +
+                "       c.centro AS centro_cientifico, " +
+                "       ad.rango AS rango_admin " +
+                "FROM Usuario u " +
+                "LEFT JOIN Aficionado a ON u.id = a.id " +
+                "LEFT JOIN Estudiante e ON u.id = e.id " +
+                "LEFT JOIN CientificoConArticulos c ON u.id = c.id "  +
+                "LEFT JOIN Administrador ad ON u.id = ad.id " +
+                "WHERE u.id = ?"
+            );
+            stm.setString(1, idUsuario);
+            rs = stm.executeQuery();
+    
+            if (rs.next()) {
+                usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rs);
+            }
+    
+        } catch (SQLException e) {
+            System.out.println("Error buscando usuario por ID: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stm != null) stm.close();
+            } catch (SQLException ignored) {}
+        }
+    
+        return usuario;
+    }
+
+    
     public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
         Connection con;
         PreparedStatement stmUsuario = null;
@@ -92,7 +133,7 @@ public class DAOUsuarios extends AbstractDAO {
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
                             "LEFT JOIN Estudiante e ON u.id = e.id " +
-                            "LEFT JOIN Cientifico c ON u.id = c.id " +
+                            "LEFT JOIN CientificoConArticulos c ON u.id = c.id "  +
                             "LEFT JOIN Administrador ad ON u.id = ad.id " +
                             "WHERE u.nombre = ?");
 
@@ -137,7 +178,7 @@ public class DAOUsuarios extends AbstractDAO {
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
                             "LEFT JOIN Estudiante e ON u.id = e.id " +
-                            "LEFT JOIN Cientifico c ON u.id = c.id " +
+                            "LEFT JOIN CientificoConArticulos c ON u.id = c.id "  +
                             "LEFT JOIN Administrador ad ON u.id = ad.id");
 
             rsUsuarios = stmUsuarios.executeQuery();
@@ -161,45 +202,6 @@ public class DAOUsuarios extends AbstractDAO {
 
         return usuarios;
     }
-public Usuario buscarUsuarioPorId(String idUsuario) {
-    Usuario usuario = null;
-    Connection con = null;
-    PreparedStatement stm = null;
-    ResultSet rs = null;
-
-    try {
-        con = this.getConexion();
-        stm = con.prepareStatement(
-            "SELECT u.id, u.nombre, u.email, u.clave, " +
-            "       a.tier AS tier_aficionado, " +
-            "       e.centro AS centro_estudiante, e.num_est, " +
-            "       c.centro AS centro_cientifico, " +
-            "       ad.rango AS rango_admin " +
-            "FROM Usuario u " +
-            "LEFT JOIN Aficionado a ON u.id = a.id " +
-            "LEFT JOIN Estudiante e ON u.id = e.id " +
-            "LEFT JOIN Cientifico c ON u.id = c.id " +
-            "LEFT JOIN Administrador ad ON u.id = ad.id " +
-            "WHERE u.id = ?"
-        );
-        stm.setString(1, idUsuario);
-        rs = stm.executeQuery();
-
-        if (rs.next()) {
-            usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rs);
-        }
-
-    } catch (SQLException e) {
-        System.out.println("Error buscando usuario por ID: " + e.getMessage());
-        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-    } finally {
-        try {
-            if (stm != null) stm.close();
-        } catch (SQLException ignored) {}
-    }
-
-    return usuario;
-}
 
 
 // VARIAS SQL

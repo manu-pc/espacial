@@ -21,7 +21,7 @@ public class UsuarioFactory {
                                   rs.getInt("num_est"));
         } else if (rs.getString("centro_cientifico") != null) {
             return new Cientifico(id, nombre, email, clave,
-                                  rs.getString("centro_cientifico"));
+                                  rs.getString("centro_cientifico"), rs.getInt("num_articulos"));
         } else if (rs.getString("rango_admin") != null) {
             return new Administrador(id, nombre, email, clave,
                                      rs.getString("rango_admin"));

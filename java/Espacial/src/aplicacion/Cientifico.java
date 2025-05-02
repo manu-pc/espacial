@@ -10,10 +10,11 @@ package aplicacion;
  */
 public class Cientifico extends Usuario {
     private String centro;
-
-    protected Cientifico(String idUsuario, String clave, String nombre, String email, String centro) {
+    private Integer numArticulos;
+    protected Cientifico(String idUsuario, String clave, String nombre, String email, String centro, Integer numArticulos) {
         super(idUsuario, clave, nombre, email);
         this.centro = centro;
+        this.numArticulos = numArticulos;
     }
 
     public String getCentro() {
@@ -22,5 +23,11 @@ public class Cientifico extends Usuario {
 
     public void setCentro(String centro) {
         this.centro = centro;
+    }
+    public Integer getNumArticulos() {
+        return numArticulos;
+    }
+    public void setNumArticulos(Integer numArticulos) {
+        this.numArticulos = numArticulos;
     }
 }

@@ -5,18 +5,18 @@
 
 package gui;
 
-import aplicacion.Usuario;
+import aplicacion.Cientifico;
 import javax.swing.table.*;
 
 /**
  *
  * @author basesdatos
  */
-public class ModeloTablaUsuarios extends AbstractTableModel {
-    private java.util.List<Usuario> usuarios;
+public class ModeloTablaCientificos extends AbstractTableModel {
+    private java.util.List<Cientifico> cientificos;
 
-    public ModeloTablaUsuarios() {
-        this.usuarios = new java.util.ArrayList<Usuario>();
+    public ModeloTablaCientificos() {
+        this.cientificos = new java.util.ArrayList<Cientifico>();
     }
 
     public int getColumnCount() {
@@ -24,12 +24,12 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
     }
 
     public int getRowCount() {
-        return usuarios.size();
+        return cientificos.size();
     }
 
     public void añadirFilaVacia() {
-        usuarios.add(null);
-        fireTableRowsInserted(usuarios.size() - 1, usuarios.size() - 1);
+        cientificos.add(null);
+        fireTableRowsInserted(cientificos.size() - 1, cientificos.size() - 1);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
                 nombre = "E-mail";
                 break;
             case 3:
-                nombre = "Tipo";
+                nombre = "Nº Articulos";
                 break;
         }
         return nombre;
@@ -68,7 +68,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
                 clase = java.lang.String.class;
                 break;
             case 3:
-                clase = java.lang.String.class;
+                clase = java.lang.Integer.class;
                 break;
         }
         return clase;
@@ -81,31 +81,34 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
 
     public Object getValueAt(int row, int col) {
         Object resultado = null;
-        if (usuarios.get(row) == null) {
+        if (cientificos.get(row) == null) {
             return "";
         }
         switch (col) {
             case 0:
-                resultado = usuarios.get(row).getIdUsuario();
+                resultado = cientificos.get(row).getIdUsuario();
                 break;
             case 1:
-                resultado = usuarios.get(row).getNombre();
+                resultado = cientificos.get(row).getNombre();
                 break;
             case 2:
-                resultado = usuarios.get(row).getEmail();
+                resultado = cientificos.get(row).getEmail();
+                break;
+            case 3:
+                resultado = cientificos.get(row).getNumArticulos();
                 break;
 
         }
         return resultado;
     }
 
-    public void setFilas(java.util.List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setFilas(java.util.List<Cientifico> cientificos) {
+        this.cientificos = cientificos;
         fireTableDataChanged();
     }
 
-    public Usuario obtenerUsuario(int i) {
-        return this.usuarios.get(i);
+    public Cientifico obtenerUsuario(int i) {
+        return this.cientificos.get(i);
     }
 
 }
