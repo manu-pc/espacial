@@ -6,6 +6,9 @@
 package aplicacion;
 
 import gui.FachadaGui;
+
+import java.util.List;
+
 import baseDatos.FachadaBaseDatos;
 
 /**
@@ -95,5 +98,17 @@ public class GestionUsuarios {
     }
     public void eliminarUsuario(String id) {
         fbd.eliminarUsuario(id);
+    }
+
+
+    public List<Colaboracion> obtenerColaboraciones(Cientifico cientifico) {
+        return fbd.obtenerColaboraciones(cientifico);
+    }
+    public void insertarColaboracion(Cientifico c, String nombreAgencia) {
+        fbd.insertarColaboracion(c, nombreAgencia);
+    }
+
+    public void eliminarColaboracion(Colaboracion col) {
+        fbd.eliminarColaboracion(col);
     }
 }

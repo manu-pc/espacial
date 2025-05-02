@@ -15,13 +15,21 @@ public class Colaboracion {
         this.Agencia = Agencia;
     }
 
+    public Colaboracion() {
+        this.fechaInicio = null;
+        this.fechaFin = null;
+        this.Cientifico = "";
+        this.Agencia = "";
+    }
+
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
-    
+
     public String getFechaInicioString() {
         return fechaInicio.toString();
     }
+
     public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
@@ -29,9 +37,11 @@ public class Colaboracion {
     public LocalDate getFechaFin() {
         return fechaFin;
     }
+
     public String getFechaFinString() {
         return fechaFin.toString();
     }
+
     public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
@@ -51,5 +61,5 @@ public class Colaboracion {
     public void setAgencia(String Agencia) {
         this.Agencia = Agencia;
     }
-    
+
 }

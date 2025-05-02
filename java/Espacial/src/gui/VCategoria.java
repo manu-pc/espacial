@@ -194,18 +194,7 @@ public VCategoria(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicac
     }//GEN-LAST:event_campoNombreActionPerformed
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-    String nombre = campoNombre.getText().trim();
-    String descripcion = campoDescripcion.getText().trim();
-
-    if (nombre.isEmpty() || descripcion.isEmpty()) return;
-    
-    fa.insertarCategoria(nombre, descripcion);
-
-
-    cargarCategorias();
-
-    campoNombre.setText("");
-    campoDescripcion.setText("");
+        
 
     }//GEN-LAST:event_botonAñadirActionPerformed
 

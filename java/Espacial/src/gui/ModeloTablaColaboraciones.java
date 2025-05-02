@@ -102,7 +102,7 @@ public class ModeloTablaColaboraciones extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public Colaboracion obtenerUsuario(int i) {
+    public Colaboracion obtenerColaboracion(int i) {
         return this.colaboraciones.get(i);
     }
 

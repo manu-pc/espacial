@@ -5,6 +5,8 @@
 
 package aplicacion;
 
+import java.util.List;
+
 /**
  *
  * @author basesdatos
@@ -146,6 +148,18 @@ public class FachadaAplicacion {
 
     public void abrirColaboraciones(Cientifico cientifico, java.awt.Dialog parent){
         fgui.abrirColaboraciones(cientifico, parent);
+    }
+
+    public List<Colaboracion> obtenerColaboraciones(Cientifico cientifico){
+        return cu.obtenerColaboraciones(cientifico);
+    }
+
+    public void insertarColaboracion(Cientifico c, String nombreAgencia){
+        cu.insertarColaboracion(c, nombreAgencia);
+        }
+
+    public void eliminarColaboracion(Colaboracion colaboracion) {
+        cu.eliminarColaboracion(colaboracion);
     }
     
 
