@@ -280,6 +280,11 @@ public class VUsuario extends javax.swing.JDialog {
         });
 
         botonGuardar_af.setText("Guardar");
+        botonGuardar_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardar_afActionPerformed(evt);
+            }
+        });
 
         botonBorrar_af.setText("Borrar");
 
@@ -521,6 +526,11 @@ public class VUsuario extends javax.swing.JDialog {
         });
 
         botonGuardar_ad.setText("Guardar");
+        botonGuardar_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardar_adActionPerformed(evt);
+            }
+        });
 
         botonBorrar_ad.setText("Borrar");
 
@@ -1017,6 +1027,11 @@ public class VUsuario extends javax.swing.JDialog {
         });
 
         botonGuardar5.setText("Guardar");
+        botonGuardar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardar5ActionPerformed(evt);
+            }
+        });
 
         botonBorrar5.setText("Borrar");
 
@@ -1223,6 +1238,21 @@ public class VUsuario extends javax.swing.JDialog {
 
     }//GEN-LAST:event_botonGuardar_esActionPerformed
 
+    private void botonGuardar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_afActionPerformed
+        int fila = tablaUsuarios_af.getSelectedRow();
+        if (fila==-1){
+            fa.crearUsuario();
+        }
+    }//GEN-LAST:event_botonGuardar_afActionPerformed
+
+    private void botonGuardar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_adActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGuardar_adActionPerformed
+
+    private void botonGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGuardar5ActionPerformed
+
     private void boton_buscar_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_esActionPerformed
         String id = campo_id_es.getText().trim();
 
@@ -1402,12 +1432,13 @@ public class VUsuario extends javax.swing.JDialog {
         campo_ed_clave_af.setText("");
         campo_ed_nombre_af.setText("");
         campo_ed_email_af.setText("");
-
-        
+        tablaUsuarios_af.clearSelection();
+            
         campo_ed_id_ad.setText("");
         campo_ed_clave_ad.setText("");
         campo_ed_nombre_ad.setText("");
         campo_ed_email_ad.setText("");
+        tablaUsuarios_ad.clearSelection();
 
         
         campo_ed_id_ci.setText("");
@@ -1415,6 +1446,7 @@ public class VUsuario extends javax.swing.JDialog {
         campo_ed_nombre_ci.setText("");
         campo_ed_email_ci.setText("");
         campo_ed_centro_ci.setText("");
+        tablaUsuarios_ci.clearSelection();
 
         
         
@@ -1424,6 +1456,7 @@ public class VUsuario extends javax.swing.JDialog {
         campo_ed_email_es.setText("");
         campo_ed_num_es.setText("");
         campo_ed_centro_es.setText("");
+        tablaUsuarios_es.clearSelection();
 
         
     }

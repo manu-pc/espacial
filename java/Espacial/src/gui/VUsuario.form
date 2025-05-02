@@ -286,6 +286,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardar_afActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="botonBorrar_af">
                   <Properties>
@@ -652,6 +655,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardar_adActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="botonBorrar_ad">
                   <Properties>
@@ -1379,6 +1385,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardar5ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="botonBorrar5">
                   <Properties>
