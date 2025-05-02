@@ -42,8 +42,10 @@ public class VColaboraciones extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        botonFinalizar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        botonNueva = new javax.swing.JButton();
+        campoNueva = new javax.swing.JTextField();
 
         setTitle("Gestión de préstamos");
 
@@ -52,12 +54,19 @@ public class VColaboraciones extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Nombre", "E-mail", "P. vencidos"
+                "Agencia", "Fecha Inicio", "Fecha Fin"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -72,10 +81,10 @@ public class VColaboraciones extends javax.swing.JDialog {
             tablaUsuarios.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
 
-        jButton2.setText("Prestar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonFinalizar.setText("Finalizar");
+        botonFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonFinalizarActionPerformed(evt);
             }
         });
 
@@ -86,16 +95,34 @@ public class VColaboraciones extends javax.swing.JDialog {
             }
         });
 
+        botonNueva.setText("Añadir");
+        botonNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevaActionPerformed(evt);
+            }
+        });
+
+        campoNueva.setText("Nombre de la agencia...");
+        campoNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNuevaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(277, 277, 277)
+                        .addComponent(botonFinalizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(32, 32, 32))
@@ -103,40 +130,41 @@ public class VColaboraciones extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(botonFinalizar)
+                    .addComponent(jButton3)
+                    .addComponent(botonNueva)
+                    .addComponent(campoNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFinalizarActionPerformed
 
     int selectedRow = tablaUsuarios.getSelectedRow();
     if (selectedRow == -1) {
         return;
     }
 
-    String idUsuario = tablaUsuarios.getValueAt(selectedRow, 0).toString();
 
-    int idLibro = ejemplar.getLibro().getIdLibro();  
-    int numEjemplar = ejemplar.getNumEjemplar();  
-
-    LocalDate fechaPrestamo = LocalDate.now();
-
-    fa.insertarPrestamo(idUsuario, idLibro, numEjemplar, fechaPrestamo);
-    this.dispose();
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonFinalizarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void campoNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNuevaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNuevaActionPerformed
+
+    private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonNuevaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,7 +226,9 @@ public class VColaboraciones extends javax.swing.JDialog {
     tablaUsuarios.setModel(m);  
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botonFinalizar;
+    private javax.swing.JButton botonNueva;
+    private javax.swing.JTextField campoNueva;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaUsuarios;

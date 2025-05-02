@@ -63,10 +63,10 @@ public class ModeloTablaColaboraciones extends AbstractTableModel {
                 clase = java.lang.String.class;
                 break;
             case 1:
-                clase = java.time.LocalDate.class;
+                clase = java.lang.String.class;
                 break;
             case 2:
-            clase = java.time.LocalDate.class;
+            clase = java.lang.String.class;
             break;
         }
         return clase;
@@ -87,10 +87,10 @@ public class ModeloTablaColaboraciones extends AbstractTableModel {
                 resultado = colaboraciones.get(row).getAgencia();
                 break;
             case 1:
-                resultado = colaboraciones.get(row).getFechaInicio();
+                resultado = colaboraciones.get(row).getFechaInicioString();
                 break;
             case 2:
-                resultado = colaboraciones.get(row).getFechaFin();
+                resultado = colaboraciones.get(row).getFechaFinString();
                 break;
 
         }
