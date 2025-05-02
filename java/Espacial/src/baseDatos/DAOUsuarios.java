@@ -6,6 +6,11 @@
 package baseDatos;
 
 import aplicacion.Usuario;
+import aplicacion.Administrador;
+import aplicacion.Aficionado;
+import aplicacion.Estudiante;
+import aplicacion.Cientifico;
+
 import aplicacion.UsuarioFactory;
 import java.sql.*;
 
@@ -196,5 +201,82 @@ public Usuario buscarUsuarioPorId(String idUsuario) {
 
     return usuario;
 }
+
+// VARIAS SQL
+public void crearUsuario(Usuario usuario) {
+    Connection con = null;
+    PreparedStatement stmUsuario = null;
+    PreparedStatement stmSubtipo = null;
+
+    con = this.getConexion();
+    try {
+        con.setAutoCommit(false); // Transacción
+
+        // Insertar en Usuario
+        stmUsuario = con.prepareStatement(
+            "INSERT INTO Usuario (id, nombre, email, clave) VALUES (?, ?, ?, ?)"
+        );
+        stmUsuario.setString(1, usuario.getIdUsuario());
+        stmUsuario.setString(2, usuario.getNombre());
+        stmUsuario.setString(3, usuario.getEmail());
+        stmUsuario.setString(4, usuario.getClave());
+        stmUsuario.executeUpdate();
+
+        // Insertar en subtipo
+        if (usuario instanceof Aficionado) {
+            Aficionado aficionado = (Aficionado) usuario;
+            stmSubtipo = con.prepareStatement(
+                "INSERT INTO Aficionado (id, tier) VALUES (?, ?)"
+            );
+            stmSubtipo.setString(1, aficionado.getIdUsuario());
+            stmSubtipo.setString(2, aficionado.getTier());
+            stmSubtipo.executeUpdate();
+
+        } else if (usuario instanceof Estudiante) {
+            Estudiante estudiante = (Estudiante) usuario;
+            stmSubtipo = con.prepareStatement(
+                "INSERT INTO Estudiante (id, centro, num_est) VALUES (?, ?, ?)"
+            );
+            stmSubtipo.setString(1, estudiante.getIdUsuario());
+            stmSubtipo.setString(2, estudiante.getCentro());
+            stmSubtipo.setInt(3, estudiante.getNumEst());
+            stmSubtipo.executeUpdate();
+
+        } else if (usuario instanceof Cientifico) {
+            Cientifico cientifico = (Cientifico) usuario;
+            stmSubtipo = con.prepareStatement(
+                "INSERT INTO Cientifico (id, centro) VALUES (?, ?)"
+            );
+            stmSubtipo.setString(1, cientifico.getIdUsuario());
+            stmSubtipo.setString(2, cientifico.getCentro());
+            stmSubtipo.executeUpdate();
+
+        } else if (usuario instanceof Administrador) {
+            Administrador administrador = (Administrador) usuario;
+            stmSubtipo = con.prepareStatement(
+                "INSERT INTO Administrador (id, rango) VALUES (?, ?)"
+            );
+            stmSubtipo.setString(1, administrador.getIdUsuario());
+            stmSubtipo.setString(2, administrador.getDescripcion());
+            stmSubtipo.executeUpdate();
+        }
+
+        con.commit();
+
+    } catch (SQLException e) {
+        try { if (con != null) con.rollback(); } catch (SQLException ex) {}
+        System.out.println("Error creando usuario: " + e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (stmUsuario != null) stmUsuario.close();
+            if (stmSubtipo != null) stmSubtipo.close();
+            if (con != null) con.setAutoCommit(true);
+        } catch (SQLException e) {
+            System.out.println("Error cerrando recursos.");
+        }
+    }
+}
+
 
 }

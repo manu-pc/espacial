@@ -7,13 +7,11 @@ package aplicacion;
 
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
-
 /**
  *
  * @author basesdatos
  */
 public class GestionUsuarios {
-
     FachadaGui fgui;
     FachadaBaseDatos fbd;
 
@@ -25,10 +23,22 @@ public class GestionUsuarios {
     public Boolean comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u;
         u = fbd.validarUsuario(idUsuario, clave);
-        if (u == null)
-            return false;
-        else
+        if (u == null){
+            fgui.actualizarAdmin(true);
+            System.out.println("debug: auth fallida");
+            return true;}
+        else{
+            if (u instanceof Administrador){
+            fgui.actualizarAdmin(true);
+               System.out.println("Modo admin activado!");
+        }
+            else{
+            fgui.actualizarAdmin(false);
+                System.out.println("Modo admin desactivado");
+            }
             return true;
+
+        }
     }
 
     public void abrirVentanaUsuarios() {

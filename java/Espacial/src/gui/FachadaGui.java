@@ -7,8 +7,7 @@ package gui;
 import aplicacion.Categoria;
 import aplicacion.Libro;
 import aplicacion.Ejemplar;
-
-
+import aplicacion.GestionUsuarios;
 /**
  *
  * @author alumno
@@ -30,6 +29,8 @@ public class FachadaGui {
       va = new VAutentificacion(vp, true, fa);
       vp.setVisible(true);
       va.setVisible(true);
+
+      
     }
     
    
@@ -73,6 +74,9 @@ public class FachadaGui {
 
     }
     
+    public void actualizarAdmin(boolean modoAdmin){
+        vp.setVisAdmin(modoAdmin);
+    }
     
 
     

@@ -24,6 +24,8 @@ public class FachadaAplicacion {
         cg = new GestionCategorias(fgui, fbd);
     }
 
+    
+    
     public static void main(String args[]) {
         FachadaAplicacion fa;
         fa = new FachadaAplicacion();

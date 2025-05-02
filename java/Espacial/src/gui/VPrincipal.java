@@ -10,7 +10,7 @@
  */
 
 package gui;
-
+import aplicacion.GestionUsuarios;
 
 /**
  *
@@ -24,6 +24,8 @@ public class VPrincipal extends javax.swing.JFrame {
     public VPrincipal(aplicacion.FachadaAplicacion fa) {
         this.fa=fa;
         initComponents();
+
+
     }
 
     /** This method is called from within the constructor to
@@ -262,6 +264,7 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tablaLibros;
     // End of variables declaration//GEN-END:variables
 
+
     public void buscarLibros(){
         ModeloTablaLibros m;
 
@@ -273,4 +276,10 @@ public class VPrincipal extends javax.swing.JFrame {
         }
         else btnEditarLibro.setEnabled(false);
     }
+    
+    public void setVisAdmin(boolean admin){
+        jMenu1.setVisible(admin);
+
+    }
 }
+

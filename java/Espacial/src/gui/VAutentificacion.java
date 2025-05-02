@@ -11,6 +11,8 @@
 
 package gui;
 
+import aplicacion.GestionUsuarios;
+
 /**
  *
  * @author basesdatos
