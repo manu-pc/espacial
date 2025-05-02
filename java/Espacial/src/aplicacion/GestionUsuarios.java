@@ -62,9 +62,9 @@ public class GestionUsuarios {
         fbd.crearAficionado(a);
     }
 
-    public void modificarAficionado(String id, String clave, String nombre, String email, String tier) {
+    public void modificarAficionado(String id_previo, String id, String clave, String nombre, String email, String tier) {
         Aficionado a = new Aficionado(id, clave, nombre, email, tier);
-        fbd.modificarAficionado(a);
+        fbd.modificarAficionado(a, id_previo);
     }
 
     public void crearAdministrador(String id, String clave, String nombre, String email, String tier) {
@@ -72,26 +72,26 @@ public class GestionUsuarios {
         fbd.crearAdministrador(a);
     }
 
-    public void modificarAdministrador(String id, String clave, String nombre, String email, String tier) {
+    public void modificarAdministrador(String id_previo, String id, String clave, String nombre, String email, String tier) {
         Administrador a = new Administrador(id, clave, nombre, email, tier);
-        fbd.modificarAdministrador(a);
+        fbd.modificarAdministrador(a, id_previo);
     }
     
     public void crearCientifico(String id, String clave, String nombre, String email, String centro) {
         Cientifico c = new Cientifico(id, clave, nombre, email, centro, 0);
         fbd.crearCientifico(c);
     }
-    public void modificarCientifico(String id, String clave, String nombre, String email, String centro) {
+    public void modificarCientifico(String id_previo, String id, String clave, String nombre, String email, String centro) {
         Cientifico c = new Cientifico(id, clave, nombre, email, centro, 0);
-        fbd.modificarCientifico(c);
+        fbd.modificarCientifico(c, id_previo);
     }
     public void crearEstudiante(String id, String clave, String nombre, String email, String centro, Integer num) {
         Estudiante e = new Estudiante(id, clave, nombre, email, centro, num);
         fbd.crearEstudiante(e);
     }
-    public void modificarEstudiante(String id, String clave, String nombre, String email, String centro, Integer num) {
+    public void modificarEstudiante(String id_previo, String id, String clave, String nombre, String email, String centro, Integer num) {
         Estudiante e = new Estudiante(id, clave, nombre, email, centro, num);
-        fbd.modificarEstudiante(e);
+        fbd.modificarEstudiante(e, id_previo);
     }
     public void eliminarUsuario(String id) {
         fbd.eliminarUsuario(id);

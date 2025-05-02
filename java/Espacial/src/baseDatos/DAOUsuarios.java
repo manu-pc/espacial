@@ -280,7 +280,7 @@ public void crearUsuario(Usuario usuario) {
     }
 }
 
-public void modificarUsuario(Usuario usuario) {
+public void modificarUsuario(Usuario usuario, String idPrevio) {
     Connection con = null;
     PreparedStatement stmUsuario = null;
     PreparedStatement stmSubtipo = null;
@@ -291,12 +291,14 @@ public void modificarUsuario(Usuario usuario) {
 
         // Modificar datos en Usuario
         stmUsuario = con.prepareStatement(
-            "UPDATE Usuario SET nombre = ?, email = ?, clave = ? WHERE id = ?"
+            "UPDATE Usuario SET id = ?, nombre = ?, email = ?, clave = ? WHERE id = ?"
         );
-        stmUsuario.setString(1, usuario.getNombre());
-        stmUsuario.setString(2, usuario.getEmail());
-        stmUsuario.setString(3, usuario.getClave());
-        stmUsuario.setString(4, usuario.getIdUsuario());
+        stmUsuario.setString(2, usuario.getNombre());
+        stmUsuario.setString(3, usuario.getEmail());
+        stmUsuario.setString(4, usuario.getClave());
+        stmUsuario.setString(1, usuario.getIdUsuario());
+                stmUsuario.setString(5, idPrevio);
+
         stmUsuario.executeUpdate();
 
         // Modificar en tabla de subtipo correspondiente

@@ -143,31 +143,31 @@ public class FachadaBaseDatos {
     public void crearAficionado(aplicacion.Aficionado a) {
         daoUsuarios.crearUsuario(a);
     }
-    public void modificarAficionado(aplicacion.Aficionado a) {
-        daoUsuarios.modificarUsuario(a);
+    public void modificarAficionado(aplicacion.Aficionado a, String idPrevio) {
+        daoUsuarios.modificarUsuario(a, idPrevio);
     }
     public void crearCientifico(aplicacion.Cientifico c) {
         daoUsuarios.crearUsuario(c);
     }
 
-    public void modificarCientifico(aplicacion.Cientifico c) {
-        daoUsuarios.modificarUsuario(c);
+    public void modificarCientifico(aplicacion.Cientifico c, String idPrevio) {
+        daoUsuarios.modificarUsuario(c, idPrevio);
     }
 
     public void crearEstudiante(aplicacion.Estudiante e) {
         daoUsuarios.crearUsuario(e);
     }
 
-    public void modificarEstudiante(aplicacion.Estudiante e) {
-        daoUsuarios.modificarUsuario(e);
+    public void modificarEstudiante(aplicacion.Estudiante e, String idPrevio) {
+        daoUsuarios.modificarUsuario(e, idPrevio);
     }
 
     public void crearAdministrador(aplicacion.Administrador a) {
         daoUsuarios.crearUsuario(a);
     }
 
-    public void modificarAdministrador(aplicacion.Administrador a) {
-        daoUsuarios.modificarUsuario(a);
+    public void modificarAdministrador(aplicacion.Administrador a, String idPrevio) {
+        daoUsuarios.modificarUsuario(a, idPrevio);
     }
     public void eliminarUsuario(String id){
         daoUsuarios.eliminarUsuario(id);

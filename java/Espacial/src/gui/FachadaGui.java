@@ -8,6 +8,7 @@ import aplicacion.Categoria;
 import aplicacion.Libro;
 import aplicacion.Ejemplar;
 import aplicacion.GestionUsuarios;
+import aplicacion.Cientifico;
 /**
  *
  * @author alumno
@@ -76,6 +77,10 @@ public class FachadaGui {
     
     public void actualizarAdmin(boolean modoAdmin){
         vp.setVisAdmin(modoAdmin);
+    }
+    
+    public void abrirColaboraciones(Cientifico cientifico, java.awt.Dialog parent){
+        
     }
     
 

@@ -1171,6 +1171,11 @@ public class VUsuario extends javax.swing.JDialog {
         );
 
         botonColaboracion.setText("Colaboraciones");
+        botonColaboracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonColaboracionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CientíficosLayout = new javax.swing.GroupLayout(Científicos);
         Científicos.setLayout(CientíficosLayout);
@@ -1256,7 +1261,8 @@ public class VUsuario extends javax.swing.JDialog {
 
     private void botonGuardar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_esActionPerformed
         int fila = tablaUsuarios_es.getSelectedRow();
-        
+        ModeloTablaEstudiantes m = (ModeloTablaEstudiantes) tablaUsuarios_es.getModel();
+        String id_previo = (String) m.getValueAt(fila, 0);
         String id = campo_ed_id_es.getText().trim();
         String clave = campo_ed_clave_es.getText().trim();
         String nombre = campo_ed_nombre_es.getText().trim();
@@ -1278,7 +1284,7 @@ public class VUsuario extends javax.swing.JDialog {
             fa.crearEstudiante(id, clave, nombre, email, centro, num_est);
         }
         else {
-            fa.modificarEstudiante(id, clave, nombre, email, centro, num_est);
+            fa.modificarEstudiante(id_previo, id, clave, nombre, email, centro, num_est);
         }
             cargarUsuarios();
 
@@ -1287,6 +1293,8 @@ public class VUsuario extends javax.swing.JDialog {
 
     private void botonGuardar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_afActionPerformed
         int fila = tablaUsuarios_af.getSelectedRow();
+                ModeloTablaAficionados m = (ModeloTablaAficionados) tablaUsuarios_af.getModel();
+        String id_previo = (String) m.getValueAt(fila, 0);
         String id = campo_ed_id_af.getText().trim();
         String clave = campo_ed_clave_af.getText().trim();
         String nombre = campo_ed_nombre_af.getText().trim();
@@ -1300,7 +1308,7 @@ public class VUsuario extends javax.swing.JDialog {
             fa.crearAficionado(id, clave, nombre, email, tier);
         }
         else {
-            fa.modificarAficionado(id, clave, nombre, email, tier);
+            fa.modificarAficionado(id_previo, id, clave, nombre, email, tier);
         }
             cargarUsuarios();
 
@@ -1308,6 +1316,8 @@ public class VUsuario extends javax.swing.JDialog {
 
     private void botonGuardar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_adActionPerformed
         int fila = tablaUsuarios_ad.getSelectedRow();
+                        ModeloTablaAdministradores m = (ModeloTablaAdministradores) tablaUsuarios_ad.getModel();
+        String id_previo = (String) m.getValueAt(fila, 0);
         String id = campo_ed_id_ad.getText().trim();
         String clave = campo_ed_clave_ad.getText().trim();
         String nombre = campo_ed_nombre_ad.getText().trim();
@@ -1321,7 +1331,7 @@ public class VUsuario extends javax.swing.JDialog {
             fa.crearAdministrador(id, clave, nombre, email, tier);
         }
         else {
-            fa.modificarAdministrador(id, clave, nombre, email, tier);
+            fa.modificarAdministrador(id_previo, id, clave, nombre, email, tier);
         }
             cargarUsuarios();
 
@@ -1330,6 +1340,8 @@ public class VUsuario extends javax.swing.JDialog {
 
     private void botonGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar5ActionPerformed
         int fila = tablaUsuarios_ci.getSelectedRow();
+        ModeloTablaCientificos m = (ModeloTablaCientificos) tablaUsuarios_ci.getModel();
+        String id_previo = (String) m.getValueAt(fila, 0);
         String id = campo_ed_id_ci.getText().trim();
         String clave = campo_ed_clave_ci.getText().trim();
         String nombre = campo_ed_nombre_ci.getText().trim();
@@ -1344,9 +1356,9 @@ public class VUsuario extends javax.swing.JDialog {
             fa.crearCientifico(id, clave, nombre, email, centro);
         }
         else {
-            fa.modificarCientifico(id, clave, nombre, email, centro);
+            fa.modificarCientifico(id_previo, id, clave, nombre, email, centro);
         }
-            cargarUsuarios();
+        cargarUsuarios();
 
 
     }//GEN-LAST:event_botonGuardar5ActionPerformed
@@ -1391,6 +1403,19 @@ public class VUsuario extends javax.swing.JDialog {
         fa.borrarUsuario(id);
             cargarUsuarios();
     }//GEN-LAST:event_botonBorrar5ActionPerformed
+
+    private void botonColaboracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonColaboracionActionPerformed
+        int fila = tablaUsuarios_ci.getSelectedRow();
+        if (fila == -1){
+            fa.muestraExcepcion("Selecciona a un científico existente para agregarle colaboraciones");
+        }
+        else {
+            ModeloTablaCientificos m = (ModeloTablaCientificos) tablaUsuarios_ci.getModel();
+            Cientifico c = m.obtenerUsuario(fila);
+            fa.abrirColaboraciones(c, this);
+        }
+
+    }//GEN-LAST:event_botonColaboracionActionPerformed
 
     private void boton_buscar_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_esActionPerformed
         String id = campo_id_es.getText().trim();
@@ -1559,6 +1584,7 @@ public class VUsuario extends javax.swing.JDialog {
                     campo_ed_nombre_es.setText(usuario.getNombre());
                     campo_ed_email_es.setText(usuario.getEmail());
                                         campo_ed_centro_es.setText(usuario.getCentro());
+                    campo_ed_num_es.setText(usuario.getNumEst().toString());
 
                     break;
                 }
@@ -1628,7 +1654,7 @@ public class VUsuario extends javax.swing.JDialog {
                 m2.setFilas(administradores);
                 tablaUsuarios_ad.setModel(m2);
                 break;
-            case 2:
+            case 3:
                 ModeloTablaCientificos m3 = new ModeloTablaCientificos();
                 java.util.List<Usuario> usuarios3 = fa.obtenerUsuarios();
                 java.util.List<Cientifico> cientificos = new java.util.ArrayList<>();
@@ -1640,7 +1666,7 @@ public class VUsuario extends javax.swing.JDialog {
                 m3.setFilas(cientificos);
                 tablaUsuarios_ci.setModel(m3);
                 break;
-            case 3:
+            case 2:
                 ModeloTablaEstudiantes m4 = new ModeloTablaEstudiantes();
                 java.util.List<Usuario> usuarios4 = fa.obtenerUsuarios();
                 java.util.List<Estudiante> estudiantes = new java.util.ArrayList<>();
