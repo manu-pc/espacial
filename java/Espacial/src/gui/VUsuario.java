@@ -1672,11 +1672,63 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     
     private void cargarUsuario(){
         if(miUsuario instanceof Aficionado){
-            
+            ModeloTablaAficionados m = new ModeloTablaAficionados();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Aficionado) u));
+                tablaUsuarios_af.setModel(m);
+                if (tablaUsuarios_af.getRowCount() > 0) {
+                    tablaUsuarios_af.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
+        else if (miUsuario instanceof Administrador){
+            ModeloTablaAdministradores m = new ModeloTablaAdministradores();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Administrador) u));
+                tablaUsuarios_ad.setModel(m);
+                if (tablaUsuarios_ad.getRowCount() > 0) {
+                    tablaUsuarios_ad.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
+        else if (miUsuario instanceof Cientifico){
+            ModeloTablaCientificos m = new ModeloTablaCientificos();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Cientifico) u));
+                tablaUsuarios_ci.setModel(m);
+                if (tablaUsuarios_ci.getRowCount() > 0) {
+                    tablaUsuarios_ci.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
+        else if (miUsuario instanceof Estudiante){
+            ModeloTablaEstudiantes m = new ModeloTablaEstudiantes();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Estudiante) u));
+                tablaUsuarios_es.setModel(m);
+                if (tablaUsuarios_es.getRowCount() > 0) {
+                    tablaUsuarios_es.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
+        else {
+            fa.muestraExcepcion("¡Se ha producido un error! El ID del usuario actual no existe en la base de datos.");
         }
     }
 
     private void cargarUsuarios() {
+        if (miUsuario != null) {
+            cargarUsuario();
+            return;
+        }
         int panel = jTabbedPane1.getSelectedIndex();
         switch (panel) {
             case 0:
