@@ -1407,8 +1407,25 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
 
     }//GEN-LAST:event_botonGuardar5ActionPerformed
 
+
+    private void borrarUsuarioPropio(String idUsuario){
+        if (!avisado) {
+            fa.muestraExcepcion("AVISO: Esto eliminará tu propia cuenta del sistema, cerrando el programa!\n Vuelva a seleccionar 'borrar' si está seguro.");
+            avisado = true;
+        }
+        else {
+            fa.borrarUsuario(idUsuario);
+            fa.muestraExcepcion("Su cuenta ha sido eliminada.");
+            this.dispose();
+            System.exit(0);
+        }
+    }
     private void botonBorrar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_adActionPerformed
 
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
         String id = campo_ed_id_ad.getText().trim();
         if (id.isEmpty()){
             fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
@@ -1420,6 +1437,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     }//GEN-LAST:event_botonBorrar_adActionPerformed
 
     private void botonBorrar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_afActionPerformed
+        
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
         String id = campo_ed_id_af.getText().trim();
         if (id.isEmpty()){
             fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
@@ -1430,6 +1452,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     }//GEN-LAST:event_botonBorrar_afActionPerformed
 
     private void botonBorrar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_esActionPerformed
+        
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
         String id = campo_ed_id_es.getText().trim();
         if (id.isEmpty()){
             fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
@@ -1440,6 +1467,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     }//GEN-LAST:event_botonBorrar_esActionPerformed
 
     private void botonBorrar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar5ActionPerformed
+        
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
         String id = campo_ed_id_ci.getText().trim();
         if (id.isEmpty()){
             fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
