@@ -17,7 +17,7 @@ import aplicacion.GestionUsuarios;
  * @author basesdatos
  */
 public class VPrincipal extends javax.swing.JFrame {
-  
+    aplicacion.Usuario usuarioActual;
     aplicacion.FachadaAplicacion fa;
     
     /** Creates new form VPrincipal */
@@ -51,6 +51,7 @@ public class VPrincipal extends javax.swing.JFrame {
         btnEditarLibro = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         buscaId = new javax.swing.JTextField();
+        boton_miPerfil = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         gestionUsuarios = new javax.swing.JMenuItem();
@@ -113,6 +114,13 @@ public class VPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("Id:");
 
+        boton_miPerfil.setText("Mi perfil");
+        boton_miPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_miPerfilActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Administración");
 
         gestionUsuarios.setText("Usuarios");
@@ -167,13 +175,18 @@ public class VPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscaId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscar)))
+                        .addComponent(btnBuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(boton_miPerfil)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
+                .addComponent(boton_miPerfil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiquetaTitulo))
@@ -212,7 +225,9 @@ public class VPrincipal extends javax.swing.JFrame {
                 // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
-
+    public void setUsuarioActual(aplicacion.Usuario u){
+        this.usuarioActual = u;
+    }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         buscarLibros();
@@ -239,11 +254,16 @@ public class VPrincipal extends javax.swing.JFrame {
         fa.abrirVentanaCategorias();
     }//GEN-LAST:event_gestionCategoriasActionPerformed
 
+    private void boton_miPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_miPerfilActionPerformed
+        fa.abrirMiPerfil(usuarioActual);
+    }//GEN-LAST:event_boton_miPerfilActionPerformed
+
     /**
     * @param args the command line arguments
     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_miPerfil;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditarLibro;
     private javax.swing.JButton btnNuevoLibro;

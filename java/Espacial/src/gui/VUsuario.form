@@ -179,8 +179,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="campo_ed_clave_af" pref="136" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="campo_ed_clave_af" min="-2" pref="135" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="etiqueta_ed_tipo" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="selec_ed_tier_af" pref="161" max="32767" attributes="0"/>
@@ -197,11 +197,11 @@
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_clave" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave_af" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_tipo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campo_ed_id_af" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_id" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="selec_ed_tier_af" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_af" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -239,11 +239,6 @@
                         <Property name="text" type="java.lang.String" value="E-mail"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave_af">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_afActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JTextField" name="campo_ed_email_af">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_tipo">
@@ -271,6 +266,8 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JPasswordField" name="campo_ed_clave_af">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -444,9 +441,9 @@
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="65" max="32767" attributes="0"/>
+                          <EmptySpace pref="48" max="32767" attributes="0"/>
                           <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="58" max="32767" attributes="0"/>
+                          <EmptySpace pref="46" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
@@ -487,22 +484,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="botonNuevo_ad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botonGuardar_ad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="botonBorrar_ad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="botonSalir_ad" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="botonNuevo_ad" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="botonGuardar_ad" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="botonBorrar_ad" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="botonSalir_ad" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -550,17 +546,17 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="campo_ed_clave_ad" pref="135" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="campo_ed_clave_ad" min="-2" pref="134" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Component id="etiqueta_ed_tipo3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="selec_ed_tier_ad" pref="165" max="32767" attributes="0"/>
+                                      <Component id="selec_ed_tier_ad" min="-2" pref="154" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="campo_ed_email_ad" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -570,11 +566,11 @@
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_clave3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_tipo3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campo_ed_id_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_id3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="selec_ed_tier_ad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -612,11 +608,6 @@
                         <Property name="text" type="java.lang.String" value="E-mail"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave_ad">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_adActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JTextField" name="campo_ed_email_ad">
                     </Component>
                     <Component class="javax.swing.JLabel" name="etiqueta_ed_tipo3">
@@ -643,6 +634,8 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JPasswordField" name="campo_ed_clave_ad">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -809,15 +802,19 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel22" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jPanel21" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jPanel22" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jPanel21" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
@@ -916,8 +913,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campo_ed_clave_es" alignment="0" pref="135" max="32767" attributes="0"/>
-                                  <Component id="campo_ed_email_es" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_email_es" pref="135" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_clave_es" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -939,11 +936,11 @@
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_clave4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave_es" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campo_ed_id_es" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_id4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_clave1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                                   <Component id="campo_ed_centro_es" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_es" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -983,11 +980,6 @@
                         <Property name="text" type="java.lang.String" value="E-mail"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave_es">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_esActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JTextField" name="campo_ed_email_es">
                     </Component>
                     <Component class="javax.swing.JTextField" name="campo_ed_nombre_es">
@@ -1012,6 +1004,8 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_centro_esActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JPasswordField" name="campo_ed_clave_es">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1186,11 +1180,6 @@
                       <Component id="jPanel26" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="botonColaboracion" min="-2" pref="205" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="65" max="32767" attributes="0"/>
@@ -1212,9 +1201,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="519" max="32767" attributes="0"/>
-                      <Component id="botonColaboracion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <EmptySpace pref="621" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
@@ -1302,13 +1289,18 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campo_ed_clave_ci" alignment="0" pref="135" max="32767" attributes="0"/>
-                                  <Component id="campo_ed_email_ci" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_email_ci" pref="135" max="32767" attributes="0"/>
+                                  <Component id="campo_ed_clave_ci" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="etiqueta_ed_clave2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campo_ed_centro_ci" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="etiqueta_ed_clave2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="campo_ed_centro_ci" min="-2" pref="161" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="botonColaboracion" min="-2" pref="210" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1319,11 +1311,11 @@
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="etiqueta_ed_clave5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_ed_clave_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campo_ed_id_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_id5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campo_ed_centro_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="etiqueta_ed_clave2" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="campo_ed_clave_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1331,6 +1323,7 @@
                                   <Component id="etiqueta_ed_email5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campo_ed_email_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="campo_ed_nombre_ci" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonColaboracion" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1361,11 +1354,6 @@
                         <Property name="text" type="java.lang.String" value="E-mail"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="campo_ed_clave_ci">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_clave_ciActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JTextField" name="campo_ed_email_ci">
                     </Component>
                     <Component class="javax.swing.JTextField" name="campo_ed_nombre_ci">
@@ -1378,6 +1366,16 @@
                     <Component class="javax.swing.JTextField" name="campo_ed_centro_ci">
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_ed_centro_ciActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JPasswordField" name="campo_ed_clave_ci">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="botonColaboracion">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Colaboraciones"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonColaboracionActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -1531,14 +1529,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="botonColaboracion">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Colaboraciones"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonColaboracionActionPerformed"/>
-              </Events>
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

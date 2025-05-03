@@ -80,8 +80,10 @@ public class FachadaAplicacion {
         return cl.actualizarEjemplaresLibro(idLibro, ejemplares, borrar);
     }
 
-    public Boolean comprobarAutentificacion(String idUsuario, String clave) {
-        return cu.comprobarAutentificacion(idUsuario, clave);
+    public Usuario comprobarAutentificacion(String idUsuario, String clave) {
+        Usuario u = cu.comprobarAutentificacion(idUsuario, clave);
+        if (u!=null) fgui.setUsuarioActual(u);
+        return u;
     }
 
     public java.util.List<String> obtenerNombreCategorias() {
@@ -160,6 +162,10 @@ public class FachadaAplicacion {
 
     public void eliminarColaboracion(Colaboracion colaboracion) {
         cu.eliminarColaboracion(colaboracion);
+    }
+    
+    public void abrirMiPerfil(Usuario u){
+        fgui.abrirMiPerfil(u);
     }
     
 

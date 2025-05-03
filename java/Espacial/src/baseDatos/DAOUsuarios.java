@@ -298,10 +298,12 @@ public class DAOUsuarios extends AbstractDAO {
         PreparedStatement stmSubtipo = null;
 
         con = this.getConexion();
+
         try {
             con.setAutoCommit(false); // Transacción
 
-            // Encriptar la nueva clave
+            if (!usuario.getClave().isEmpty()){ // se ha aportado una nueva clave - se debe modificar la clave
+                        // Encriptar la nueva clave
             String claveHash = BCrypt.hashpw(usuario.getClave(), BCrypt.gensalt());
 
             // Modificar datos en Usuario
@@ -313,6 +315,18 @@ public class DAOUsuarios extends AbstractDAO {
             stmUsuario.setString(4, claveHash);
             stmUsuario.setString(5, idPrevio);
             stmUsuario.executeUpdate();
+            }
+            else { 
+                // se actualizan los demás campos, la clave se deja igual
+                        stmUsuario = con.prepareStatement(
+                    "UPDATE Usuario SET id = ?, nombre = ?, email = ? WHERE id = ?");
+            stmUsuario.setString(1, usuario.getIdUsuario());
+            stmUsuario.setString(2, usuario.getNombre());
+            stmUsuario.setString(3, usuario.getEmail());
+            stmUsuario.setString(4, idPrevio);
+            stmUsuario.executeUpdate();    
+            }
+
             // Modificar en tabla de subtipo correspondiente
             if (usuario instanceof Aficionado) {
                 Aficionado aficionado = (Aficionado) usuario;

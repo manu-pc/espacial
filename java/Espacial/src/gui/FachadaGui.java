@@ -9,6 +9,7 @@ import aplicacion.Libro;
 import aplicacion.Ejemplar;
 import aplicacion.GestionUsuarios;
 import aplicacion.Cientifico;
+import aplicacion.Usuario;
 /**
  *
  * @author alumno
@@ -83,7 +84,14 @@ public class FachadaGui {
         VColaboraciones vc = new VColaboraciones(parent, true, fa, cientifico);
         vc.setVisible(true);
     }
-    
+    public void setUsuarioActual(Usuario u){
+        System.out.println("Usuario actual: " + u.getIdUsuario());
+        vp.setUsuarioActual(u);
+    }
+    public void abrirMiPerfil(Usuario u){
+        VUsuario vu =   new VUsuario(vp, true, fa, u);
+        vu.setVisible(true);
+    }
 
     
    

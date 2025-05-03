@@ -11,7 +11,7 @@ import aplicacion.Estudiante;
 import aplicacion.Cientifico;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
-
+import java.awt.Component;
 /**
  *
  * @author alumnogreibd
@@ -19,7 +19,7 @@ import javax.swing.event.ListSelectionEvent;
 public class VUsuario extends javax.swing.JDialog {
     private VPrincipal padre;
     private aplicacion.FachadaAplicacion fa;
-    private boolean botonNuevoPulsado = false;
+    private Usuario miUsuario = null;
 
     /**
      * Creates new form VUsuario
@@ -28,11 +28,9 @@ public class VUsuario extends javax.swing.JDialog {
         super(padre, modal);
         this.fa = fa;
         initComponents();
+
         cargarUsuarios();
-        javax.swing.SwingUtilities.invokeLater(() -> {
-            tablaUsuarios_af.setRowSelectionInterval(0, 0);
-            tablaUsuarios_af.scrollRectToVisible(tablaUsuarios_af.getCellRect(0, 0, true));
-        });
+
         tablaUsuarios_af.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             // seleccionar primeira fila por defecto
 
@@ -70,7 +68,67 @@ public class VUsuario extends javax.swing.JDialog {
                 }
             }
         });
+        
+        
     }
+    
+public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa, Usuario miUsuario){
+    super(padre, modal);
+    this.fa = fa;
+    this.miUsuario = miUsuario;
+    initComponents();
+
+    if (this.miUsuario != null){
+        
+        Component panel;
+        if (miUsuario instanceof Aficionado){
+            botonNuevo_af.setVisible(false);
+             panel = jTabbedPane1.getComponentAt(0);
+        }
+        else if (miUsuario instanceof Administrador){
+                        botonNuevo_ad.setVisible(false);
+
+             panel = jTabbedPane1.getComponentAt(1);
+        }
+        else if (miUsuario instanceof Estudiante){
+                        botonNuevo_es.setVisible(false);
+
+             panel = jTabbedPane1.getComponentAt(2);
+        }
+        else {
+                        botonNuevo5.setVisible(false);
+
+                        panel = jTabbedPane1.getComponentAt(3);
+        }
+
+        jTabbedPane1.removeAll();
+        jTabbedPane1.add(panel);
+    }
+
+    cargarUsuarios();
+
+    tablaUsuarios_af.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
+        }
+    });
+    tablaUsuarios_ci.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
+        }
+    });
+    tablaUsuarios_ad.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
+        }
+    });
+    tablaUsuarios_es.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
+        }
+    });
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,11 +150,11 @@ public class VUsuario extends javax.swing.JDialog {
         campo_ed_id_af = new javax.swing.JTextField();
         etiqueta_ed_clave = new javax.swing.JLabel();
         etiqueta_ed_email = new javax.swing.JLabel();
-        campo_ed_clave_af = new javax.swing.JTextField();
         campo_ed_email_af = new javax.swing.JTextField();
         etiqueta_ed_tipo = new javax.swing.JLabel();
         campo_ed_nombre_af = new javax.swing.JTextField();
         selec_ed_tier_af = new javax.swing.JComboBox<>();
+        campo_ed_clave_af = new javax.swing.JPasswordField();
         botonNuevo_af = new javax.swing.JButton();
         botonGuardar_af = new javax.swing.JButton();
         botonBorrar_af = new javax.swing.JButton();
@@ -116,11 +174,11 @@ public class VUsuario extends javax.swing.JDialog {
         campo_ed_id_ad = new javax.swing.JTextField();
         etiqueta_ed_clave3 = new javax.swing.JLabel();
         etiqueta_ed_email3 = new javax.swing.JLabel();
-        campo_ed_clave_ad = new javax.swing.JTextField();
         campo_ed_email_ad = new javax.swing.JTextField();
         etiqueta_ed_tipo3 = new javax.swing.JLabel();
         campo_ed_nombre_ad = new javax.swing.JTextField();
         selec_ed_tier_ad = new javax.swing.JComboBox<>();
+        campo_ed_clave_ad = new javax.swing.JPasswordField();
         botonNuevo_ad = new javax.swing.JButton();
         botonGuardar_ad = new javax.swing.JButton();
         botonBorrar_ad = new javax.swing.JButton();
@@ -140,13 +198,13 @@ public class VUsuario extends javax.swing.JDialog {
         campo_ed_id_es = new javax.swing.JTextField();
         etiqueta_ed_clave4 = new javax.swing.JLabel();
         etiqueta_ed_email4 = new javax.swing.JLabel();
-        campo_ed_clave_es = new javax.swing.JTextField();
         campo_ed_email_es = new javax.swing.JTextField();
         campo_ed_nombre_es = new javax.swing.JTextField();
         etiqueta_ed_tipo6 = new javax.swing.JLabel();
         campo_ed_num_es = new javax.swing.JTextField();
         etiqueta_ed_clave1 = new javax.swing.JLabel();
         campo_ed_centro_es = new javax.swing.JTextField();
+        campo_ed_clave_es = new javax.swing.JPasswordField();
         botonNuevo_es = new javax.swing.JButton();
         botonGuardar_es = new javax.swing.JButton();
         botonBorrar_es = new javax.swing.JButton();
@@ -166,11 +224,12 @@ public class VUsuario extends javax.swing.JDialog {
         campo_ed_id_ci = new javax.swing.JTextField();
         etiqueta_ed_clave5 = new javax.swing.JLabel();
         etiqueta_ed_email5 = new javax.swing.JLabel();
-        campo_ed_clave_ci = new javax.swing.JTextField();
         campo_ed_email_ci = new javax.swing.JTextField();
         campo_ed_nombre_ci = new javax.swing.JTextField();
         etiqueta_ed_clave2 = new javax.swing.JLabel();
         campo_ed_centro_ci = new javax.swing.JTextField();
+        campo_ed_clave_ci = new javax.swing.JPasswordField();
+        botonColaboracion = new javax.swing.JButton();
         botonNuevo5 = new javax.swing.JButton();
         botonGuardar5 = new javax.swing.JButton();
         botonBorrar5 = new javax.swing.JButton();
@@ -182,7 +241,6 @@ public class VUsuario extends javax.swing.JDialog {
         etiqueta_id5 = new javax.swing.JLabel();
         campo_id_ci = new javax.swing.JTextField();
         boton_buscar_ci = new javax.swing.JButton();
-        botonColaboracion = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -203,12 +261,6 @@ public class VUsuario extends javax.swing.JDialog {
         etiqueta_ed_clave.setText(" Clave");
 
         etiqueta_ed_email.setText("E-mail");
-
-        campo_ed_clave_af.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_ed_clave_afActionPerformed(evt);
-            }
-        });
 
         etiqueta_ed_tipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etiqueta_ed_tipo.setText("Tier");
@@ -244,8 +296,8 @@ public class VUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(campo_ed_clave_af, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                        .addGap(17, 17, 17)
+                        .addComponent(campo_ed_clave_af, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(etiqueta_ed_tipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selec_ed_tier_af, 0, 161, Short.MAX_VALUE))
@@ -258,11 +310,11 @@ public class VUsuario extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_clave)
-                    .addComponent(campo_ed_clave_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_tipo)
                     .addComponent(campo_ed_id_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_id)
-                    .addComponent(selec_ed_tier_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selec_ed_tier_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_nombre)
@@ -455,12 +507,6 @@ public class VUsuario extends javax.swing.JDialog {
 
         etiqueta_ed_email3.setText("E-mail");
 
-        campo_ed_clave_ad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_ed_clave_adActionPerformed(evt);
-            }
-        });
-
         etiqueta_ed_tipo3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etiqueta_ed_tipo3.setText("Rango");
 
@@ -493,15 +539,15 @@ public class VUsuario extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(etiqueta_ed_clave3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                        .addGap(17, 17, 17)
+                        .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(etiqueta_ed_tipo3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selec_ed_tier_ad, 0, 165, Short.MAX_VALUE))
+                        .addComponent(selec_ed_tier_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(campo_ed_email_ad))
-                .addContainerGap())
+                .addGap(0, 16, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,11 +555,11 @@ public class VUsuario extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_clave3)
-                    .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_tipo3)
                     .addComponent(campo_ed_id_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_id3)
-                    .addComponent(selec_ed_tier_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selec_ed_tier_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_nombre3)
@@ -555,20 +601,20 @@ public class VUsuario extends javax.swing.JDialog {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(botonNuevo_ad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonGuardar_ad)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonBorrar_ad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonSalir_ad)))
-                .addGap(0, 0, 0))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(botonNuevo_ad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonGuardar_ad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonBorrar_ad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonSalir_ad)
+                .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -673,9 +719,9 @@ public class VUsuario extends javax.swing.JDialog {
                 .addGap(18, 18, 18))
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
-                    .addContainerGap(65, Short.MAX_VALUE)
+                    .addContainerGap(48, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(58, Short.MAX_VALUE)))
+                    .addContainerGap(46, Short.MAX_VALUE)))
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -709,12 +755,6 @@ public class VUsuario extends javax.swing.JDialog {
         etiqueta_ed_clave4.setText(" Clave");
 
         etiqueta_ed_email4.setText("E-mail");
-
-        campo_ed_clave_es.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_ed_clave_esActionPerformed(evt);
-            }
-        });
 
         etiqueta_ed_tipo6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etiqueta_ed_tipo6.setText("Nº est.");
@@ -755,8 +795,8 @@ public class VUsuario extends javax.swing.JDialog {
                         .addComponent(etiqueta_ed_clave4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campo_ed_clave_es, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    .addComponent(campo_ed_email_es))
+                    .addComponent(campo_ed_email_es, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(campo_ed_clave_es))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(etiqueta_ed_tipo6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -773,11 +813,11 @@ public class VUsuario extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_clave4)
-                    .addComponent(campo_ed_clave_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campo_ed_id_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_id4)
                     .addComponent(etiqueta_ed_clave1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campo_ed_centro_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campo_ed_centro_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_nombre4)
@@ -931,14 +971,16 @@ public class VUsuario extends javax.swing.JDialog {
         Estudiantes.setLayout(EstudiantesLayout);
         EstudiantesLayout.setHorizontalGroup(
             EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
+            .addGroup(EstudiantesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
+                        .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
             .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
                     .addContainerGap(65, Short.MAX_VALUE)
@@ -970,17 +1012,18 @@ public class VUsuario extends javax.swing.JDialog {
 
         etiqueta_ed_email5.setText("E-mail");
 
-        campo_ed_clave_ci.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_ed_clave_ciActionPerformed(evt);
-            }
-        });
-
         etiqueta_ed_clave2.setText("Centro");
 
         campo_ed_centro_ci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campo_ed_centro_ciActionPerformed(evt);
+            }
+        });
+
+        botonColaboracion.setText("Colaboraciones");
+        botonColaboracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonColaboracionActionPerformed(evt);
             }
         });
 
@@ -1006,12 +1049,15 @@ public class VUsuario extends javax.swing.JDialog {
                         .addComponent(etiqueta_ed_clave5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campo_ed_clave_ci, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    .addComponent(campo_ed_email_ci))
+                    .addComponent(campo_ed_email_ci, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(campo_ed_clave_ci))
                 .addGap(18, 18, 18)
-                .addComponent(etiqueta_ed_clave2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campo_ed_centro_ci, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addComponent(etiqueta_ed_clave2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campo_ed_centro_ci, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonColaboracion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel24Layout.setVerticalGroup(
@@ -1020,17 +1066,18 @@ public class VUsuario extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_clave5)
-                    .addComponent(campo_ed_clave_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campo_ed_id_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_id5)
                     .addComponent(campo_ed_centro_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiqueta_ed_clave2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etiqueta_ed_clave2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_nombre5)
                     .addComponent(etiqueta_ed_email5)
                     .addComponent(campo_ed_email_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campo_ed_nombre_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campo_ed_nombre_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonColaboracion))
                 .addContainerGap())
         );
 
@@ -1170,13 +1217,6 @@ public class VUsuario extends javax.swing.JDialog {
                 .addGap(23, 23, 23))
         );
 
-        botonColaboracion.setText("Colaboraciones");
-        botonColaboracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonColaboracionActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout CientíficosLayout = new javax.swing.GroupLayout(Científicos);
         Científicos.setLayout(CientíficosLayout);
         CientíficosLayout.setHorizontalGroup(
@@ -1185,10 +1225,6 @@ public class VUsuario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonColaboracion, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
                     .addContainerGap(65, Short.MAX_VALUE)
@@ -1205,9 +1241,7 @@ public class VUsuario extends javax.swing.JDialog {
             .addGroup(CientíficosLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
-                .addComponent(botonColaboracion)
-                .addGap(75, 75, 75))
+                .addContainerGap(621, Short.MAX_VALUE))
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
                     .addGap(0, 538, Short.MAX_VALUE)
@@ -1275,12 +1309,14 @@ public class VUsuario extends javax.swing.JDialog {
             fa.muestraExcepcion("El número_estudante debe ser un valor numérico.");
             return;
         }
-        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty() || num.isEmpty()) {
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
             fa.muestraExcepcion("Por favor, complete todos os campos.");
             return;
         }
         if (fila==-1){
-            fa.crearEstudiante(id, clave, nombre, email, centro, num_est);
+            if (!clave.isEmpty())
+                fa.crearEstudiante(id, clave, nombre, email, centro, num_est);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
         }
         else {
                     String id_previo = (String) m.getValueAt(fila, 0);
@@ -1300,12 +1336,14 @@ public class VUsuario extends javax.swing.JDialog {
         String nombre = campo_ed_nombre_af.getText().trim();
         String email = campo_ed_email_af.getText().trim();
         String tier = (String) selec_ed_tier_af.getSelectedItem();
-        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
             fa.muestraExcepcion("Por favor, complete todos os campos.");
             return;
         }
         if (fila==-1){
-            fa.crearAficionado(id, clave, nombre, email, tier);
+            if (!clave.isEmpty())
+                fa.crearAficionado(id, clave, nombre, email, tier);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
         }
         else {
                     String id_previo = (String) m.getValueAt(fila, 0);
@@ -1324,21 +1362,20 @@ public class VUsuario extends javax.swing.JDialog {
         String nombre = campo_ed_nombre_ad.getText().trim();
         String email = campo_ed_email_ad.getText().trim();
         String tier = (String) selec_ed_tier_ad.getSelectedItem();
-        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
             fa.muestraExcepcion("Por favor, complete todos os campos.");
             return;
         }
         if (fila==-1){
-            fa.crearAdministrador(id, clave, nombre, email, tier);
+            if (!clave.isEmpty())
+                fa.crearAdministrador(id, clave, nombre, email, tier);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
         }
         else {
-                    String id_previo = (String) m.getValueAt(fila, 0);
-
+            String id_previo = (String) m.getValueAt(fila, 0);
             fa.modificarAdministrador(id_previo, id, clave, nombre, email, tier);
         }
             cargarUsuarios();
-
-
     }//GEN-LAST:event_botonGuardar_adActionPerformed
 
     private void botonGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar5ActionPerformed
@@ -1349,13 +1386,14 @@ public class VUsuario extends javax.swing.JDialog {
         String nombre = campo_ed_nombre_ci.getText().trim();
         String email = campo_ed_email_ci.getText().trim();
         String centro = campo_ed_centro_ci.getText().trim();
-
-        if (id.isEmpty() || clave.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
             fa.muestraExcepcion("Por favor, complete todos os campos.");
             return;
         }
         if (fila==-1){
-            fa.crearCientifico(id, clave, nombre, email, centro);
+            if (!clave.isEmpty())
+                fa.crearCientifico(id, clave, nombre, email, centro);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
         }
         else {
                     String id_previo = (String) m.getValueAt(fila, 0);
@@ -1432,7 +1470,8 @@ public class VUsuario extends javax.swing.JDialog {
     }// GEN-LAST:event_boton_buscar_esActionPerformed
 
     private void botonSalir_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_esActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+
     }// GEN-LAST:event_botonSalir_esActionPerformed
     private void campo_ed_centro_ciActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_esActionPerformed
         // TODO add your handling code here:
@@ -1460,7 +1499,7 @@ public class VUsuario extends javax.swing.JDialog {
     }// GEN-LAST:event_boton_buscar_adActionPerformed
 
     private void botonSalir_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_adActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }// GEN-LAST:event_botonSalir_adActionPerformed
 
     private void selec_ed_tier_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_selec_ed_tier_adActionPerformed
@@ -1502,7 +1541,7 @@ public class VUsuario extends javax.swing.JDialog {
     }// GEN-LAST:event_campo_ed_clave11ActionPerformed
 
     private void botonSalir5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir5ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }// GEN-LAST:event_botonSalir5ActionPerformed
 
     private void boton_buscar_ciActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_ciActionPerformed
@@ -1538,7 +1577,7 @@ public class VUsuario extends javax.swing.JDialog {
                         return;
                     }
                     campo_ed_id_af.setText(usuario.getIdUsuario());
-                    campo_ed_clave_af.setText(usuario.getClave());
+                    campo_ed_clave_af.setText("");
                     campo_ed_nombre_af.setText(usuario.getNombre());
                     campo_ed_email_af.setText(usuario.getEmail());
                     break;
@@ -1553,7 +1592,7 @@ public class VUsuario extends javax.swing.JDialog {
                         return;
                     }
                     campo_ed_id_ad.setText(usuario.getIdUsuario());
-                    campo_ed_clave_ad.setText(usuario.getClave());
+                    campo_ed_clave_ad.setText("");
                     campo_ed_nombre_ad.setText(usuario.getNombre());
                     campo_ed_email_ad.setText(usuario.getEmail());
                     break;
@@ -1568,7 +1607,7 @@ public class VUsuario extends javax.swing.JDialog {
                         return;
                     }
                     campo_ed_id_ci.setText(usuario.getIdUsuario());
-                    campo_ed_clave_ci.setText(usuario.getClave());
+                    campo_ed_clave_ci.setText("");
                     campo_ed_nombre_ci.setText(usuario.getNombre());
                     campo_ed_email_ci.setText(usuario.getEmail());
                     campo_ed_centro_ci.setText(usuario.getCentro());
@@ -1584,7 +1623,7 @@ public class VUsuario extends javax.swing.JDialog {
                         return;
                     }
                     campo_ed_id_es.setText(usuario.getIdUsuario());
-                    campo_ed_clave_es.setText(usuario.getClave());
+                    campo_ed_clave_es.setText("");
                     campo_ed_nombre_es.setText(usuario.getNombre());
                     campo_ed_email_es.setText(usuario.getEmail());
                                         campo_ed_centro_es.setText(usuario.getCentro());
@@ -1629,6 +1668,12 @@ public class VUsuario extends javax.swing.JDialog {
         tablaUsuarios_es.clearSelection();
 
         
+    }
+    
+    private void cargarUsuario(){
+        if(miUsuario instanceof Aficionado){
+            
+        }
     }
 
     private void cargarUsuarios() {
@@ -1785,10 +1830,10 @@ public class VUsuario extends javax.swing.JDialog {
     private javax.swing.JButton boton_buscar_es;
     private javax.swing.JTextField campo_ed_centro_ci;
     private javax.swing.JTextField campo_ed_centro_es;
-    private javax.swing.JTextField campo_ed_clave_ad;
-    private javax.swing.JTextField campo_ed_clave_af;
-    private javax.swing.JTextField campo_ed_clave_ci;
-    private javax.swing.JTextField campo_ed_clave_es;
+    private javax.swing.JPasswordField campo_ed_clave_ad;
+    private javax.swing.JPasswordField campo_ed_clave_af;
+    private javax.swing.JPasswordField campo_ed_clave_ci;
+    private javax.swing.JPasswordField campo_ed_clave_es;
     private javax.swing.JTextField campo_ed_email_ad;
     private javax.swing.JTextField campo_ed_email_af;
     private javax.swing.JTextField campo_ed_email_ci;

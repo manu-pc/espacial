@@ -12,7 +12,7 @@ public class UsuarioFactory {
         String nombre = rs.getString("nombre");
         String email = rs.getString("email");
         String clave = rs.getString("clave");
-
+        
         if (rs.getString("tier_aficionado") != null) {
             return new Aficionado(id, clave, nombre, email, rs.getString("tier_aficionado"));
         } else if (rs.getString("centro_estudiante") != null) {
