@@ -41,7 +41,7 @@ public class VColaboraciones extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,25 +54,26 @@ public class VColaboraciones extends javax.swing.JDialog {
         setTitle("Gestión de préstamos");
 
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
+            new Object [][] {
 
-                },
-                new String[] {
-                        "Agencia", "Fecha Inicio", "Fecha Fin"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class
+            },
+            new String [] {
+                "Agencia", "Fecha Inicio", "Fecha Fin"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[] {
-                    false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         tablaUsuarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
@@ -105,7 +106,6 @@ public class VColaboraciones extends javax.swing.JDialog {
             }
         });
 
-        campoNueva.setText("Nombre de la agencia...");
         campoNueva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoNuevaActionPerformed(evt);
@@ -115,39 +115,34 @@ public class VColaboraciones extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(38, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(botonFinalizar)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(campoNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 171,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(botonNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 76,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 78,
-                                                        Short.MAX_VALUE))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addGap(32, 32, 32)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonFinalizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(29, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(botonFinalizar)
-                                        .addComponent(jButton3)
-                                        .addComponent(botonNueva)
-                                        .addComponent(campoNueva, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonFinalizar)
+                    .addComponent(jButton3)
+                    .addComponent(botonNueva)
+                    .addComponent(campoNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,7 +178,18 @@ public class VColaboraciones extends javax.swing.JDialog {
         if (nombreAgencia.isEmpty()) {
             return;
         }
-        fa.insertarColaboracion(cientifico, nombreAgencia);
+        Integer id_agencia;
+        try {
+            id_agencia = Integer.parseInt(nombreAgencia);
+        }
+        catch(NumberFormatException e){
+            fa.muestraExcepcion("Introduce el ID numérico de la agencia.");
+            campoNueva.setText("");
+            return;
+        }
+ 
+        
+        fa.insertarColaboracion(cientifico, id_agencia);
         cargarColaboraciones();
         campoNueva.setText("");
 

@@ -457,7 +457,7 @@ public class DAOUsuarios extends AbstractDAO {
                 }
 
                 colaboracion.setCientifico(rs.getString("cientifico"));
-                colaboracion.setAgencia(rs.getString("agencia"));
+                colaboracion.setAgencia(rs.getInt("agencia"));
 
                 colaboraciones.add(colaboracion);
             }
@@ -481,7 +481,7 @@ public class DAOUsuarios extends AbstractDAO {
     public void finalizarColaboracion(Colaboracion colaboracion) {
         Connection con = null;
         PreparedStatement stm = null;
-        String nombreAgencia = colaboracion.getAgencia();
+        Integer idAgencia = colaboracion.getAgencia();
         String cientifico = colaboracion.getCientifico();
         try {
             con = this.getConexion();
@@ -490,7 +490,7 @@ public class DAOUsuarios extends AbstractDAO {
                             "SET fechaFin = CURRENT_DATE " +
                             "WHERE cientifico = ? AND agencia = ? AND fechaFin IS NULL");
             stm.setString(1, cientifico);
-            stm.setString(2, nombreAgencia);
+            stm.setInt(2, idAgencia);
             stm.executeUpdate();
 
         } catch (SQLException e) {
@@ -505,7 +505,7 @@ public class DAOUsuarios extends AbstractDAO {
         }
     }
 
-    public void insertarColaboracion(Cientifico cientifico, String nombreAgencia) {
+    public void insertarColaboracion(Cientifico cientifico, Integer id_agencia) {
         Connection con = null;
         PreparedStatement stm = null;
 
@@ -515,7 +515,7 @@ public class DAOUsuarios extends AbstractDAO {
                     "INSERT INTO Colaboracion (fechaInicio, fechaFin, cientifico, agencia) " +
                             "VALUES (CURRENT_DATE, NULL, ?, ?)");
             stm.setString(1, cientifico.getIdUsuario());
-            stm.setString(2, nombreAgencia);
+            stm.setInt(2, id_agencia);
             stm.executeUpdate();
 
         } catch (SQLException e) {

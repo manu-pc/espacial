@@ -66,7 +66,7 @@ public class ModeloTablaColaboraciones extends AbstractTableModel {
                 clase = java.lang.String.class;
                 break;
             case 2:
-            clase = java.lang.String.class;
+            clase = java.lang.Integer.class;
             break;
         }
         return clase;

@@ -183,8 +183,8 @@ public class FachadaBaseDatos {
         return daoUsuarios.obtenerColaboraciones(cientifico);
     }
 
-    public void insertarColaboracion(aplicacion.Cientifico c, String nombreAgencia) {
-        daoUsuarios.insertarColaboracion(c, nombreAgencia);
+    public void insertarColaboracion(aplicacion.Cientifico c, Integer id_agencia) {
+        daoUsuarios.insertarColaboracion(c, id_agencia);
     }
 
     public void eliminarColaboracion(Colaboracion col) {

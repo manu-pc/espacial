@@ -154,8 +154,8 @@ public class FachadaAplicacion {
         return cu.obtenerColaboraciones(cientifico);
     }
 
-    public void insertarColaboracion(Cientifico c, String nombreAgencia){
-        cu.insertarColaboracion(c, nombreAgencia);
+    public void insertarColaboracion(Cientifico c, Integer idAgencia){
+        cu.insertarColaboracion(c, idAgencia);
         }
 
     public void eliminarColaboracion(Colaboracion colaboracion) {

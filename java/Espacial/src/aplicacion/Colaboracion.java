@@ -6,9 +6,9 @@ public class Colaboracion {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private String Cientifico;
-    private String Agencia;
+    private Integer Agencia;
 
-    public Colaboracion(LocalDate fechaInicio, LocalDate fechaFin, String Cientifico, String Agencia) {
+    public Colaboracion(LocalDate fechaInicio, LocalDate fechaFin, String Cientifico, Integer Agencia) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.Cientifico = Cientifico;
@@ -19,7 +19,7 @@ public class Colaboracion {
         this.fechaInicio = null;
         this.fechaFin = null;
         this.Cientifico = "";
-        this.Agencia = "";
+        this.Agencia = -1;
     }
 
     public LocalDate getFechaInicio() {
@@ -39,6 +39,9 @@ public class Colaboracion {
     }
 
     public String getFechaFinString() {
+        if (fechaFin == null) {
+            return "N/A";
+        }
         return fechaFin.toString();
     }
 
@@ -54,11 +57,11 @@ public class Colaboracion {
         this.Cientifico = Cientifico;
     }
 
-    public String getAgencia() {
+    public Integer getAgencia() {
         return Agencia;
     }
 
-    public void setAgencia(String Agencia) {
+    public void setAgencia(Integer Agencia) {
         this.Agencia = Agencia;
     }
 

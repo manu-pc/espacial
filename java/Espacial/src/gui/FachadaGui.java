@@ -80,7 +80,8 @@ public class FachadaGui {
     }
     
     public void abrirColaboraciones(Cientifico cientifico, java.awt.Dialog parent){
-        
+        VColaboraciones vc = new VColaboraciones(parent, true, fa, cientifico);
+        vc.setVisible(true);
     }
     
 

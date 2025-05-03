@@ -104,8 +104,8 @@ public class GestionUsuarios {
     public List<Colaboracion> obtenerColaboraciones(Cientifico cientifico) {
         return fbd.obtenerColaboraciones(cientifico);
     }
-    public void insertarColaboracion(Cientifico c, String nombreAgencia) {
-        fbd.insertarColaboracion(c, nombreAgencia);
+    public void insertarColaboracion(Cientifico c, Integer id_agencia) {
+        fbd.insertarColaboracion(c, id_agencia);
     }
 
     public void eliminarColaboracion(Colaboracion col) {
