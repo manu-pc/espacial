@@ -20,6 +20,7 @@ public class VUsuario extends javax.swing.JDialog {
     private VPrincipal padre;
     private aplicacion.FachadaAplicacion fa;
     private Usuario miUsuario = null;
+    private boolean avisado = false;
 
     /**
      * Creates new form VUsuario
@@ -82,6 +83,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         
         Component panel;
         if (miUsuario instanceof Aficionado){
+            
             botonNuevo_af.setVisible(false);
              panel = jTabbedPane1.getComponentAt(0);
         }
@@ -1406,6 +1408,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     }//GEN-LAST:event_botonGuardar5ActionPerformed
 
     private void botonBorrar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_adActionPerformed
+
         String id = campo_ed_id_ad.getText().trim();
         if (id.isEmpty()){
             fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
@@ -1722,6 +1725,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         else {
             fa.muestraExcepcion("¡Se ha producido un error! El ID del usuario actual no existe en la base de datos.");
         }
+        actualizarCampos();
     }
 
     private void cargarUsuarios() {
