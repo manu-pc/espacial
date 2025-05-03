@@ -85,21 +85,30 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         if (miUsuario instanceof Aficionado){
             
             botonNuevo_af.setVisible(false);
+            etiqueta_id_af.setVisible(false);
+            campo_id_af.setVisible(false);
+            boton_buscar_af.setVisible(false);
              panel = jTabbedPane1.getComponentAt(0);
         }
         else if (miUsuario instanceof Administrador){
                         botonNuevo_ad.setVisible(false);
-
+            etiqueta_id_ad.setVisible(false);
+            campo_id_ad.setVisible(false);
+            boton_buscar_ad.setVisible(false);
              panel = jTabbedPane1.getComponentAt(1);
         }
         else if (miUsuario instanceof Estudiante){
                         botonNuevo_es.setVisible(false);
-
+            etiqueta_id_es.setVisible(false);
+            campo_id_es.setVisible(false);
+            boton_buscar_es.setVisible(false);
              panel = jTabbedPane1.getComponentAt(2);
         }
         else {
                         botonNuevo5.setVisible(false);
-
+           etiqueta_id_ci.setVisible(false);
+            campo_id_ci.setVisible(false);
+            boton_buscar_ci.setVisible(false);
                         panel = jTabbedPane1.getComponentAt(3);
         }
 
@@ -165,7 +174,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios_af = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        etiqueta_id = new javax.swing.JLabel();
+        etiqueta_id_af = new javax.swing.JLabel();
         campo_id_af = new javax.swing.JTextField();
         boton_buscar_af = new javax.swing.JButton();
         Administradores = new javax.swing.JPanel();
@@ -189,7 +198,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaUsuarios_ad = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
-        etiqueta_id3 = new javax.swing.JLabel();
+        etiqueta_id_ad = new javax.swing.JLabel();
         campo_id_ad = new javax.swing.JTextField();
         boton_buscar_ad = new javax.swing.JButton();
         Estudiantes = new javax.swing.JPanel();
@@ -215,7 +224,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         jScrollPane5 = new javax.swing.JScrollPane();
         tablaUsuarios_es = new javax.swing.JTable();
         jPanel22 = new javax.swing.JPanel();
-        etiqueta_id4 = new javax.swing.JLabel();
+        etiqueta_id_es = new javax.swing.JLabel();
         campo_id_es = new javax.swing.JTextField();
         boton_buscar_es = new javax.swing.JButton();
         Científicos = new javax.swing.JPanel();
@@ -240,7 +249,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaUsuarios_ci = new javax.swing.JTable();
         jPanel26 = new javax.swing.JPanel();
-        etiqueta_id5 = new javax.swing.JLabel();
+        etiqueta_id_ci = new javax.swing.JLabel();
         campo_id_ci = new javax.swing.JTextField();
         boton_buscar_ci = new javax.swing.JButton();
 
@@ -430,7 +439,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        etiqueta_id.setText("ID:");
+        etiqueta_id_af.setText("ID:");
 
         boton_buscar_af.setText("Buscar");
         boton_buscar_af.addActionListener(new java.awt.event.ActionListener() {
@@ -445,7 +454,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(etiqueta_id)
+                .addComponent(etiqueta_id_af)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campo_id_af, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -456,7 +465,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiqueta_id)
+                    .addComponent(etiqueta_id_af)
                     .addComponent(campo_id_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_af))
                 .addGap(23, 23, 23))
@@ -486,16 +495,16 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(AficionadoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(621, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
             .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AficionadoLayout.createSequentialGroup()
-                    .addGap(0, 538, Short.MAX_VALUE)
+                    .addGap(0, 328, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AficionadoLayout.createSequentialGroup()
                     .addGap(90, 90, 90)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(441, Short.MAX_VALUE)))
+                    .addContainerGap(231, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Aficionados", Aficionado);
@@ -679,7 +688,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        etiqueta_id3.setText("ID:");
+        etiqueta_id_ad.setText("ID:");
 
         boton_buscar_ad.setText("Buscar");
         boton_buscar_ad.addActionListener(new java.awt.event.ActionListener() {
@@ -694,7 +703,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(etiqueta_id3)
+                .addComponent(etiqueta_id_ad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campo_id_ad, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -705,7 +714,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiqueta_id3)
+                    .addComponent(etiqueta_id_ad)
                     .addComponent(campo_id_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_ad))
                 .addGap(23, 23, 23))
@@ -735,16 +744,16 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(AdministradoresLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(621, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
-                    .addGap(0, 538, Short.MAX_VALUE)
+                    .addGap(0, 328, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AdministradoresLayout.createSequentialGroup()
                     .addGap(90, 90, 90)
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(441, Short.MAX_VALUE)))
+                    .addContainerGap(231, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Administradores", Administradores);
@@ -927,17 +936,17 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 99, Short.MAX_VALUE))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
 
-        etiqueta_id4.setText("ID:");
+        etiqueta_id_es.setText("ID:");
 
         boton_buscar_es.setText("Buscar");
         boton_buscar_es.addActionListener(new java.awt.event.ActionListener() {
@@ -952,7 +961,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(etiqueta_id4)
+                .addComponent(etiqueta_id_es)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campo_id_es, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -963,7 +972,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiqueta_id4)
+                    .addComponent(etiqueta_id_es)
                     .addComponent(campo_id_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_es))
                 .addGap(23, 23, 23))
@@ -996,10 +1005,10 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
             .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
-                    .addGap(0, 538, Short.MAX_VALUE)
+                    .addGap(0, 328, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -1187,7 +1196,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        etiqueta_id5.setText("ID:");
+        etiqueta_id_ci.setText("ID:");
 
         boton_buscar_ci.setText("Buscar");
         boton_buscar_ci.addActionListener(new java.awt.event.ActionListener() {
@@ -1202,7 +1211,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(etiqueta_id5)
+                .addComponent(etiqueta_id_ci)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campo_id_ci, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1213,7 +1222,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiqueta_id5)
+                    .addComponent(etiqueta_id_ci)
                     .addComponent(campo_id_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_ci))
                 .addGap(23, 23, 23))
@@ -1243,16 +1252,16 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(CientíficosLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(621, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
-                    .addGap(0, 538, Short.MAX_VALUE)
+                    .addGap(0, 328, Short.MAX_VALUE)
                     .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CientíficosLayout.createSequentialGroup()
                     .addGap(90, 90, 90)
                     .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(441, Short.MAX_VALUE)))
+                    .addContainerGap(231, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Científicos", Científicos);
@@ -1321,9 +1330,14 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
         }
         else {
-                    String id_previo = (String) m.getValueAt(fila, 0);
-
+            String id_previo = (String) m.getValueAt(fila, 0);
             fa.modificarEstudiante(id_previo, id, clave, nombre, email, centro, num_est);
+            if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
         }
             cargarUsuarios();
 
@@ -1351,6 +1365,12 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                     String id_previo = (String) m.getValueAt(fila, 0);
 
             fa.modificarAficionado(id_previo, id, clave, nombre, email, tier);
+                        if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
         }
             cargarUsuarios();
 
@@ -1376,6 +1396,12 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         else {
             String id_previo = (String) m.getValueAt(fila, 0);
             fa.modificarAdministrador(id_previo, id, clave, nombre, email, tier);
+            if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
         }
             cargarUsuarios();
     }//GEN-LAST:event_botonGuardar_adActionPerformed
@@ -1401,6 +1427,12 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                     String id_previo = (String) m.getValueAt(fila, 0);
 
             fa.modificarCientifico(id_previo, id, clave, nombre, email, centro);
+                        if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
         }
         cargarUsuarios();
 
@@ -1432,7 +1464,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             return;
         }
         fa.borrarUsuario(id);
-                actualizarCampos();
+        cargarUsuarios();
 
     }//GEN-LAST:event_botonBorrar_adActionPerformed
 
@@ -1960,10 +1992,10 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     private javax.swing.JLabel etiqueta_ed_tipo;
     private javax.swing.JLabel etiqueta_ed_tipo3;
     private javax.swing.JLabel etiqueta_ed_tipo6;
-    private javax.swing.JLabel etiqueta_id;
-    private javax.swing.JLabel etiqueta_id3;
-    private javax.swing.JLabel etiqueta_id4;
-    private javax.swing.JLabel etiqueta_id5;
+    private javax.swing.JLabel etiqueta_id_ad;
+    private javax.swing.JLabel etiqueta_id_af;
+    private javax.swing.JLabel etiqueta_id_ci;
+    private javax.swing.JLabel etiqueta_id_es;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;

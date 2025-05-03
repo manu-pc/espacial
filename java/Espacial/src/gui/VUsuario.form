@@ -90,11 +90,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="621" max="32767" attributes="0"/>
+                      <EmptySpace pref="411" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="538" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="328" max="32767" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -102,7 +102,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="441" max="32767" attributes="0"/>
+                          <EmptySpace pref="231" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -380,7 +380,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="etiqueta_id" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiqueta_id_af" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="campo_id_af" pref="594" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -393,7 +393,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="etiqueta_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiqueta_id_af" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="campo_id_af" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="boton_buscar_af" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -403,7 +403,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="etiqueta_id">
+                <Component class="javax.swing.JLabel" name="etiqueta_id_af">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
@@ -460,11 +460,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="621" max="32767" attributes="0"/>
+                      <EmptySpace pref="411" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="538" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="328" max="32767" attributes="0"/>
                           <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -472,7 +472,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="441" max="32767" attributes="0"/>
+                          <EmptySpace pref="231" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -748,7 +748,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="etiqueta_id3" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiqueta_id_ad" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="campo_id_ad" pref="594" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -761,7 +761,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="etiqueta_id3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiqueta_id_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="campo_id_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="boton_buscar_ad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -771,7 +771,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="etiqueta_id3">
+                <Component class="javax.swing.JLabel" name="etiqueta_id_ad">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
@@ -832,11 +832,11 @@
                       <Component id="jPanel22" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel21" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="334" max="32767" attributes="0"/>
+                      <EmptySpace pref="179" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="538" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="328" max="32767" attributes="0"/>
                           <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1049,8 +1049,8 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane5" min="-2" pref="652" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" min="-2" pref="659" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1058,7 +1058,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane5" min="-2" pref="176" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="99" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1121,7 +1121,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="etiqueta_id4" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiqueta_id_es" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="campo_id_es" pref="594" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1134,7 +1134,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="etiqueta_id4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiqueta_id_es" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="campo_id_es" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="boton_buscar_es" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1144,7 +1144,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="etiqueta_id4">
+                <Component class="javax.swing.JLabel" name="etiqueta_id_es">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
@@ -1201,11 +1201,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="621" max="32767" attributes="0"/>
+                      <EmptySpace pref="411" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="538" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="328" max="32767" attributes="0"/>
                           <Component id="jPanel23" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1213,7 +1213,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="441" max="32767" attributes="0"/>
+                          <EmptySpace pref="231" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -1489,7 +1489,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="etiqueta_id5" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiqueta_id_ci" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="campo_id_ci" pref="594" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1502,7 +1502,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="etiqueta_id5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiqueta_id_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="campo_id_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="boton_buscar_ci" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1512,7 +1512,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="etiqueta_id5">
+                <Component class="javax.swing.JLabel" name="etiqueta_id_ci">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
