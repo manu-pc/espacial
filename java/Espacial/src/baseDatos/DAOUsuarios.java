@@ -15,6 +15,7 @@ import aplicacion.UsuarioFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -30,6 +31,7 @@ public class DAOUsuarios extends AbstractDAO {
     // COMPLEJA
     // ? Recibe un idUsuario y una clave. Busca el usuario, identifica si esa es su
     // clave y devuelve el objeto subtipo de Usuario correspondiente.
+
     public Usuario validarUsuario(String idUsuario, String clave) {
         Usuario resultado = null;
         Connection con = null;
@@ -50,15 +52,20 @@ public class DAOUsuarios extends AbstractDAO {
                             "LEFT JOIN Estudiante e ON u.id = e.id " +
                             "LEFT JOIN CientificoConArticulos c ON u.id = c.id " +
                             "LEFT JOIN Administrador ad ON u.id = ad.id " +
-                            "WHERE u.id = ? AND u.clave = ?");
+                            "WHERE u.id = ?");
 
             stmUsuario.setString(1, idUsuario);
-            stmUsuario.setString(2, clave);
             rsUsuario = stmUsuario.executeQuery();
 
             if (rsUsuario.next()) {
-                Usuario usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rsUsuario);
-                resultado = usuario;
+                String hashedPassword = rsUsuario.getString("clave");
+                if (BCrypt.checkpw(clave, hashedPassword)) {
+                    Usuario usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rsUsuario);
+                    resultado = usuario;
+                } else {
+                    // contraseña incorrecta
+                    resultado = null;
+                }
             }
 
         } catch (SQLException e) {
@@ -205,7 +212,6 @@ public class DAOUsuarios extends AbstractDAO {
         return usuarios;
     }
 
-    // VARIAS SQL
     public void crearUsuario(Usuario usuario) {
         Connection con = null;
         PreparedStatement stmUsuario = null;
@@ -215,13 +221,16 @@ public class DAOUsuarios extends AbstractDAO {
         try {
             con.setAutoCommit(false); // Transacción
 
+            // Encriptar clave
+            String claveHash = BCrypt.hashpw(usuario.getClave(), BCrypt.gensalt());
+
             // Insertar en Usuario
             stmUsuario = con.prepareStatement(
                     "INSERT INTO Usuario (id, nombre, email, clave) VALUES (?, ?, ?, ?)");
             stmUsuario.setString(1, usuario.getIdUsuario());
             stmUsuario.setString(2, usuario.getNombre());
             stmUsuario.setString(3, usuario.getEmail());
-            stmUsuario.setString(4, usuario.getClave());
+            stmUsuario.setString(4, claveHash);
             stmUsuario.executeUpdate();
 
             // Insertar en subtipo
@@ -292,17 +301,18 @@ public class DAOUsuarios extends AbstractDAO {
         try {
             con.setAutoCommit(false); // Transacción
 
+            // Encriptar la nueva clave
+            String claveHash = BCrypt.hashpw(usuario.getClave(), BCrypt.gensalt());
+
             // Modificar datos en Usuario
             stmUsuario = con.prepareStatement(
                     "UPDATE Usuario SET id = ?, nombre = ?, email = ?, clave = ? WHERE id = ?");
+            stmUsuario.setString(1, usuario.getIdUsuario());
             stmUsuario.setString(2, usuario.getNombre());
             stmUsuario.setString(3, usuario.getEmail());
-            stmUsuario.setString(4, usuario.getClave());
-            stmUsuario.setString(1, usuario.getIdUsuario());
+            stmUsuario.setString(4, claveHash);
             stmUsuario.setString(5, idPrevio);
-
             stmUsuario.executeUpdate();
-
             // Modificar en tabla de subtipo correspondiente
             if (usuario instanceof Aficionado) {
                 Aficionado aficionado = (Aficionado) usuario;
