@@ -8,12 +8,14 @@ package baseDatos;
 import aplicacion.Ejemplar;
 import aplicacion.Usuario;
 import aplicacion.Categoria;
+import aplicacion.Colaboracion;
 import aplicacion.Libro;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -136,9 +138,56 @@ public class FachadaBaseDatos {
     public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
         return daoUsuarios.buscarUsuariosPorNombre(nombre);
     }
-    public Usuario buscarUsuarioPorId(String id){
+
+    public Usuario buscarUsuarioPorId(String id) {
         return daoUsuarios.buscarUsuarioPorId(id);
     }
 
+    public void crearAficionado(aplicacion.Aficionado a) {
+        daoUsuarios.crearUsuario(a);
+    }
 
+    public void modificarAficionado(aplicacion.Aficionado a, String idPrevio) {
+        daoUsuarios.modificarUsuario(a, idPrevio);
+    }
+
+    public void crearCientifico(aplicacion.Cientifico c) {
+        daoUsuarios.crearUsuario(c);
+    }
+
+    public void modificarCientifico(aplicacion.Cientifico c, String idPrevio) {
+        daoUsuarios.modificarUsuario(c, idPrevio);
+    }
+
+    public void crearEstudiante(aplicacion.Estudiante e) {
+        daoUsuarios.crearUsuario(e);
+    }
+
+    public void modificarEstudiante(aplicacion.Estudiante e, String idPrevio) {
+        daoUsuarios.modificarUsuario(e, idPrevio);
+    }
+
+    public void crearAdministrador(aplicacion.Administrador a) {
+        daoUsuarios.crearUsuario(a);
+    }
+
+    public void modificarAdministrador(aplicacion.Administrador a, String idPrevio) {
+        daoUsuarios.modificarUsuario(a, idPrevio);
+    }
+
+    public void eliminarUsuario(String id) {
+        daoUsuarios.eliminarUsuario(id);
+    }
+
+    public List<Colaboracion> obtenerColaboraciones(aplicacion.Cientifico cientifico) {
+        return daoUsuarios.obtenerColaboraciones(cientifico);
+    }
+
+    public void insertarColaboracion(aplicacion.Cientifico c, Integer id_agencia) {
+        daoUsuarios.insertarColaboracion(c, id_agencia);
+    }
+
+    public void eliminarColaboracion(Colaboracion col) {
+        daoUsuarios.finalizarColaboracion(col);
+    }
 }

@@ -6,8 +6,16 @@
 package baseDatos;
 
 import aplicacion.Usuario;
+import aplicacion.Administrador;
+import aplicacion.Aficionado;
+import aplicacion.Estudiante;
+import aplicacion.Cientifico;
+import aplicacion.Colaboracion;
 import aplicacion.UsuarioFactory;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -23,6 +31,7 @@ public class DAOUsuarios extends AbstractDAO {
     // COMPLEJA
     // ? Recibe un idUsuario y una clave. Busca el usuario, identifica si esa es su
     // clave y devuelve el objeto subtipo de Usuario correspondiente.
+
     public Usuario validarUsuario(String idUsuario, String clave) {
         Usuario resultado = null;
         Connection con = null;
@@ -36,22 +45,27 @@ public class DAOUsuarios extends AbstractDAO {
                     "SELECT u.id, u.nombre, u.email, u.clave, " +
                             "       a.tier AS tier_aficionado, " +
                             "       e.centro AS centro_estudiante, e.num_est, " +
-                            "       c.centro AS centro_cientifico, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
                             "       ad.rango AS rango_admin " +
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
                             "LEFT JOIN Estudiante e ON u.id = e.id " +
-                            "LEFT JOIN Cientifico c ON u.id = c.id " +
+                            "LEFT JOIN CientificoConArticulos c ON u.id = c.id " +
                             "LEFT JOIN Administrador ad ON u.id = ad.id " +
-                            "WHERE u.id = ? AND u.clave = ?");
+                            "WHERE u.id = ?");
 
             stmUsuario.setString(1, idUsuario);
-            stmUsuario.setString(2, clave);
             rsUsuario = stmUsuario.executeQuery();
 
             if (rsUsuario.next()) {
-                Usuario usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rsUsuario);
-                resultado = usuario;
+                String hashedPassword = rsUsuario.getString("clave");
+                if (BCrypt.checkpw(clave, hashedPassword)) {
+                    Usuario usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rsUsuario);
+                    resultado = usuario;
+                } else {
+                    // contraseña incorrecta
+                    resultado = null;
+                }
             }
 
         } catch (SQLException e) {
@@ -69,6 +83,47 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
+    public Usuario buscarUsuarioPorId(String idUsuario) {
+        Usuario usuario = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = this.getConexion();
+            stm = con.prepareStatement(
+                    "SELECT u.id, u.nombre, u.email, u.clave, " +
+                            "       a.tier AS tier_aficionado, " +
+                            "       e.centro AS centro_estudiante, e.num_est, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
+                            "       ad.rango AS rango_admin " +
+                            "FROM Usuario u " +
+                            "LEFT JOIN Aficionado a ON u.id = a.id " +
+                            "LEFT JOIN Estudiante e ON u.id = e.id " +
+                            "LEFT JOIN CientificoConArticulos c ON u.id = c.id " +
+                            "LEFT JOIN Administrador ad ON u.id = ad.id " +
+                            "WHERE u.id = ?");
+            stm.setString(1, idUsuario);
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rs);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error buscando usuario por ID: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException ignored) {
+            }
+        }
+
+        return usuario;
+    }
+
     public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
         Connection con;
         PreparedStatement stmUsuario = null;
@@ -82,12 +137,12 @@ public class DAOUsuarios extends AbstractDAO {
                     "SELECT u.id, u.nombre, u.email, u.clave, " +
                             "       a.tier AS tier_aficionado, " +
                             "       e.centro AS centro_estudiante, e.num_est, " +
-                            "       c.centro AS centro_cientifico, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
                             "       ad.rango AS rango_admin " +
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
                             "LEFT JOIN Estudiante e ON u.id = e.id " +
-                            "LEFT JOIN Cientifico c ON u.id = c.id " +
+                            "LEFT JOIN CientificoConArticulos c ON u.id = c.id " +
                             "LEFT JOIN Administrador ad ON u.id = ad.id " +
                             "WHERE u.nombre = ?");
 
@@ -127,12 +182,12 @@ public class DAOUsuarios extends AbstractDAO {
                     "SELECT u.id, u.nombre, u.email, u.clave, " +
                             "       a.tier AS tier_aficionado, " +
                             "       e.centro AS centro_estudiante, e.num_est, " +
-                            "       c.centro AS centro_cientifico, " +
+                            "       c.centro AS centro_cientifico, c.num_articulos, " +
                             "       ad.rango AS rango_admin " +
                             "FROM Usuario u " +
                             "LEFT JOIN Aficionado a ON u.id = a.id " +
                             "LEFT JOIN Estudiante e ON u.id = e.id " +
-                            "LEFT JOIN Cientifico c ON u.id = c.id " +
+                            "LEFT JOIN CientificoConArticulos c ON u.id = c.id " +
                             "LEFT JOIN Administrador ad ON u.id = ad.id");
 
             rsUsuarios = stmUsuarios.executeQuery();
@@ -156,45 +211,347 @@ public class DAOUsuarios extends AbstractDAO {
 
         return usuarios;
     }
-public Usuario buscarUsuarioPorId(String idUsuario) {
-    Usuario usuario = null;
-    Connection con = null;
-    PreparedStatement stm = null;
-    ResultSet rs = null;
 
-    try {
+    public void crearUsuario(Usuario usuario) {
+        Connection con = null;
+        PreparedStatement stmUsuario = null;
+        PreparedStatement stmSubtipo = null;
+
         con = this.getConexion();
-        stm = con.prepareStatement(
-            "SELECT u.id_usuario, u.clave, u.nombre, u.direccion, u.email, u.tipo_usuario, " +
-            "       COALESCE(COUNT(p.usuario), 0) AS prestamos_vencidos, " +
-            "       a.institucion AS institucion, " +
-            "       e.fecha_nacimiento AS fecha_nacimiento, " +
-            "       c.campo_investigacion AS campo_investigacion " +
-            "FROM usuario u " +
-            "LEFT JOIN prestamo p ON u.id_usuario = p.usuario " +
-            "                    AND p.fecha_devolucion IS NULL " +
-            "                    AND p.fecha_prestamo < (CURRENT_DATE - INTERVAL '30 days') " +
-            "LEFT JOIN aficionado a ON u.id_usuario = a.usuario " +
-            "LEFT JOIN estudiante e ON u.id_usuario = e.usuario " +
-            "LEFT JOIN cientifico c ON u.id_usuario = c.usuario " +
-            "WHERE u.id_usuario = ? " +
-            "GROUP BY u.id_usuario, u.clave, u.nombre, u.direccion, u.email, u.tipo_usuario, " +
-            "         a.institucion, e.fecha_nacimiento, c.campo_investigacion"
-        );
-        stm.setString(1, idUsuario);
-        rs = stm.executeQuery();
-            if (rs.next()) {
-                usuario = UsuarioFactory.crearUsuarioDesdeResultSet(rs);
+        try {
+            con.setAutoCommit(false); // Transacción
+
+            // Encriptar clave
+            String claveHash = BCrypt.hashpw(usuario.getClave(), BCrypt.gensalt());
+
+            // Insertar en Usuario
+            stmUsuario = con.prepareStatement(
+                    "INSERT INTO Usuario (id, nombre, email, clave) VALUES (?, ?, ?, ?)");
+            stmUsuario.setString(1, usuario.getIdUsuario());
+            stmUsuario.setString(2, usuario.getNombre());
+            stmUsuario.setString(3, usuario.getEmail());
+            stmUsuario.setString(4, claveHash);
+            stmUsuario.executeUpdate();
+
+            // Insertar en subtipo
+            if (usuario instanceof Aficionado) {
+                Aficionado aficionado = (Aficionado) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "INSERT INTO Aficionado (id, tier) VALUES (?, ?)");
+                stmSubtipo.setString(1, aficionado.getIdUsuario());
+                stmSubtipo.setString(2, aficionado.getTier());
+                stmSubtipo.executeUpdate();
+
+            } else if (usuario instanceof Estudiante) {
+                Estudiante estudiante = (Estudiante) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "INSERT INTO Estudiante (id, centro, num_est) VALUES (?, ?, ?)");
+                stmSubtipo.setString(1, estudiante.getIdUsuario());
+                stmSubtipo.setString(2, estudiante.getCentro());
+                stmSubtipo.setInt(3, estudiante.getNumEst());
+                stmSubtipo.executeUpdate();
+
+            } else if (usuario instanceof Cientifico) {
+                Cientifico cientifico = (Cientifico) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "INSERT INTO Cientifico (id, centro) VALUES (?, ?)");
+                stmSubtipo.setString(1, cientifico.getIdUsuario());
+                stmSubtipo.setString(2, cientifico.getCentro());
+                stmSubtipo.executeUpdate();
+
+            } else if (usuario instanceof Administrador) {
+                Administrador administrador = (Administrador) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "INSERT INTO Administrador (id, rango) VALUES (?, ?)");
+                stmSubtipo.setString(1, administrador.getIdUsuario());
+                stmSubtipo.setString(2, administrador.getDescripcion());
+                stmSubtipo.executeUpdate();
             }
 
-    } catch (SQLException e) {
-        System.out.println("Error buscando usuario por ID: " + e.getMessage());
-        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-    } finally {
-        try { if (stm != null) stm.close(); } catch (SQLException ignored) {}
+            con.commit();
+
+        } catch (SQLException e) {
+            try {
+                if (con != null)
+                    con.rollback();
+            } catch (SQLException ex) {
+            }
+            System.out.println("Error creando usuario: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stmUsuario != null)
+                    stmUsuario.close();
+                if (stmSubtipo != null)
+                    stmSubtipo.close();
+                if (con != null)
+                    con.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.out.println("Error cerrando recursos.");
+            }
+        }
     }
 
-    return usuario;
-}
+    public void modificarUsuario(Usuario usuario, String idPrevio) {
+        Connection con = null;
+        PreparedStatement stmUsuario = null;
+        PreparedStatement stmSubtipo = null;
+
+        con = this.getConexion();
+
+        try {
+            con.setAutoCommit(false); // Transacción
+
+            if (!usuario.getClave().isEmpty()){ // se ha aportado una nueva clave - se debe modificar la clave
+                        // Encriptar la nueva clave
+            String claveHash = BCrypt.hashpw(usuario.getClave(), BCrypt.gensalt());
+
+            // Modificar datos en Usuario
+            stmUsuario = con.prepareStatement(
+                    "UPDATE Usuario SET id = ?, nombre = ?, email = ?, clave = ? WHERE id = ?");
+            stmUsuario.setString(1, usuario.getIdUsuario());
+            stmUsuario.setString(2, usuario.getNombre());
+            stmUsuario.setString(3, usuario.getEmail());
+            stmUsuario.setString(4, claveHash);
+            stmUsuario.setString(5, idPrevio);
+            stmUsuario.executeUpdate();
+            }
+            else { 
+                // se actualizan los demás campos, la clave se deja igual
+                        stmUsuario = con.prepareStatement(
+                    "UPDATE Usuario SET id = ?, nombre = ?, email = ? WHERE id = ?");
+            stmUsuario.setString(1, usuario.getIdUsuario());
+            stmUsuario.setString(2, usuario.getNombre());
+            stmUsuario.setString(3, usuario.getEmail());
+            stmUsuario.setString(4, idPrevio);
+            stmUsuario.executeUpdate();    
+            }
+
+            // Modificar en tabla de subtipo correspondiente
+            if (usuario instanceof Aficionado) {
+                Aficionado aficionado = (Aficionado) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "UPDATE Aficionado SET tier = ? WHERE id = ?");
+                stmSubtipo.setString(1, aficionado.getTier());
+                stmSubtipo.setString(2, aficionado.getIdUsuario());
+                stmSubtipo.executeUpdate();
+
+            } else if (usuario instanceof Estudiante) {
+                Estudiante estudiante = (Estudiante) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "UPDATE Estudiante SET centro = ?, num_est = ? WHERE id = ?");
+                stmSubtipo.setString(1, estudiante.getCentro());
+                stmSubtipo.setInt(2, estudiante.getNumEst());
+                stmSubtipo.setString(3, estudiante.getIdUsuario());
+                stmSubtipo.executeUpdate();
+
+            } else if (usuario instanceof Cientifico) {
+                Cientifico cientifico = (Cientifico) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "UPDATE Cientifico SET centro = ? WHERE id = ?");
+                stmSubtipo.setString(1, cientifico.getCentro());
+                stmSubtipo.setString(2, cientifico.getIdUsuario());
+                stmSubtipo.executeUpdate();
+
+            } else if (usuario instanceof Administrador) {
+                Administrador administrador = (Administrador) usuario;
+                stmSubtipo = con.prepareStatement(
+                        "UPDATE Administrador SET rango = ? WHERE id = ?");
+                stmSubtipo.setString(1, administrador.getDescripcion());
+                stmSubtipo.setString(2, administrador.getIdUsuario());
+                stmSubtipo.executeUpdate();
+            }
+
+            con.commit();
+
+        } catch (SQLException e) {
+            try {
+                if (con != null)
+                    con.rollback();
+            } catch (SQLException ex) {
+            }
+            System.out.println("Error modificando usuario: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stmUsuario != null)
+                    stmUsuario.close();
+                if (stmSubtipo != null)
+                    stmSubtipo.close();
+                if (con != null)
+                    con.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.out.println("Error cerrando recursos.");
+            }
+        }
+    }
+
+    public void eliminarUsuario(String idUsuario) {
+        Connection con = null;
+        PreparedStatement stmSubtipo = null;
+        PreparedStatement stmUsuario = null;
+        PreparedStatement stmDetectar = null;
+        ResultSet rs = null;
+
+        con = this.getConexion();
+        try {
+            con.setAutoCommit(false); // Transacción
+
+            // Detectar subtipo al que pertenece el usuario
+            String tablaSubtipo = null;
+
+            String[] subtipos = { "Aficionado", "Estudiante", "Cientifico", "Administrador" };
+            for (String subtipo : subtipos) {
+                String consulta = "SELECT 1 FROM " + subtipo + " WHERE id = ?";
+                stmDetectar = con.prepareStatement(consulta);
+                stmDetectar.setString(1, idUsuario);
+                rs = stmDetectar.executeQuery();
+                if (rs.next()) {
+                    tablaSubtipo = subtipo;
+                    break;
+                }
+                rs.close();
+                stmDetectar.close();
+            }
+
+            if (tablaSubtipo == null) {
+                throw new SQLException("No se encontró subtipo para el usuario con id: " + idUsuario);
+            }
+
+            // Eliminar del subtipo detectado
+            stmSubtipo = con.prepareStatement("DELETE FROM " + tablaSubtipo + " WHERE id = ?");
+            stmSubtipo.setString(1, idUsuario);
+            stmSubtipo.executeUpdate();
+
+            // Eliminar de Usuario
+            stmUsuario = con.prepareStatement("DELETE FROM Usuario WHERE id = ?");
+            stmUsuario.setString(1, idUsuario);
+            stmUsuario.executeUpdate();
+
+            con.commit();
+
+        } catch (SQLException e) {
+            try {
+                if (con != null)
+                    con.rollback();
+            } catch (SQLException ex) {
+            }
+            System.out.println("Error eliminando usuario: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (rs != null)
+                    rs.close();
+                if (stmDetectar != null)
+                    stmDetectar.close();
+                if (stmSubtipo != null)
+                    stmSubtipo.close();
+                if (stmUsuario != null)
+                    stmUsuario.close();
+                if (con != null)
+                    con.setAutoCommit(true);
+            } catch (SQLException e) {
+                System.out.println("Error cerrando recursos.");
+            }
+        }
+    }
+
+    public List<Colaboracion> obtenerColaboraciones(Cientifico cientifico) {
+        List<Colaboracion> colaboraciones = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = this.getConexion();
+            stm = con.prepareStatement(
+                    "SELECT fechaInicio, fechaFin, cientifico, agencia " +
+                            "FROM Colaboracion " +
+                            "WHERE cientifico = ?");
+            stm.setString(1, cientifico.getIdUsuario());
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Colaboracion colaboracion = new Colaboracion();
+                colaboracion.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+
+                Date fechaFin = rs.getDate("fechaFin");
+                if (fechaFin != null) {
+                    colaboracion.setFechaFin(fechaFin.toLocalDate());
+                }
+
+                colaboracion.setCientifico(rs.getString("cientifico"));
+                colaboracion.setAgencia(rs.getInt("agencia"));
+
+                colaboraciones.add(colaboracion);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error obteniendo colaboraciones: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (rs != null)
+                    rs.close();
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException ignored) {
+            }
+        }
+
+        return colaboraciones;
+    }
+
+    public void finalizarColaboracion(Colaboracion colaboracion) {
+        Connection con = null;
+        PreparedStatement stm = null;
+        Integer idAgencia = colaboracion.getAgencia();
+        String cientifico = colaboracion.getCientifico();
+        try {
+            con = this.getConexion();
+            stm = con.prepareStatement(
+                    "UPDATE Colaboracion " +
+                            "SET fechaFin = CURRENT_DATE " +
+                            "WHERE cientifico = ? AND agencia = ? AND fechaFin IS NULL");
+            stm.setString(1, cientifico);
+            stm.setInt(2, idAgencia);
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error finalizando colaboración: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException ignored) {
+            }
+        }
+    }
+
+    public void insertarColaboracion(Cientifico cientifico, Integer id_agencia) {
+        Connection con = null;
+        PreparedStatement stm = null;
+
+        try {
+            con = this.getConexion();
+            stm = con.prepareStatement(
+                    "INSERT INTO Colaboracion (fechaInicio, fechaFin, cientifico, agencia) " +
+                            "VALUES (CURRENT_DATE, NULL, ?, ?)");
+            stm.setString(1, cientifico.getIdUsuario());
+            stm.setInt(2, id_agencia);
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error insertando colaboración: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException ignored) {
+            }
+        }
+    }
 
 }

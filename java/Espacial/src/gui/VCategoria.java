@@ -105,7 +105,33 @@ public VCategoria(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicac
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
+    private void campoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNombreActionPerformed
+
+    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+        
+
+    }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void campoDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDescripcionActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+    String nombre = jList1.getSelectedValue();        
+    if ( nombre == null || nombre.isEmpty() ) return;
+        fa.eliminarCategoria(nombre);
+        cargarCategorias();
+
+    }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+
+  /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

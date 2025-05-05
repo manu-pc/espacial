@@ -23,10 +23,10 @@ public class Estudiante extends Usuario {
     public void setCentro(String centro) {
         this.centro = centro;
     }
-    public Integer getNum_est() {
+    public Integer getNumEst() {
         return num_est;
     }
-    public void setNum_est(Integer num_est) {
+    public void setNumEst(Integer num_est) {
         this.num_est = num_est;
     }
 

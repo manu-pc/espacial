@@ -3,23 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package aplicacion;
-
 /**
  *
  * @author alumnogreibd
  */
 public class Administrador extends Usuario {
-    private String rango;
 
-    protected Administrador(String idUsuario, String clave, String nombre, String email, String rango) {
+    private String descripcion;
+
+    protected Administrador(String idUsuario, String clave, String nombre, String email, String descripcion) {
         super(idUsuario, clave, nombre, email);
-        this.rango = rango;
+        this.descripcion = descripcion;
     }
-    public String getRango() {
-        return rango;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setRango(String rango) {
-        this.rango = rango;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

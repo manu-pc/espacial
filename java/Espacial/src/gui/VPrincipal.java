@@ -49,6 +49,7 @@ public class VPrincipal extends javax.swing.JFrame {
         btnNuevoLibro = new javax.swing.JButton();
         boton_miPerfil = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         gestionUsuarios = new javax.swing.JMenuItem();
@@ -123,6 +124,13 @@ public class VPrincipal extends javax.swing.JFrame {
         jLabel4.setName(""); // NOI18N
         jLabel4.setPreferredSize(new java.awt.Dimension(1000, 333));
 
+        boton_miPerfil.setText("Mi perfil");
+        boton_miPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_miPerfilActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Administración");
 
         gestionUsuarios.setText("Usuarios");
@@ -172,6 +180,7 @@ public class VPrincipal extends javax.swing.JFrame {
                         .addComponent(boton_miPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)))
+
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -185,6 +194,7 @@ public class VPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(boton_miPerfil)
                         .addGap(79, 79, 79)))
+
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaTitulo)
                     .addComponent(buscaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -265,6 +275,11 @@ public class VPrincipal extends javax.swing.JFrame {
 
 
     public void buscarLibros(){
+
+    }
+    
+    public void setVisAdmin(boolean admin){
+        jMenu1.setVisible(admin);
 
     }
     

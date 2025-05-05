@@ -12,18 +12,18 @@ public class UsuarioFactory {
         String nombre = rs.getString("nombre");
         String email = rs.getString("email");
         String clave = rs.getString("clave");
-
+        
         if (rs.getString("tier_aficionado") != null) {
-            return new Aficionado(id, nombre, email, clave, rs.getString("tier_aficionado"));
+            return new Aficionado(id, clave, nombre, email, rs.getString("tier_aficionado"));
         } else if (rs.getString("centro_estudiante") != null) {
-            return new Estudiante(id, nombre, email, clave,
+            return new Estudiante(id, clave, nombre, email,
                                   rs.getString("centro_estudiante"),
                                   rs.getInt("num_est"));
         } else if (rs.getString("centro_cientifico") != null) {
-            return new Cientifico(id, nombre, email, clave,
-                                  rs.getString("centro_cientifico"));
+            return new Cientifico(id, clave, nombre, email,
+                                  rs.getString("centro_cientifico"), rs.getInt("num_articulos"));
         } else if (rs.getString("rango_admin") != null) {
-            return new Administrador(id, nombre, email, clave,
+            return new Administrador(id, clave, nombre, email,
                                      rs.getString("rango_admin"));
         } else {
             throw new IllegalArgumentException("No se pudo determinar el tipo de usuario con ID: " + id);

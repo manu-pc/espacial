@@ -5,6 +5,8 @@
 
 package aplicacion;
 
+import java.util.List;
+
 /**
  *
  * @author basesdatos
@@ -24,6 +26,8 @@ public class FachadaAplicacion {
         cg = new GestionCategorias(fgui, fbd);
     }
 
+    
+    
     public static void main(String args[]) {
         FachadaAplicacion fa;
         fa = new FachadaAplicacion();
@@ -76,8 +80,10 @@ public class FachadaAplicacion {
         return cl.actualizarEjemplaresLibro(idLibro, ejemplares, borrar);
     }
 
-    public Boolean comprobarAutentificacion(String idUsuario, String clave) {
-        return cu.comprobarAutentificacion(idUsuario, clave);
+    public Usuario comprobarAutentificacion(String idUsuario, String clave) {
+        Usuario u = cu.comprobarAutentificacion(idUsuario, clave);
+        if (u!=null) fgui.setUsuarioActual(u);
+        return u;
     }
 
     public java.util.List<String> obtenerNombreCategorias() {
@@ -108,5 +114,59 @@ public class FachadaAplicacion {
     public Usuario buscarUsuarioPorId(String id){
         return cu.buscarUsuarioPorId(id);
     }
+
+
+    public void crearAficionado(String id, String clave, String nombre, String email, String tier) {
+        cu.crearAficionado(id, clave, nombre, email, tier);
+    }
+    public void modificarAficionado(String id_previo, String id, String clave, String nombre, String email, String tier) {
+        cu.modificarAficionado(id_previo, id, clave, nombre, email, tier);
+    }
+    public void crearAdministrador(String id, String clave, String nombre, String email, String tier) {
+        cu.crearAdministrador(id, clave, nombre, email, tier);
+    }
+    public void modificarAdministrador(String id_previo, String id, String clave, String nombre, String email, String tier) {
+        cu.modificarAdministrador(id_previo, id, clave, nombre, email, tier);
+    }
+
+    public void crearCientifico(String id, String clave, String nombre, String email, String centro) {
+        cu.crearCientifico(id, clave, nombre, email, centro);
+
+    }
+    public void modificarCientifico(String id_previo, String id, String clave, String nombre, String email, String centro) {
+        cu.modificarCientifico(id_previo, id, clave, nombre, email, centro);
+    }
+
+    public void crearEstudiante(String id, String clave, String nombre, String email, String centro, Integer num) {
+        cu.crearEstudiante(id, clave, nombre, email, centro, num);
+    }
+
+    public void modificarEstudiante(String id_previo, String id, String clave, String nombre, String email, String centro, Integer num) {
+        cu.modificarEstudiante(id_previo, id, clave, nombre, email, centro, num);
+    }
+    public void borrarUsuario(String id) {
+        cu.eliminarUsuario(id);
+    }
+
+    public void abrirColaboraciones(Cientifico cientifico, java.awt.Dialog parent){
+        fgui.abrirColaboraciones(cientifico, parent);
+    }
+
+    public List<Colaboracion> obtenerColaboraciones(Cientifico cientifico){
+        return cu.obtenerColaboraciones(cientifico);
+    }
+
+    public void insertarColaboracion(Cientifico c, Integer idAgencia){
+        cu.insertarColaboracion(c, idAgencia);
+        }
+
+    public void eliminarColaboracion(Colaboracion colaboracion) {
+        cu.eliminarColaboracion(colaboracion);
+    }
+    
+    public void abrirMiPerfil(Usuario u){
+        fgui.abrirMiPerfil(u);
+    }
+    
 
 }

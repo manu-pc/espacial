@@ -101,6 +101,10 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="512" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="boton_miPerfil" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -120,6 +124,7 @@
                       <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
               </Group>
+
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="etiquetaTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buscaTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -238,5 +243,17 @@
         </Property>
       </Properties>
     </Component>
-  </SubComponents>
+
+    <Component class="javax.swing.JTextField" name="buscaId">
+    </Component>
+    <Component class="javax.swing.JButton" name="boton_miPerfil">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mi perfil"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_miPerfilActionPerformed"/>
+      </Events>
+    </Component>
+
+</SubComponents>
 </Form>
