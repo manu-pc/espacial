@@ -7,8 +7,9 @@ package gui;
 import aplicacion.Categoria;
 import aplicacion.Libro;
 import aplicacion.Ejemplar;
-
-
+import aplicacion.GestionUsuarios;
+import aplicacion.Cientifico;
+import aplicacion.Usuario;
 /**
  *
  * @author alumno
@@ -30,6 +31,8 @@ public class FachadaGui {
       va = new VAutentificacion(vp, true, fa);
       vp.setVisible(true);
       va.setVisible(true);
+
+      
     }
     
    
@@ -73,7 +76,22 @@ public class FachadaGui {
 
     }
     
+    public void actualizarAdmin(boolean modoAdmin){
+        vp.setVisAdmin(modoAdmin);
+    }
     
+    public void abrirColaboraciones(Cientifico cientifico, java.awt.Dialog parent){
+        VColaboraciones vc = new VColaboraciones(parent, true, fa, cientifico);
+        vc.setVisible(true);
+    }
+    public void setUsuarioActual(Usuario u){
+        System.out.println("Usuario actual: " + u.getIdUsuario());
+        vp.setUsuarioActual(u);
+    }
+    public void abrirMiPerfil(Usuario u){
+        VUsuario vu =   new VUsuario(vp, true, fa, u);
+        vu.setVisible(true);
+    }
 
     
    

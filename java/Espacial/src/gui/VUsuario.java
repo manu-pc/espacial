@@ -3,9 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
+
 import aplicacion.Usuario;
+import aplicacion.Aficionado;
+import aplicacion.Administrador;
+import aplicacion.Estudiante;
+import aplicacion.Cientifico;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import java.awt.Component;
 /**
  *
  * @author alumnogreibd
@@ -13,30 +19,126 @@ import javax.swing.event.ListSelectionEvent;
 public class VUsuario extends javax.swing.JDialog {
     private VPrincipal padre;
     private aplicacion.FachadaAplicacion fa;
-    private boolean botonNuevoPulsado = false;
+    private Usuario miUsuario = null;
+    private boolean avisado = false;
+
     /**
      * Creates new form VUsuario
      */
-    public VUsuario (java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa) {
+    public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa) {
         super(padre, modal);
         this.fa = fa;
         initComponents();
-        cargarUsuarios();
-         javax.swing.SwingUtilities.invokeLater(() -> {
-        tablaUsuarios.setRowSelectionInterval(0, 0);
-        tablaUsuarios.scrollRectToVisible(tablaUsuarios.getCellRect(0, 0, true));
-        });
-        tablaUsuarios.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-        // seleccionar primeira fila por defecto
 
-        @Override
-        public void valueChanged(ListSelectionEvent event) {
-            if (!event.getValueIsAdjusting()) {
-                actualizarCampos();
+        cargarUsuarios();
+
+        tablaUsuarios_af.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            // seleccionar primeira fila por defecto
+
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    actualizarCampos();
+                }
             }
+        });        tablaUsuarios_ci.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            // seleccionar primeira fila por defecto
+
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    actualizarCampos();
+                }
+            }
+        });        tablaUsuarios_ad.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            // seleccionar primeira fila por defecto
+
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    actualizarCampos();
+                }
+            }
+        });        tablaUsuarios_es.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            // seleccionar primeira fila por defecto
+
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    actualizarCampos();
+                }
+            }
+        });
+        
+        
+    }
+    
+public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa, Usuario miUsuario){
+    super(padre, modal);
+    this.fa = fa;
+    this.miUsuario = miUsuario;
+    initComponents();
+
+    if (this.miUsuario != null){
+        
+        Component panel;
+        if (miUsuario instanceof Aficionado){
+            
+            botonNuevo_af.setVisible(false);
+            etiqueta_id_af.setVisible(false);
+            campo_id_af.setVisible(false);
+            boton_buscar_af.setVisible(false);
+             panel = jTabbedPane1.getComponentAt(0);
+        }
+        else if (miUsuario instanceof Administrador){
+                        botonNuevo_ad.setVisible(false);
+            etiqueta_id_ad.setVisible(false);
+            campo_id_ad.setVisible(false);
+            boton_buscar_ad.setVisible(false);
+             panel = jTabbedPane1.getComponentAt(1);
+        }
+        else if (miUsuario instanceof Estudiante){
+                        botonNuevo_es.setVisible(false);
+            etiqueta_id_es.setVisible(false);
+            campo_id_es.setVisible(false);
+            boton_buscar_es.setVisible(false);
+             panel = jTabbedPane1.getComponentAt(2);
+        }
+        else {
+                        botonNuevo5.setVisible(false);
+           etiqueta_id_ci.setVisible(false);
+            campo_id_ci.setVisible(false);
+            boton_buscar_ci.setVisible(false);
+                        panel = jTabbedPane1.getComponentAt(3);
+        }
+
+        jTabbedPane1.removeAll();
+        jTabbedPane1.add(panel);
+    }
+
+    cargarUsuarios();
+
+    tablaUsuarios_af.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
         }
     });
-    }
+    tablaUsuarios_ci.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
+        }
+    });
+    tablaUsuarios_ad.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
+        }
+    });
+    tablaUsuarios_es.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            actualizarCampos();
+        }
+    });
+}
 
 
     /**
@@ -45,88 +147,122 @@ public class VUsuario extends javax.swing.JDialog {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        etiqueta_id = new javax.swing.JLabel();
-        campo_id = new javax.swing.JTextField();
-        etiqueta_nombre = new javax.swing.JLabel();
-        campo_nombre = new javax.swing.JTextField();
-        boton_buscar = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Aficionado = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         etiqueta_ed_nombre = new javax.swing.JLabel();
         etiqueta_ed_id = new javax.swing.JLabel();
-        campo_ed_id = new javax.swing.JTextField();
+        campo_ed_id_af = new javax.swing.JTextField();
         etiqueta_ed_clave = new javax.swing.JLabel();
         etiqueta_ed_email = new javax.swing.JLabel();
-        campo_ed_clave = new javax.swing.JTextField();
-        campo_ed_email = new javax.swing.JTextField();
+        campo_ed_email_af = new javax.swing.JTextField();
         etiqueta_ed_tipo = new javax.swing.JLabel();
-        etiqueta_ed_direccion = new javax.swing.JLabel();
-        campo_ed_direccion = new javax.swing.JTextField();
-        campo_ed_nombre = new javax.swing.JTextField();
-        selec_ed_tipo = new javax.swing.JComboBox<>();
-        botonNuevo = new javax.swing.JButton();
-        botonGuardar = new javax.swing.JButton();
-        botonBorrar = new javax.swing.JButton();
-        botonSalir = new javax.swing.JButton();
+        campo_ed_nombre_af = new javax.swing.JTextField();
+        selec_ed_tier_af = new javax.swing.JComboBox<>();
+        campo_ed_clave_af = new javax.swing.JPasswordField();
+        botonNuevo_af = new javax.swing.JButton();
+        botonGuardar_af = new javax.swing.JButton();
+        botonBorrar_af = new javax.swing.JButton();
+        botonSalir_af = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaUsuarios = new javax.swing.JTable();
+        tablaUsuarios_af = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        etiqueta_id_af = new javax.swing.JLabel();
+        campo_id_af = new javax.swing.JTextField();
+        boton_buscar_af = new javax.swing.JButton();
+        Administradores = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        etiqueta_ed_nombre3 = new javax.swing.JLabel();
+        etiqueta_ed_id3 = new javax.swing.JLabel();
+        campo_ed_id_ad = new javax.swing.JTextField();
+        etiqueta_ed_clave3 = new javax.swing.JLabel();
+        etiqueta_ed_email3 = new javax.swing.JLabel();
+        campo_ed_email_ad = new javax.swing.JTextField();
+        etiqueta_ed_tipo3 = new javax.swing.JLabel();
+        campo_ed_nombre_ad = new javax.swing.JTextField();
+        selec_ed_tier_ad = new javax.swing.JComboBox<>();
+        campo_ed_clave_ad = new javax.swing.JPasswordField();
+        botonNuevo_ad = new javax.swing.JButton();
+        botonGuardar_ad = new javax.swing.JButton();
+        botonBorrar_ad = new javax.swing.JButton();
+        botonSalir_ad = new javax.swing.JButton();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaUsuarios_ad = new javax.swing.JTable();
+        jPanel18 = new javax.swing.JPanel();
+        etiqueta_id_ad = new javax.swing.JLabel();
+        campo_id_ad = new javax.swing.JTextField();
+        boton_buscar_ad = new javax.swing.JButton();
+        Estudiantes = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        etiqueta_ed_nombre4 = new javax.swing.JLabel();
+        etiqueta_ed_id4 = new javax.swing.JLabel();
+        campo_ed_id_es = new javax.swing.JTextField();
+        etiqueta_ed_clave4 = new javax.swing.JLabel();
+        etiqueta_ed_email4 = new javax.swing.JLabel();
+        campo_ed_email_es = new javax.swing.JTextField();
+        campo_ed_nombre_es = new javax.swing.JTextField();
+        etiqueta_ed_tipo6 = new javax.swing.JLabel();
+        campo_ed_num_es = new javax.swing.JTextField();
+        etiqueta_ed_clave1 = new javax.swing.JLabel();
+        campo_ed_centro_es = new javax.swing.JTextField();
+        campo_ed_clave_es = new javax.swing.JPasswordField();
+        botonNuevo_es = new javax.swing.JButton();
+        botonGuardar_es = new javax.swing.JButton();
+        botonBorrar_es = new javax.swing.JButton();
+        botonSalir_es = new javax.swing.JButton();
+        jPanel21 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaUsuarios_es = new javax.swing.JTable();
+        jPanel22 = new javax.swing.JPanel();
+        etiqueta_id_es = new javax.swing.JLabel();
+        campo_id_es = new javax.swing.JTextField();
+        boton_buscar_es = new javax.swing.JButton();
+        Científicos = new javax.swing.JPanel();
+        jPanel23 = new javax.swing.JPanel();
+        jPanel24 = new javax.swing.JPanel();
+        etiqueta_ed_nombre5 = new javax.swing.JLabel();
+        etiqueta_ed_id5 = new javax.swing.JLabel();
+        campo_ed_id_ci = new javax.swing.JTextField();
+        etiqueta_ed_clave5 = new javax.swing.JLabel();
+        etiqueta_ed_email5 = new javax.swing.JLabel();
+        campo_ed_email_ci = new javax.swing.JTextField();
+        campo_ed_nombre_ci = new javax.swing.JTextField();
+        etiqueta_ed_clave2 = new javax.swing.JLabel();
+        campo_ed_centro_ci = new javax.swing.JTextField();
+        campo_ed_clave_ci = new javax.swing.JPasswordField();
+        botonColaboracion = new javax.swing.JButton();
+        botonNuevo5 = new javax.swing.JButton();
+        botonGuardar5 = new javax.swing.JButton();
+        botonBorrar5 = new javax.swing.JButton();
+        botonSalir5 = new javax.swing.JButton();
+        jPanel25 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaUsuarios_ci = new javax.swing.JTable();
+        jPanel26 = new javax.swing.JPanel();
+        etiqueta_id_ci = new javax.swing.JLabel();
+        campo_id_ci = new javax.swing.JTextField();
+        boton_buscar_ci = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de usuarios");
 
-        etiqueta_id.setText("ID:");
-
-        etiqueta_nombre.setText("Nombre:");
-
-        campo_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_nombreActionPerformed(evt);
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
             }
         });
-
-        boton_buscar.setText("Buscar");
-        boton_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_buscarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(etiqueta_id)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campo_id)
-                .addGap(18, 18, 18)
-                .addComponent(etiqueta_nombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campo_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(boton_buscar))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiqueta_id)
-                    .addComponent(campo_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiqueta_nombre)
-                    .addComponent(campo_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton_buscar))
-                .addGap(23, 23, 23))
-        );
 
         etiqueta_ed_nombre.setText("Nombre");
 
@@ -137,25 +273,16 @@ public class VUsuario extends javax.swing.JDialog {
 
         etiqueta_ed_email.setText("E-mail");
 
-        campo_ed_clave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_ed_claveActionPerformed(evt);
-            }
-        });
-
         etiqueta_ed_tipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etiqueta_ed_tipo.setText("Tipo");
+        etiqueta_ed_tipo.setText("Tier");
 
-        etiqueta_ed_direccion.setText("Dirección");
-
-        campo_ed_direccion.addActionListener(new java.awt.event.ActionListener() {
+        selec_ed_tier_af.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principiante", "Intermedio", "Avanzado" }));
+        selec_ed_tier_af.setToolTipText("");
+        selec_ed_tier_af.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_ed_direccionActionPerformed(evt);
+                selec_ed_tier_afActionPerformed(evt);
             }
         });
-
-        selec_ed_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Administrador" }));
-        selec_ed_tipo.setToolTipText("");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -164,31 +291,29 @@ public class VUsuario extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etiqueta_ed_id)
+                    .addComponent(etiqueta_ed_nombre))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campo_ed_nombre_af, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_id_af, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(etiqueta_ed_id)
+                        .addGap(17, 17, 17)
+                        .addComponent(etiqueta_ed_email))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(etiqueta_ed_clave)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(campo_ed_clave_af, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(etiqueta_ed_tipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campo_ed_id, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(etiqueta_ed_clave))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(etiqueta_ed_nombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(campo_ed_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(etiqueta_ed_email)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campo_ed_email, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                    .addComponent(campo_ed_clave))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiqueta_ed_direccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(etiqueta_ed_tipo, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campo_ed_direccion)
-                    .addComponent(selec_ed_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(selec_ed_tier_af, 0, 161, Short.MAX_VALUE))
+                    .addComponent(campo_ed_email_af))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,32 +321,45 @@ public class VUsuario extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_clave)
-                    .addComponent(campo_ed_clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_tipo)
-                    .addComponent(campo_ed_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_id_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_id)
-                    .addComponent(selec_ed_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selec_ed_tier_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_nombre)
                     .addComponent(etiqueta_ed_email)
-                    .addComponent(campo_ed_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiqueta_ed_direccion)
-                    .addComponent(campo_ed_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campo_ed_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campo_ed_email_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_nombre_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        botonNuevo.setText("Nuevo");
-
-        botonGuardar.setText("Guardar");
-
-        botonBorrar.setText("Borrar");
-
-        botonSalir.setText("Salir");
-        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+        botonNuevo_af.setText("Nuevo");
+        botonNuevo_af.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSalirActionPerformed(evt);
+                botonNuevo_afActionPerformed(evt);
+            }
+        });
+
+        botonGuardar_af.setText("Guardar");
+        botonGuardar_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardar_afActionPerformed(evt);
+            }
+        });
+
+        botonBorrar_af.setText("Borrar");
+        botonBorrar_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar_afActionPerformed(evt);
+            }
+        });
+
+        botonSalir_af.setText("Salir");
+        botonSalir_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalir_afActionPerformed(evt);
             }
         });
 
@@ -235,13 +373,13 @@ public class VUsuario extends javax.swing.JDialog {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(botonNuevo)
+                        .addComponent(botonNuevo_af)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonGuardar)
+                        .addComponent(botonGuardar_af)
                         .addGap(12, 12, 12)
-                        .addComponent(botonBorrar)
+                        .addComponent(botonBorrar_af)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonSalir)))
+                        .addComponent(botonSalir_af)))
                 .addGap(0, 0, 0))
         );
         jPanel2Layout.setVerticalGroup(
@@ -250,173 +388,1519 @@ public class VUsuario extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonNuevo)
-                    .addComponent(botonGuardar)
-                    .addComponent(botonBorrar)
-                    .addComponent(botonSalir))
-                .addGap(0, 11, Short.MAX_VALUE))
+                    .addComponent(botonNuevo_af)
+                    .addComponent(botonGuardar_af)
+                    .addComponent(botonBorrar_af)
+                    .addComponent(botonSalir_af))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuarios_af.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nombre", "E-mail", "Tipo"
+                "ID", "Nombre", "E-mail", "Tier"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaUsuarios);
-        if (tablaUsuarios.getColumnModel().getColumnCount() > 0) {
-            tablaUsuarios.getColumnModel().getColumn(0).setResizable(false);
-            tablaUsuarios.getColumnModel().getColumn(1).setResizable(false);
-            tablaUsuarios.getColumnModel().getColumn(2).setResizable(false);
-            tablaUsuarios.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tablaUsuarios_af);
+        if (tablaUsuarios_af.getColumnModel().getColumnCount() > 0) {
+            tablaUsuarios_af.getColumnModel().getColumn(0).setResizable(false);
+            tablaUsuarios_af.getColumnModel().getColumn(1).setResizable(false);
+            tablaUsuarios_af.getColumnModel().getColumn(2).setResizable(false);
+            tablaUsuarios_af.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        etiqueta_id_af.setText("ID:");
+
+        boton_buscar_af.setText("Buscar");
+        boton_buscar_af.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscar_afActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(etiqueta_id_af)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campo_id_af, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boton_buscar_af))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_id_af)
+                    .addComponent(campo_id_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_buscar_af))
+                .addGap(23, 23, 23))
+        );
+
+        javax.swing.GroupLayout AficionadoLayout = new javax.swing.GroupLayout(Aficionado);
+        Aficionado.setLayout(AficionadoLayout);
+        AficionadoLayout.setHorizontalGroup(
+            AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AficionadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
+            .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AficionadoLayout.createSequentialGroup()
+                    .addContainerGap(74, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(69, Short.MAX_VALUE)))
+            .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AficionadoLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        AficionadoLayout.setVerticalGroup(
+            AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AficionadoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(411, Short.MAX_VALUE))
+            .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AficionadoLayout.createSequentialGroup()
+                    .addGap(0, 328, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AficionadoLayout.createSequentialGroup()
+                    .addGap(90, 90, 90)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(231, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Aficionados", Aficionado);
+
+        etiqueta_ed_nombre3.setText("Nombre");
+
+        etiqueta_ed_id3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etiqueta_ed_id3.setText("ID");
+
+        etiqueta_ed_clave3.setText(" Clave");
+
+        etiqueta_ed_email3.setText("E-mail");
+
+        etiqueta_ed_tipo3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etiqueta_ed_tipo3.setText("Rango");
+
+        selec_ed_tier_ad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Moderador", "Dueño" }));
+        selec_ed_tier_ad.setToolTipText("");
+        selec_ed_tier_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selec_ed_tier_adActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etiqueta_ed_id3)
+                    .addComponent(etiqueta_ed_nombre3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campo_ed_nombre_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_id_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(etiqueta_ed_email3))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(etiqueta_ed_clave3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(etiqueta_ed_tipo3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selec_ed_tier_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campo_ed_email_ad))
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_ed_clave3)
+                    .addComponent(etiqueta_ed_tipo3)
+                    .addComponent(campo_ed_id_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiqueta_ed_id3)
+                    .addComponent(selec_ed_tier_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_ed_nombre3)
+                    .addComponent(etiqueta_ed_email3)
+                    .addComponent(campo_ed_email_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_nombre_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        botonNuevo_ad.setText("Nuevo");
+        botonNuevo_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevo_adActionPerformed(evt);
+            }
+        });
+
+        botonGuardar_ad.setText("Guardar");
+        botonGuardar_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardar_adActionPerformed(evt);
+            }
+        });
+
+        botonBorrar_ad.setText("Borrar");
+        botonBorrar_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar_adActionPerformed(evt);
+            }
+        });
+
+        botonSalir_ad.setText("Salir");
+        botonSalir_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalir_adActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(botonNuevo_ad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonGuardar_ad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonBorrar_ad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonSalir_ad)
+                .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonNuevo_ad)
+                    .addComponent(botonGuardar_ad)
+                    .addComponent(botonBorrar_ad)
+                    .addComponent(botonSalir_ad))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        tablaUsuarios_ad.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "E-mail", "Rango"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tablaUsuarios_ad);
+        if (tablaUsuarios_ad.getColumnModel().getColumnCount() > 0) {
+            tablaUsuarios_ad.getColumnModel().getColumn(0).setResizable(false);
+            tablaUsuarios_ad.getColumnModel().getColumn(0).setHeaderValue("ID");
+            tablaUsuarios_ad.getColumnModel().getColumn(1).setResizable(false);
+            tablaUsuarios_ad.getColumnModel().getColumn(1).setHeaderValue("Nombre");
+            tablaUsuarios_ad.getColumnModel().getColumn(2).setResizable(false);
+            tablaUsuarios_ad.getColumnModel().getColumn(2).setHeaderValue("E-mail");
+            tablaUsuarios_ad.getColumnModel().getColumn(3).setResizable(false);
+            tablaUsuarios_ad.getColumnModel().getColumn(3).setHeaderValue("Rango");
+        }
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        etiqueta_id_ad.setText("ID:");
+
+        boton_buscar_ad.setText("Buscar");
+        boton_buscar_ad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscar_adActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(etiqueta_id_ad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campo_id_ad, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boton_buscar_ad))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_id_ad)
+                    .addComponent(campo_id_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_buscar_ad))
+                .addGap(23, 23, 23))
+        );
+
+        javax.swing.GroupLayout AdministradoresLayout = new javax.swing.GroupLayout(Administradores);
+        Administradores.setLayout(AdministradoresLayout);
+        AdministradoresLayout.setHorizontalGroup(
+            AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AdministradoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
+            .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
+                    .addContainerGap(48, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(46, Short.MAX_VALUE)))
+            .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        AdministradoresLayout.setVerticalGroup(
+            AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AdministradoresLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(411, Short.MAX_VALUE))
+            .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
+                    .addGap(0, 328, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AdministradoresLayout.createSequentialGroup()
+                    .addGap(90, 90, 90)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(231, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Administradores", Administradores);
+
+        etiqueta_ed_nombre4.setText("Nombre");
+
+        etiqueta_ed_id4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etiqueta_ed_id4.setText("ID");
+
+        etiqueta_ed_clave4.setText(" Clave");
+
+        etiqueta_ed_email4.setText("E-mail");
+
+        etiqueta_ed_tipo6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etiqueta_ed_tipo6.setText("Nº est.");
+
+        campo_ed_num_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo_ed_num_esActionPerformed(evt);
+            }
+        });
+
+        etiqueta_ed_clave1.setText("Centro");
+
+        campo_ed_centro_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo_ed_centro_esActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etiqueta_ed_id4)
+                    .addComponent(etiqueta_ed_nombre4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campo_ed_nombre_es, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_id_es, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(etiqueta_ed_email4))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(etiqueta_ed_clave4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campo_ed_email_es, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(campo_ed_clave_es))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etiqueta_ed_tipo6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiqueta_ed_clave1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campo_ed_num_es, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(campo_ed_centro_es))
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_ed_clave4)
+                    .addComponent(campo_ed_id_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiqueta_ed_id4)
+                    .addComponent(etiqueta_ed_clave1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_centro_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_ed_nombre4)
+                    .addComponent(etiqueta_ed_email4)
+                    .addComponent(campo_ed_email_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_nombre_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiqueta_ed_tipo6)
+                    .addComponent(campo_ed_num_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        botonNuevo_es.setText("Nuevo");
+        botonNuevo_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevo_esActionPerformed(evt);
+            }
+        });
+
+        botonGuardar_es.setText("Guardar");
+        botonGuardar_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardar_esActionPerformed(evt);
+            }
+        });
+
+        botonBorrar_es.setText("Borrar");
+        botonBorrar_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar_esActionPerformed(evt);
+            }
+        });
+
+        botonSalir_es.setText("Salir");
+        botonSalir_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalir_esActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(botonNuevo_es)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonGuardar_es)
+                        .addGap(12, 12, 12)
+                        .addComponent(botonBorrar_es)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonSalir_es)))
                 .addGap(0, 0, 0))
         );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonNuevo_es)
+                    .addComponent(botonGuardar_es)
+                    .addComponent(botonBorrar_es)
+                    .addComponent(botonSalir_es))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        tablaUsuarios_es.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "E-mail", "Centro"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tablaUsuarios_es);
+        if (tablaUsuarios_es.getColumnModel().getColumnCount() > 0) {
+            tablaUsuarios_es.getColumnModel().getColumn(0).setResizable(false);
+            tablaUsuarios_es.getColumnModel().getColumn(1).setResizable(false);
+            tablaUsuarios_es.getColumnModel().getColumn(2).setResizable(false);
+            tablaUsuarios_es.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 44, Short.MAX_VALUE))
+        );
+
+        etiqueta_id_es.setText("ID:");
+
+        boton_buscar_es.setText("Buscar");
+        boton_buscar_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscar_esActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(etiqueta_id_es)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campo_id_es, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boton_buscar_es))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_id_es)
+                    .addComponent(campo_id_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_buscar_es))
+                .addGap(23, 23, 23))
+        );
+
+        javax.swing.GroupLayout EstudiantesLayout = new javax.swing.GroupLayout(Estudiantes);
+        Estudiantes.setLayout(EstudiantesLayout);
+        EstudiantesLayout.setHorizontalGroup(
+            EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EstudiantesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
+                        .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
+            .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
+                    .addContainerGap(65, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(58, Short.MAX_VALUE)))
+        );
+        EstudiantesLayout.setVerticalGroup(
+            EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EstudiantesLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
+            .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
+                    .addGap(0, 328, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jTabbedPane1.addTab("Estudiantes", Estudiantes);
+
+        etiqueta_ed_nombre5.setText("Nombre");
+
+        etiqueta_ed_id5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etiqueta_ed_id5.setText("ID");
+
+        etiqueta_ed_clave5.setText(" Clave");
+
+        etiqueta_ed_email5.setText("E-mail");
+
+        etiqueta_ed_clave2.setText("Centro");
+
+        campo_ed_centro_ci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo_ed_centro_ciActionPerformed(evt);
+            }
+        });
+
+        botonColaboracion.setText("Colaboraciones");
+        botonColaboracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonColaboracionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etiqueta_ed_id5)
+                    .addComponent(etiqueta_ed_nombre5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campo_ed_nombre_ci, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_id_ci, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(etiqueta_ed_email5))
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(etiqueta_ed_clave5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campo_ed_email_ci, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(campo_ed_clave_ci))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addComponent(etiqueta_ed_clave2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campo_ed_centro_ci, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonColaboracion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_ed_clave5)
+                    .addComponent(campo_ed_id_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiqueta_ed_id5)
+                    .addComponent(campo_ed_centro_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiqueta_ed_clave2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_clave_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_ed_nombre5)
+                    .addComponent(etiqueta_ed_email5)
+                    .addComponent(campo_ed_email_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_ed_nombre_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonColaboracion))
+                .addContainerGap())
+        );
+
+        botonNuevo5.setText("Nuevo");
+        botonNuevo5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevo5ActionPerformed(evt);
+            }
+        });
+
+        botonGuardar5.setText("Guardar");
+        botonGuardar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardar5ActionPerformed(evt);
+            }
+        });
+
+        botonBorrar5.setText("Borrar");
+        botonBorrar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrar5ActionPerformed(evt);
+            }
+        });
+
+        botonSalir5.setText("Salir");
+        botonSalir5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalir5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(botonNuevo5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonGuardar5)
+                        .addGap(12, 12, 12)
+                        .addComponent(botonBorrar5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonSalir5)))
+                .addGap(0, 0, 0))
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonNuevo5)
+                    .addComponent(botonGuardar5)
+                    .addComponent(botonBorrar5)
+                    .addComponent(botonSalir5))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        tablaUsuarios_ci.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "E-mail", "Nº artículos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tablaUsuarios_ci);
+        if (tablaUsuarios_ci.getColumnModel().getColumnCount() > 0) {
+            tablaUsuarios_ci.getColumnModel().getColumn(0).setResizable(false);
+            tablaUsuarios_ci.getColumnModel().getColumn(1).setResizable(false);
+            tablaUsuarios_ci.getColumnModel().getColumn(2).setResizable(false);
+            tablaUsuarios_ci.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        etiqueta_id_ci.setText("ID:");
+
+        boton_buscar_ci.setText("Buscar");
+        boton_buscar_ci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscar_ciActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(etiqueta_id_ci)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campo_id_ci, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boton_buscar_ci))
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta_id_ci)
+                    .addComponent(campo_id_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_buscar_ci))
+                .addGap(23, 23, 23))
+        );
+
+        javax.swing.GroupLayout CientíficosLayout = new javax.swing.GroupLayout(Científicos);
+        Científicos.setLayout(CientíficosLayout);
+        CientíficosLayout.setHorizontalGroup(
+            CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CientíficosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
+            .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
+                    .addContainerGap(65, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(58, Short.MAX_VALUE)))
+            .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        CientíficosLayout.setVerticalGroup(
+            CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CientíficosLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(411, Short.MAX_VALUE))
+            .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
+                    .addGap(0, 328, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(CientíficosLayout.createSequentialGroup()
+                    .addGap(90, 90, 90)
+                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(231, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Científicos", Científicos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(32, 32, 32))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscarActionPerformed
-    String nombre = campo_nombre.getText().trim();
-    String id = campo_id.getText().trim();
-    
-    if (!id.isEmpty()){
-        buscarUsuarioPorId(id);
-    }
-    else if (!nombre.isEmpty()){
-        buscarUsuariosPorNombre(nombre);
-    }
-    else {
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         cargarUsuarios();
+
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void botonNuevo_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevo_esActionPerformed
+       vaciarCampos();
+    }//GEN-LAST:event_botonNuevo_esActionPerformed
+
+    private void botonNuevo_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevo_adActionPerformed
+       vaciarCampos();
+    }//GEN-LAST:event_botonNuevo_adActionPerformed
+
+    private void botonNuevo_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevo_afActionPerformed
+       vaciarCampos();
+    }//GEN-LAST:event_botonNuevo_afActionPerformed
+
+    private void botonNuevo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevo5ActionPerformed
+       vaciarCampos();
+    }//GEN-LAST:event_botonNuevo5ActionPerformed
+
+    private void botonGuardar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_esActionPerformed
+        int fila = tablaUsuarios_es.getSelectedRow();
+        ModeloTablaEstudiantes m = (ModeloTablaEstudiantes) tablaUsuarios_es.getModel();
+        String id = campo_ed_id_es.getText().trim();
+        String clave = campo_ed_clave_es.getText().trim();
+        String nombre = campo_ed_nombre_es.getText().trim();
+        String email = campo_ed_email_es.getText().trim();
+        String centro = campo_ed_centro_es.getText().trim();
+        String num = campo_ed_num_es.getText().trim();
+        int num_est;
+        try {
+            num_est = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            fa.muestraExcepcion("El número_estudante debe ser un valor numérico.");
+            return;
+        }
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
+        }
+        if (fila==-1){
+            if (!clave.isEmpty())
+                fa.crearEstudiante(id, clave, nombre, email, centro, num_est);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
+        }
+        else {
+            String id_previo = (String) m.getValueAt(fila, 0);
+            fa.modificarEstudiante(id_previo, id, clave, nombre, email, centro, num_est);
+            if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
+        }
+            cargarUsuarios();
+
+
+    }//GEN-LAST:event_botonGuardar_esActionPerformed
+
+    private void botonGuardar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_afActionPerformed
+        int fila = tablaUsuarios_af.getSelectedRow();
+                ModeloTablaAficionados m = (ModeloTablaAficionados) tablaUsuarios_af.getModel();
+        String id = campo_ed_id_af.getText().trim();
+        String clave = campo_ed_clave_af.getText().trim();
+        String nombre = campo_ed_nombre_af.getText().trim();
+        String email = campo_ed_email_af.getText().trim();
+        String tier = (String) selec_ed_tier_af.getSelectedItem();
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
+        }
+        if (fila==-1){
+            if (!clave.isEmpty())
+                fa.crearAficionado(id, clave, nombre, email, tier);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
+        }
+        else {
+                    String id_previo = (String) m.getValueAt(fila, 0);
+
+            fa.modificarAficionado(id_previo, id, clave, nombre, email, tier);
+                        if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
+        }
+            cargarUsuarios();
+
+    }//GEN-LAST:event_botonGuardar_afActionPerformed
+
+    private void botonGuardar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_adActionPerformed
+        int fila = tablaUsuarios_ad.getSelectedRow();
+                        ModeloTablaAdministradores m = (ModeloTablaAdministradores) tablaUsuarios_ad.getModel();
+        String id = campo_ed_id_ad.getText().trim();
+        String clave = campo_ed_clave_ad.getText().trim();
+        String nombre = campo_ed_nombre_ad.getText().trim();
+        String email = campo_ed_email_ad.getText().trim();
+        String tier = (String) selec_ed_tier_ad.getSelectedItem();
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
+        }
+        if (fila==-1){
+            if (!clave.isEmpty())
+                fa.crearAdministrador(id, clave, nombre, email, tier);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
+        }
+        else {
+            String id_previo = (String) m.getValueAt(fila, 0);
+            fa.modificarAdministrador(id_previo, id, clave, nombre, email, tier);
+            if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
+        }
+            cargarUsuarios();
+    }//GEN-LAST:event_botonGuardar_adActionPerformed
+
+    private void botonGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar5ActionPerformed
+        int fila = tablaUsuarios_ci.getSelectedRow();
+        ModeloTablaCientificos m = (ModeloTablaCientificos) tablaUsuarios_ci.getModel();
+        String id = campo_ed_id_ci.getText().trim();
+        String clave = campo_ed_clave_ci.getText().trim();
+        String nombre = campo_ed_nombre_ci.getText().trim();
+        String email = campo_ed_email_ci.getText().trim();
+        String centro = campo_ed_centro_ci.getText().trim();
+        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
+            fa.muestraExcepcion("Por favor, complete todos os campos.");
+            return;
+        }
+        if (fila==-1){
+            if (!clave.isEmpty())
+                fa.crearCientifico(id, clave, nombre, email, centro);
+            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
+        }
+        else {
+                    String id_previo = (String) m.getValueAt(fila, 0);
+
+            fa.modificarCientifico(id_previo, id, clave, nombre, email, centro);
+                        if (miUsuario!=null && !id_previo.equals(id)){
+               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+               this.dispose();
+               fa.iniciaInterfazUsuario();
+               return;
+            }
+        }
+        cargarUsuarios();
+
+
+    }//GEN-LAST:event_botonGuardar5ActionPerformed
+
+
+    private void borrarUsuarioPropio(String idUsuario){
+        if (!avisado) {
+            fa.muestraExcepcion("AVISO: Esto eliminará tu propia cuenta del sistema, cerrando el programa!\n Vuelva a seleccionar 'borrar' si está seguro.");
+            avisado = true;
+        }
+        else {
+            fa.borrarUsuario(idUsuario);
+            fa.muestraExcepcion("Su cuenta ha sido eliminada.");
+            this.dispose();
+            System.exit(0);
+        }
+    }
+    private void botonBorrar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_adActionPerformed
+
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
+        String id = campo_ed_id_ad.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+        cargarUsuarios();
+
+    }//GEN-LAST:event_botonBorrar_adActionPerformed
+
+    private void botonBorrar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_afActionPerformed
+        
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
+        String id = campo_ed_id_af.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+            cargarUsuarios();
+    }//GEN-LAST:event_botonBorrar_afActionPerformed
+
+    private void botonBorrar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_esActionPerformed
+        
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
+        String id = campo_ed_id_es.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+            cargarUsuarios();
+    }//GEN-LAST:event_botonBorrar_esActionPerformed
+
+    private void botonBorrar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar5ActionPerformed
+        
+        if (miUsuario!= null) {
+            borrarUsuarioPropio(miUsuario.getIdUsuario());
+            return;
+        }
+        String id = campo_ed_id_ci.getText().trim();
+        if (id.isEmpty()){
+            fa.muestraExcepcion("Introduzca el ID el usuario a borrar!");
+            return;
+        }
+        fa.borrarUsuario(id);
+            cargarUsuarios();
+    }//GEN-LAST:event_botonBorrar5ActionPerformed
+
+    private void botonColaboracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonColaboracionActionPerformed
+        int fila = tablaUsuarios_ci.getSelectedRow();
+        if (fila == -1){
+            fa.muestraExcepcion("Selecciona a un científico existente para agregarle colaboraciones");
+        }
+        else {
+            ModeloTablaCientificos m = (ModeloTablaCientificos) tablaUsuarios_ci.getModel();
+            Cientifico c = m.obtenerUsuario(fila);
+            fa.abrirColaboraciones(c, this);
+        }
+
+    }//GEN-LAST:event_botonColaboracionActionPerformed
+
+    private void boton_buscar_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_esActionPerformed
+        String id = campo_id_es.getText().trim();
+
+        if (!id.isEmpty()) {
+            buscarUsuarioPorId(id);
+        } else {
+            cargarUsuarios();
+        }
+    }// GEN-LAST:event_boton_buscar_esActionPerformed
+
+    private void botonSalir_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_esActionPerformed
+        this.dispose();
+
+    }// GEN-LAST:event_botonSalir_esActionPerformed
+    private void campo_ed_centro_ciActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_esActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_botonSalir_esActionPerformed
+
+    private void campo_ed_num_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_num_esActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_num_esActionPerformed
+
+    private void campo_ed_clave_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave_esActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave_esActionPerformed
+    private void campo_ed_centro_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave_esActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave_esActionPerformed
+
+    private void boton_buscar_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_adActionPerformed
+        String id = campo_id_ad.getText().trim();
+
+        if (!id.isEmpty()) {
+            buscarUsuarioPorId(id);
+        } else {
+            cargarUsuarios();
+        }
+    }// GEN-LAST:event_boton_buscar_adActionPerformed
+
+    private void botonSalir_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_adActionPerformed
+        this.dispose();
+    }// GEN-LAST:event_botonSalir_adActionPerformed
+
+    private void selec_ed_tier_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_selec_ed_tier_adActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_selec_ed_tier_adActionPerformed
+
+    private void campo_ed_clave_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave_adActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave_adActionPerformed
+
+    private void boton_buscar_afActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_afActionPerformed
+        String id = campo_id_af.getText().trim();
+
+        if (!id.isEmpty()) {
+            buscarUsuarioPorId(id);
+        } else {
+            cargarUsuarios();
+        }
+    }// GEN-LAST:event_boton_buscar_afActionPerformed
+
+    private void botonSalir_afActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_afActionPerformed
+        this.dispose();
+    }// GEN-LAST:event_botonSalir_afActionPerformed
+
+    private void selec_ed_tier_afActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_selec_ed_tier_afActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_selec_ed_tier_afActionPerformed
+
+    private void campo_ed_clave_afActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave_afActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave_afActionPerformed
+
+    private void campo_ed_clave_ciActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave_ciActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave_ciActionPerformed
+
+    private void campo_ed_clave11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave11ActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave11ActionPerformed
+
+    private void botonSalir5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir5ActionPerformed
+        this.dispose();
+    }// GEN-LAST:event_botonSalir5ActionPerformed
+
+    private void boton_buscar_ciActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_ciActionPerformed
+        String id = campo_id_ci.getText().trim();
+
+        if (!id.isEmpty()) {
+            buscarUsuarioPorId(id);
+        } else {
+            cargarUsuarios();
+        }
+    }// GEN-LAST:event_boton_buscar_ciActionPerformed
+
+    private void campo_ed_clave_af1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave_af1ActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave_af1ActionPerformed
+
+    private void campo_ed_clave_af2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campo_ed_clave_af2ActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_campo_ed_clave_af2ActionPerformed
+
+    private void actualizarCampos() {
+
+        int panel = jTabbedPane1.getSelectedIndex();
+        
+        switch (panel) {
+            case 0:
+                int selectedRow = tablaUsuarios_af.getSelectedRow();
+                if (selectedRow > -1) { // hai unha fila seleccionada
+                    ModeloTablaAficionados modelo = (ModeloTablaAficionados) tablaUsuarios_af.getModel();
+                    Aficionado usuario = (Aficionado) modelo.obtenerUsuario(selectedRow);
+                    if (usuario == null) {
+                        vaciarCampos();
+                        return;
+                    }
+                    campo_ed_id_af.setText(usuario.getIdUsuario());
+                    campo_ed_clave_af.setText("");
+                    campo_ed_nombre_af.setText(usuario.getNombre());
+                    campo_ed_email_af.setText(usuario.getEmail());
+                    break;
+                }
+            case 1:
+                selectedRow = tablaUsuarios_ad.getSelectedRow();
+                if (selectedRow > -1) { // hai unha fila seleccionada
+                    ModeloTablaAdministradores modelo = (ModeloTablaAdministradores) tablaUsuarios_ad.getModel();
+                    Administrador usuario = (Administrador) modelo.obtenerUsuario(selectedRow);
+                    if (usuario == null) {
+                        vaciarCampos();
+                        return;
+                    }
+                    campo_ed_id_ad.setText(usuario.getIdUsuario());
+                    campo_ed_clave_ad.setText("");
+                    campo_ed_nombre_ad.setText(usuario.getNombre());
+                    campo_ed_email_ad.setText(usuario.getEmail());
+                    break;
+                }
+            case 3:
+                selectedRow = tablaUsuarios_ci.getSelectedRow();
+                if (selectedRow > -1) { // hai unha fila seleccionada
+                    ModeloTablaCientificos modelo = (ModeloTablaCientificos) tablaUsuarios_ci.getModel();
+                    Cientifico usuario = (Cientifico) modelo.obtenerUsuario(selectedRow);
+                    if (usuario == null) {
+                        vaciarCampos();
+                        return;
+                    }
+                    campo_ed_id_ci.setText(usuario.getIdUsuario());
+                    campo_ed_clave_ci.setText("");
+                    campo_ed_nombre_ci.setText(usuario.getNombre());
+                    campo_ed_email_ci.setText(usuario.getEmail());
+                    campo_ed_centro_ci.setText(usuario.getCentro());
+                    break;
+                }
+            case 2:
+                selectedRow = tablaUsuarios_es.getSelectedRow();
+                if (selectedRow > -1) { // hai unha fila seleccionada
+                    ModeloTablaEstudiantes modelo = (ModeloTablaEstudiantes) tablaUsuarios_es.getModel();
+                    Estudiante usuario = (Estudiante) modelo.obtenerUsuario(selectedRow);
+                    if (usuario == null) {
+                        vaciarCampos();
+                        return;
+                    }
+                    campo_ed_id_es.setText(usuario.getIdUsuario());
+                    campo_ed_clave_es.setText("");
+                    campo_ed_nombre_es.setText(usuario.getNombre());
+                    campo_ed_email_es.setText(usuario.getEmail());
+                                        campo_ed_centro_es.setText(usuario.getCentro());
+                    campo_ed_num_es.setText(usuario.getNumEst().toString());
+
+                    break;
+                }
+        }
+
     }
 
-    }//GEN-LAST:event_boton_buscarActionPerformed
+    private void vaciarCampos() {
 
-    private void campo_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_nombreActionPerformed
+        campo_ed_id_af.setText("");
+        campo_ed_clave_af.setText("");
+        campo_ed_nombre_af.setText("");
+        campo_ed_email_af.setText("");
+        tablaUsuarios_af.clearSelection();
+            
+        campo_ed_id_ad.setText("");
+        campo_ed_clave_ad.setText("");
+        campo_ed_nombre_ad.setText("");
+        campo_ed_email_ad.setText("");
+        tablaUsuarios_ad.clearSelection();
 
-    private void campo_ed_claveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_ed_claveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_ed_claveActionPerformed
+        
+        campo_ed_id_ci.setText("");
+        campo_ed_clave_ci.setText("");
+        campo_ed_nombre_ci.setText("");
+        campo_ed_email_ci.setText("");
+        campo_ed_centro_ci.setText("");
+        tablaUsuarios_ci.clearSelection();
 
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_botonSalirActionPerformed
+        
+        
+        campo_ed_id_es.setText("");
+        campo_ed_clave_es.setText("");
+        campo_ed_nombre_es.setText("");
+        campo_ed_email_es.setText("");
+        campo_ed_num_es.setText("");
+        campo_ed_centro_es.setText("");
+        tablaUsuarios_es.clearSelection();
 
-    private void campo_ed_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_ed_direccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_ed_direccionActionPerformed
+        
+    }
     
-    private void actualizarCampos() {
-        int selectedRow = tablaUsuarios.getSelectedRow();
-        if (selectedRow > -1) { // hai unha fila seleccionada
-            ModeloTablaUsuarios modelo = (ModeloTablaUsuarios) tablaUsuarios.getModel();
-            Usuario usuario = modelo.obtenerUsuario(selectedRow);
-            if (usuario == null){
-                vaciarCampos();
-                return;
+    private void cargarUsuario(){
+        if(miUsuario instanceof Aficionado){
+            ModeloTablaAficionados m = new ModeloTablaAficionados();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Aficionado) u));
+                tablaUsuarios_af.setModel(m);
+                if (tablaUsuarios_af.getRowCount() > 0) {
+                    tablaUsuarios_af.setRowSelectionInterval(0, 0);
+                }
             }
-            campo_ed_id.setText(usuario.getIdUsuario());
-            campo_ed_clave.setText(usuario.getClave());
-            campo_ed_nombre.setText(usuario.getNombre());
-            campo_ed_email.setText(usuario.getEmail());
+        }
+        else if (miUsuario instanceof Administrador){
+            ModeloTablaAdministradores m = new ModeloTablaAdministradores();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Administrador) u));
+                tablaUsuarios_ad.setModel(m);
+                if (tablaUsuarios_ad.getRowCount() > 0) {
+                    tablaUsuarios_ad.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
+        else if (miUsuario instanceof Cientifico){
+            ModeloTablaCientificos m = new ModeloTablaCientificos();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Cientifico) u));
+                tablaUsuarios_ci.setModel(m);
+                if (tablaUsuarios_ci.getRowCount() > 0) {
+                    tablaUsuarios_ci.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
+        else if (miUsuario instanceof Estudiante){
+            ModeloTablaEstudiantes m = new ModeloTablaEstudiantes();
+            Usuario u = fa.buscarUsuarioPorId(miUsuario.getIdUsuario());
+            if (u != null) {
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Estudiante) u));
+                tablaUsuarios_es.setModel(m);
+                if (tablaUsuarios_es.getRowCount() > 0) {
+                    tablaUsuarios_es.setRowSelectionInterval(0, 0);
+                }
+            }
+        }
+        else {
+            fa.muestraExcepcion("¡Se ha producido un error! El ID del usuario actual no existe en la base de datos.");
+        }
+        actualizarCampos();
+    }
+
+    private void cargarUsuarios() {
+        if (miUsuario != null) {
+            cargarUsuario();
+            return;
+        }
+        int panel = jTabbedPane1.getSelectedIndex();
+        switch (panel) {
+            case 0:
+                ModeloTablaAficionados m = new ModeloTablaAficionados();
+                java.util.List<Usuario> usuarios = fa.obtenerUsuarios();
+                java.util.List<Aficionado> aficionados = new java.util.ArrayList<>();
+                for (Usuario usuario : usuarios) {
+                    if (usuario instanceof Aficionado) {
+                        aficionados.add((Aficionado) usuario);
+                    }
+                }
+                m.setFilas(aficionados);
+                tablaUsuarios_af.setModel(m);
+                break;
+            case 1:
+                ModeloTablaAdministradores m2 = new ModeloTablaAdministradores();
+                java.util.List<Usuario> usuarios2 = fa.obtenerUsuarios();
+                java.util.List<Administrador> administradores = new java.util.ArrayList<>();
+                for (Usuario usuario : usuarios2) {
+                    if (usuario instanceof Administrador) {
+                        administradores.add((Administrador) usuario);
+                    }
+                }
+                m2.setFilas(administradores);
+                tablaUsuarios_ad.setModel(m2);
+                break;
+            case 3:
+                ModeloTablaCientificos m3 = new ModeloTablaCientificos();
+                java.util.List<Usuario> usuarios3 = fa.obtenerUsuarios();
+                java.util.List<Cientifico> cientificos = new java.util.ArrayList<>();
+                for (Usuario usuario : usuarios3) {
+                    if (usuario instanceof Cientifico) {
+                        cientificos.add((Cientifico) usuario);
+                    }
+                }
+                m3.setFilas(cientificos);
+                tablaUsuarios_ci.setModel(m3);
+                break;
+            case 2:
+                ModeloTablaEstudiantes m4 = new ModeloTablaEstudiantes();
+                java.util.List<Usuario> usuarios4 = fa.obtenerUsuarios();
+                java.util.List<Estudiante> estudiantes = new java.util.ArrayList<>();
+                for (Usuario usuario : usuarios4) {
+                    if (usuario instanceof Estudiante) {
+                        estudiantes.add((Estudiante) usuario);
+                    }
+                }
+                m4.setFilas(estudiantes);
+                tablaUsuarios_es.setModel(m4);
+                break;
         }
     }
 
-    private void vaciarCampos(){
-        campo_ed_clave.setText("");
-        campo_ed_id.setText("");
-        campo_ed_nombre.setText("");
-        campo_ed_email.setText("");
-        campo_ed_direccion.setText("");
+    private void buscarUsuarioPorId(String id) {
+        Usuario u = fa.buscarUsuarioPorId(id);
+
+        if (u != null) {
+            if (u instanceof Aficionado) {
+                jTabbedPane1.setSelectedIndex(0);
+                ModeloTablaAficionados m = new ModeloTablaAficionados();
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Aficionado) u));
+                tablaUsuarios_af.setModel(m);
+            } else if (u instanceof Administrador) {
+                                jTabbedPane1.setSelectedIndex(1);
+
+                ModeloTablaAdministradores m = new ModeloTablaAdministradores();
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Administrador) u));
+                tablaUsuarios_ad.setModel(m);
+            } else if (u instanceof Cientifico) {
+                                jTabbedPane1.setSelectedIndex(3);
+
+                ModeloTablaCientificos m = new ModeloTablaCientificos();
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Cientifico) u));
+                tablaUsuarios_ci.setModel(m);
+            } else if (u instanceof Estudiante) {
+                                jTabbedPane1.setSelectedIndex(2);
+
+                ModeloTablaEstudiantes m = new ModeloTablaEstudiantes();
+                m.añadirFilaVacia();
+                m.setFilas(java.util.Collections.singletonList((Estudiante) u));
+                tablaUsuarios_es.setModel(m);
+            }
+        } else {
+            fa.muestraExcepcion("¡No existe un usuario con ese ID!");
+
+        }
     }
 
-    private void cargarUsuarios(){
-    ModeloTablaUsuarios m = new ModeloTablaUsuarios();
-    
-    java.util.List<Usuario> usuarios = fa.obtenerUsuarios();
 
-    m.setFilas(usuarios);
-    tablaUsuarios.setModel(m);    
-    }
-    
-    private void buscarUsuarioPorId(String id){
-    ModeloTablaUsuarios m = new ModeloTablaUsuarios();
-    Usuario u = fa.buscarUsuarioPorId(id);
-    if (u!= null){
-    java.util.List<Usuario> usuarios = new java.util.ArrayList<>();
-    usuarios.add(u);
-
-    m.setFilas(usuarios);
-    }
-    tablaUsuarios.setModel(m);  
-    }
-    
-    private void buscarUsuariosPorNombre(String nombre){
-    ModeloTablaUsuarios m = new ModeloTablaUsuarios();
-    java.util.List<Usuario> usuarios = fa.buscarUsuariosPorNombre(nombre);
-    m.setFilas(usuarios);
-    
-
-    tablaUsuarios.setModel(m);  
-    }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -434,39 +1918,111 @@ public class VUsuario extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
+        // </editor-fold>
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBorrar;
-    private javax.swing.JButton botonGuardar;
-    private javax.swing.JButton botonNuevo;
-    private javax.swing.JButton botonSalir;
-    private javax.swing.JButton boton_buscar;
-    private javax.swing.JTextField campo_ed_clave;
-    private javax.swing.JTextField campo_ed_direccion;
-    private javax.swing.JTextField campo_ed_email;
-    private javax.swing.JTextField campo_ed_id;
-    private javax.swing.JTextField campo_ed_nombre;
-    private javax.swing.JTextField campo_id;
-    private javax.swing.JTextField campo_nombre;
+    private javax.swing.JPanel Administradores;
+    private javax.swing.JPanel Aficionado;
+    private javax.swing.JPanel Científicos;
+    private javax.swing.JPanel Estudiantes;
+    private javax.swing.JButton botonBorrar5;
+    private javax.swing.JButton botonBorrar_ad;
+    private javax.swing.JButton botonBorrar_af;
+    private javax.swing.JButton botonBorrar_es;
+    private javax.swing.JButton botonColaboracion;
+    private javax.swing.JButton botonGuardar5;
+    private javax.swing.JButton botonGuardar_ad;
+    private javax.swing.JButton botonGuardar_af;
+    private javax.swing.JButton botonGuardar_es;
+    private javax.swing.JButton botonNuevo5;
+    private javax.swing.JButton botonNuevo_ad;
+    private javax.swing.JButton botonNuevo_af;
+    private javax.swing.JButton botonNuevo_es;
+    private javax.swing.JButton botonSalir5;
+    private javax.swing.JButton botonSalir_ad;
+    private javax.swing.JButton botonSalir_af;
+    private javax.swing.JButton botonSalir_es;
+    private javax.swing.JButton boton_buscar_ad;
+    private javax.swing.JButton boton_buscar_af;
+    private javax.swing.JButton boton_buscar_ci;
+    private javax.swing.JButton boton_buscar_es;
+    private javax.swing.JTextField campo_ed_centro_ci;
+    private javax.swing.JTextField campo_ed_centro_es;
+    private javax.swing.JPasswordField campo_ed_clave_ad;
+    private javax.swing.JPasswordField campo_ed_clave_af;
+    private javax.swing.JPasswordField campo_ed_clave_ci;
+    private javax.swing.JPasswordField campo_ed_clave_es;
+    private javax.swing.JTextField campo_ed_email_ad;
+    private javax.swing.JTextField campo_ed_email_af;
+    private javax.swing.JTextField campo_ed_email_ci;
+    private javax.swing.JTextField campo_ed_email_es;
+    private javax.swing.JTextField campo_ed_id_ad;
+    private javax.swing.JTextField campo_ed_id_af;
+    private javax.swing.JTextField campo_ed_id_ci;
+    private javax.swing.JTextField campo_ed_id_es;
+    private javax.swing.JTextField campo_ed_nombre_ad;
+    private javax.swing.JTextField campo_ed_nombre_af;
+    private javax.swing.JTextField campo_ed_nombre_ci;
+    private javax.swing.JTextField campo_ed_nombre_es;
+    private javax.swing.JTextField campo_ed_num_es;
+    private javax.swing.JTextField campo_id_ad;
+    private javax.swing.JTextField campo_id_af;
+    private javax.swing.JTextField campo_id_ci;
+    private javax.swing.JTextField campo_id_es;
     private javax.swing.JLabel etiqueta_ed_clave;
-    private javax.swing.JLabel etiqueta_ed_direccion;
+    private javax.swing.JLabel etiqueta_ed_clave1;
+    private javax.swing.JLabel etiqueta_ed_clave2;
+    private javax.swing.JLabel etiqueta_ed_clave3;
+    private javax.swing.JLabel etiqueta_ed_clave4;
+    private javax.swing.JLabel etiqueta_ed_clave5;
     private javax.swing.JLabel etiqueta_ed_email;
+    private javax.swing.JLabel etiqueta_ed_email3;
+    private javax.swing.JLabel etiqueta_ed_email4;
+    private javax.swing.JLabel etiqueta_ed_email5;
     private javax.swing.JLabel etiqueta_ed_id;
+    private javax.swing.JLabel etiqueta_ed_id3;
+    private javax.swing.JLabel etiqueta_ed_id4;
+    private javax.swing.JLabel etiqueta_ed_id5;
     private javax.swing.JLabel etiqueta_ed_nombre;
+    private javax.swing.JLabel etiqueta_ed_nombre3;
+    private javax.swing.JLabel etiqueta_ed_nombre4;
+    private javax.swing.JLabel etiqueta_ed_nombre5;
     private javax.swing.JLabel etiqueta_ed_tipo;
-    private javax.swing.JLabel etiqueta_id;
-    private javax.swing.JLabel etiqueta_nombre;
+    private javax.swing.JLabel etiqueta_ed_tipo3;
+    private javax.swing.JLabel etiqueta_ed_tipo6;
+    private javax.swing.JLabel etiqueta_id_ad;
+    private javax.swing.JLabel etiqueta_id_af;
+    private javax.swing.JLabel etiqueta_id_ci;
+    private javax.swing.JLabel etiqueta_id_es;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JComboBox<String> selec_ed_tipo;
-    private javax.swing.JTable tablaUsuarios;
+    private javax.swing.JComboBox<String> selec_ed_tier_ad;
+    private javax.swing.JComboBox<String> selec_ed_tier_af;
+    private javax.swing.JTable tablaUsuarios_ad;
+    private javax.swing.JTable tablaUsuarios_af;
+    private javax.swing.JTable tablaUsuarios_ci;
+    private javax.swing.JTable tablaUsuarios_es;
     // End of variables declaration//GEN-END:variables
 }
