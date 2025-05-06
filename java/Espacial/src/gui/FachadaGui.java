@@ -93,6 +93,11 @@ public class FachadaGui {
         vu.setVisible(true);
     }
 
+    public void comenzarPublicacion(Usuario u){
+        VCategoria vp = new VCategoria(this.vp, true, fa, u);
+        vp.setVisible(true);
+    }
+
     
    
 }

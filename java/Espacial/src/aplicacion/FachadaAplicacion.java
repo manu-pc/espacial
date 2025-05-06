@@ -167,6 +167,16 @@ public class FachadaAplicacion {
     public void abrirMiPerfil(Usuario u){
         fgui.abrirMiPerfil(u);
     }
+
+    public void comenzarPublicacion(Usuario u){
+        fgui.comenzarPublicacion(u);
+    }
     
+    public void nuevaEntrada(Usuario u, String titulo, String contenido){
+        cg.nuevaEntrada(u, titulo, contenido);
+    }
+    public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada){
+        cg.modificarEntrada(u, titulo, contenido, numEntrada);
+    }
 
 }

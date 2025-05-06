@@ -222,20 +222,19 @@ public class VPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_buscaAutorActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-                // TODO add your handling code here:
+
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
     public void setUsuarioActual(aplicacion.Usuario u){
         this.usuarioActual = u;
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+
         buscarLibros();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNuevoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoLibroActionPerformed
-        // TODO add your handling code here:
-        fa.nuevoLibro();
+        fa.comenzarPublicacion(usuarioActual);
     }//GEN-LAST:event_btnNuevoLibroActionPerformed
 
     private void gestionUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionUsuariosActionPerformed
@@ -283,9 +282,6 @@ public class VPrincipal extends javax.swing.JFrame {
 
     }
     
-    public void setVisAdmin(boolean admin){
-        jMenu1.setVisible(admin);
 
-    }
 }
 

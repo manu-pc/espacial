@@ -18,21 +18,14 @@ public class GestionCategorias{
      this.fgui=fgui;
      this.fbd=fbd;
     }
-    
-    public void abrirVentanaCategorias(){
-        fgui.abrirVentanaCategorias();
-    }
-    
-    public java.util.List<Categoria> consultarCategorias(){
-        return fbd.consultarCategorias();
-    }
-    
-        public void insertarCategoria(String nombre, String descripcion){
-        fbd.insertarCategoria(nombre, descripcion);
-    }
-    public void eliminarCategoria(String nombre){
-        fbd.eliminarCategoria(nombre);
+
+
+    public void nuevaEntrada(Usuario u, String titulo, String contenido) {
+        fbd.nuevaEntrada(u, titulo, contenido);
     }
 
+    public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada) {
+        fbd.modificarEntrada(u, titulo, contenido, numEntrada);
+    }
 
 }

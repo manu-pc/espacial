@@ -190,4 +190,12 @@ public class FachadaBaseDatos {
     public void eliminarColaboracion(Colaboracion col) {
         daoUsuarios.finalizarColaboracion(col);
     }
+
+    public void nuevaEntrada(Usuario u, String titulo, String contenido) {
+        DAOForo.nuevaEntrada(u, titulo, contenido);
+    }
+
+    public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada) {
+        DAOForo.modificarEntrada(u, titulo, contenido, numEntrada);
+    }
 }
