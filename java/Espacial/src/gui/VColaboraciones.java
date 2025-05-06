@@ -147,6 +147,10 @@ public class VColaboraciones extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void campoNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNuevaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNuevaActionPerformed
+
     private void botonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonFinalizarActionPerformed
 
         ModeloTablaColaboraciones m = (ModeloTablaColaboraciones) tablaUsuarios.getModel();
@@ -169,9 +173,6 @@ public class VColaboraciones extends javax.swing.JDialog {
         this.dispose();
     }// GEN-LAST:event_jButton3ActionPerformed
 
-    private void campoNuevaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campoNuevaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_campoNuevaActionPerformed
 
     private void botonNuevaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonNuevaActionPerformed
         String nombreAgencia = campoNueva.getText();

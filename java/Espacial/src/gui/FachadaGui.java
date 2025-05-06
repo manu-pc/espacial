@@ -35,23 +35,7 @@ public class FachadaGui {
     }
     
    
-    public void visualizaLibro(Libro l, java.util.List<String>restoCategorias){
-        VLibro vl;
-        java.util.List<String> categorias = new java.util.ArrayList<String>();
-        
-        for(Categoria c:l.getCategorias()){
-            categorias.add(c.getNombre());
-        }
-        
-        vl=new VLibro(vp, true, fa, l, categorias, restoCategorias);
-        vl.setVisible(true);
-    }
-    
-    public void nuevoLibro(java.util.List<String>  restoCategorias){
-        VLibro vl;
-        vl=new VLibro(vp, true, fa, restoCategorias);
-        vl.setVisible(true);
-    }
+
     
     public void abrirVentanaUsuarios(){
         VUsuario ventanaUsuarios = new VUsuario(vp, true, fa);
@@ -63,8 +47,14 @@ public class FachadaGui {
     public void muestraExcepcion(String txtExcepcion){
        VAviso va;
       
-       va = new VAviso(vp, true, txtExcepcion);
+       va = new VAviso(vp, true, txtExcepcion, true);
        va.setVisible(true);
+    }
+    
+    public void muestraMensaje(String mensaje){
+        VAviso va;
+        va = new VAviso(vp, true, mensaje, false);
+        va.setVisible(true);
     }
     
     public void nuevoPrestamo(Ejemplar ejemplar, java.awt.Dialog parent){
@@ -82,7 +72,10 @@ public class FachadaGui {
     public void setUsuarioActual(Usuario u){
         System.out.println("Usuario actual: " + u.getIdUsuario());
         vp.setUsuarioActual(u);
+        vp.inicializar();
     }
+    
+    
     public void abrirMiPerfil(Usuario u){
         VUsuario vu =   new VUsuario(vp, true, fa, u);
         vu.setVisible(true);
@@ -92,9 +85,18 @@ public class FachadaGui {
         VCategoria vp = new VCategoria(this.vp, true, fa, u);
         vp.setVisible(true);
     }
+    
+    public void leerEntrada(aplicacion.EntradaForo entrada){
+        VLibro vp = new VLibro(this.vp, true, fa, this.vp.getUsuarioActual(), entrada);
+        vp.setVisible(true);
+    }
     public void abrirEntrada(aplicacion.EntradaForo entrada){
         VCategoria vp = new VCategoria(this.vp, true, fa, this.vp.getUsuarioActual(), entrada);
         vp.setVisible(true);
+    }
+    
+    public void notificarNuevaEntrada(){
+        this.vp.buscarLibros();
     }
 
     

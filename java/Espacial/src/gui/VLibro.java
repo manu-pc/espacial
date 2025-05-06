@@ -22,32 +22,30 @@ import aplicacion.Ejemplar;
 public class VLibro extends javax.swing.JDialog {
 
      private Integer idLibro;
-     private java.util.List<Integer> ejemplaresBorrados;
      private VPrincipal padre;
      private aplicacion.FachadaAplicacion fa;
-     private boolean modoEditar=false;
-    /** Creates new form VLibro */
-    public VLibro(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, java.util.List<String> restoCategorias) {
+     private aplicacion.Usuario usuario;
+     private aplicacion.EntradaForo entrada;
+
+     /** Creates new form VLibro */
+    public VLibro(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, aplicacion.Usuario usuario, aplicacion.EntradaForo entrada){
         super(parent, modal);
         this.fa=fa;
+        this.usuario = usuario;
+        this.entrada = entrada;
         initComponents();
         padre=(VPrincipal) parent;
-        botonEliminarForo.setEnabled(false);
-        this.idLibro=null;
-        this.ejemplaresBorrados = new java.util.ArrayList<Integer>();
-
-
-
+        if (!usuario.getIdUsuario().equals(entrada.getAutorId()) && !(usuario instanceof aplicacion.Administrador)){
+            botonEliminarForo.setVisible(false);
+            botonEditarForo.setVisible(false);
+        }
+        tituloEntrada.setText(entrada.getTitulo());
+        String texto = entrada.getContenido();
+        String textoHTML = "<html>" + texto.replace("\n", "<br>") + "</html>";
+textoEntrada.setText(textoHTML);
+        textoAutor.setText(entrada.getAutorId());
     }
 
-    public VLibro(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Libro libro, java.util.List<String> categorias, java.util.List<String> restoCategorias) {
-        super(parent, modal);
-        this.fa=fa;
-        initComponents();
-        padre=(VPrincipal) parent;
-        idLibro=libro.getIdLibro();
-
-    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -59,19 +57,21 @@ public class VLibro extends javax.swing.JDialog {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
+        jScrollBar1 = new javax.swing.JScrollBar();
         botonEliminarForo = new javax.swing.JButton();
         botonSalirForo = new javax.swing.JButton();
         botonEditarForo = new javax.swing.JButton();
-        textoEntrada = new javax.swing.JLabel();
         tituloEntrada = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoEntrada = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        textoAutor = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gestión de libros");
-        setMaximumSize(new java.awt.Dimension(620, 416));
+        setTitle("Foro");
         setMinimumSize(new java.awt.Dimension(620, 416));
-        setPreferredSize(new java.awt.Dimension(620, 416));
         setResizable(false);
 
         botonEliminarForo.setText("Eliminar entrada");
@@ -95,46 +95,65 @@ public class VLibro extends javax.swing.JDialog {
             }
         });
 
-        textoEntrada.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        textoEntrada.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
         tituloEntrada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloEntrada.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(566, 240));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(566, 240));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(566, 240));
+
+        textoEntrada.setFont(new java.awt.Font("Liberation Sans", 0, 13)); // NOI18N
+        textoEntrada.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        textoEntrada.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jScrollPane1.setViewportView(textoEntrada);
+
+        jLabel1.setText("Autor:");
+
+        textoAutor.setFont(new java.awt.Font("Liberation Sans", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(24, 24, 24)
+                .addComponent(botonEditarForo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonEliminarForo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                .addComponent(botonSalirForo)
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tituloEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonEditarForo)
-                        .addGap(10, 10, 10)
-                        .addComponent(botonEliminarForo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
-                        .addComponent(botonSalirForo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textoEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
-                            .addComponent(tituloEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(22, 22, 22)))
-                .addContainerGap())
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(textoAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(tituloEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(textoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonSalirForo)
                     .addComponent(botonEliminarForo)
-                    .addComponent(botonEditarForo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonEditarForo)
+                    .addComponent(botonSalirForo))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,15 +166,17 @@ public class VLibro extends javax.swing.JDialog {
     }//GEN-LAST:event_botonSalirForoActionPerformed
 
     private void botonEliminarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarForoActionPerformed
-        // TODO add your handling code here:
-    fa.borrarLibro(idLibro);
-    padre.buscarLibros();
-    this.dispose();
+
+        fa.eliminarEntrada(this.usuario, this.entrada.getNumEntrada());
+        fa.notificarNuevaEntrada();
+        this.dispose();
+
     }//GEN-LAST:event_botonEliminarForoActionPerformed
 
     private void botonEditarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarForoActionPerformed
 
-        
+        fa.abrirEntrada(this.entrada);
+        this.dispose();
     }//GEN-LAST:event_botonEditarForoActionPerformed
 
     private void actualizarEjemplares(){
@@ -170,7 +191,11 @@ public class VLibro extends javax.swing.JDialog {
     private javax.swing.JButton botonEditarForo;
     private javax.swing.JButton botonEliminarForo;
     private javax.swing.JButton botonSalirForo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel textoAutor;
     private javax.swing.JLabel textoEntrada;
     private javax.swing.JLabel tituloEntrada;
     // End of variables declaration//GEN-END:variables

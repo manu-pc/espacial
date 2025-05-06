@@ -4,34 +4,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Aficionado.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/baseDatos/DAOUsuarios.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VAviso.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Estudiante.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/GestionCategorias.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Ejemplar.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/FachadaAplicacion.java</file>
             <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/FachadaGui.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VCategoria.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VAutentificacion.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Categoria.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Usuario.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VColaboraciones.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/ModeloTablaCientificos.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VLibro.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/UsuarioFactory.java</file>
             <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Cientifico.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/flechaD.jpg</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/baseDatos/DAOCategorias.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VPrincipal.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/GestionUsuarios.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Administrador.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VCategoria.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VLibro.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/EntradaForo.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VColaboraciones.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/FachadaAplicacion.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/baseDatos/DAOUsuarios.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/baseDatos/DAOForo.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/GestionCategorias.java</file>
             <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/baseDatos/FachadaBaseDatos.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Libro.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/ModeloTablaEjemplares.java</file>
+            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VPrincipal.java</file>
             <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/VUsuario.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/aplicacion/Colaboracion.java</file>
-            <file>file:/home/alumnogreibd/Documentos/espacial/java/Espacial/src/gui/ModeloTablaColaboraciones.java</file>
         </group>
     </open-files>
 </project-private>

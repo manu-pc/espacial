@@ -58,6 +58,7 @@ public class FachadaBaseDatos {
             daoCategorias = new DAOCategorias(conexion, fa);
             daoUsuarios = new DAOUsuarios(conexion, fa);
             daoPrestamos = new DAOPrestamos(conexion, fa);
+            daoForo = new DAOForo(conexion,fa);
 
         } catch (FileNotFoundException f) {
             System.out.println(f.getMessage());
@@ -196,8 +197,8 @@ public class FachadaBaseDatos {
         daoForo.nuevaEntrada(u, titulo, contenido);
     }
 
-    public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada) {
-        daoForo.modificarEntrada(u, titulo, contenido, numEntrada);
+    public void modificarEntrada(aplicacion.EntradaForo entrada) {
+        daoForo.modificarEntrada(entrada);
     }
 
     public java.util.ArrayList<aplicacion.EntradaForo> cargarEntradas() {

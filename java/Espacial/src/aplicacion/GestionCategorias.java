@@ -25,8 +25,8 @@ public class GestionCategorias{
         fbd.nuevaEntrada(u, titulo, contenido);
     }
 
-    public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada) {
-        fbd.modificarEntrada(u, titulo, contenido, numEntrada);
+    public void modificarEntrada(EntradaForo entrada) {
+        fbd.modificarEntrada(entrada);
     }
 
     public ArrayList<EntradaForo> cargarEntradas() {

@@ -3,13 +3,13 @@ package aplicacion;
 import java.time.LocalDate;
 
 public class EntradaForo {
-    private int numEntrada;
+    private Integer numEntrada;
     private String titulo;
     private String contenido;
     private LocalDate fecha;
     private String autorId;
 
-    public EntradaForo(int numEntrada, String titulo, String contenido, LocalDate fecha, String autorId) {
+    public EntradaForo(Integer numEntrada, String titulo, String contenido, LocalDate fecha, String autorId) {
         this.numEntrada = numEntrada;
         this.titulo = titulo;
         this.contenido = contenido;
@@ -25,7 +25,7 @@ public class EntradaForo {
         this.autorId = "";
     }
 
-    public int getNumEntrada() {
+    public Integer getNumEntrada() {
         return numEntrada;
     }
 

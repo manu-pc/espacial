@@ -38,7 +38,7 @@ public class DAOForo extends AbstractDAO {
 
             stmEntrada.executeUpdate();
             con.commit();
-
+            this.getFachadaAplicacion().muestraMensaje("Entrada publicada!");
         } catch (SQLException e) {
             try {
                 if (con != null)
@@ -59,7 +59,7 @@ public class DAOForo extends AbstractDAO {
         }
     }
 
-    public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada) {
+    public void modificarEntrada(EntradaForo entrada) {
         Connection con = null;
         PreparedStatement stmModificar = null;
 
@@ -69,10 +69,10 @@ public class DAOForo extends AbstractDAO {
 
             String consulta = "UPDATE EntradaForo SET titulo = ?, contenido = ? WHERE numeroEntrada = ? AND autor = ?";
             stmModificar = con.prepareStatement(consulta);
-            stmModificar.setString(1, titulo);
-            stmModificar.setString(2, contenido);
-            stmModificar.setInt(3, numEntrada);
-            stmModificar.setString(4, u.getIdUsuario());
+            stmModificar.setString(1, entrada.getTitulo());
+            stmModificar.setString(2, entrada.getContenido());
+            stmModificar.setInt(3, entrada.getNumEntrada());
+            stmModificar.setString(4, entrada.getAutorId());
 
             if (stmModificar.executeUpdate() == 0) {
                 throw new SQLException("¡No se ha encontrado la entrada! Puede que haya sido eliminada recientemente.");

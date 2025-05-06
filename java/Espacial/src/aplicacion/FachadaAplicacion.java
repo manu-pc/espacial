@@ -40,6 +40,9 @@ public class FachadaAplicacion {
     public void muestraExcepcion(String e) {
         fgui.muestraExcepcion(e);
     }
+    public void muestraMensaje(String m){
+        fgui.muestraMensaje(m);
+    }
 
     public java.util.List<Libro> obtenerLibros(Integer id, String titulo, String isbn, String autor) {
         return cl.obtenerLibros(id, titulo, isbn, autor);
@@ -162,14 +165,16 @@ public class FachadaAplicacion {
         cg.nuevaEntrada(u, titulo, contenido);
     }
 
-    public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada) {
-        cg.modificarEntrada(u, titulo, contenido, numEntrada);
+    public void modificarEntrada(EntradaForo entrada) {
+        cg.modificarEntrada(entrada);
     }
 
     public void abrirEntrada(EntradaForo entrada) {
         fgui.abrirEntrada(entrada);
     }
-
+    public void leerEntrada(EntradaForo entrada) {
+        fgui.leerEntrada(entrada);
+    }
     public ArrayList<EntradaForo> cargarEntradas() {
         return cg.cargarEntradas();
     }
@@ -184,6 +189,10 @@ public class FachadaAplicacion {
 
     public void eliminarEntrada(Usuario autor, Integer idEntrada) {
         cg.eliminarEntrada(autor, idEntrada);
+    }
+    
+    public void notificarNuevaEntrada(){
+        fgui.notificarNuevaEntrada();
     }
 
 }

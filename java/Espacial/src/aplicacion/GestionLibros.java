@@ -29,7 +29,6 @@ public class GestionLibros{
         Libro l;
         l=fbd.consultarLibro(idLibro);
         restoCategorias=fbd.obtenerRestoCategorias(idLibro);
-        fgui.visualizaLibro(l, restoCategorias);
     }
 
     public void nuevoLibro(){
@@ -39,7 +38,6 @@ public class GestionLibros{
             restoCategorias.add(c.getNombre());
         }
 
-        fgui.nuevoLibro(restoCategorias);
     }
     
     public Integer actualizarLibro(Libro l){
