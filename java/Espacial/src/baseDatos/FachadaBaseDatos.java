@@ -29,6 +29,7 @@ public class FachadaBaseDatos {
     private DAOCategorias daoCategorias;
     private DAOUsuarios daoUsuarios;
     private DAOPrestamos daoPrestamos;
+    private DAOForo daoForo;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -192,10 +193,26 @@ public class FachadaBaseDatos {
     }
 
     public void nuevaEntrada(Usuario u, String titulo, String contenido) {
-        DAOForo.nuevaEntrada(u, titulo, contenido);
+        daoForo.nuevaEntrada(u, titulo, contenido);
     }
 
     public void modificarEntrada(Usuario u, String titulo, String contenido, Integer numEntrada) {
-        DAOForo.modificarEntrada(u, titulo, contenido, numEntrada);
+        daoForo.modificarEntrada(u, titulo, contenido, numEntrada);
+    }
+
+    public java.util.ArrayList<aplicacion.EntradaForo> cargarEntradas() {
+        return daoForo.cargarEntradas();
+    }
+
+    public java.util.ArrayList<aplicacion.EntradaForo> buscarEntradasPorAutor(String idUsuario) {
+        return daoForo.buscarEntradasPorAutor(idUsuario);
+    }
+
+    public java.util.ArrayList<aplicacion.EntradaForo> buscarEntradasPorTitulo(String titulo) {
+        return daoForo.buscarEntradasPorTitulo(titulo);
+    }
+
+    public void eliminarEntrada(Usuario autor, Integer idEntrada) {
+        daoForo.eliminarEntrada(autor, idEntrada);
     }
 }

@@ -4,6 +4,8 @@
  */
 package gui;
 
+import aplicacion.EntradaForo;
+
 /**
  *
  * @author alumnogreibd
@@ -13,8 +15,7 @@ public class VCategoria extends javax.swing.JDialog {
     private VPrincipal padre;
     private aplicacion.FachadaAplicacion fa;
     private aplicacion.Usuario autor;
-    private Integer numEntrada = -1;
-
+    private aplicacion.EntradaForo entrada = null;
     /**
      * Creates new form VCategoria
      */
@@ -25,21 +26,24 @@ public class VCategoria extends javax.swing.JDialog {
         this.autor = autor;
 
         initComponents();
-        cargarCategorias();
+
+        campoTextoForo.setText("");
+        campoTituloForo.setText("");
 
     }
 
     public VCategoria(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa, aplicacion.Usuario autor,
-            Integer numEntrada) {
+            EntradaForo entrada) {
         super(padre, modal);
         this.fa = fa;
         this.padre = (VPrincipal) padre;
         this.autor = autor;
-        this.numEntrada = numEntrada;
+        this.entrada = entrada;
 
         initComponents();
-        cargarCategorias();
 
+        campoTextoForo.setText(entrada.getContenido());
+        campoTituloForo.setText(entrada.getTitulo());
     }
 
     /**
@@ -142,11 +146,10 @@ public class VCategoria extends javax.swing.JDialog {
     }// GEN-LAST:event_campoDescripcionActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonBorrarActionPerformed
-        String nombre = jList1.getSelectedValue();
-        if (nombre == null || nombre.isEmpty())
-            return;
-        fa.eliminarCategoria(nombre);
-        cargarCategorias();
+        if (this.entrada != null) {
+            fa.eliminarEntrada(this.autor, entrada.getNumEntrada());
+        }
+        
 
     }// GEN-LAST:event_botonBorrarActionPerformed
 
@@ -210,26 +213,16 @@ public class VCategoria extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarCategorias() {
-        ModeloListaStrings m = new ModeloListaStrings();
 
-        java.util.List<String> categorias = fa.obtenerNombreCategorias();
-
-        for (String s : categorias) {
-            m.nuevoElemento(s);
-
-        }
-        jList1.setModel(m);
-    }
-
+    
     private void guardarEntrada() {
-        String nombre = campoTituloForo.getText();
+        String titulo = campoTituloForo.getText();
         String contenido = campoTextoForo.getText();
 
-        if (numEntrada == -1) {
-            fa.nuevaEntrada(autor, nombre, contenido);
+        if (this.entrada == null) {
+            fa.nuevaEntrada(autor, titulo, contenido);
         } else {
-            fa.modificarEntrada(autor, numEntrada, nombre, contenido);
+            fa.modificarEntrada(autor, titulo, contenido, this.entrada.getNumEntrada());
         }
 
         this.dispose();

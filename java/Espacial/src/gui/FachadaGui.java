@@ -7,7 +7,6 @@ package gui;
 import aplicacion.Categoria;
 import aplicacion.Libro;
 import aplicacion.Ejemplar;
-import aplicacion.GestionUsuarios;
 import aplicacion.Cientifico;
 import aplicacion.Usuario;
 /**
@@ -60,11 +59,7 @@ public class FachadaGui {
         ventanaUsuarios.setLocationRelativeTo(null);
     }
     
-    public void abrirVentanaCategorias(){
-        VCategoria ventanaCategorias = new VCategoria(vp, true, fa);
-        ventanaCategorias.setVisible(true);
-        ventanaCategorias.setLocationRelativeTo(null);
-    }
+
     public void muestraExcepcion(String txtExcepcion){
        VAviso va;
       
@@ -95,6 +90,10 @@ public class FachadaGui {
 
     public void comenzarPublicacion(Usuario u){
         VCategoria vp = new VCategoria(this.vp, true, fa, u);
+        vp.setVisible(true);
+    }
+    public void abrirEntrada(aplicacion.EntradaForo entrada){
+        VCategoria vp = new VCategoria(this.vp, true, fa, this.vp.getUsuarioActual(), entrada);
         vp.setVisible(true);
     }
 

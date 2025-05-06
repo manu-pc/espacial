@@ -154,9 +154,8 @@ public class VLibro extends javax.swing.JDialog {
     }//GEN-LAST:event_botonEliminarForoActionPerformed
 
     private void botonEditarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarForoActionPerformed
-        modoEditar = !modoEditar;
-        textoContenido.setVisible(!modoEditar);
-        entradaContenido.setVisible(modoEditar);
+
+        
     }//GEN-LAST:event_botonEditarForoActionPerformed
 
     private void actualizarEjemplares(){

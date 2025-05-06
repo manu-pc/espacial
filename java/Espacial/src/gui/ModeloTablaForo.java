@@ -4,25 +4,25 @@
  */
 
 package gui;
-import aplicacion.Libro;
+import aplicacion.EntradaForo;
 import javax.swing.table.*;
 /**
  *
  * @author basesdatos
  */
 public class ModeloTablaForo extends AbstractTableModel{
-    private java.util.List<Libro> libros;
+    private java.util.List<EntradaForo> entradas;
 
     public ModeloTablaForo(){
-        this.libros=new java.util.ArrayList<Libro>();
+        this.entradas=new java.util.ArrayList<EntradaForo>();
     }
 
     public int getColumnCount (){
-        return 5;
+        return 2;
     }
 
     public int getRowCount(){
-        return libros.size();
+        return entradas.size();
     }
 
     @Override
@@ -30,11 +30,8 @@ public class ModeloTablaForo extends AbstractTableModel{
         String nombre="";
 
         switch (col){
-            case 0: nombre= "Id"; break;
-            case 1: nombre= "Autores"; break;
-            case 2: nombre="Título"; break;
-            case 3: nombre="Editorial"; break;
-            case 4: nombre="Año"; break;
+            case 0: nombre= "Autor"; break;
+            case 1: nombre= "Titulo"; break;
         }
         return nombre;
     }
@@ -44,11 +41,8 @@ public class ModeloTablaForo extends AbstractTableModel{
         Class clase=null;
 
         switch (col){
-            case 0: clase= java.lang.Integer.class; break;
+            case 0: clase= java.lang.String.class; break;
             case 1: clase= java.lang.String.class; break;
-            case 2: clase=java.lang.String.class; break;
-            case 3: clase=java.lang.String.class; break;
-            case 4: clase=java.lang.String.class; break;
         }
         return clase;
     }
@@ -62,22 +56,19 @@ public class ModeloTablaForo extends AbstractTableModel{
         Object resultado=null;
 
         switch (col){
-            case 0: resultado= libros.get(row).getIdLibro(); break;
-            case 1: resultado= libros.get(row).getAutoresAsString(); break;
-            case 2: resultado=libros.get(row).getTitulo();break;
-            case 3: resultado=libros.get(row).getEditorial(); break;
-            case 4: resultado=libros.get(row).getAno(); break;
+            case 0: resultado=entradas.get(row).getAutorId(); break;
+            case 1: resultado=entradas.get(row).getTitulo(); break;
         }
         return resultado;
     }
 
-    public void setFilas(java.util.List<Libro> libros){
-        this.libros=libros;
+    public void setFilas(java.util.List<EntradaForo> entradas){
+        this.entradas=entradas;
         fireTableDataChanged();
     }
 
-    public Libro obtenerLibro(int i){
-        return this.libros.get(i);
+    public EntradaForo obtenerEntradaForo(int i){
+        return this.entradas.get(i);
     }
 
 }

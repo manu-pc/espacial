@@ -6,6 +6,7 @@
 package aplicacion;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
+import java.util.ArrayList;
 /**
  *
  * @author basesdatos
@@ -28,4 +29,18 @@ public class GestionCategorias{
         fbd.modificarEntrada(u, titulo, contenido, numEntrada);
     }
 
+    public ArrayList<EntradaForo> cargarEntradas() {
+        return fbd.cargarEntradas();
+    }
+
+    public ArrayList<EntradaForo> buscarEntradasPorAutor(String idUsuario) {
+        return fbd.buscarEntradasPorAutor(idUsuario);
+    }
+
+    public ArrayList<EntradaForo> buscarEntradasPorTitulo(String titulo) {
+        return fbd.buscarEntradasPorTitulo(titulo);
+    }
+    public void eliminarEntrada(Usuario autor, Integer idEntrada) {
+        fbd.eliminarEntrada(autor, idEntrada);
+    }
 }
