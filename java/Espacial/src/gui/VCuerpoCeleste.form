@@ -36,9 +36,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="descripcionModif" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="descModifText" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -58,33 +58,39 @@
                                   <Component id="tamanhoModif" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tamanhoModifText" pref="110" max="32767" attributes="0"/>
+                                  <Component id="nombreModifText" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="TSuperfModif" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ubicacionModif" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="TSuperfModifText" pref="113" max="32767" attributes="0"/>
+                                  <Component id="ubicacionModifText" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="nombreModifText" min="-2" pref="104" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="ubicacionModif" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="ubicacionModifText" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="masaModif" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="masaModifText" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="tiposCombo" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="tamanhoModifText" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="TSuperfModif" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="TSuperfModifText" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="galaxiaModif" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="galaxiaModifText" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="habitabilidadBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="masaModif" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="galaxiaModifText" pref="110" max="32767" attributes="0"/>
+                                  <Component id="masaModifText" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tiposCombo" max="32767" attributes="0"/>
+                                  <Component id="habitabilidadBox" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jScrollPane1" alignment="0" min="-2" pref="700" max="-2" attributes="0"/>
@@ -107,14 +113,16 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="306" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nombreModif" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombreModifText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ubicacionModif" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ubicacionModifText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="masaModif" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="masaModifText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tiposCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="nombreModifText" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nombreModif" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ubicacionModif" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ubicacionModifText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="masaModif" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="masaModifText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tiposCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -185,6 +193,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardar_cuerpoButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="salirButton">
       <Properties>
@@ -203,6 +214,9 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nombreModifTextActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="ubicacionModif">
       <Properties>

@@ -28,7 +28,7 @@ public class DAOCuerposCelestes extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            stmCuerpo = con.prepareStatement("select nombre, tipo, ubicacion, habitabilidad, masa, tamano, temperaturaSuperficie, descripcion, galaxia "
+            stmCuerpo = con.prepareStatement("select nombre, tipo, ubicacion, habitabilidad, masa, tamano, temperaturasuperficie, descripcion, galaxia "
                     + "from cuerpoceleste "
                     + "where nombre = ? AND ubicacion = ?");
             stmCuerpo.setString(1, nombreCuerpo);
@@ -61,7 +61,7 @@ public class DAOCuerposCelestes extends AbstractDAO {
         ResultSet rslCuerpos;
 
         con = this.getConexion();
-        String consulta = "select nombre, tipo, ubicacion, habitabilidad, masa, tamano, temperaturaSupericie, descripcion, galaxia "
+        String consulta = "select nombre, tipo, ubicacion, habitabilidad, masa, tamano, temperaturasuperficie, descripcion, galaxia "
                 + "from cuerpoceleste ";
         if (!nombre.isEmpty()) {
             consulta = consulta + "where nombre like '%" + nombre + "%' ";
@@ -73,10 +73,9 @@ public class DAOCuerposCelestes extends AbstractDAO {
             while (rslCuerpos.next()) {
                 cuerpoActual = new CuerpoCeleste(rslCuerpos.getString("nombre"), TipoCuerpoCeleste.valueOf(rslCuerpos.getString("tipo")),
                         rslCuerpos.getString("ubicacion"), rslCuerpos.getBoolean("habitabilidad"),
-                        rslCuerpos.getFloat("masa"), rslCuerpos.getFloat("tamano"), rslCuerpos.getFloat("temperaturaSuperficie"),
+                        rslCuerpos.getFloat("masa"), rslCuerpos.getFloat("tamano"), rslCuerpos.getFloat("temperaturasuperficie"),
                         rslCuerpos.getString("descripcion"), rslCuerpos.getString("galaxia"));
                 resultado.add(cuerpoActual);
-
             }
 
         } catch (SQLException e) {
@@ -157,6 +156,8 @@ public class DAOCuerposCelestes extends AbstractDAO {
             stmCuerpo.setFloat(7, cuerpo.getTemperaturaSuperficie());
             stmCuerpo.setString(8, cuerpo.getDescripcion());
             stmCuerpo.setString(9, cuerpo.getGalaxia());
+                        stmCuerpo.setString(10, cuerpo.getNombreCuerpoCeleste());
+
             stmCuerpo.executeUpdate();
 
         } catch (SQLException e) {
@@ -179,13 +180,11 @@ public class DAOCuerposCelestes extends AbstractDAO {
         ResultSet rs = null;
 
         try {
-            psCheck = con.prepareStatement("""
-        SELECT 1
-        FROM cuerpoceleste cc
-        LEFT JOIN mision m ON m.objetivo = cc.nombre
-        LEFT JOIN articulo a ON a.cuerpo = cc.nombre
-        WHERE cc.nombre = ? AND (m.objetivo IS NOT NULL OR a.cuerpo IS NOT NULL)
-    """);
+            psCheck = con.prepareStatement("SELECT 1"
+       +" FROM cuerpoceleste cc"
+       +" LEFT JOIN mision m ON m.objetivo = cc.nombre"
+       +" LEFT JOIN articulo a ON a.cuerpo = cc.nombre"
+       +" WHERE cc.nombre = ? AND (m.objetivo IS NOT NULL OR a.cuerpo IS NOT NULL)");
             psCheck.setString(1, nombre);
             rs = psCheck.executeQuery();
 

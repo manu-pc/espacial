@@ -96,11 +96,11 @@ public class DAOGalaxias extends AbstractDAO {
 
         try {
             stmGalaxia = con.prepareStatement("insert into galaxia(nombre, tipo, ubicacion, descripcion) "
-                    + "values (?,?,?,?,?,?,?,?,?)");
+                    + "values (?,?,?,?)");
             stmGalaxia.setString(1, galaxia.getNombreGalaxia());
             stmGalaxia.setString(2, galaxia.getTipoGalaxia().name());
             stmGalaxia.setString(3, galaxia.getUbicacionGalaxia());
-            stmGalaxia.setString(8, galaxia.getDescGalaxia());
+            stmGalaxia.setString(4, galaxia.getDescGalaxia());
 
             stmGalaxia.executeUpdate();
 
@@ -127,12 +127,14 @@ public class DAOGalaxias extends AbstractDAO {
                     + "set nombre=?, "
                     + "    tipo=?, "
                     + "    ubicacion=?, "
-                    + "    descripcion=?, "
+                    + "    descripcion=? "
                     + "where nombre=?");
             stmGalaxia.setString(1, galaxia.getNombreGalaxia());
             stmGalaxia.setString(2, galaxia.getTipoGalaxia().name());
             stmGalaxia.setString(3, galaxia.getUbicacionGalaxia());
-            stmGalaxia.setString(8, galaxia.getDescGalaxia());
+            stmGalaxia.setString(4, galaxia.getDescGalaxia());
+            stmGalaxia.setString(5, galaxia.getNombreGalaxia());
+
             stmGalaxia.executeUpdate();
 
         } catch (SQLException e) {
@@ -155,17 +157,15 @@ public class DAOGalaxias extends AbstractDAO {
         ResultSet rs = null;
 
         try {
-            psCheck = con.prepareStatement("""
-        SELECT 1
-        FROM galaxia g
-        LEFT JOIN cuerpoceleste cc ON g.nombre = cc.galaxia
-        WHERE g.nombre = ? AND (cc.galaxia IS NOT NULL)
-    """);
+            psCheck = con.prepareStatement("SELECT 1 "
+        +"FROM galaxia g "
+        +"LEFT JOIN cuerpoceleste cc ON g.nombre = cc.galaxia "
+        +"WHERE g.nombre = ? AND (cc.galaxia IS NOT NULL)");
             psCheck.setString(1, nombre);
             rs = psCheck.executeQuery();
 
             if (rs.next()) {
-                System.out.println("No se puede eliminar: la galaxia está relacionada con cuerpos celestes.");
+                 this.getFachadaAplicacion().muestraExcepcion("No se puede eliminar: la galaxia está relacionada con cuerpos celestes.");
             } else {
                 psDelete = con.prepareStatement("DELETE FROM galaxia WHERE nombre = ?");
                 psDelete.setString(1, nombre);

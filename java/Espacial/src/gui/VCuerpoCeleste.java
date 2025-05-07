@@ -85,6 +85,11 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         });
 
         guardar_cuerpoButton.setText("Guardar");
+        guardar_cuerpoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardar_cuerpoButtonActionPerformed(evt);
+            }
+        });
 
         salirButton.setText("Salir");
         salirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +101,11 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         nombreModif.setText("Nombre");
 
         nombreModifText.setEditable(false);
+        nombreModifText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreModifTextActionPerformed(evt);
+            }
+        });
 
         ubicacionModif.setText("Ubicación");
 
@@ -144,9 +154,9 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(descripcionModif)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(descModifText))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(nuevo_cuerpoButton)
@@ -163,31 +173,32 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
                                     .addComponent(nombreModif)
                                     .addComponent(tamanhoModif))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tamanhoModifText, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                    .addComponent(nombreModifText))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TSuperfModif)
+                                    .addComponent(ubicacionModif))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TSuperfModifText, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(ubicacionModifText))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nombreModifText, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ubicacionModif)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(masaModif)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(masaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tiposCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tamanhoModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(TSuperfModif)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(TSuperfModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
                                         .addComponent(galaxiaModif)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(galaxiaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(habitabilidadBox))))
+                                        .addGap(5, 5, 5))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(masaModif)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(galaxiaModifText, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                    .addComponent(masaModifText))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tiposCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(habitabilidadBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(62, Short.MAX_VALUE))))
         );
@@ -202,14 +213,15 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreModif)
-                    .addComponent(nombreModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ubicacionModif)
-                    .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(masaModif)
-                    .addComponent(masaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tiposCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombreModifText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nombreModif)
+                        .addComponent(ubicacionModif)
+                        .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(masaModif)
+                        .addComponent(masaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tiposCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tamanhoModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,14 +274,17 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
 
     private void nuevo_cuerpoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_cuerpoButtonActionPerformed
         VAltaCuerpo dialog = new VAltaCuerpo(new javax.swing.JFrame(), true, fa);
-        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                System.exit(0);
-            }
-        });
+
         dialog.setVisible(true);     
     }//GEN-LAST:event_nuevo_cuerpoButtonActionPerformed
+
+    private void nombreModifTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreModifTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreModifTextActionPerformed
+
+    private void guardar_cuerpoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_cuerpoButtonActionPerformed
+        modificarCuerpo();
+    }//GEN-LAST:event_guardar_cuerpoButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TSuperfModif;
@@ -304,8 +319,9 @@ private void buscarCuerposCelestes() {
         ModeloTablaCuerposCelestes m;
 
         m = (ModeloTablaCuerposCelestes) tablaCuerpos.getModel();
+        java.util.ArrayList <CuerpoCeleste> lista = (java.util.ArrayList <CuerpoCeleste>) fa.obtenerCuerpos(nombre_cuerpoceleste_text.getText());
 
-        m.setFilas(fa.obtenerCuerpos(nombre_cuerpoceleste_text.getText()));
+        m.setFilas(lista);
         if (m.getRowCount() > 0) {
 
             tablaCuerpos.setRowSelectionInterval(0, 0);
@@ -314,7 +330,9 @@ private void buscarCuerposCelestes() {
         } else {
             guardar_cuerpoButton.setEnabled(false);
             borrar_cuerpoButton.setEnabled(false);
+            System.out.println("consulta vacía");
         }
+        
     }
 
  private void colocarInformacionSeleccionada(ModeloTablaCuerposCelestes m) {
@@ -337,7 +355,7 @@ private void buscarCuerposCelestes() {
     }
 
     private void modificarCuerpo() {
-        if (fa.getTipoUsuarioLogin().equals(TipoUsuario.Administrador)) {
+        if (fa.getSudo()) {
             try {
                 float masa = Float.parseFloat(masaModifText.getText());
                 float tamanho = Float.parseFloat(tamanhoModifText.getText());
@@ -356,9 +374,6 @@ private void buscarCuerposCelestes() {
                     throw new CustomException("Valor negativo no valido.");
                 }
                 if (tamanho<0) {
-                    throw new CustomException("Valor negativo no valido.");
-                }
-                if (temp<0) {
                     throw new CustomException("Valor negativo no valido.");
                 }
                 if (desc.isEmpty()) {

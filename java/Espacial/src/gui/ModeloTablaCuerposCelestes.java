@@ -87,7 +87,7 @@ public class ModeloTablaCuerposCelestes extends AbstractTableModel {
         return resultado;
     }
 
-    public void setFilas(java.util.List<CuerpoCeleste> usuarios){
+    public void setFilas(java.util.List<CuerpoCeleste> cuerpos){
         this.cuerpos=cuerpos;
         fireTableDataChanged();
     }

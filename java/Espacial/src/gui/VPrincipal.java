@@ -74,6 +74,8 @@ public class VPrincipal extends javax.swing.JFrame {
         buscaId = new javax.swing.JTextField();
         boton_miPerfil1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        botonCuerposCelestes = new javax.swing.JButton();
+        botonGalaxias = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         gestionUsuarios = new javax.swing.JMenuItem();
@@ -163,6 +165,20 @@ public class VPrincipal extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        botonCuerposCelestes.setText("Cuerpos Celestes");
+        botonCuerposCelestes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCuerposCelestesActionPerformed(evt);
+            }
+        });
+
+        botonGalaxias.setText("Galaxias");
+        botonGalaxias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGalaxiasActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Administración");
 
         gestionUsuarios.setText("Usuarios");
@@ -192,7 +208,7 @@ public class VPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,28 +222,36 @@ public class VPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(etiquetaTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscaTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(boton_miPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buscaTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(botonCuerposCelestes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(boton_miPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonGalaxias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addComponent(boton_miPerfil)
-                        .addGap(79, 79, 79)))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCuerposCelestes)
+                        .addGap(17, 17, 17)
+                        .addComponent(botonGalaxias)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaTitulo)
                     .addComponent(buscaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,6 +275,14 @@ public class VPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonCuerposCelestesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCuerposCelestesActionPerformed
+        fa.abrirVentanaCuerposCelestes();
+    }//GEN-LAST:event_botonCuerposCelestesActionPerformed
+
+    private void botonGalaxiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGalaxiasActionPerformed
+        fa.abrirVentanaGalaxias();
+    }//GEN-LAST:event_botonGalaxiasActionPerformed
 
     private void buscaAutorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buscaAutorActionPerformed
         // TODO add your handling code here:
@@ -291,6 +323,8 @@ public class VPrincipal extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCuerposCelestes;
+    private javax.swing.JButton botonGalaxias;
     private javax.swing.JButton boton_miPerfil;
     private javax.swing.JButton boton_miPerfil1;
     private javax.swing.JButton btnBuscar;

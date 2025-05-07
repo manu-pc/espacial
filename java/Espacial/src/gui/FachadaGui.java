@@ -16,6 +16,7 @@ import aplicacion.Usuario;
 public class FachadaGui {
     aplicacion.FachadaAplicacion fa;
     VPrincipal vp;
+    Usuario usuarioActual; 
     
    public FachadaGui(aplicacion.FachadaAplicacion fa){
      this.fa=fa;
@@ -70,11 +71,14 @@ public class FachadaGui {
         vc.setVisible(true);
     }
     public void setUsuarioActual(Usuario u){
+        this.usuarioActual = u;
         System.out.println("Usuario actual: " + u.getIdUsuario());
         vp.setUsuarioActual(u);
         vp.inicializar();
     }
-    
+    public Usuario getUsuarioActual(){
+        return usuarioActual;
+    }
     
     public void abrirMiPerfil(Usuario u){
         VUsuario vu =   new VUsuario(vp, true, fa, u);
@@ -100,5 +104,13 @@ public class FachadaGui {
     }
 
     
-   
+       public void abrirVentanaCuerposCelestes(){
+        VCuerpoCeleste vc = new VCuerpoCeleste(this.vp, true, fa);
+        vc.setVisible(true);
+       }
+    public void abrirVentanaGalaxias(){
+        VGalaxia vg = new VGalaxia(this.vp, true, fa);
+        vg.setVisible(true);
+    }
+
 }

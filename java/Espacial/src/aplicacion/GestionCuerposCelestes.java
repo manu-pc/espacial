@@ -33,6 +33,7 @@ public class GestionCuerposCelestes {
     }
 
     public List<CuerpoCeleste> obtenerCuerpoCeleste(String text) {
+        
     return fbd.obtenerCuerpoCeleste(text);
     }
     

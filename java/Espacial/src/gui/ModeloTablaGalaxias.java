@@ -65,12 +65,12 @@ public class ModeloTablaGalaxias extends AbstractTableModel {
             case 0: resultado= galaxias.get(row).getNombreGalaxia(); break;
             case 1: resultado= galaxias.get(row).getTipoGalaxia(); break;
             case 2: resultado= galaxias.get(row).getUbicacionGalaxia();break;
-            case 7: resultado=galaxias.get(row).getDescGalaxia(); break;
+            case 3: resultado=galaxias.get(row).getDescGalaxia(); break;
         }
         return resultado;
     }
 
-    public void setFilas(java.util.List<Galaxia> usuarios){
+    public void setFilas(java.util.List<Galaxia> galaxias){
         this.galaxias = galaxias;
         fireTableDataChanged();
     }

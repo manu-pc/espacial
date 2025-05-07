@@ -63,6 +63,8 @@ public class FachadaBaseDatos {
             daoUsuarios = new DAOUsuarios(conexion, fa);
             daoPrestamos = new DAOPrestamos(conexion, fa);
             daoForo = new DAOForo(conexion,fa);
+            daocuerpos = new DAOCuerposCelestes(conexion, fa);
+            daogalaxias = new DAOGalaxias(conexion, fa);
 
         } catch (FileNotFoundException f) {
             System.out.println(f.getMessage());
@@ -226,6 +228,7 @@ public class FachadaBaseDatos {
     }
 
     public List<CuerpoCeleste> obtenerCuerpoCeleste(String text) {
+
        return daocuerpos.obtenerCuerpos(text);
     }
     

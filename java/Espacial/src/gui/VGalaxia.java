@@ -7,6 +7,8 @@ import aplicacion.FachadaAplicacion;
 import aplicacion.Galaxia;
 import aplicacion.CustomException;
 import aplicacion.TipoGalaxia;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -21,6 +23,13 @@ public class VGalaxia extends javax.swing.JDialog {
         super(parent, modal);
         this.fa = fa;
         initComponents();
+                ModeloTablaGalaxias m = (ModeloTablaGalaxias) tablaGalaxias.getModel();
+
+        tablaGalaxias.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent evt) {
+                colocarInformacionSeleccionada(m);
+            }
+        });
     }
 
     /**
@@ -36,18 +45,20 @@ public class VGalaxia extends javax.swing.JDialog {
         tablaGalaxias = new javax.swing.JTable();
         nombreGalaxia = new javax.swing.JLabel();
         nombreGalaxiaText = new javax.swing.JTextField();
-        nombreGalaxiaModif = new javax.swing.JLabel();
-        nombreGalaxiaModifText = new javax.swing.JTextField();
-        tiposGalaxia = new javax.swing.JComboBox<>();
-        ubicacionModif = new javax.swing.JLabel();
-        ubicacionModifText = new javax.swing.JTextField();
-        descripcionModif = new javax.swing.JLabel();
-        descModifText = new javax.swing.JTextField();
-        salirButtn = new javax.swing.JButton();
-        nuevoButton = new javax.swing.JButton();
-        guardarButtn = new javax.swing.JButton();
         buscarButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         borrarButtn = new javax.swing.JButton();
+        guardarButtn = new javax.swing.JButton();
+        nuevoButton = new javax.swing.JButton();
+        descModifText = new javax.swing.JTextField();
+        descripcionModif = new javax.swing.JLabel();
+        ubicacionModifText = new javax.swing.JTextField();
+        ubicacionModif = new javax.swing.JLabel();
+        tiposGalaxia = new javax.swing.JComboBox<>();
+        salirButtn = new javax.swing.JButton();
+        nombreGalaxiaModifText = new javax.swing.JTextField();
+        nombreGalaxiaModif = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,32 +66,6 @@ public class VGalaxia extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tablaGalaxias);
 
         nombreGalaxia.setText("Nombre");
-
-        nombreGalaxiaModif.setText("Nombre");
-
-        nombreGalaxiaModifText.setEditable(false);
-
-        tiposGalaxia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona:", "Espiral", "Irregular", "Eliptica" }));
-
-        ubicacionModif.setText("Ubicación");
-
-        descripcionModif.setText("Descripción");
-
-        salirButtn.setText("Salir");
-
-        nuevoButton.setText("Nuevo");
-        nuevoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoButtonActionPerformed(evt);
-            }
-        });
-
-        guardarButtn.setText("Guardar");
-        guardarButtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarButtnActionPerformed(evt);
-            }
-        });
 
         buscarButton.setText("Buscar");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,47 +81,129 @@ public class VGalaxia extends javax.swing.JDialog {
             }
         });
 
+        guardarButtn.setText("Guardar");
+        guardarButtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarButtnActionPerformed(evt);
+            }
+        });
+
+        nuevoButton.setText("Nuevo");
+        nuevoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoButtonActionPerformed(evt);
+            }
+        });
+
+        descModifText.setMaximumSize(new java.awt.Dimension(617, 2147483647));
+        descModifText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descModifTextActionPerformed(evt);
+            }
+        });
+
+        descripcionModif.setText("Descripción");
+
+        ubicacionModifText.setMaximumSize(new java.awt.Dimension(275, 27));
+
+        ubicacionModif.setText("Ubicación");
+
+        tiposGalaxia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona:", "Espiral", "Irregular", "Eliptica" }));
+        tiposGalaxia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tiposGalaxiaActionPerformed(evt);
+            }
+        });
+
+        salirButtn.setText("Salir");
+
+        nombreGalaxiaModifText.setEditable(false);
+
+        nombreGalaxiaModif.setText("Nombre");
+
+        jLabel1.setText("Tipo:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nuevoButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guardarButtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(borrarButtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salirButtn)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(descripcionModif)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(descModifText, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(nombreGalaxiaModif)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nombreGalaxiaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tiposGalaxia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(ubicacionModif)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreGalaxiaModif)
+                    .addComponent(nombreGalaxiaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tiposGalaxia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ubicacionModif)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(descModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descripcionModif))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(salirButtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(guardarButtn)
+                            .addComponent(borrarButtn)
+                            .addComponent(nuevoButton))
+                        .addContainerGap())))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(descripcionModif)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(descModifText))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(nombreGalaxiaModif)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nombreGalaxiaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(tiposGalaxia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(ubicacionModif)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(51, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nombreGalaxia)
-                        .addGap(18, 18, 18)
-                        .addComponent(nombreGalaxiaText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buscarButton)
-                        .addGap(26, 26, 26))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(nuevoButton)
-                .addGap(18, 18, 18)
-                .addComponent(guardarButtn)
-                .addGap(18, 18, 18)
-                .addComponent(borrarButtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(salirButtn)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nombreGalaxia)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreGalaxiaText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buscarButton))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 22, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -150,23 +217,8 @@ public class VGalaxia extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreGalaxiaModif)
-                    .addComponent(nombreGalaxiaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tiposGalaxia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ubicacionModif)
-                    .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(descripcionModif)
-                    .addComponent(descModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salirButtn)
-                    .addComponent(nuevoButton)
-                    .addComponent(guardarButtn)
-                    .addComponent(borrarButtn))
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,12 +226,7 @@ public class VGalaxia extends javax.swing.JDialog {
 
     private void nuevoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoButtonActionPerformed
         VAltaGalaxia dialog = new VAltaGalaxia(new javax.swing.JFrame(), true, fa);
-        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                System.exit(0);
-            }
-        });
+
         dialog.setVisible(true);     
     }//GEN-LAST:event_nuevoButtonActionPerformed
 
@@ -195,12 +242,22 @@ public class VGalaxia extends javax.swing.JDialog {
        modificarGalaxia();
     }//GEN-LAST:event_guardarButtnActionPerformed
 
+    private void descModifTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descModifTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descModifTextActionPerformed
+
+    private void tiposGalaxiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiposGalaxiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tiposGalaxiaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrarButtn;
     private javax.swing.JButton buscarButton;
     private javax.swing.JTextField descModifText;
     private javax.swing.JLabel descripcionModif;
     private javax.swing.JButton guardarButtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreGalaxia;
     private javax.swing.JLabel nombreGalaxiaModif;
@@ -246,7 +303,7 @@ private void buscarGalaxias() {
     }
 
     private void modificarGalaxia() {
-        if (fa.getTipoUsuarioLogin().equals(TipoUsuario.Administrador)) {
+        if (fa.getSudo()) {
             try {
                 String nombreGalaxia = nombreGalaxiaModifText.getText();
                 String ubicacion = ubicacionModifText.getText();

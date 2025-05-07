@@ -20,7 +20,7 @@ public class FachadaAplicacion {
     GestionCategorias cg;
     GestionCuerposCelestes gc;
     GestionGalaxias gg;
-
+    Usuario usuarioActual;
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
         fbd = new baseDatos.FachadaBaseDatos(this);
@@ -84,11 +84,23 @@ public class FachadaAplicacion {
 
     public Usuario comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u = cu.comprobarAutentificacion(idUsuario, clave);
-        if (u != null)
+        if (u != null){
             fgui.setUsuarioActual(u);
+            this.usuarioActual = u;
+        }
         return u;
     }
 
+    public boolean getSudo(){
+        if (this.usuarioActual == null){
+            System.out.println("Error autenticando!");
+            return false;
+        }
+        if (this.usuarioActual instanceof Administrador){
+            System.out.println("permiso sudo concedido!");
+        }
+        return this.usuarioActual instanceof Administrador;
+    }
     public java.util.List<Usuario> obtenerUsuarios() {
         return cu.obtenerUsuarios();
     }
@@ -232,5 +244,11 @@ public class FachadaAplicacion {
     public void darDeAltaGalaxia(Galaxia nueva) {
         gg.darDeAltaGalaxia(nueva);
     }
-
+    
+    public void abrirVentanaCuerposCelestes(){
+        fgui.abrirVentanaCuerposCelestes();
+    }
+    public void abrirVentanaGalaxias(){
+        fgui.abrirVentanaGalaxias();
+    }
 }
