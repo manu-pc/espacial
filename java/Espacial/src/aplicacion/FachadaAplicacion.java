@@ -18,6 +18,8 @@ public class FachadaAplicacion {
     GestionLibros cl;
     GestionUsuarios cu;
     GestionCategorias cg;
+    GestionCuerposCelestes gc;
+    GestionGalaxias gg;
 
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
@@ -25,6 +27,9 @@ public class FachadaAplicacion {
         cl = new GestionLibros(fgui, fbd);
         cu = new GestionUsuarios(fgui, fbd);
         cg = new GestionCategorias(fgui, fbd);
+
+        gc = new GestionCuerposCelestes(fgui, fbd);
+        gg = new GestionGalaxias(fgui, fbd);
     }
 
     public static void main(String args[]) {
@@ -193,6 +198,39 @@ public class FachadaAplicacion {
     
     public void notificarNuevaEntrada(){
         fgui.notificarNuevaEntrada();
+    }
+
+
+    public List<CuerpoCeleste> obtenerCuerpos(String text) {
+        return gc.obtenerCuerpoCeleste(text);
+    }
+    
+     public void borrarCuerpo(String nombreCuerpo) {
+        gc.borrarCuerpo(nombreCuerpo);
+    }
+
+    public void modificarCuerpo(CuerpoCeleste cuerpo) {
+        gc.modificarCuerpo(cuerpo);
+    }
+    
+        public List<Galaxia> obtenerGalaxia(String nombre) {
+        return gg.obtenerGalaxia(nombre);
+    }
+    
+     public void borrarGalaxia(String nombreGalaxia) {
+        gg.borrarGalaxia(nombreGalaxia);
+    }
+
+    public void modificarGalaxia(Galaxia galaxia) {
+        gg.modificarGalaxia(galaxia);
+    }
+
+    public void darDeAltaCuerpo(CuerpoCeleste nuevo) {
+        gc.darDeAltaCuerpo(nuevo);
+    }
+
+    public void darDeAltaGalaxia(Galaxia nueva) {
+        gg.darDeAltaGalaxia(nueva);
     }
 
 }

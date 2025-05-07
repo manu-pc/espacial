@@ -6,9 +6,11 @@
 package baseDatos;
 
 import aplicacion.Ejemplar;
+import aplicacion.Galaxia;
 import aplicacion.Usuario;
 import aplicacion.Categoria;
 import aplicacion.Colaboracion;
+import aplicacion.CuerpoCeleste;
 import aplicacion.Libro;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,6 +32,8 @@ public class FachadaBaseDatos {
     private DAOUsuarios daoUsuarios;
     private DAOPrestamos daoPrestamos;
     private DAOForo daoForo;
+    private DAOCuerposCelestes daocuerpos;
+    private DAOGalaxias daogalaxias;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -215,5 +219,41 @@ public class FachadaBaseDatos {
 
     public void eliminarEntrada(Usuario autor, Integer idEntrada) {
         daoForo.eliminarEntrada(autor, idEntrada);
+    }
+
+    public CuerpoCeleste validarCuerpo(String nombreCuerpo, String ubicacion) {
+        return daocuerpos.validarCuerpo(nombreCuerpo, ubicacion);
+    }
+
+    public List<CuerpoCeleste> obtenerCuerpoCeleste(String text) {
+       return daocuerpos.obtenerCuerpos(text);
+    }
+    
+    public void borrarCuerpo(String nombre) {
+        daocuerpos.borrarCuerpo(nombre);
+    }
+
+    public void modificarCuerpo(CuerpoCeleste cuerpo) {
+        daocuerpos.modificarCuerpo(cuerpo);
+    }
+    
+    public void DarDeAltaCuerpo(CuerpoCeleste cuerpo) {
+        daocuerpos.DarDeAltaCuerpo(cuerpo);
+    }
+    
+    public List<Galaxia> obtenerGalaxia(String text) {
+       return daogalaxias.obtenerGalaxia(text);
+    }
+    
+    public void borrarGalaxia(String nombre) {
+        daogalaxias.borrarGalaxia(nombre);
+    }
+
+    public void modificarGalaxia(Galaxia galaxia) {
+        daogalaxias.modificarGalaxia(galaxia);
+    }
+    
+    public void DarDeAltaGalaxia(Galaxia galaxia) {
+        daogalaxias.DarDeAltaGalaxia(galaxia);
     }
 }
