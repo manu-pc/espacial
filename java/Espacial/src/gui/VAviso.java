@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package gui;
-import java.awt.Color;
+
 /**
  *
  * @author alumno
@@ -13,16 +13,10 @@ public class VAviso extends javax.swing.JDialog {
     /**
      * Creates new form VAviso
      */
-    public VAviso(java.awt.Frame parent, boolean modal, String txtExcepcion, boolean esError) {
+    public VAviso(java.awt.Frame parent, boolean modal, String txtExcepcion) {
         super(parent, modal);
         initComponents();
         textoExcepcion.setText(txtExcepcion);
-        if (esError){
-            textoExcepcion.setForeground(Color.RED);
-        }
-        else {
-            textoExcepcion.setForeground(Color.GREEN);
-        }
         this.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

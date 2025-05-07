@@ -2,34 +2,28 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package baseDatos;
 
-import aplicacion.Ejemplar;
-import aplicacion.Usuario;
-import aplicacion.Categoria;
-import aplicacion.Colaboracion;
-import aplicacion.Libro;
+import aplicacion.Galaxia;
+import aplicacion.CuerpoCeleste;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
+
 
 /**
  *
  * @author basesdatos
  */
 public class FachadaBaseDatos {
+
     private aplicacion.FachadaAplicacion fa;
     private java.sql.Connection conexion;
-    private DAOLibros daoLibros;
-    private DAOCategorias daoCategorias;
-    private DAOUsuarios daoUsuarios;
-    private DAOPrestamos daoPrestamos;
-    private DAOForo daoForo;
+    private DAOCuerposCelestes daocuerpos;
+    private DAOGalaxias daogalaxias;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -48,17 +42,13 @@ public class FachadaBaseDatos {
 
             usuario.setProperty("user", configuracion.getProperty("usuario"));
             usuario.setProperty("password", configuracion.getProperty("clave"));
-            this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://" +
-                    configuracion.getProperty("servidor") + ":" +
-                    configuracion.getProperty("puerto") + "/" +
-                    configuracion.getProperty("baseDatos"),
+            this.conexion = java.sql.DriverManager.getConnection("jdbc:" + gestor + "://"
+                    + configuracion.getProperty("servidor") + ":"
+                    + configuracion.getProperty("puerto") + "/"
+                    + configuracion.getProperty("baseDatos"),
                     usuario);
 
-            daoLibros = new DAOLibros(conexion, fa);
-            daoCategorias = new DAOCategorias(conexion, fa);
-            daoUsuarios = new DAOUsuarios(conexion, fa);
-            daoPrestamos = new DAOPrestamos(conexion, fa);
-            daoForo = new DAOForo(conexion,fa);
+            daocuerpos = new DAOCuerposCelestes(conexion, fa);
 
         } catch (FileNotFoundException f) {
             System.out.println(f.getMessage());
@@ -73,147 +63,44 @@ public class FachadaBaseDatos {
 
     }
 
-    public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor) {
-        return daoLibros.consultarCatalogo(id, titulo, isbn, autor);
+    public CuerpoCeleste validarCuerpo(String nombreCuerpo, String ubicacion) {
+        return daocuerpos.validarCuerpo(nombreCuerpo, ubicacion);
     }
 
-    public Libro consultarLibro(Integer idLibro) {
-        return daoLibros.consultarLibro(idLibro);
+    public List<CuerpoCeleste> obtenerCuerpoCeleste(String text) {
+       return daocuerpos.obtenerCuerpos(text);
+    }
+    
+    public void borrarCuerpo(String nombre) {
+        daocuerpos.borrarCuerpo(nombre);
     }
 
-    public java.util.List<Ejemplar> consultarEjemplaresLibro(Integer idLibro) {
-        return daoLibros.consultarEjemplaresLibro(idLibro);
+    public void modificarCuerpo(CuerpoCeleste cuerpo) {
+        daocuerpos.modificarCuerpo(cuerpo);
+    }
+    
+    public void DarDeAltaCuerpo(CuerpoCeleste cuerpo) {
+        daocuerpos.DarDeAltaCuerpo(cuerpo);
+    }
+    
+    public List<Galaxia> obtenerGalaxia(String text) {
+       return daogalaxias.obtenerGalaxia(text);
+    }
+    
+    public void borrarGalaxia(String nombre) {
+        daogalaxias.borrarGalaxia(nombre);
     }
 
-    public java.util.List<String> obtenerRestoCategorias(Integer idLibro) {
-        return daoLibros.obtenerRestoCategorias(idLibro);
+    public void modificarGalaxia(Galaxia galaxia) {
+        daogalaxias.modificarGalaxia(galaxia);
+    }
+    
+    public void DarDeAltaGalaxia(Galaxia galaxia) {
+        daogalaxias.DarDeAltaGalaxia(galaxia);
     }
 
-    public Integer insertarLibro(Libro libro) {
-        return daoLibros.insertarLibro(libro);
     }
 
-    public void borrarLibro(Integer idLibro) {
-        daoLibros.borrarLibro(idLibro);
-    }
 
-    public void modificarLibro(Libro libro) {
-        daoLibros.modificarLibro(libro);
-    }
 
-    public void modificarCategoriasLibro(Integer idLibro, java.util.List<String> categorias) {
-        daoLibros.modificarCategoriasLibro(idLibro, categorias);
-    }
 
-    public void insertarEjemplarLibro(Integer idLibro, Ejemplar ejemplar) {
-        daoLibros.insertarEjemplarLibro(idLibro, ejemplar);
-    }
-
-    public void borrarEjemplaresLibro(Integer idLibro, java.util.List<Integer> numsEjemplar) {
-        daoLibros.borrarEjemplaresLibro(idLibro, numsEjemplar);
-    }
-
-    public void modificarEjemplarLibro(Integer idLibro, Ejemplar ejemplar) {
-        daoLibros.modificarEjemplarLibro(idLibro, ejemplar);
-    }
-
-    public Usuario validarUsuario(String idUsuario, String clave) {
-        return daoUsuarios.validarUsuario(idUsuario, clave);
-    }
-
-    public java.util.List<Categoria> consultarCategorias() {
-        return daoCategorias.consultarCategorias();
-    }
-
-    public void insertarCategoria(String nombre, String descripcion) {
-        daoCategorias.insertarCategoria(nombre, descripcion);
-    }
-
-    public void eliminarCategoria(String nombre) {
-        daoCategorias.eliminarCategoria(nombre);
-    }
-
-    public java.util.List<Usuario> obtenerUsuarios() {
-        return daoUsuarios.obtenerUsuarios();
-    }
-
-    public java.util.List<Usuario> buscarUsuariosPorNombre(String nombre) {
-        return daoUsuarios.buscarUsuariosPorNombre(nombre);
-    }
-
-    public Usuario buscarUsuarioPorId(String id) {
-        return daoUsuarios.buscarUsuarioPorId(id);
-    }
-
-    public void crearAficionado(aplicacion.Aficionado a) {
-        daoUsuarios.crearUsuario(a);
-    }
-
-    public void modificarAficionado(aplicacion.Aficionado a, String idPrevio) {
-        daoUsuarios.modificarUsuario(a, idPrevio);
-    }
-
-    public void crearCientifico(aplicacion.Cientifico c) {
-        daoUsuarios.crearUsuario(c);
-    }
-
-    public void modificarCientifico(aplicacion.Cientifico c, String idPrevio) {
-        daoUsuarios.modificarUsuario(c, idPrevio);
-    }
-
-    public void crearEstudiante(aplicacion.Estudiante e) {
-        daoUsuarios.crearUsuario(e);
-    }
-
-    public void modificarEstudiante(aplicacion.Estudiante e, String idPrevio) {
-        daoUsuarios.modificarUsuario(e, idPrevio);
-    }
-
-    public void crearAdministrador(aplicacion.Administrador a) {
-        daoUsuarios.crearUsuario(a);
-    }
-
-    public void modificarAdministrador(aplicacion.Administrador a, String idPrevio) {
-        daoUsuarios.modificarUsuario(a, idPrevio);
-    }
-
-    public void eliminarUsuario(String id) {
-        daoUsuarios.eliminarUsuario(id);
-    }
-
-    public List<Colaboracion> obtenerColaboraciones(aplicacion.Cientifico cientifico) {
-        return daoUsuarios.obtenerColaboraciones(cientifico);
-    }
-
-    public void insertarColaboracion(aplicacion.Cientifico c, Integer id_agencia) {
-        daoUsuarios.insertarColaboracion(c, id_agencia);
-    }
-
-    public void eliminarColaboracion(Colaboracion col) {
-        daoUsuarios.finalizarColaboracion(col);
-    }
-
-    public void nuevaEntrada(Usuario u, String titulo, String contenido) {
-        daoForo.nuevaEntrada(u, titulo, contenido);
-    }
-
-    public void modificarEntrada(aplicacion.EntradaForo entrada) {
-        daoForo.modificarEntrada(entrada);
-    }
-
-    public java.util.ArrayList<aplicacion.EntradaForo> cargarEntradas() {
-        return daoForo.cargarEntradas();
-    }
-
-    public java.util.ArrayList<aplicacion.EntradaForo> buscarEntradasPorAutor(String idUsuario) {
-        return daoForo.buscarEntradasPorAutor(idUsuario);
-    }
-
-    public java.util.ArrayList<aplicacion.EntradaForo> buscarEntradasPorTitulo(String titulo) {
-        return daoForo.buscarEntradasPorTitulo(titulo);
-    }
-
-    public void eliminarEntrada(Usuario autor, Integer idEntrada) {
-        daoForo.eliminarEntrada(autor, idEntrada);
-    }
-}
