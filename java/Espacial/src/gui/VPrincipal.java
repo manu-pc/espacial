@@ -12,7 +12,6 @@
 package gui;
 
 import aplicacion.EntradaForo;
-import aplicacion.GestionUsuarios;
 
 /**
  *

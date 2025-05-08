@@ -6,7 +6,6 @@ package gui;
 import aplicacion.CuerpoCeleste;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import aplicacion.TipoCuerpoCeleste;
 
 /**
  *
@@ -34,20 +33,20 @@ public class ModeloTablaCuerposCelestes extends AbstractTableModel {
         switch (col){
             case 0: nombre= "Nombre"; break;
             case 1: nombre= "Tipo"; break;
-            case 2: nombre= "ubicacion"; break;
-            case 3: nombre= "habitabilidad"; break;
-            case 4: nombre= "masa"; break;
-            case 5: nombre= "tamanho"; break;
-            case 6: nombre= "temperaturaSuperficie"; break;
-            case 7: nombre= "descripcion"; break;
-            case 8: nombre= "galaxia"; break;
+            case 2: nombre= "Ubicacion"; break;
+            case 3: nombre= "Habitabilidad"; break;
+            case 4: nombre= "Masa"; break;
+            case 5: nombre= "Tamaño"; break;
+            case 6: nombre= "Temp.Superficie"; break;
+            case 7: nombre= "Descripción"; break;
+            case 8: nombre= "Galaxia"; break;
         }
         return nombre;
     }
 
     @Override
-    public Class getColumnClass(int col){ //introducir direccion y clave si queremos mas cols
-        Class clase=null;
+    public Class<?>  getColumnClass(int col){ //introducir direccion y clave si queremos mas cols
+        Class <?> clase=null;
 
         switch (col){
             case 0: clase= java.lang.String.class; break;

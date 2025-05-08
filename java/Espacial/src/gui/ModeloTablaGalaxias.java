@@ -40,8 +40,8 @@ public class ModeloTablaGalaxias extends AbstractTableModel {
     }
 
     @Override
-    public Class getColumnClass(int col){ //introducir direccion y clave si queremos mas cols
-        Class clase=null;
+    public Class <?> getColumnClass(int col){ //introducir direccion y clave si queremos mas cols
+        Class <?> clase=null;
 
         switch (col){
             case 0: clase= java.lang.String.class; break;

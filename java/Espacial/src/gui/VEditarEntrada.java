@@ -10,16 +10,18 @@ import aplicacion.EntradaForo;
  *
  * @author alumnogreibd
  */
-public class VCategoria extends javax.swing.JDialog {
+public class VEditarEntrada extends javax.swing.JDialog {
 
     private VPrincipal padre;
     private aplicacion.FachadaAplicacion fa;
     private aplicacion.Usuario autor;
     private aplicacion.EntradaForo entrada = null;
+
     /**
      * Creates new form VCategoria
      */
-    public VCategoria(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa, aplicacion.Usuario autor) {
+    public VEditarEntrada(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa,
+            aplicacion.Usuario autor) {
         super(padre, modal);
         this.fa = fa;
         this.padre = (VPrincipal) padre;
@@ -32,7 +34,8 @@ public class VCategoria extends javax.swing.JDialog {
 
     }
 
-    public VCategoria(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa, aplicacion.Usuario autor,
+    public VEditarEntrada(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa,
+            aplicacion.Usuario autor,
             EntradaForo entrada) {
         super(padre, modal);
         this.fa = fa;
@@ -53,7 +56,8 @@ public class VCategoria extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -67,13 +71,11 @@ public class VCategoria extends javax.swing.JDialog {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE));
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Foro");
@@ -104,50 +106,57 @@ public class VCategoria extends javax.swing.JDialog {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoTituloForo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonGuardarForo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonVolverForo))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(campoTituloForo))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(botonGuardarForo)
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE)
+                                                                .addComponent(botonVolverForo))
+                                                        .addComponent(jScrollPane1,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, 555,
+                                                                Short.MAX_VALUE))))
+                                .addContainerGap()));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(campoTituloForo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonGuardarForo)
-                    .addComponent(botonVolverForo))
-                .addContainerGap(9, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel4)
+                                        .addComponent(campoTituloForo, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(botonGuardarForo)
+                                        .addComponent(botonVolverForo))
+                                .addContainerGap(9, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonGuardarForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarForoActionPerformed
+    private void botonGuardarForoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonGuardarForoActionPerformed
         guardarEntrada();
-    }//GEN-LAST:event_botonGuardarForoActionPerformed
+    }// GEN-LAST:event_botonGuardarForoActionPerformed
 
-    private void botonVolverForoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverForoActionPerformed
+    private void botonVolverForoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonVolverForoActionPerformed
         this.dispose();
-    }//GEN-LAST:event_botonVolverForoActionPerformed
+    }// GEN-LAST:event_botonVolverForoActionPerformed
 
     private void campoNombreActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_campoNombreActionPerformed
         // TODO add your handling code here:
@@ -165,7 +174,6 @@ public class VCategoria extends javax.swing.JDialog {
         if (this.entrada != null) {
             fa.eliminarEntrada(this.autor, entrada.getNumEntrada());
         }
-        
 
     }// GEN-LAST:event_botonBorrarActionPerformed
 
@@ -173,7 +181,6 @@ public class VCategoria extends javax.swing.JDialog {
         this.dispose();
     }// GEN-LAST:event_botonSalirActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -195,16 +202,16 @@ public class VCategoria extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(VEditarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(VEditarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(VEditarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(VEditarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
         // </editor-fold>
@@ -229,8 +236,6 @@ public class VCategoria extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-
-    
     private void guardarEntrada() {
         String titulo = campoTituloForo.getText();
         String contenido = campoTextoForo.getText();
