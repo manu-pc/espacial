@@ -6,6 +6,7 @@
 package baseDatos;
 
 import aplicacion.Astronauta;
+import aplicacion.Agencia;
 import aplicacion.Ejemplar;
 import aplicacion.Usuario;
 import aplicacion.Categoria;
@@ -29,6 +30,8 @@ public class FachadaBaseDatos {
     private DAOUsuarios daoUsuarios;
     private DAOPrestamos daoPrestamos;
     private DAOAstronautas daoAstronautas;
+    private DAOAgencias daoAgencias;
+
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -58,6 +61,8 @@ public class FachadaBaseDatos {
             daoUsuarios = new DAOUsuarios(conexion, fa);
             daoPrestamos = new DAOPrestamos(conexion, fa);
             daoAstronautas = new DAOAstronautas(conexion, fa);
+            daoAgencias = new DAOAgencias(conexion, fa);
+
 
         } catch (FileNotFoundException f) {
             System.out.println(f.getMessage());
@@ -168,5 +173,31 @@ public class FachadaBaseDatos {
     }
     public void borrarAstronauta(int idAstronauta){
         daoAstronautas.borrarAstronauta(idAstronauta);
+    }
+    public java.util.List<Agencia> obtenerAgencias() {
+        return daoAgencias.obtenerAgencias();
+    }
+
+    public java.util.List<Agencia> buscarAgenciasPorNombre(String nombre) {
+        return daoAgencias.buscarAgenciasPorNombre(nombre);
+    }
+    public Agencia buscarAgenciaPorId(int id){
+        return daoAgencias.buscarAgenciaPorId(id);
+    }
+    
+ 
+    public boolean obtenerAgenciaPorId(int IDAgencia){
+        return daoAgencias.obtenerAgenciaPorId(IDAgencia);
+    }
+    
+    public void insertarAgencia(Agencia agencia){
+        daoAgencias.insertarAgencia(agencia);
+    }
+    
+    public void modificarAgencia(Agencia agencia){
+       daoAgencias.modificarAgencia(agencia);
+    }
+    public void borrarAgencia(int idAgencia){
+        daoAgencias.borrarAgencia(idAgencia);
     }
 }

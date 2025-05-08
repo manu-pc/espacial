@@ -74,6 +74,11 @@ public class FachadaGui {
         ventanaAstronautas.setVisible(true);
         ventanaAstronautas.setLocationRelativeTo(null);
     }  
+    public void abrirVentanaAgencias(){
+        VAgencia ventanaAgencias = new VAgencia(vp, true, fa);
+        ventanaAgencias.setVisible(true);
+        ventanaAgencias.setLocationRelativeTo(null);
+    }  
     public void nuevoPrestamo(Ejemplar ejemplar, java.awt.Dialog parent){
 
     }

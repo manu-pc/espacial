@@ -52,6 +52,7 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         gestionUsuarios = new javax.swing.JMenuItem();
+        Agencias = new javax.swing.JMenuItem();
         gestionAstronautas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +121,14 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(gestionUsuarios);
+
+        Agencias.setText("Agencias");
+        Agencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgenciasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Agencias);
 
         gestionAstronautas.setText("Astronautas");
         gestionAstronautas.setToolTipText("");
@@ -238,11 +247,18 @@ public class VPrincipal extends javax.swing.JFrame {
         fa.abrirVentanaAstronautas();
     }//GEN-LAST:event_gestionAstronautasActionPerformed
 
+    private void AgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgenciasActionPerformed
+        // TODO add your handling code here:
+        fa.abrirVentanaAgencias();
+
+    }//GEN-LAST:event_AgenciasActionPerformed
+
     /**
     * @param args the command line arguments
     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Agencias;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditarLibro;
     private javax.swing.JButton btnNuevoLibro;

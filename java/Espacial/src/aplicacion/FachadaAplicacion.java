@@ -16,6 +16,8 @@ public class FachadaAplicacion {
     GestionUsuarios cu;
     GestionCategorias cg;
     GestionAstronautas ca;
+    GestionAgencias cag;
+
 
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
@@ -24,6 +26,8 @@ public class FachadaAplicacion {
         cu = new GestionUsuarios(fgui, fbd);
         cg = new GestionCategorias(fgui, fbd);
         ca = new GestionAstronautas(fgui, fbd);
+        cag = new GestionAgencias(fgui, fbd);
+
 
     }
 
@@ -63,6 +67,9 @@ public class FachadaAplicacion {
     }
     public void abrirVentanaAstronautas() {
         ca.abrirVentanaAstronautas();
+    }
+    public void abrirVentanaAgencias() {
+        cag.abrirVentanaAgencias();
     }
 
     public Integer actualizarLibro(Libro l) {
@@ -132,5 +139,24 @@ public class FachadaAplicacion {
     }
     public void borrarAstronauta(int idAstronauta){
        ca.borrarAstronauta(idAstronauta);
+    }
+    
+    public java.util.List<Agencia> obtenerAgencias() {
+        return cag.obtenerAgencias();
+    }
+
+    public java.util.List<Agencia> buscarAgenciasPorNombre(String nombre) {
+        return cag.buscarAgenciasPorNombre(nombre);
+    }
+    
+    public Agencia buscarAgenciaPorId(int id){
+        return cag.buscarAgenciaPorId(id);
+    }
+    
+    public void actualizarAgencia(Agencia a){
+        cag.actualizarAgencia(a);
+    }
+    public void borrarAgencia(int idAgencia){
+       cag.borrarAgencia(idAgencia);
     }
 }
