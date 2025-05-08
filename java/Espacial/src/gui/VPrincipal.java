@@ -52,7 +52,7 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         gestionUsuarios = new javax.swing.JMenuItem();
-        gestionCategorias = new javax.swing.JMenuItem();
+        gestionAstronautas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca de Informática");
@@ -121,13 +121,14 @@ public class VPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(gestionUsuarios);
 
-        gestionCategorias.setText("Categorías");
-        gestionCategorias.addActionListener(new java.awt.event.ActionListener() {
+        gestionAstronautas.setText("Astronautas");
+        gestionAstronautas.setToolTipText("");
+        gestionAstronautas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gestionCategoriasActionPerformed(evt);
+                gestionAstronautasActionPerformed(evt);
             }
         });
-        jMenu1.add(gestionCategorias);
+        jMenu1.add(gestionAstronautas);
 
         jMenuBar1.add(jMenu1);
 
@@ -233,9 +234,9 @@ public class VPrincipal extends javax.swing.JFrame {
         fa.abrirVentanaUsuarios();
     }//GEN-LAST:event_gestionUsuariosActionPerformed
 
-    private void gestionCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionCategoriasActionPerformed
-        fa.abrirVentanaCategorias();
-    }//GEN-LAST:event_gestionCategoriasActionPerformed
+    private void gestionAstronautasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionAstronautasActionPerformed
+        fa.abrirVentanaAstronautas();
+    }//GEN-LAST:event_gestionAstronautasActionPerformed
 
     /**
     * @param args the command line arguments
@@ -251,7 +252,7 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField buscaIsbn;
     private javax.swing.JTextField buscaTitulo;
     private javax.swing.JLabel etiquetaTitulo;
-    private javax.swing.JMenuItem gestionCategorias;
+    private javax.swing.JMenuItem gestionAstronautas;
     private javax.swing.JMenuItem gestionUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

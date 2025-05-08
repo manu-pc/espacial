@@ -17,12 +17,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionUsuariosActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="gestionCategorias">
+            <MenuItem class="javax.swing.JMenuItem" name="gestionAstronautas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Categor&#xed;as"/>
+                <Property name="text" type="java.lang.String" value="Astronautas"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionCategoriasActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionAstronautasActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -15,6 +15,7 @@ public class FachadaAplicacion {
     GestionLibros cl;
     GestionUsuarios cu;
     GestionCategorias cg;
+    GestionAstronautas ca;
 
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
@@ -22,6 +23,8 @@ public class FachadaAplicacion {
         cl = new GestionLibros(fgui, fbd);
         cu = new GestionUsuarios(fgui, fbd);
         cg = new GestionCategorias(fgui, fbd);
+        ca = new GestionAstronautas(fgui, fbd);
+
     }
 
     public static void main(String args[]) {
@@ -57,6 +60,9 @@ public class FachadaAplicacion {
 
     public void abrirVentanaUsuarios() {
         cu.abrirVentanaUsuarios();
+    }
+    public void abrirVentanaAstronautas() {
+        ca.abrirVentanaAstronautas();
     }
 
     public Integer actualizarLibro(Libro l) {
@@ -108,5 +114,23 @@ public class FachadaAplicacion {
     public Usuario buscarUsuarioPorId(String id){
         return cu.buscarUsuarioPorId(id);
     }
+    
+    public java.util.List<Astronauta> obtenerAstronautas() {
+        return ca.obtenerAstronautas();
+    }
 
+    public java.util.List<Astronauta> buscarAstronautasPorNombre(String nombre) {
+        return ca.buscarAstronautasPorNombre(nombre);
+    }
+    
+    public Astronauta buscarAstronautaPorId(int id){
+        return ca.buscarAstronautaPorId(id);
+    }
+    
+    public void actualizarAstronauta(Astronauta a){
+        ca.actualizarAstronauta(a);
+    }
+    public void borrarAstronauta(int idAstronauta){
+       ca.borrarAstronauta(idAstronauta);
+    }
 }

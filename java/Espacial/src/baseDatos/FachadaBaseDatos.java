@@ -5,6 +5,7 @@
 
 package baseDatos;
 
+import aplicacion.Astronauta;
 import aplicacion.Ejemplar;
 import aplicacion.Usuario;
 import aplicacion.Categoria;
@@ -27,6 +28,7 @@ public class FachadaBaseDatos {
     private DAOCategorias daoCategorias;
     private DAOUsuarios daoUsuarios;
     private DAOPrestamos daoPrestamos;
+    private DAOAstronautas daoAstronautas;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -55,6 +57,7 @@ public class FachadaBaseDatos {
             daoCategorias = new DAOCategorias(conexion, fa);
             daoUsuarios = new DAOUsuarios(conexion, fa);
             daoPrestamos = new DAOPrestamos(conexion, fa);
+            daoAstronautas = new DAOAstronautas(conexion, fa);
 
         } catch (FileNotFoundException f) {
             System.out.println(f.getMessage());
@@ -140,5 +143,30 @@ public class FachadaBaseDatos {
         return daoUsuarios.buscarUsuarioPorId(id);
     }
 
+    public java.util.List<Astronauta> obtenerAstronautas() {
+        return daoAstronautas.obtenerAstronautas();
+    }
 
+    public java.util.List<Astronauta> buscarAstronautasPorNombre(String nombre) {
+        return daoAstronautas.buscarAstronautasPorNombre(nombre);
+    }
+    public Astronauta buscarAstronautaPorId(int id){
+        return daoAstronautas.buscarAstronautaPorId(id);
+    }
+    
+ 
+    public boolean obtenerAstronautaPorId(int IDAstronauta){
+        return daoAstronautas.obtenerAstronautaPorId(IDAstronauta);
+    }
+    
+    public void insertarAstronauta(Astronauta astronauta){
+        daoAstronautas.insertarAstronauta(astronauta);
+    }
+    
+    public void modificarAstronauta(Astronauta astronauta){
+       daoAstronautas.modificarAstronauta(astronauta);
+    }
+    public void borrarAstronauta(int idAstronauta){
+        daoAstronautas.borrarAstronauta(idAstronauta);
+    }
 }

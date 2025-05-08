@@ -390,13 +390,13 @@ public class VUsuario extends javax.swing.JDialog {
     }
     
     private void buscarUsuarioPorId(String id){
-    ModeloTablaUsuarios m = new ModeloTablaUsuarios();
-    Usuario u = fa.buscarUsuarioPorId(id);
-    if (u!= null){
-    java.util.List<Usuario> usuarios = new java.util.ArrayList<>();
-    usuarios.add(u);
+        ModeloTablaUsuarios m = new ModeloTablaUsuarios();
+        Usuario u = fa.buscarUsuarioPorId(id);
+        if (u!= null){
+        java.util.List<Usuario> usuarios = new java.util.ArrayList<>();
+        usuarios.add(u);
 
-    m.setFilas(usuarios);
+        m.setFilas(usuarios);
     }
     tablaUsuarios.setModel(m);  
     }

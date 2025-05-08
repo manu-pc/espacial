@@ -69,6 +69,11 @@ public class FachadaGui {
        va.setVisible(true);
     }
     
+    public void abrirVentanaAstronautas(){
+        VAstronauta ventanaAstronautas = new VAstronauta(vp, true, fa);
+        ventanaAstronautas.setVisible(true);
+        ventanaAstronautas.setLocationRelativeTo(null);
+    }  
     public void nuevoPrestamo(Ejemplar ejemplar, java.awt.Dialog parent){
 
     }
