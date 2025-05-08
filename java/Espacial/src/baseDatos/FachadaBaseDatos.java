@@ -5,16 +5,10 @@
 
 package baseDatos;
 
-import aplicacion.Ejemplar;
-import aplicacion.Usuario;
-import aplicacion.Categoria;
-import aplicacion.Colaboracion;
-import aplicacion.Libro;
+import aplicacion.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
@@ -25,11 +19,11 @@ import java.util.Properties;
 public class FachadaBaseDatos {
     private aplicacion.FachadaAplicacion fa;
     private java.sql.Connection conexion;
-    private DAOLibros daoLibros;
-    private DAOCategorias daoCategorias;
     private DAOUsuarios daoUsuarios;
-    private DAOPrestamos daoPrestamos;
     private DAOForo daoForo;
+    private DAOCuerposCelestes daocuerpos;
+    private DAOGalaxias daogalaxias;
+    private DAOArticulos daoArticulos;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
@@ -54,11 +48,12 @@ public class FachadaBaseDatos {
                     configuracion.getProperty("baseDatos"),
                     usuario);
 
-            daoLibros = new DAOLibros(conexion, fa);
-            daoCategorias = new DAOCategorias(conexion, fa);
             daoUsuarios = new DAOUsuarios(conexion, fa);
-            daoPrestamos = new DAOPrestamos(conexion, fa);
-            daoForo = new DAOForo(conexion,fa);
+
+            daoForo = new DAOForo(conexion, fa);
+            daocuerpos = new DAOCuerposCelestes(conexion, fa);
+            daogalaxias = new DAOGalaxias(conexion, fa);
+            daoArticulos = new DAOArticulos(conexion, fa);
 
         } catch (FileNotFoundException f) {
             System.out.println(f.getMessage());
@@ -73,64 +68,8 @@ public class FachadaBaseDatos {
 
     }
 
-    public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor) {
-        return daoLibros.consultarCatalogo(id, titulo, isbn, autor);
-    }
-
-    public Libro consultarLibro(Integer idLibro) {
-        return daoLibros.consultarLibro(idLibro);
-    }
-
-    public java.util.List<Ejemplar> consultarEjemplaresLibro(Integer idLibro) {
-        return daoLibros.consultarEjemplaresLibro(idLibro);
-    }
-
-    public java.util.List<String> obtenerRestoCategorias(Integer idLibro) {
-        return daoLibros.obtenerRestoCategorias(idLibro);
-    }
-
-    public Integer insertarLibro(Libro libro) {
-        return daoLibros.insertarLibro(libro);
-    }
-
-    public void borrarLibro(Integer idLibro) {
-        daoLibros.borrarLibro(idLibro);
-    }
-
-    public void modificarLibro(Libro libro) {
-        daoLibros.modificarLibro(libro);
-    }
-
-    public void modificarCategoriasLibro(Integer idLibro, java.util.List<String> categorias) {
-        daoLibros.modificarCategoriasLibro(idLibro, categorias);
-    }
-
-    public void insertarEjemplarLibro(Integer idLibro, Ejemplar ejemplar) {
-        daoLibros.insertarEjemplarLibro(idLibro, ejemplar);
-    }
-
-    public void borrarEjemplaresLibro(Integer idLibro, java.util.List<Integer> numsEjemplar) {
-        daoLibros.borrarEjemplaresLibro(idLibro, numsEjemplar);
-    }
-
-    public void modificarEjemplarLibro(Integer idLibro, Ejemplar ejemplar) {
-        daoLibros.modificarEjemplarLibro(idLibro, ejemplar);
-    }
-
     public Usuario validarUsuario(String idUsuario, String clave) {
         return daoUsuarios.validarUsuario(idUsuario, clave);
-    }
-
-    public java.util.List<Categoria> consultarCategorias() {
-        return daoCategorias.consultarCategorias();
-    }
-
-    public void insertarCategoria(String nombre, String descripcion) {
-        daoCategorias.insertarCategoria(nombre, descripcion);
-    }
-
-    public void eliminarCategoria(String nombre) {
-        daoCategorias.eliminarCategoria(nombre);
     }
 
     public java.util.List<Usuario> obtenerUsuarios() {
@@ -215,5 +154,58 @@ public class FachadaBaseDatos {
 
     public void eliminarEntrada(Usuario autor, Integer idEntrada) {
         daoForo.eliminarEntrada(autor, idEntrada);
+    }
+
+    public CuerpoCeleste validarCuerpo(String nombreCuerpo, String ubicacion) {
+        return daocuerpos.validarCuerpo(nombreCuerpo, ubicacion);
+    }
+
+    public List<CuerpoCeleste> obtenerCuerpoCeleste(String text) {
+
+        return daocuerpos.obtenerCuerpos(text);
+    }
+
+    public void borrarCuerpo(String nombre) {
+        daocuerpos.borrarCuerpo(nombre);
+    }
+
+    public void modificarCuerpo(CuerpoCeleste cuerpo) {
+        daocuerpos.modificarCuerpo(cuerpo);
+    }
+
+    public void DarDeAltaCuerpo(CuerpoCeleste cuerpo) {
+        daocuerpos.DarDeAltaCuerpo(cuerpo);
+    }
+
+    public List<Galaxia> obtenerGalaxia(String text) {
+        return daogalaxias.obtenerGalaxia(text);
+    }
+
+    public void borrarGalaxia(String nombre) {
+        daogalaxias.borrarGalaxia(nombre);
+    }
+
+    public void modificarGalaxia(Galaxia galaxia) {
+        daogalaxias.modificarGalaxia(galaxia);
+    }
+
+    public void DarDeAltaGalaxia(Galaxia galaxia) {
+        daogalaxias.DarDeAltaGalaxia(galaxia);
+    }
+    
+    public java.util.List<Articulo> obtenerTodosLosArticulos(){
+        return daoArticulos.obtenerTodosLosArticulos();
+    }
+    
+    public void guardarArticulo(Articulo a){
+        daoArticulos.guardarArticulo(a);
+    }
+    
+    public void modificarArticulo(Articulo a){
+        daoArticulos.guardarArticuloNuevo(a);
+    }
+    
+    public void borrarArticulo(Articulo a){
+        daoArticulos.borrarArticulo(a);
     }
 }

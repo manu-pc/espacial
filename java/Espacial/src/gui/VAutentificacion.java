@@ -11,8 +11,6 @@
 
 package gui;
 
-import aplicacion.GestionUsuarios;
-
 /**
  *
  * @author basesdatos
@@ -143,7 +141,7 @@ public class VAutentificacion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoUsuarioActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_textoUsuarioActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed

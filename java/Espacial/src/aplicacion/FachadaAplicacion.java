@@ -15,16 +15,22 @@ import java.util.List;
 public class FachadaAplicacion {
     gui.FachadaGui fgui;
     baseDatos.FachadaBaseDatos fbd;
-    GestionLibros cl;
     GestionUsuarios cu;
-    GestionCategorias cg;
+    GestionForo cg;
+    GestionCuerposCelestes gc;
+    GestionGalaxias gg;
+    Usuario usuarioActual;
+    GestionArticulos ca;
 
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
         fbd = new baseDatos.FachadaBaseDatos(this);
-        cl = new GestionLibros(fgui, fbd);
         cu = new GestionUsuarios(fgui, fbd);
-        cg = new GestionCategorias(fgui, fbd);
+        cg = new GestionForo(fgui, fbd);
+
+        gc = new GestionCuerposCelestes(fgui, fbd);
+        gg = new GestionGalaxias(fgui, fbd);
+        ca = new GestionArticulos(fgui, fbd);
     }
 
     public static void main(String args[]) {
@@ -40,48 +46,33 @@ public class FachadaAplicacion {
     public void muestraExcepcion(String e) {
         fgui.muestraExcepcion(e);
     }
-    public void muestraMensaje(String m){
+
+    public void muestraMensaje(String m) {
         fgui.muestraMensaje(m);
-    }
-
-    public java.util.List<Libro> obtenerLibros(Integer id, String titulo, String isbn, String autor) {
-        return cl.obtenerLibros(id, titulo, isbn, autor);
-    };
-
-    public void visualizarLibro(Integer idLibro) {
-        cl.visualizarLibro(idLibro);
-    }
-
-    public void nuevoLibro() {
-        cl.nuevoLibro();
     }
 
     public void abrirVentanaUsuarios() {
         cu.abrirVentanaUsuarios();
     }
 
-    public Integer actualizarLibro(Libro l) {
-        return cl.actualizarLibro(l);
-    }
-
-    public void borrarLibro(Integer idLibro) {
-        cl.borrarLibro(idLibro);
-    }
-
-    public void actualizarCategoriasLibro(Integer idLibro, java.util.List<String> categorias) {
-        cl.actualizarCategoriasLibro(idLibro, categorias);
-    }
-
-    public java.util.List<Ejemplar> actualizarEjemplaresLibro(Integer idLibro, java.util.List<Ejemplar> ejemplares,
-            java.util.List<Integer> borrar) {
-        return cl.actualizarEjemplaresLibro(idLibro, ejemplares, borrar);
-    }
-
     public Usuario comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u = cu.comprobarAutentificacion(idUsuario, clave);
-        if (u != null)
+        if (u != null) {
             fgui.setUsuarioActual(u);
+            this.usuarioActual = u;
+        }
         return u;
+    }
+
+    public boolean getSudo() {
+        if (this.usuarioActual == null) {
+            System.out.println("Error autenticando!");
+            return false;
+        }
+        if (this.usuarioActual instanceof Administrador) {
+            System.out.println("permiso sudo concedido!");
+        }
+        return this.usuarioActual instanceof Administrador;
     }
 
     public java.util.List<Usuario> obtenerUsuarios() {
@@ -172,9 +163,11 @@ public class FachadaAplicacion {
     public void abrirEntrada(EntradaForo entrada) {
         fgui.abrirEntrada(entrada);
     }
+
     public void leerEntrada(EntradaForo entrada) {
         fgui.leerEntrada(entrada);
     }
+
     public ArrayList<EntradaForo> cargarEntradas() {
         return cg.cargarEntradas();
     }
@@ -190,9 +183,68 @@ public class FachadaAplicacion {
     public void eliminarEntrada(Usuario autor, Integer idEntrada) {
         cg.eliminarEntrada(autor, idEntrada);
     }
-    
-    public void notificarNuevaEntrada(){
+
+    public void notificarNuevaEntrada() {
         fgui.notificarNuevaEntrada();
     }
 
+    public List<CuerpoCeleste> obtenerCuerpos(String text) {
+        return gc.obtenerCuerpoCeleste(text);
+    }
+
+    public void borrarCuerpo(String nombreCuerpo) {
+        gc.borrarCuerpo(nombreCuerpo);
+    }
+
+    public void modificarCuerpo(CuerpoCeleste cuerpo) {
+        gc.modificarCuerpo(cuerpo);
+    }
+
+    public List<Galaxia> obtenerGalaxia(String nombre) {
+        return gg.obtenerGalaxia(nombre);
+    }
+
+    public void borrarGalaxia(String nombreGalaxia) {
+        gg.borrarGalaxia(nombreGalaxia);
+    }
+
+    public void modificarGalaxia(Galaxia galaxia) {
+        gg.modificarGalaxia(galaxia);
+    }
+
+    public void darDeAltaCuerpo(CuerpoCeleste nuevo) {
+        gc.darDeAltaCuerpo(nuevo);
+    }
+
+    public void darDeAltaGalaxia(Galaxia nueva) {
+        gg.darDeAltaGalaxia(nueva);
+    }
+
+    public void abrirVentanaCuerposCelestes() {
+        fgui.abrirVentanaCuerposCelestes();
+    }
+
+    public void abrirVentanaGalaxias() {
+        fgui.abrirVentanaGalaxias();
+    }
+    
+    public void abrirVentanaArticulos() {
+        fgui.abrirVentanaArticulos();
+    }
+    
+    public java.util.List<Articulo> obtenerTodosLosArticulos(){
+        return ca.obtenerTodosLosArticulos();
+    }
+    
+    public void guardarArticulo(Articulo a){
+        ca.guardarArticulo(a);
+    }
+    
+    public void modificarArticulo(Articulo a){
+        ca.modificarArticulo(a);
+    }
+    
+    public void borrarArticulo(Articulo a){
+        ca.borrarArticulo(a);
+    }
 }
