@@ -20,6 +20,7 @@ public class FachadaAplicacion {
     GestionAstronautas ca;
     GestionAgencias cag;
     GestionNaves gn;
+    GestionMisiones gm;
 
 
     public FachadaAplicacion() {
@@ -31,7 +32,7 @@ public class FachadaAplicacion {
         ca = new GestionAstronautas(fgui, fbd);
         cag = new GestionAgencias(fgui, fbd);
         gn = new GestionNaves(fgui,fbd);
-
+        gm = new GestionMisiones(fgui, fbd);
 
     }
 
@@ -74,6 +75,9 @@ public class FachadaAplicacion {
     }
     public void abrirVentanaAgencias() {
         cag.abrirVentanaAgencias();
+    }
+    public void abrirVentanaMisiones() {
+        gm.abrirVentanaMisiones();
     }
 
     public Integer actualizarLibro(Libro l) {
@@ -185,6 +189,22 @@ public class FachadaAplicacion {
     
     public List<Nave> buscarNavePorNombre(String nombre) {
         return gn.buscarNavePorNombre(nombre);
+    }
+    
+    public java.util.List<Mision> obtenerMisiones() {
+        return gm.obtenerMisiones();
+    }
+    
+    public void añadirMision(Mision m) {
+        gm.añadirMision(m);
+    }
+    
+    public void modificarMision(Mision m) {
+        gm.modificarMision(m);
+    }
+    
+    public void borrarMision(Integer codigo) {
+        gm.borrarMision(codigo);
     }
 
 }

@@ -78,6 +78,11 @@ public class FachadaGui {
         VAgencia ventanaAgencias = new VAgencia(vp, true, fa);
         ventanaAgencias.setVisible(true);
         ventanaAgencias.setLocationRelativeTo(null);
+    } 
+    public void abrirVentanaMisiones(){
+        VMision ventanaMisiones = new VMision(vp, true, fa);
+        ventanaMisiones.setVisible(true);
+        ventanaMisiones.setLocationRelativeTo(null);
     }  
     public void nuevoPrestamo(Ejemplar ejemplar, java.awt.Dialog parent){
 

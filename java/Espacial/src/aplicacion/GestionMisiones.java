@@ -20,6 +20,10 @@ public class GestionMisiones {
         this.fgui = fgui;
         this.fbd = fbd;
     }
+    
+    public void abrirVentanaMisiones() {
+        fgui.abrirVentanaMisiones();
+    }
 
     public java.util.List<Mision> obtenerMisiones() {
         return fbd.obtenerMisiones();

@@ -11,6 +11,7 @@ import aplicacion.Ejemplar;
 import aplicacion.Usuario;
 import aplicacion.Categoria;
 import aplicacion.Libro;
+import aplicacion.Mision;
 import aplicacion.Nave;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,6 +35,7 @@ public class FachadaBaseDatos {
     private DAOAstronautas daoAstronautas;
     private DAOAgencias daoAgencias;
     private DAONave daoNaves;
+    private DAOMisiones daoMisiones;
 
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
@@ -66,6 +68,7 @@ public class FachadaBaseDatos {
             daoAstronautas = new DAOAstronautas(conexion, fa);
             daoAgencias = new DAOAgencias(conexion, fa);
             daoNaves = new DAONave(conexion,fa);
+            daoMisiones = new DAOMisiones(conexion,fa);
 
 
         } catch (FileNotFoundException f) {
@@ -162,7 +165,6 @@ public class FachadaBaseDatos {
     public Astronauta buscarAstronautaPorId(int id){
         return daoAstronautas.buscarAstronautaPorId(id);
     }
-    
  
     public boolean obtenerAstronautaPorId(int IDAstronauta){
         return daoAstronautas.obtenerAstronautaPorId(IDAstronauta);
@@ -188,7 +190,6 @@ public class FachadaBaseDatos {
     public Agencia buscarAgenciaPorId(int id){
         return daoAgencias.buscarAgenciaPorId(id);
     }
-    
  
     public boolean obtenerAgenciaPorId(int IDAgencia){
         return daoAgencias.obtenerAgenciaPorId(IDAgencia);
@@ -220,13 +221,27 @@ public class FachadaBaseDatos {
         daoNaves.actualizarNave(naveActualizada);
     }
 
-   
-
     public List<Nave> buscarNavePorId(Integer id) {
         return daoNaves.buscarNavePorId(id);
     }
     
     public List<Nave> buscarNavePorNombre(String nombre) {
         return daoNaves.buscarNavePorNombre(nombre);
+    }
+    
+    public java.util.List<Mision> obtenerMisiones() {
+        return daoMisiones.obtenerMisiones();
+    }
+    
+    public void añadirMision(Mision m) {
+        daoMisiones.añadirMision(m);
+    }
+    
+    public void modificarMision(Mision m) {
+        daoMisiones.modificarMision(m);
+    }
+    
+    public void borrarMision(Integer codigo) {
+        daoMisiones.borrarMision(codigo);
     }
 }

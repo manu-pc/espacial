@@ -65,6 +65,7 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         añadirBoton = new javax.swing.JButton();
         checkbox_id = new javax.swing.JCheckBox();
         checkbox_nombre = new javax.swing.JCheckBox();
+        ModificarMisiones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de categorías");
@@ -147,6 +148,13 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
             }
         });
 
+        ModificarMisiones.setText("Modificar misiones");
+        ModificarMisiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarMisionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,6 +170,8 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
                                 .addComponent(borrarBoton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Actualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ModificarMisiones)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonSalir))
                             .addGroup(layout.createSequentialGroup()
@@ -236,7 +246,8 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
                     .addComponent(añadirBoton)
                     .addComponent(borrarBoton)
                     .addComponent(Actualizar)
-                    .addComponent(botonSalir))
+                    .addComponent(botonSalir)
+                    .addComponent(ModificarMisiones))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -362,6 +373,22 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         checkbox_id.setSelected(false);
     }//GEN-LAST:event_checkbox_nombreActionPerformed
 
+    private void ModificarMisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarMisionesActionPerformed
+         int selectedRow = tablaNaves.getSelectedRow();
+        if (selectedRow != -1) {
+            ModeloTablaNave modelo = (ModeloTablaNave) tablaNaves.getModel();
+            aplicacion.Nave nave = modelo.obtenerNave(selectedRow);
+
+            fa.borrarNave(nave);
+            
+            
+            // Refrescamos la tabla
+            modelo.setFilas(fa.obtenerNaves());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una nave para modificar sus misiones.");
+        }
+    }//GEN-LAST:event_ModificarMisionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -375,6 +402,7 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
     private javax.swing.JTextField CampoTipo;
     private javax.swing.JLabel EtiquetaID;
     private javax.swing.JLabel EtiquetaNombre;
+    private javax.swing.JButton ModificarMisiones;
     private javax.swing.JButton añadirBoton;
     private javax.swing.JButton borrarBoton;
     private javax.swing.JButton botonSalir;

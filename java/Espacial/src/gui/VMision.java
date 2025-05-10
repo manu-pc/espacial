@@ -13,6 +13,7 @@ import java.time.LocalDate;
  */
 public class VMision extends javax.swing.JDialog {
 
+    private VPrincipal padre;
     private aplicacion.FachadaAplicacion fa;    
     
     /**

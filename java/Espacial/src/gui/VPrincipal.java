@@ -55,6 +55,7 @@ public class VPrincipal extends javax.swing.JFrame {
         Agencias = new javax.swing.JMenuItem();
         gestionAstronautas = new javax.swing.JMenuItem();
         gestionNaves = new javax.swing.JMenuItem();
+        gestionMisiones = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca de Informática");
@@ -147,6 +148,14 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(gestionNaves);
+
+        gestionMisiones.setText("Misiones");
+        gestionMisiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gestionMisionesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(gestionMisiones);
 
         jMenuBar1.add(jMenu1);
 
@@ -259,14 +268,18 @@ public class VPrincipal extends javax.swing.JFrame {
     private void AgenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgenciasActionPerformed
         // TODO add your handling code here:
         fa.abrirVentanaAgencias();
-
     }//GEN-LAST:event_AgenciasActionPerformed
 
     private void gestionNavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionNavesActionPerformed
         VNave vn = new VNave(this,true,fa);
         vn.setVisible(true);
-
     }//GEN-LAST:event_gestionNavesActionPerformed
+
+    private void gestionMisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionMisionesActionPerformed
+        fa.abrirVentanaMisiones();
+        //VMision vm = new VMision(this,true,fa);
+        //vm.setVisible(true);
+    }//GEN-LAST:event_gestionMisionesActionPerformed
 
     /**
     * @param args the command line arguments
@@ -284,6 +297,7 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField buscaTitulo;
     private javax.swing.JLabel etiquetaTitulo;
     private javax.swing.JMenuItem gestionAstronautas;
+    private javax.swing.JMenuItem gestionMisiones;
     private javax.swing.JMenuItem gestionNaves;
     private javax.swing.JMenuItem gestionUsuarios;
     private javax.swing.JLabel jLabel1;
