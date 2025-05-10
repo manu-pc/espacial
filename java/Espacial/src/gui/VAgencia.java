@@ -358,10 +358,13 @@ public class VAgencia extends javax.swing.JDialog {
     private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
         // TODO add your handling code here:
         Agencia a;
-        
+        int id=0;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        a=new Agencia(0, campo_ed_nombre.getText(), campo_ed_localizacion.getText());
+        
+        if (!campo_ed_id.getText().isEmpty()) {
+            id = Integer.parseInt(campo_ed_id.getText());
+        }
+        a=new Agencia(id, campo_ed_nombre.getText(), campo_ed_localizacion.getText());
         fa.actualizarAgencia(a);
         
         this.cargarAgencias();
