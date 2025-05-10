@@ -7,6 +7,7 @@ package gui;
 import aplicacion.Categoria;
 import aplicacion.Libro;
 import aplicacion.Ejemplar;
+import aplicacion.Nave;
 
 
 /**
@@ -81,6 +82,11 @@ public class FachadaGui {
     } 
     public void abrirVentanaMisiones(){
         VMision ventanaMisiones = new VMision(vp, true, fa);
+        ventanaMisiones.setVisible(true);
+        ventanaMisiones.setLocationRelativeTo(null);
+    } 
+    public void abrirVentanaMisiones(Nave nave){
+        VMision ventanaMisiones = new VMision(vp, true, fa, nave);
         ventanaMisiones.setVisible(true);
         ventanaMisiones.setLocationRelativeTo(null);
     }  

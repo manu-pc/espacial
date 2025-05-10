@@ -232,6 +232,9 @@ public class FachadaBaseDatos {
     public java.util.List<Mision> obtenerMisiones() {
         return daoMisiones.obtenerMisiones();
     }
+    public java.util.List<Mision> obtenerMisiones(Nave nave) {
+        return daoMisiones.obtenerMisiones(nave);
+    }
     
     public void añadirMision(Mision m) {
         daoMisiones.añadirMision(m);

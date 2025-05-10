@@ -5,6 +5,7 @@
 package gui;
 
 import aplicacion.Mision;
+import aplicacion.Nave;
 import java.time.LocalDate;
 
 /**
@@ -24,6 +25,14 @@ public class VMision extends javax.swing.JDialog {
         this.fa = fa;
         initComponents();
         cargarMisiones();
+    }
+    // Se abre la ventana misión pero en vez de mostrar todas las misiones
+    // se muestran sólo las misiones en las que participa la nave
+    public VMision(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Nave nave) {
+        super(parent, modal);
+        this.fa = fa;
+        initComponents();
+        cargarMisiones(nave);
     }
 
     /**
@@ -301,6 +310,33 @@ public class VMision extends javax.swing.JDialog {
     if (m.getRowCount() > 0) {
             tablaMisiones.setRowSelectionInterval(0, 0);
             Mision mision = m.obtenerMision(tablaMisiones.getSelectedRowCount() );
+            codigoTextField.setText(String.valueOf(mision.getCodigo()));
+            nombreTextField.setText(mision.getNombre());
+            fechaInicioTextField.setText(mision.getFechaInicio().toString());
+            fechaFinTextField.setText(mision.getFechaFin().toString());
+            descripcionTextField.setText(mision.getDescripcion());
+            naveTextField.setText(mision.getNave().toString());
+            objetivoTextField.setText(mision.getObjetivo());
+            modificarBoton.setEnabled(true);
+            borrarBoton.setEnabled(true);
+        }
+        else {
+            modificarBoton.setEnabled(false);
+            borrarBoton.setEnabled(false);
+        }
+       
+    }
+    
+    // Sobrecarga para cargar sólo las misiones de una nave en concreto
+    private void cargarMisiones(Nave nave){
+    ModeloTablaMisiones m = new ModeloTablaMisiones();
+    java.util.List<Mision> misiones = fa.obtenerMisiones(nave);
+    m.setFilas(misiones);
+    tablaMisiones.setModel(m); 
+    
+    if (m.getRowCount() > 0) {
+            tablaMisiones.setRowSelectionInterval(0, 0);
+            Mision mision = m.obtenerMision(tablaMisiones.getSelectedRow() );
             codigoTextField.setText(String.valueOf(mision.getCodigo()));
             nombreTextField.setText(mision.getNombre());
             fechaInicioTextField.setText(mision.getFechaInicio().toString());

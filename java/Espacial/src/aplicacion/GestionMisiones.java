@@ -24,9 +24,15 @@ public class GestionMisiones {
     public void abrirVentanaMisiones() {
         fgui.abrirVentanaMisiones();
     }
+    public void abrirVentanaMisiones(Nave nave) {
+        fgui.abrirVentanaMisiones(nave);
+    }
 
     public java.util.List<Mision> obtenerMisiones() {
         return fbd.obtenerMisiones();
+    }
+    public java.util.List<Mision> obtenerMisiones(Nave nave) {
+        return fbd.obtenerMisiones(nave);
     }
     
     public void añadirMision(Mision m) {

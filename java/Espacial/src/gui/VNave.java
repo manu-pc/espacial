@@ -65,7 +65,7 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         añadirBoton = new javax.swing.JButton();
         checkbox_id = new javax.swing.JCheckBox();
         checkbox_nombre = new javax.swing.JCheckBox();
-        ModificarMisiones = new javax.swing.JButton();
+        VerMisiones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de categorías");
@@ -85,6 +85,11 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         });
 
         CampoNombre.setPreferredSize(new java.awt.Dimension(70, 30));
+        CampoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoNombreActionPerformed(evt);
+            }
+        });
 
         CampoTipo.setPreferredSize(new java.awt.Dimension(70, 30));
 
@@ -148,10 +153,10 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
             }
         });
 
-        ModificarMisiones.setText("Modificar misiones");
-        ModificarMisiones.addActionListener(new java.awt.event.ActionListener() {
+        VerMisiones.setText("Ver misiones");
+        VerMisiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarMisionesActionPerformed(evt);
+                VerMisionesActionPerformed(evt);
             }
         });
 
@@ -160,52 +165,51 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EtiquetaID)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(EtiquetaNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoIDNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoMasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CampoTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(108, 108, 108)
+                .addComponent(buscarBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkbox_id)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkbox_nombre)
+                .addContainerGap(91, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(33, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(añadirBoton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(borrarBoton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Actualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ModificarMisiones)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonSalir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(EtiquetaID)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(EtiquetaNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel1)))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CampoIDNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CampoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CampoMasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CampoTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(108, 108, 108)
-                                .addComponent(buscarBoton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(checkbox_id)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(checkbox_nombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))))
+                        .addGap(21, 21, 21)
+                        .addComponent(añadirBoton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(borrarBoton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(VerMisiones)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +251,7 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
                     .addComponent(borrarBoton)
                     .addComponent(Actualizar)
                     .addComponent(botonSalir)
-                    .addComponent(ModificarMisiones))
+                    .addComponent(VerMisiones))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -264,11 +268,6 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         Integer id = 0; // Valor por defecto
         if(!nave.isEmpty()) id = Integer.parseInt(nave);
         String nombre = CampoNombre.getText();
-        //String tamaño = CampoTamanho.getText();
-        //Float tam = Float.parseFloat(tamaño);
-        //String masa = CampoMasa.getText();
-        //Float mas = Float.parseFloat(tamaño);
-        //Nave naveEspacial = new Nave(id,CampoNombre.getText(),CampoTipo.getText(),tam,mas);
         
          ModeloTablaNave mt;
          mt = (ModeloTablaNave) tablaNaves.getModel();
@@ -279,8 +278,6 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
          else if(checkbox_nombre.isSelected()) {
             mt.setFilas(fa.buscarNavePorNombre(nombre));
          }
-        
-        //public Nave(Integer idNave, String nombre, String tipo, Float tamanho, Float masa) {
 
     }//GEN-LAST:event_buscarBotonActionPerformed
 
@@ -373,21 +370,24 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         checkbox_id.setSelected(false);
     }//GEN-LAST:event_checkbox_nombreActionPerformed
 
-    private void ModificarMisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarMisionesActionPerformed
+    private void VerMisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerMisionesActionPerformed
          int selectedRow = tablaNaves.getSelectedRow();
         if (selectedRow != -1) {
             ModeloTablaNave modelo = (ModeloTablaNave) tablaNaves.getModel();
             aplicacion.Nave nave = modelo.obtenerNave(selectedRow);
 
-            fa.borrarNave(nave);
-            
+            fa.abrirVentanaMisiones(nave);
             
             // Refrescamos la tabla
             modelo.setFilas(fa.obtenerNaves());
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una nave para modificar sus misiones.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una nave para ver sus misiones.");
         }
-    }//GEN-LAST:event_ModificarMisionesActionPerformed
+    }//GEN-LAST:event_VerMisionesActionPerformed
+
+    private void CampoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,7 +402,7 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
     private javax.swing.JTextField CampoTipo;
     private javax.swing.JLabel EtiquetaID;
     private javax.swing.JLabel EtiquetaNombre;
-    private javax.swing.JButton ModificarMisiones;
+    private javax.swing.JButton VerMisiones;
     private javax.swing.JButton añadirBoton;
     private javax.swing.JButton borrarBoton;
     private javax.swing.JButton botonSalir;

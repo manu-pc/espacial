@@ -79,6 +79,10 @@ public class FachadaAplicacion {
     public void abrirVentanaMisiones() {
         gm.abrirVentanaMisiones();
     }
+    // Sobrecarga para abrir la ventana de misiones con las misiones de una nave en concreto
+    public void abrirVentanaMisiones(Nave nave) {
+        gm.abrirVentanaMisiones(nave);
+    }
 
     public Integer actualizarLibro(Libro l) {
         return cl.actualizarLibro(l);
@@ -193,6 +197,9 @@ public class FachadaAplicacion {
     
     public java.util.List<Mision> obtenerMisiones() {
         return gm.obtenerMisiones();
+    }
+    public java.util.List<Mision> obtenerMisiones(Nave nave) {
+        return gm.obtenerMisiones(nave);
     }
     
     public void añadirMision(Mision m) {

@@ -5,6 +5,7 @@
 package baseDatos;
 
 import aplicacion.Mision;
+import aplicacion.Nave;
 import java.sql.*;
 
 /**
@@ -43,6 +44,54 @@ public class DAOMisiones extends AbstractDAO {
                 String objetivo = rsMisiones.getString("objetivo");
                 
                 Mision mision = new Mision(codigo, nombre, fechaInicio, fechaFin, descripcion, nave, objetivo);
+                misiones.add(mision);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error obteniendo la lista de misiones! " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stmMisiones != null)
+                    stmMisiones.close();
+            } catch (SQLException e) {
+                System.out.println("Error cerrando la transacción de obtener misiones.");
+            }
+        }
+
+        return misiones;
+    }
+    
+    // Sobrecarga que devuelve las misiones en las que participa una nave en concreto
+    public java.util.List<Mision> obtenerMisiones(Nave nave) {
+        java.util.List<Mision> misiones = new java.util.ArrayList<>();
+        Connection con;
+        PreparedStatement stmMisiones = null;
+        ResultSet rsMisiones;
+
+        con = this.getConexion();
+
+        try {
+            stmMisiones = con.prepareStatement(
+                    "SELECT m.codigo, m.nombre, m.fechaInicio, m.fechaFin, " +
+                            "       m.descripcion, m.nave, m.objetivo " +
+                            "FROM Mision m " +
+                            "WHERE m.nave = ?");
+            
+            stmMisiones.setInt(1, nave.getIDNave());
+
+            rsMisiones = stmMisiones.executeQuery();
+
+            while (rsMisiones.next()) {
+                Integer codigo = rsMisiones.getInt("codigo");
+                String nombre = rsMisiones.getString("nombre");
+                java.time.LocalDate fechaInicio = rsMisiones.getDate("fechaInicio").toLocalDate(); 
+                java.time.LocalDate fechaFin = rsMisiones.getDate("fechaFin").toLocalDate();
+                String descripcion = rsMisiones.getString("descripcion");
+                Integer naveID = rsMisiones.getInt("nave");
+                String objetivo = rsMisiones.getString("objetivo");
+                
+                Mision mision = new Mision(codigo, nombre, fechaInicio, fechaFin, descripcion, naveID, objetivo);
                 misiones.add(mision);
             }
 
