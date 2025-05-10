@@ -11,11 +11,13 @@ import aplicacion.Ejemplar;
 import aplicacion.Usuario;
 import aplicacion.Categoria;
 import aplicacion.Libro;
+import aplicacion.Nave;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -31,6 +33,7 @@ public class FachadaBaseDatos {
     private DAOPrestamos daoPrestamos;
     private DAOAstronautas daoAstronautas;
     private DAOAgencias daoAgencias;
+    private DAONave daoNaves;
 
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
@@ -62,6 +65,7 @@ public class FachadaBaseDatos {
             daoPrestamos = new DAOPrestamos(conexion, fa);
             daoAstronautas = new DAOAstronautas(conexion, fa);
             daoAgencias = new DAOAgencias(conexion, fa);
+            daoNaves = new DAONave(conexion,fa);
 
 
         } catch (FileNotFoundException f) {
@@ -199,5 +203,30 @@ public class FachadaBaseDatos {
     }
     public void borrarAgencia(int idAgencia){
         daoAgencias.borrarAgencia(idAgencia);
+    }
+        public List<Nave> obtenerNaves() {
+        return daoNaves.obtenerNaves();
+    }
+
+    public void borrarNave(Nave nave) {
+        daoNaves.borrarNave(nave);
+    }
+
+    public void añadirNave(Nave naveEspacial) {
+        daoNaves.anadirNave(naveEspacial);
+    }
+
+    public void actualizrNave(Nave naveActualizada) {
+        daoNaves.actualizarNave(naveActualizada);
+    }
+
+   
+
+    public List<Nave> buscarNavePorId(Integer id) {
+        return daoNaves.buscarNavePorId(id);
+    }
+    
+    public List<Nave> buscarNavePorNombre(String nombre) {
+        return daoNaves.buscarNavePorNombre(nombre);
     }
 }

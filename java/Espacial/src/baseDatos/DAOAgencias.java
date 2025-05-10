@@ -35,9 +35,12 @@ public class DAOAgencias extends AbstractDAO {
   
                             "FROM Agencia a " +
 
-                            "WHERE a.nombre = ?");
+                            "WHERE a.nombre LIKE ?");
 
-            stmAgencia.setString(1, nombre);
+            /* % antes y después de la cadena para que combinado con el LIKE
+             * busque nombres que contienen esa cadena en cualquier parte
+             */
+            stmAgencia.setString(1, "%"+nombre+"%");
             rsAgencia = stmAgencia.executeQuery();
 
             while (rsAgencia.next()) {

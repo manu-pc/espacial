@@ -54,6 +54,7 @@ public class VPrincipal extends javax.swing.JFrame {
         gestionUsuarios = new javax.swing.JMenuItem();
         Agencias = new javax.swing.JMenuItem();
         gestionAstronautas = new javax.swing.JMenuItem();
+        gestionNaves = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca de Informática");
@@ -138,6 +139,14 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(gestionAstronautas);
+
+        gestionNaves.setText("Naves");
+        gestionNaves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gestionNavesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(gestionNaves);
 
         jMenuBar1.add(jMenu1);
 
@@ -253,6 +262,12 @@ public class VPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AgenciasActionPerformed
 
+    private void gestionNavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionNavesActionPerformed
+        VNave vn = new VNave(this,true,fa);
+        vn.setVisible(true);
+
+    }//GEN-LAST:event_gestionNavesActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -269,6 +284,7 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField buscaTitulo;
     private javax.swing.JLabel etiquetaTitulo;
     private javax.swing.JMenuItem gestionAstronautas;
+    private javax.swing.JMenuItem gestionNaves;
     private javax.swing.JMenuItem gestionUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

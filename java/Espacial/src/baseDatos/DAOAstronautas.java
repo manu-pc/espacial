@@ -35,9 +35,12 @@ public class DAOAstronautas extends AbstractDAO {
   
                             "FROM Astronauta a " +
 
-                            "WHERE a.nombre = ?");
+                            "WHERE a.nombre LIKE ?");
 
-            stmAstronauta.setString(1, nombre);
+            /* % antes y después de la cadena para que combinado con el LIKE
+             * busque nombres que contienen esa cadena en cualquier parte
+             */
+            stmAstronauta.setString(1, "%"+nombre+"%");
             rsAstronauta = stmAstronauta.executeQuery();
 
             while (rsAstronauta.next()) {

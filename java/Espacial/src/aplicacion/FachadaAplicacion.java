@@ -5,6 +5,8 @@
 
 package aplicacion;
 
+import java.util.List;
+
 /**
  *
  * @author basesdatos
@@ -17,6 +19,7 @@ public class FachadaAplicacion {
     GestionCategorias cg;
     GestionAstronautas ca;
     GestionAgencias cag;
+    GestionNaves gn;
 
 
     public FachadaAplicacion() {
@@ -27,6 +30,7 @@ public class FachadaAplicacion {
         cg = new GestionCategorias(fgui, fbd);
         ca = new GestionAstronautas(fgui, fbd);
         cag = new GestionAgencias(fgui, fbd);
+        gn = new GestionNaves(fgui,fbd);
 
 
     }
@@ -159,4 +163,28 @@ public class FachadaAplicacion {
     public void borrarAgencia(int idAgencia){
        cag.borrarAgencia(idAgencia);
     }
+        public List<Nave> obtenerNaves() {
+        return gn.obtenerNaves();
+    }
+
+    public void borrarNave(Nave nave) {
+        gn.borrarNave(nave);
+    }
+
+    public void añadirNave(Nave naveEspacial) {
+        gn.añadirNave(naveEspacial);
+    }
+
+    public void actualizarNave(Nave naveActualizada) {
+        gn.actualizarNave(naveActualizada);
+    }
+
+    public List<Nave> buscarNavePorId(Integer id) {
+        return gn.buscarNavePorId(id);
+    }
+    
+    public List<Nave> buscarNavePorNombre(String nombre) {
+        return gn.buscarNavePorNombre(nombre);
+    }
+
 }
