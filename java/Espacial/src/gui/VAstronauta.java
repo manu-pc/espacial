@@ -382,11 +382,16 @@ public class VAstronauta extends javax.swing.JDialog {
     private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
         // TODO add your handling code here:
         Astronauta a;
+        int id = 0;
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+        
+        if (!campo_ed_id.getText().isEmpty()) {
+            id = Integer.parseInt(campo_ed_id.getText());
+        }
+        
         LocalDate fecha = LocalDate.parse(campo_ed_fecha.getText(), formatter);
-        a=new Astronauta(0, fecha, campo_ed_nombre.getText(), campo_ed_nacionalidad.getText());
+        a=new Astronauta(id, fecha, campo_ed_nombre.getText(), campo_ed_nacionalidad.getText());
         fa.actualizarAstronauta(a);
         
         this.cargarAstronautas();

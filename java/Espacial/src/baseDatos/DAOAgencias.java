@@ -219,7 +219,7 @@ public Agencia buscarAgenciaPorId(int idAgencia) {
                                     "where id=?");
         stmAgencia.setString(1, agencia.getLocalizacion());
         stmAgencia.setString(2, agencia.getNombre());
-        stmAgencia.setInt(4, agencia.getIdAgencia());
+        stmAgencia.setInt(3, agencia.getIdAgencia());
         stmAgencia.executeUpdate();
 
 
