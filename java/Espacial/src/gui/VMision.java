@@ -16,6 +16,8 @@ public class VMision extends javax.swing.JDialog {
 
     private VPrincipal padre;
     private aplicacion.FachadaAplicacion fa;    
+    // variable para cuando se llama desde la ventana de naves
+    private Nave nave;
     
     /**
      * Creates new form VMision
@@ -25,6 +27,7 @@ public class VMision extends javax.swing.JDialog {
         this.fa = fa;
         initComponents();
         cargarMisiones();
+        this.nave = null;
     }
     // Se abre la ventana misión pero en vez de mostrar todas las misiones
     // se muestran sólo las misiones en las que participa la nave
@@ -33,6 +36,7 @@ public class VMision extends javax.swing.JDialog {
         this.fa = fa;
         initComponents();
         cargarMisiones(nave);
+        this.nave = nave;
     }
 
     /**
@@ -246,19 +250,34 @@ public class VMision extends javax.swing.JDialog {
         Mision m;
         m = new Mision(Integer.parseInt(codigoTextField.getText()), nombreTextField.getText(), LocalDate.parse(fechaInicioTextField.getText()),  LocalDate.parse(fechaFinTextField.getText()), descripcionTextField.getText(), Integer.parseInt(naveTextField.getText()), objetivoTextField.getText());
         fa.añadirMision(m);
-        cargarMisiones();
+        if(this.nave == null) {
+            cargarMisiones();
+        }
+        else {
+            cargarMisiones(this.nave);
+        }
     }//GEN-LAST:event_nuevoBotonActionPerformed
 
     private void modificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBotonActionPerformed
         Mision m;
         m = new Mision(Integer.parseInt(codigoTextField.getText()), nombreTextField.getText(), LocalDate.parse(fechaInicioTextField.getText()),  LocalDate.parse(fechaFinTextField.getText()), descripcionTextField.getText(), Integer.parseInt(naveTextField.getText()), objetivoTextField.getText());
         fa.modificarMision(m);
-        cargarMisiones();
+        if(this.nave == null) {
+            cargarMisiones();
+        }
+        else {
+            cargarMisiones(this.nave);
+        }
     }//GEN-LAST:event_modificarBotonActionPerformed
 
     private void borrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarBotonActionPerformed
         fa.borrarMision(Integer.parseInt(codigoTextField.getText()));
-        cargarMisiones();
+        if(this.nave == null) {
+            cargarMisiones();
+        }
+        else {
+            cargarMisiones(this.nave);
+        }
     }//GEN-LAST:event_borrarBotonActionPerformed
 
     private void tablaMisionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMisionesMouseClicked
