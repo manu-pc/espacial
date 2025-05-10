@@ -35,6 +35,8 @@
                               <Component id="borrarBoton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="Actualizar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ModificarMisiones" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -135,6 +137,7 @@
                   <Component id="borrarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Actualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ModificarMisiones" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -308,6 +311,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkbox_nombreActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ModificarMisiones">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar misiones"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarMisionesActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
