@@ -177,11 +177,6 @@ public class VAstronauta extends javax.swing.JDialog {
         etiqueta_ed_id.setText("ID");
 
         campo_ed_id.setEditable(false);
-        campo_ed_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_ed_idActionPerformed(evt);
-            }
-        });
 
         etiqueta_ed_fecha.setText("Fecha");
 
@@ -395,6 +390,8 @@ public class VAstronauta extends javax.swing.JDialog {
         campo_ed_nacionalidad.setText("");
         campo_ed_nombre.setText("");
         campo_ed_fecha.setText("");
+        combo_ed_agencia.setSelectedItem(null);
+
     }//GEN-LAST:event_buttonNuevoActionPerformed
 
     private void buttonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGuardarActionPerformed
