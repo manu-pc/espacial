@@ -37,6 +37,11 @@ public class VMision extends javax.swing.JDialog {
         initComponents();
         cargarMisiones(nave);
         this.nave = nave;
+        
+        // Cuando la ventana sólo debe mostrar las misiones de una nave
+        // no se permite modificar el campo con la id de la nave
+        naveTextField.setText(nave.getIDNave().toString());
+        naveTextField.setEditable(false);
     }
 
     /**
