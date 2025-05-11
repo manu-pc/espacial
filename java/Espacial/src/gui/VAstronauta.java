@@ -59,7 +59,14 @@ public class VAstronauta extends javax.swing.JDialog {
             campo_ed_nombre.setText(astronauta.getNombre());
             campo_ed_nacionalidad.setText(astronauta.getNacionalidad());
             int IDagenciaActual = fa.obtenerAgenciaActual(astronauta.getIdAstronauta());
+   
             combo_ed_agencia.setSelectedItem(fa.buscarAgenciaPorId(IDagenciaActual));
+            if (combo_ed_agencia.getSelectedItem() == null) {
+                boton_desvincular_agencia.setVisible(false);
+
+            } else{
+                boton_desvincular_agencia.setVisible(true);
+            }
         }
     }
 
@@ -131,11 +138,12 @@ public class VAstronauta extends javax.swing.JDialog {
         campo_ed_nombre = new javax.swing.JTextField();
         combo_ed_agencia = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        boton_historial = new javax.swing.JButton();
         buttonBorrar = new javax.swing.JButton();
         buttonGuardar = new javax.swing.JButton();
         buttonNuevo = new javax.swing.JButton();
         buttonSalir = new javax.swing.JButton();
+        boton_desvincular_agencia = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -199,10 +207,10 @@ public class VAstronauta extends javax.swing.JDialog {
 
         jLabel1.setText("Agencia");
 
-        jButton1.setText("Historial de Agencias");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton_historial.setText("Historial de Agencias");
+        boton_historial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                boton_historialActionPerformed(evt);
             }
         });
 
@@ -232,13 +240,13 @@ public class VAstronauta extends javax.swing.JDialog {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(combo_ed_agencia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(boton_historial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(boton_historial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_ed_fecha)
@@ -322,6 +330,13 @@ public class VAstronauta extends javax.swing.JDialog {
             }
         });
 
+        boton_desvincular_agencia.setText("Desvincular Agencia");
+        boton_desvincular_agencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_desvincular_agenciaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -330,6 +345,8 @@ public class VAstronauta extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(buttonSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boton_desvincular_agencia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonNuevo)
                 .addGap(18, 18, 18)
                 .addComponent(buttonGuardar)
@@ -350,7 +367,8 @@ public class VAstronauta extends javax.swing.JDialog {
                     .addComponent(buttonBorrar)
                     .addComponent(buttonGuardar)
                     .addComponent(buttonNuevo)
-                    .addComponent(buttonSalir))
+                    .addComponent(buttonSalir)
+                    .addComponent(boton_desvincular_agencia))
                 .addContainerGap())
         );
 
@@ -435,16 +453,30 @@ public class VAstronauta extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_ed_idActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void boton_historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_historialActionPerformed
         
         int id = Integer.parseInt(campo_ed_id.getText());
         
         fa.abrirVentanaHistorialAgencias(id);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_boton_historialActionPerformed
+
+    private void boton_desvincular_agenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_desvincular_agenciaActionPerformed
+        // TODO add your handling code here:
+        int idAstronauta = Integer.parseInt(campo_ed_id.getText());
+        
+        fa.desvincularAgencia(idAstronauta);
+        actualizarCampos();
+        
+        
+        
+        
+    }//GEN-LAST:event_boton_desvincular_agenciaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_buscar;
+    private javax.swing.JButton boton_desvincular_agencia;
+    private javax.swing.JButton boton_historial;
     private javax.swing.JButton buttonBorrar;
     private javax.swing.JButton buttonGuardar;
     private javax.swing.JButton buttonNuevo;
@@ -462,7 +494,6 @@ public class VAstronauta extends javax.swing.JDialog {
     private javax.swing.JLabel etiqueta_ed_nombre;
     private javax.swing.JLabel etiqueta_id;
     private javax.swing.JLabel etiqueta_nombre;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;

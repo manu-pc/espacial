@@ -91,15 +91,43 @@ public class DAOPertenecerAgencia extends AbstractDAO {
                 System.out.println("Error cerrando la transacción de obtener usuarios.");
             }
         }
-        for (HistorialAgencias h : agencias) {
-            System.out.println("Agencia ID: " + h.getIdAgencia());
-            System.out.println("Nombre: " + h.getNombre());
-            System.out.println("Fecha inicio: " + h.getFechaInicio());
-            System.out.println("Fecha fin: " + h.getFechaFin());
-            System.out.println("------------------------");
-        }
         return agencias;
     }
+    
+    public void desvincularAgencia(int idAstronauta) {
+    Connection con;
+    PreparedStatement stmCerrarRelacion = null;
+
+    con = this.getConexion();
+
+    try {
+        // Cerrar la relación activa (fechaFin = hoy)
+        stmCerrarRelacion = con.prepareStatement(
+            "UPDATE PertenecerAgencia " +
+            "SET fechaFin = CURRENT_DATE " +
+            "WHERE astronauta_id = ? AND fechaFin IS NULL"
+        );
+        stmCerrarRelacion.setInt(1, idAstronauta);
+        int filasActualizadas = stmCerrarRelacion.executeUpdate();
+
+        if (filasActualizadas > 0) {
+            System.out.println("Relación con agencia cerrada correctamente para el astronauta con ID: " + idAstronauta);
+        } else {
+            System.out.println("No se encontró una relación activa para cerrar con el astronauta ID: " + idAstronauta);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error cerrando relación con agencia actual: " + e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (stmCerrarRelacion != null) stmCerrarRelacion.close();
+        } catch (SQLException e) {
+            System.out.println("Imposible cerrar stmCerrarRelacion");
+        }
+    }
+}
+
 
 
 

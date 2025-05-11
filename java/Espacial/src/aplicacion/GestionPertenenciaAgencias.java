@@ -33,6 +33,10 @@ public class GestionPertenenciaAgencias {
         fgui.abrirVentanaHistorialAgencias(idAstronauta);
     }
     
+    public void desvincularAgencia(int idAstronauta){
+        fbd.desvincularAgencia(idAstronauta);
+    }
+    
 
 
 }

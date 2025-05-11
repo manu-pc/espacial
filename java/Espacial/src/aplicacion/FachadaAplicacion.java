@@ -226,6 +226,11 @@ public class FachadaAplicacion {
     public void borrarMision(Integer codigo) {
         gm.borrarMision(codigo);
     }
+    
+    public void desvincularAgencia(int idAstronauta){
+        pag.desvincularAgencia(idAstronauta);
+    }
+
 
 
 }

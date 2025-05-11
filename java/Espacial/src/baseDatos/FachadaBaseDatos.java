@@ -218,6 +218,10 @@ public class FachadaBaseDatos {
         return daoPertenecerAgencia.obtenerAgenciaActual(idAstronauta);
     }
     
+    public void desvincularAgencia(int idAstronauta){
+        daoPertenecerAgencia.desvincularAgencia(idAstronauta);
+    }
+    
     public List<Nave> obtenerNaves() {
         return daoNaves.obtenerNaves();
     }
