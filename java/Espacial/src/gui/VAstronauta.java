@@ -4,6 +4,7 @@
  */
 package gui;
 
+import aplicacion.Agencia;
 import aplicacion.Astronauta;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -57,6 +58,8 @@ public class VAstronauta extends javax.swing.JDialog {
             campo_ed_fecha.setText(astronauta.getFecha().format(formatter));
             campo_ed_nombre.setText(astronauta.getNombre());
             campo_ed_nacionalidad.setText(astronauta.getNacionalidad());
+            int IDagenciaActual = fa.obtenerAgenciaActual(astronauta.getIdAstronauta());
+            combo_ed_agencia.setSelectedItem(fa.buscarAgenciaPorId(IDagenciaActual));
         }
     }
 
@@ -126,6 +129,8 @@ public class VAstronauta extends javax.swing.JDialog {
         campo_ed_fecha = new javax.swing.JTextField();
         campo_ed_nacionalidad = new javax.swing.JTextField();
         campo_ed_nombre = new javax.swing.JTextField();
+        combo_ed_agencia = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         buttonBorrar = new javax.swing.JButton();
         buttonGuardar = new javax.swing.JButton();
         buttonNuevo = new javax.swing.JButton();
@@ -189,28 +194,35 @@ public class VAstronauta extends javax.swing.JDialog {
             }
         });
 
+        combo_ed_agencia.setModel(new javax.swing.DefaultComboBoxModel<>(fa.obtenerAgencias().toArray(new aplicacion.Agencia[0])));
+
+        jLabel1.setText("Agencia");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(etiqueta_ed_id)
+                .addComponent(etiqueta_ed_id, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campo_ed_id, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addComponent(campo_ed_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(etiqueta_ed_fecha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campo_ed_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campo_ed_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(etiqueta_ed_nombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(campo_ed_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(etiqueta_ed_nacionalidad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campo_ed_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(combo_ed_agencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +236,9 @@ public class VAstronauta extends javax.swing.JDialog {
                     .addComponent(etiqueta_ed_nombre)
                     .addComponent(campo_ed_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiqueta_ed_nacionalidad)
-                    .addComponent(campo_ed_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(campo_ed_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_ed_agencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -233,25 +247,23 @@ public class VAstronauta extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(etiqueta_id)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campo_id, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(etiqueta_nombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campo_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(boton_buscar)
-                        .addGap(16, 16, 16))))
+                .addComponent(etiqueta_id)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campo_id, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(etiqueta_nombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campo_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(boton_buscar)
+                .addGap(16, 16, 16))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,9 +277,9 @@ public class VAstronauta extends javax.swing.JDialog {
                     .addComponent(boton_buscar))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         buttonBorrar.setText("Borrar");
@@ -303,9 +315,6 @@ public class VAstronauta extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(buttonSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -315,6 +324,10 @@ public class VAstronauta extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(buttonBorrar)
                 .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,11 +402,18 @@ public class VAstronauta extends javax.swing.JDialog {
         if (!campo_ed_id.getText().isEmpty()) {
             id = Integer.parseInt(campo_ed_id.getText());
         }
-        
         LocalDate fecha = LocalDate.parse(campo_ed_fecha.getText(), formatter);
         a=new Astronauta(id, fecha, campo_ed_nombre.getText(), campo_ed_nacionalidad.getText());
-        fa.actualizarAstronauta(a);
+        Agencia agenciaNueva = (Agencia) combo_ed_agencia.getSelectedItem();
         
+        int IDagenciaActual = fa.obtenerAgenciaActual(a.getIdAstronauta());
+
+        if (agenciaNueva != null) {
+            fa.actualizarAstronauta(a, IDagenciaActual, agenciaNueva.getIdAgencia());
+        } else {
+            // Si no hay agencia seleccionada, solo actualiza los datos personales
+            fa.actualizarAstronauta(a, IDagenciaActual, -1); // -1 indica que no se debe cambiar agencia
+        }        
         this.cargarAstronautas();
     }//GEN-LAST:event_buttonGuardarActionPerformed
 
@@ -410,12 +430,14 @@ public class VAstronauta extends javax.swing.JDialog {
     private javax.swing.JTextField campo_ed_nombre;
     private javax.swing.JTextField campo_id;
     private javax.swing.JTextField campo_nombre;
+    private javax.swing.JComboBox<aplicacion.Agencia> combo_ed_agencia;
     private javax.swing.JLabel etiqueta_ed_fecha;
     private javax.swing.JLabel etiqueta_ed_id;
     private javax.swing.JLabel etiqueta_ed_nacionalidad;
     private javax.swing.JLabel etiqueta_ed_nombre;
     private javax.swing.JLabel etiqueta_id;
     private javax.swing.JLabel etiqueta_nombre;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

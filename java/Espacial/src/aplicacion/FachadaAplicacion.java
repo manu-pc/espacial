@@ -19,6 +19,7 @@ public class FachadaAplicacion {
     GestionCategorias cg;
     GestionAstronautas ca;
     GestionAgencias cag;
+    GestionPertenenciaAgencias pag;
     GestionNaves gn;
     GestionMisiones gm;
 
@@ -33,6 +34,7 @@ public class FachadaAplicacion {
         cag = new GestionAgencias(fgui, fbd);
         gn = new GestionNaves(fgui,fbd);
         gm = new GestionMisiones(fgui, fbd);
+        pag = new GestionPertenenciaAgencias(fgui, fbd);
 
     }
 
@@ -146,8 +148,8 @@ public class FachadaAplicacion {
         return ca.buscarAstronautaPorId(id);
     }
     
-    public void actualizarAstronauta(Astronauta a){
-        ca.actualizarAstronauta(a);
+    public void actualizarAstronauta(Astronauta a, int idAgenciaActual, int idAgenciaNueva){
+        ca.actualizarAstronauta(a, idAgenciaActual, idAgenciaNueva);
     }
     public void borrarAstronauta(int idAstronauta){
        ca.borrarAstronauta(idAstronauta);
@@ -171,8 +173,12 @@ public class FachadaAplicacion {
     public void borrarAgencia(int idAgencia){
        cag.borrarAgencia(idAgencia);
     }
-        public List<Nave> obtenerNaves() {
+    public List<Nave> obtenerNaves() {
         return gn.obtenerNaves();
+    }
+    
+    public int obtenerAgenciaActual(int idAstronauta){
+        return pag.obtenerAgenciaActual(idAstronauta);
     }
 
     public void borrarNave(Nave nave) {
@@ -213,5 +219,6 @@ public class FachadaAplicacion {
     public void borrarMision(Integer codigo) {
         gm.borrarMision(codigo);
     }
+
 
 }

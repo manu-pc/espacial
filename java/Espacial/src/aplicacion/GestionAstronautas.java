@@ -37,16 +37,16 @@ public class GestionAstronautas {
         return fbd.buscarAstronautaPorId(id);
     }
     
-    public void actualizarAstronauta(Astronauta a){
+    public void actualizarAstronauta(Astronauta a, int idAgenciaActual, int idAgenciaNueva){
         // Verificar si el usuario ya existe en la base de datos
         boolean existeAstronauta = fbd.obtenerAstronautaPorId(a.getIdAstronauta());
         // Si el usuario no existe, insertar
         if (existeAstronauta == false) {
-            fbd.insertarAstronauta(a);
+            fbd.insertarAstronauta(a, idAgenciaNueva);
         } 
         // Si el usuario existe, modificar
         else {
-            fbd.modificarAstronauta(a);
+            fbd.modificarAstronauta(a, idAgenciaActual, idAgenciaNueva);
         }
     }
     

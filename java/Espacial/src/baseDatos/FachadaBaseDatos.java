@@ -34,6 +34,7 @@ public class FachadaBaseDatos {
     private DAOPrestamos daoPrestamos;
     private DAOAstronautas daoAstronautas;
     private DAOAgencias daoAgencias;
+    private DAOPertenecerAgencia daoPertenecerAgencia;
     private DAONave daoNaves;
     private DAOMisiones daoMisiones;
 
@@ -69,6 +70,7 @@ public class FachadaBaseDatos {
             daoAgencias = new DAOAgencias(conexion, fa);
             daoNaves = new DAONave(conexion,fa);
             daoMisiones = new DAOMisiones(conexion,fa);
+            daoPertenecerAgencia = new DAOPertenecerAgencia(conexion, fa);
 
 
         } catch (FileNotFoundException f) {
@@ -170,12 +172,12 @@ public class FachadaBaseDatos {
         return daoAstronautas.obtenerAstronautaPorId(IDAstronauta);
     }
     
-    public void insertarAstronauta(Astronauta astronauta){
-        daoAstronautas.insertarAstronauta(astronauta);
+    public void insertarAstronauta(Astronauta astronauta, int idAgenciaNueva){
+        daoAstronautas.insertarAstronauta(astronauta, idAgenciaNueva);
     }
     
-    public void modificarAstronauta(Astronauta astronauta){
-       daoAstronautas.modificarAstronauta(astronauta);
+    public void modificarAstronauta(Astronauta astronauta, int idAgenciaActual, int idAgenciaNueva){
+       daoAstronautas.modificarAstronauta(astronauta, idAgenciaActual, idAgenciaNueva);
     }
     public void borrarAstronauta(int idAstronauta){
         daoAstronautas.borrarAstronauta(idAstronauta);
@@ -205,7 +207,12 @@ public class FachadaBaseDatos {
     public void borrarAgencia(int idAgencia){
         daoAgencias.borrarAgencia(idAgencia);
     }
-        public List<Nave> obtenerNaves() {
+    
+    public int obtenerAgenciaActual(int idAstronauta){
+        return daoPertenecerAgencia.obtenerAgenciaActual(idAstronauta);
+    }
+    
+    public List<Nave> obtenerNaves() {
         return daoNaves.obtenerNaves();
     }
 

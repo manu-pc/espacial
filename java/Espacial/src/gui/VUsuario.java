@@ -156,6 +156,11 @@ public class VUsuario extends javax.swing.JDialog {
 
         selec_ed_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Administrador" }));
         selec_ed_tipo.setToolTipText("");
+        selec_ed_tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selec_ed_tipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -355,6 +360,10 @@ public class VUsuario extends javax.swing.JDialog {
     private void campo_ed_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_ed_direccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_ed_direccionActionPerformed
+
+    private void selec_ed_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selec_ed_tipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selec_ed_tipoActionPerformed
     
     private void actualizarCampos() {
         int selectedRow = tablaUsuarios.getSelectedRow();

@@ -158,34 +158,71 @@ public Astronauta buscarAstronautaPorId(int idAstronauta) {
         return exito;
     }
     
-    public void insertarAstronauta(Astronauta astronauta){
+    public void insertarAstronauta(Astronauta astronauta, int idAgencia) {
         Connection con;
-        PreparedStatement stmAstronauta=null;
-        PreparedStatement stmIdAstronauta=null;
+        PreparedStatement stmInsertar = null;
+        PreparedStatement stmBuscarId = null;
+        PreparedStatement stmRelacionAgencia = null;
+        ResultSet rsBuscarId = null;
 
-        ResultSet rsIdAstronauta;
-        String idAstronauta=null;
-
-        con=super.getConexion();
+        con = super.getConexion();
 
         try {
-        stmAstronauta=con.prepareStatement("insert into astronauta(nombre, nacionalidad, fechaNacimiento) "+
-                                      "values (?,?,?)");
-        stmAstronauta.setString(1, astronauta.getNombre());
-        stmAstronauta.setString(2, astronauta.getNacionalidad());
-        stmAstronauta.setDate(3, java.sql.Date.valueOf(astronauta.getFecha()));
+            // 1. Insertar el astronauta
+            stmInsertar = con.prepareStatement(
+                "INSERT INTO Astronauta(nombre, nacionalidad, fechaNacimiento) VALUES (?, ?, ?)"
+            );
+            stmInsertar.setString(1, astronauta.getNombre());
+            stmInsertar.setString(2, astronauta.getNacionalidad());
+            stmInsertar.setDate(3, java.sql.Date.valueOf(astronauta.getFecha()));
+            stmInsertar.executeUpdate();
+            stmInsertar.close();
 
-        stmAstronauta.executeUpdate();
+            // 2. Recuperar el ID del astronauta recién insertado
+            stmBuscarId = con.prepareStatement(
+                "SELECT id FROM Astronauta WHERE nombre = ? AND nacionalidad = ? AND fechaNacimiento = ? ORDER BY id DESC LIMIT 1"
+            );
+            stmBuscarId.setString(1, astronauta.getNombre());
+            stmBuscarId.setString(2, astronauta.getNacionalidad());
+            stmBuscarId.setDate(3, java.sql.Date.valueOf(astronauta.getFecha()));
+            rsBuscarId = stmBuscarId.executeQuery();
 
-       
-        } catch (SQLException e){
-          System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
-          try {stmAstronauta.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+            int idAstronauta = -1;
+            if (rsBuscarId.next()) {
+                idAstronauta = rsBuscarId.getInt("id");
+            }
+
+            // 3. Insertar relación con agencia si se indicó
+            if (idAgencia != -1 && idAstronauta != -1) {
+                stmRelacionAgencia = con.prepareStatement(
+                    "INSERT INTO PertenecerAgencia (astronauta_id, agencia_id, fechaInicio, fechaFin) " +
+                    "VALUES (?, ?, ?, ?)"
+                );
+                stmRelacionAgencia.setInt(1, idAstronauta);
+                stmRelacionAgencia.setInt(2, idAgencia);
+                stmRelacionAgencia.setDate(3, java.sql.Date.valueOf(astronauta.getFecha())); // Suponiendo que la fechaInicio es la fecha de nacimiento
+                stmRelacionAgencia.setDate(4, null); // Asumiendo que fechaFin es NULL al momento de la inserción
+                stmRelacionAgencia.executeUpdate();
+                stmRelacionAgencia.close();
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            // Cerrar recursos en el bloque finally
+            try {
+                if (stmInsertar != null) stmInsertar.close();
+                if (stmBuscarId != null) stmBuscarId.close();
+                if (stmRelacionAgencia != null) stmRelacionAgencia.close();
+                if (rsBuscarId != null) rsBuscarId.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores: " + e.getMessage());
+            }
         }
-
     }
+
+
     
     public void borrarAstronauta(int IdAstronauta){
         Connection con;
@@ -206,32 +243,81 @@ public Astronauta buscarAstronautaPorId(int idAstronauta) {
         }
     }
     
-    public void modificarAstronauta(Astronauta astronauta){
+    public void modificarAstronauta(Astronauta astronauta, int idAgenciaActual, int idAgenciaNueva) {
         Connection con;
-        PreparedStatement stmAstronauta=null;
-        PreparedStatement stmBorrado=null;
+        PreparedStatement stmAstronauta = null;
+        PreparedStatement stmCerrarRelacion = null;
+        PreparedStatement stmInsertarRelacion = null;
 
-        con=super.getConexion();
+        con = this.getConexion();
 
         try {
-        stmAstronauta=con.prepareStatement("update Astronauta "+
-                                    " set nacionalidad=?, "+
-                                    "    nombre=?, "+
-                                    "    fechaNacimiento=? "+
-                                    "where id=?");
-        stmAstronauta.setString(1, astronauta.getNacionalidad());
-        stmAstronauta.setString(2, astronauta.getNombre());
-        stmAstronauta.setDate(3 , java.sql.Date.valueOf(astronauta.getFecha()));
-        stmAstronauta.setInt(4, astronauta.getIdAstronauta());
-        stmAstronauta.executeUpdate();
+            // 1. Actualizar los datos del astronauta
+            stmAstronauta = con.prepareStatement(
+                "UPDATE Astronauta " +
+                "SET nacionalidad = ?, nombre = ?, fechaNacimiento = ? " +
+                "WHERE id = ?"
+            );
+            stmAstronauta.setString(1, astronauta.getNacionalidad());
+            stmAstronauta.setString(2, astronauta.getNombre());
+            stmAstronauta.setDate(3, java.sql.Date.valueOf(astronauta.getFecha()));
+            stmAstronauta.setInt(4, astronauta.getIdAstronauta());
+            stmAstronauta.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error actualizando datos del astronauta: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stmAstronauta != null) stmAstronauta.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar stmAstronauta");
+            }
+        }
+        System.out.println("Agencia actual: " + idAgenciaActual + ", nueva: " + idAgenciaNueva);
+        // 2. Si ha cambiado la agencia, actualizar historial
+        if (idAgenciaActual != idAgenciaNueva && idAgenciaNueva != -1) {
+            try {
+                // Cerrar relación anterior
+                stmCerrarRelacion = con.prepareStatement(
+                    "UPDATE PertenecerAgencia SET fechaFin = CURRENT_DATE " +
+                    "WHERE astronauta_id = ? AND fechaFin IS NULL"
+                );
+                stmCerrarRelacion.setInt(1, astronauta.getIdAstronauta());
+                stmCerrarRelacion.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Error cerrando relación con agencia actual: " + e.getMessage());
+                this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            } finally {
+                try {
+                    if (stmCerrarRelacion != null) stmCerrarRelacion.close();
+                } catch (SQLException e) {
+                    System.out.println("Imposible cerrar stmCerrarRelacion");
+                }
+            }
 
-
-        } catch (SQLException e){
-          System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
-          try {stmAstronauta.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+            try {
+                // Insertar nueva relación
+                stmInsertarRelacion = con.prepareStatement(
+                    "INSERT INTO PertenecerAgencia (astronauta_id, agencia_id, fechaInicio, fechaFin) " +
+                    "VALUES (?, ?, CURRENT_DATE, NULL)"
+                );
+                stmInsertarRelacion.setInt(1, astronauta.getIdAstronauta());
+                stmInsertarRelacion.setInt(2, idAgenciaNueva);
+                stmInsertarRelacion.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Error insertando nueva relación con agencia: " + e.getMessage());
+                this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            } finally {
+                try {
+                    if (stmInsertarRelacion != null) stmInsertarRelacion.close();
+                } catch (SQLException e) {
+                    System.out.println("Imposible cerrar stmInsertarRelacion");
+                }
+            }
         }
     }
+
+
+
 
 }
