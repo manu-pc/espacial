@@ -25,6 +25,14 @@ public class GestionPertenenciaAgencias {
     public int obtenerAgenciaActual(int idAstronauta) {
         return fbd.obtenerAgenciaActual(idAstronauta);
     }
+    
+    public java.util.List<HistorialAgencias> obtenerHistorialAstronauta(int idAstronauta) {
+        return fbd.obtenerHistorialAstronauta(idAstronauta);
+    }
+    public void abrirVentanaHistorialAgencias(int idAstronauta){
+        fgui.abrirVentanaHistorialAgencias(idAstronauta);
+    }
+    
 
 
 }

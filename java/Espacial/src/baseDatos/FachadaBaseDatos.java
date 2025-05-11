@@ -10,6 +10,7 @@ import aplicacion.Agencia;
 import aplicacion.Ejemplar;
 import aplicacion.Usuario;
 import aplicacion.Categoria;
+import aplicacion.HistorialAgencias;
 import aplicacion.Libro;
 import aplicacion.Mision;
 import aplicacion.Nave;
@@ -182,6 +183,11 @@ public class FachadaBaseDatos {
     public void borrarAstronauta(int idAstronauta){
         daoAstronautas.borrarAstronauta(idAstronauta);
     }
+    
+    public java.util.List<HistorialAgencias> obtenerHistorialAstronauta(int idAstronauta) {
+        return daoPertenecerAgencia.obtenerHistorialAstronauta(idAstronauta);
+    }
+    
     public java.util.List<Agencia> obtenerAgencias() {
         return daoAgencias.obtenerAgencias();
     }

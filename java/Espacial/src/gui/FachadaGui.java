@@ -63,6 +63,11 @@ public class FachadaGui {
         ventanaCategorias.setVisible(true);
         ventanaCategorias.setLocationRelativeTo(null);
     }
+    public void abrirVentanaHistorialAgencias(int idAstronauta){
+        VHistorialAgencias ventanaHistorial = new VHistorialAgencias(vp, true, fa, idAstronauta);
+        ventanaHistorial.setVisible(true);
+        ventanaHistorial.setLocationRelativeTo(null);
+    }
     public void muestraExcepcion(String txtExcepcion){
        VAviso va;
       

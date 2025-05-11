@@ -72,6 +72,9 @@ public class FachadaAplicacion {
     public void abrirVentanaUsuarios() {
         cu.abrirVentanaUsuarios();
     }
+    public void abrirVentanaHistorialAgencias(int idAstronauta){
+        pag.abrirVentanaHistorialAgencias(idAstronauta);
+    }
     public void abrirVentanaAstronautas() {
         ca.abrirVentanaAstronautas();
     }
@@ -138,6 +141,10 @@ public class FachadaAplicacion {
     
     public java.util.List<Astronauta> obtenerAstronautas() {
         return ca.obtenerAstronautas();
+    }
+    
+    public java.util.List<HistorialAgencias> obtenerHistorialAstronauta(int idAstronauta) {
+        return pag.obtenerHistorialAstronauta(idAstronauta);
     }
 
     public java.util.List<Astronauta> buscarAstronautasPorNombre(String nombre) {

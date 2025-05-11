@@ -158,7 +158,7 @@ public Astronauta buscarAstronautaPorId(int idAstronauta) {
         return exito;
     }
     
-    public void insertarAstronauta(Astronauta astronauta, int idAgencia) {
+     public void insertarAstronauta(Astronauta astronauta, int idAgencia) {
         Connection con;
         PreparedStatement stmInsertar = null;
         PreparedStatement stmBuscarId = null;
