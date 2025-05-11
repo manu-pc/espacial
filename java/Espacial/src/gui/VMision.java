@@ -253,7 +253,12 @@ public class VMision extends javax.swing.JDialog {
 
     private void nuevoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoBotonActionPerformed
         Mision m;
-        m = new Mision(Integer.parseInt(codigoTextField.getText()), nombreTextField.getText(), LocalDate.parse(fechaInicioTextField.getText()),  LocalDate.parse(fechaFinTextField.getText()), descripcionTextField.getText(), Integer.parseInt(naveTextField.getText()), objetivoTextField.getText());
+        String textoFechaFin = fechaFinTextField.getText();
+        LocalDate fechaFin = null;
+        if (!textoFechaFin.isEmpty()) {
+            fechaFin = LocalDate.parse(textoFechaFin);
+        }
+        m = new Mision(Integer.parseInt(codigoTextField.getText()), nombreTextField.getText(), LocalDate.parse(fechaInicioTextField.getText()), fechaFin, descripcionTextField.getText(), Integer.parseInt(naveTextField.getText()), objetivoTextField.getText());
         fa.añadirMision(m);
         if(this.nave == null) {
             cargarMisiones();
@@ -265,7 +270,12 @@ public class VMision extends javax.swing.JDialog {
 
     private void modificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBotonActionPerformed
         Mision m;
-        m = new Mision(Integer.parseInt(codigoTextField.getText()), nombreTextField.getText(), LocalDate.parse(fechaInicioTextField.getText()),  LocalDate.parse(fechaFinTextField.getText()), descripcionTextField.getText(), Integer.parseInt(naveTextField.getText()), objetivoTextField.getText());
+        String textoFechaFin = fechaFinTextField.getText();
+        LocalDate fechaFin = null;
+        if (!textoFechaFin.isEmpty()) {
+            fechaFin = LocalDate.parse(textoFechaFin);
+        }
+        m = new Mision(Integer.parseInt(codigoTextField.getText()), nombreTextField.getText(), LocalDate.parse(fechaInicioTextField.getText()), fechaFin, descripcionTextField.getText(), Integer.parseInt(naveTextField.getText()), objetivoTextField.getText());
         fa.modificarMision(m);
         if(this.nave == null) {
             cargarMisiones();
@@ -292,7 +302,12 @@ public class VMision extends javax.swing.JDialog {
         codigoTextField.setText(String.valueOf(selectedMision.getCodigo()));
         nombreTextField.setText(selectedMision.getNombre());
         fechaInicioTextField.setText(selectedMision.getFechaInicio().toString());
-        fechaFinTextField.setText(selectedMision.getFechaFin().toString());
+        if (selectedMision.getFechaFin() == null) {
+            fechaFinTextField.setText("");
+        }
+        else {
+            fechaFinTextField.setText(selectedMision.getFechaFin().toString());
+        }
         descripcionTextField.setText(selectedMision.getDescripcion());
         naveTextField.setText(selectedMision.getNave().toString());
         objetivoTextField.setText(selectedMision.getObjetivo());
@@ -337,6 +352,12 @@ public class VMision extends javax.swing.JDialog {
             codigoTextField.setText(String.valueOf(mision.getCodigo()));
             nombreTextField.setText(mision.getNombre());
             fechaInicioTextField.setText(mision.getFechaInicio().toString());
+            if (mision.getFechaFin() == null) {
+                fechaFinTextField.setText("");
+            }
+            else {
+                fechaFinTextField.setText(mision.getFechaFin().toString());
+            }
             fechaFinTextField.setText(mision.getFechaFin().toString());
             descripcionTextField.setText(mision.getDescripcion());
             naveTextField.setText(mision.getNave().toString());
@@ -364,7 +385,12 @@ public class VMision extends javax.swing.JDialog {
             codigoTextField.setText(String.valueOf(mision.getCodigo()));
             nombreTextField.setText(mision.getNombre());
             fechaInicioTextField.setText(mision.getFechaInicio().toString());
-            fechaFinTextField.setText(mision.getFechaFin().toString());
+            if (mision.getFechaFin() == null) {
+                fechaFinTextField.setText("");
+            }
+            else {
+                fechaFinTextField.setText(mision.getFechaFin().toString());
+            }
             descripcionTextField.setText(mision.getDescripcion());
             naveTextField.setText(mision.getNave().toString());
             objetivoTextField.setText(mision.getObjetivo());
