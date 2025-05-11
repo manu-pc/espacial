@@ -66,6 +66,7 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         checkbox_id = new javax.swing.JCheckBox();
         checkbox_nombre = new javax.swing.JCheckBox();
         VerMisiones = new javax.swing.JButton();
+        botonLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de categorías");
@@ -160,12 +161,19 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
             }
         });
 
+        botonLimpiar.setText("Vaciar");
+        botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,12 +195,15 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
                             .addComponent(CampoTamanho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CampoMasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(78, 78, 78)
-                .addComponent(buscarBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkbox_id)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkbox_nombre)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buscarBoton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkbox_id)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkbox_nombre))
+                    .addComponent(botonLimpiar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -234,7 +245,9 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
                             .addComponent(buscarBoton)
                             .addComponent(checkbox_id)
                             .addComponent(checkbox_nombre))
-                        .addGap(86, 86, 86)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonLimpiar)
+                        .addGap(57, 57, 57)))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CampoTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,6 +407,15 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoNombreActionPerformed
 
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
+        // TODO add your handling code here:
+        CampoIDNave.setText("");
+        CampoNombre.setText("");
+        CampoTipo.setText("");
+        CampoTamanho.setText("");
+        CampoMasa.setText("");
+    }//GEN-LAST:event_botonLimpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,6 +432,7 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
     private javax.swing.JButton VerMisiones;
     private javax.swing.JButton añadirBoton;
     private javax.swing.JButton borrarBoton;
+    private javax.swing.JButton botonLimpiar;
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton buscarBoton;
     private javax.swing.JCheckBox checkbox_id;
