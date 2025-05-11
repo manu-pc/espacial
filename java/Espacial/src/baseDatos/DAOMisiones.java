@@ -38,7 +38,10 @@ public class DAOMisiones extends AbstractDAO {
                 Integer codigo = rsMisiones.getInt("codigo");
                 String nombre = rsMisiones.getString("nombre");
                 java.time.LocalDate fechaInicio = rsMisiones.getDate("fechaInicio").toLocalDate(); 
-                java.time.LocalDate fechaFin = rsMisiones.getDate("fechaFin").toLocalDate();
+                java.time.LocalDate fechaFin = null;
+                if (rsMisiones.getDate("fechaFin") != null) {
+                    fechaFin = rsMisiones.getDate("fechaFin").toLocalDate();
+                }
                 String descripcion = rsMisiones.getString("descripcion");
                 Integer nave = rsMisiones.getInt("nave");
                 String objetivo = rsMisiones.getString("objetivo");
@@ -86,7 +89,10 @@ public class DAOMisiones extends AbstractDAO {
                 Integer codigo = rsMisiones.getInt("codigo");
                 String nombre = rsMisiones.getString("nombre");
                 java.time.LocalDate fechaInicio = rsMisiones.getDate("fechaInicio").toLocalDate(); 
-                java.time.LocalDate fechaFin = rsMisiones.getDate("fechaFin").toLocalDate();
+                java.time.LocalDate fechaFin = null;
+                if (rsMisiones.getDate("fechaFin") != null) {
+                    fechaFin = rsMisiones.getDate("fechaFin").toLocalDate();
+                }
                 String descripcion = rsMisiones.getString("descripcion");
                 Integer naveID = rsMisiones.getInt("nave");
                 String objetivo = rsMisiones.getString("objetivo");
@@ -157,7 +163,12 @@ public class DAOMisiones extends AbstractDAO {
             stmMisiones.setInt(1, m.getCodigo());
             stmMisiones.setString(2, m.getNombre());
             stmMisiones.setDate(3, java.sql.Date.valueOf(m.getFechaInicio()));
-            stmMisiones.setDate(4, java.sql.Date.valueOf(m.getFechaFin()));
+            if (m.getFechaFin() == null) {
+                stmMisiones.setDate(4, null);
+            }
+            else {
+                stmMisiones.setDate(4, java.sql.Date.valueOf(m.getFechaFin()));
+            }
             stmMisiones.setString(5, m.getDescripcion());
             stmMisiones.setInt(6, m.getNave());
             stmMisiones.setString(7, m.getObjetivo());
@@ -198,7 +209,12 @@ public class DAOMisiones extends AbstractDAO {
             stmMisiones.setInt(1, m.getCodigo());
             stmMisiones.setString(2, m.getNombre());
             stmMisiones.setDate(3, java.sql.Date.valueOf(m.getFechaInicio()));
-            stmMisiones.setDate(4, java.sql.Date.valueOf(m.getFechaFin()));
+            if (m.getFechaFin() == null) {
+                stmMisiones.setDate(4, null);
+            }
+            else {
+                stmMisiones.setDate(4, java.sql.Date.valueOf(m.getFechaFin()));
+            }
             stmMisiones.setString(5, m.getDescripcion());
             stmMisiones.setInt(6, m.getNave());
             stmMisiones.setString(7, m.getObjetivo());
