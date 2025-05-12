@@ -28,16 +28,16 @@ public class VMisionesAstronautas extends javax.swing.JDialog {
         astronautasDisponibles.setElementos(restoAstronautas);
         if (astronautasDisponibles.getSize()>0) {
             listaAstronautasDisponibles.setSelectedIndex(0);
-            botonDerecha.setEnabled(true);
-        } else botonDerecha.setEnabled(false);
+            botonIzquierda.setEnabled(true);
+        } else botonIzquierda.setEnabled(false);
         
         ModeloListaAstronautas astronautasMision = new ModeloListaAstronautas();
         listaAstronautasMision.setModel(astronautasMision);
         astronautasMision.setElementos(astronautas);
         if (astronautasMision.getSize()>0) {
             listaAstronautasMision.setSelectedIndex(0);
-            botonIzquierda.setEnabled(true);
-        } else botonIzquierda.setEnabled(false);
+            botonDerecha.setEnabled(true);
+        } else botonDerecha.setEnabled(false);
     }
 
     /**
