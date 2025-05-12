@@ -29,6 +29,14 @@ public class GestionAstronautas {
     public java.util.List<Astronauta> obtenerAstronautas() {
         return fbd.obtenerAstronautas();
     }
+    
+    public java.util.List<Astronauta> obtenerAstronautas(Integer codigoMision) {
+        return fbd.obtenerAstronautas(codigoMision);
+    }
+    
+    public java.util.List<Astronauta> obtenerRestoAstronautas(Integer codigoMision) {
+        return fbd.obtenerRestoAstronautas(codigoMision);
+    }
 
     public java.util.List<Astronauta> buscarAstronautasPorNombre(String nombre) {
         return fbd.buscarAstronautasPorNombre(nombre);
@@ -52,6 +60,10 @@ public class GestionAstronautas {
     
     public void borrarAstronauta(int idAstronauta){
        fbd.borrarAstronauta(idAstronauta);
+    }
+    
+    public void actualizarAstronautasMisiones(Integer codigoMision, java.util.List<Astronauta> astronautas) {
+        fbd.actualizarAstronautasMisiones(codigoMision, astronautas);
     }
 
 }

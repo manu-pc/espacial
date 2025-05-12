@@ -14,9 +14,7 @@ import java.util.List;
 public class FachadaAplicacion {
     gui.FachadaGui fgui;
     baseDatos.FachadaBaseDatos fbd;
-    GestionLibros cl;
     GestionUsuarios cu;
-    GestionCategorias cg;
     GestionAstronautas ca;
     GestionAgencias cag;
     GestionPertenenciaAgencias pag;
@@ -27,9 +25,7 @@ public class FachadaAplicacion {
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
         fbd = new baseDatos.FachadaBaseDatos(this);
-        cl = new GestionLibros(fgui, fbd);
         cu = new GestionUsuarios(fgui, fbd);
-        cg = new GestionCategorias(fgui, fbd);
         ca = new GestionAstronautas(fgui, fbd);
         cag = new GestionAgencias(fgui, fbd);
         gn = new GestionNaves(fgui,fbd);
@@ -52,23 +48,6 @@ public class FachadaAplicacion {
         fgui.muestraExcepcion(e);
     }
 
-    public java.util.List<Libro> obtenerLibros(Integer id, String titulo, String isbn, String autor) {
-        return cl.obtenerLibros(id, titulo, isbn, autor);
-    };
-
-    public void visualizarLibro(Integer idLibro) {
-        cl.visualizarLibro(idLibro);
-    }
-
-    public void nuevoLibro() {
-        cl.nuevoLibro();
-    }
-
-    public void abrirVentanaCategorias() {
-        cg.abrirVentanaCategorias();
-
-    }
-
     public void abrirVentanaUsuarios() {
         cu.abrirVentanaUsuarios();
     }
@@ -88,43 +67,13 @@ public class FachadaAplicacion {
     public void abrirVentanaMisiones(Nave nave) {
         gm.abrirVentanaMisiones(nave);
     }
-
-    public Integer actualizarLibro(Libro l) {
-        return cl.actualizarLibro(l);
-    }
-
-    public void borrarLibro(Integer idLibro) {
-        cl.borrarLibro(idLibro);
-    }
-
-    public void actualizarCategoriasLibro(Integer idLibro, java.util.List<String> categorias) {
-        cl.actualizarCategoriasLibro(idLibro, categorias);
-    }
-
-    public java.util.List<Ejemplar> actualizarEjemplaresLibro(Integer idLibro, java.util.List<Ejemplar> ejemplares,
-            java.util.List<Integer> borrar) {
-        return cl.actualizarEjemplaresLibro(idLibro, ejemplares, borrar);
+    
+    public void abrirVentanaMisionesAstronautas(Integer codigoMision, java.util.List<Astronauta> astronautas, java.util.List<Astronauta> restoAstronautas) {
+        fgui.abrirVentanaMisionesAstronautas(codigoMision, astronautas, restoAstronautas);
     }
 
     public Boolean comprobarAutentificacion(String idUsuario, String clave) {
         return cu.comprobarAutentificacion(idUsuario, clave);
-    }
-
-    public java.util.List<String> obtenerNombreCategorias() {
-        java.util.List<Categoria> categorias = cg.consultarCategorias();
-        java.util.List<String> nombres = new java.util.ArrayList<>();
-        for (Categoria c : categorias) {
-            nombres.add(c.getNombre());
-        }
-        return nombres;
-    }
-
-    public void insertarCategoria(String nombre, String descripcion) {
-        cg.insertarCategoria(nombre, descripcion);
-    }
-
-    public void eliminarCategoria(String nombre) {
-        cg.eliminarCategoria(nombre);
     }
 
     public java.util.List<Usuario> obtenerUsuarios() {
@@ -215,6 +164,18 @@ public class FachadaAplicacion {
         return gm.obtenerMisiones(nave);
     }
     
+    public java.util.List<Astronauta> obtenerAstronautas(Integer codigoMision) {
+        return ca.obtenerAstronautas(codigoMision);
+    }
+    
+    public java.util.List<Astronauta> obtenerRestoAstronautas(Integer codigoMision) {
+        return ca.obtenerRestoAstronautas(codigoMision);
+    }
+    
+    public void actualizarAstronautasMisiones(Integer codigoMision, java.util.List<Astronauta> astronautas) {
+        ca.actualizarAstronautasMisiones(codigoMision, astronautas);
+    }
+    
     public void añadirMision(Mision m) {
         gm.añadirMision(m);
     }
@@ -230,7 +191,4 @@ public class FachadaAplicacion {
     public void desvincularAgencia(int idAstronauta){
         pag.desvincularAgencia(idAstronauta);
     }
-
-
-
 }

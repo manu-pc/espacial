@@ -49,14 +49,14 @@ public class DAOAstronautas extends AbstractDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("Error buscando usuario! " + e.getMessage());
+            System.out.println("Error buscando astronauta! " + e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         } finally {
             try {
                 if (stmAstronauta != null)
                     stmAstronauta.close();
             } catch (SQLException e) {
-                System.out.println("Error cerrando la transacción de búsqueda.");
+                System.out.println("Error cerrando la transacción de búsqueda de astronautas.");
             }
         }
 
@@ -85,50 +85,128 @@ public class DAOAstronautas extends AbstractDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("Error obteniendo la lista de usuarios! " + e.getMessage());
+            System.out.println("Error obteniendo la lista de astronautas! " + e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         } finally {
             try {
                 if (stmAstronautas != null)
                     stmAstronautas.close();
             } catch (SQLException e) {
-                System.out.println("Error cerrando la transacción de obtener usuarios.");
+                System.out.println("Error cerrando la transacción de obtener astronautas.");
             }
         }
 
         return astronautas;
     }
-public Astronauta buscarAstronautaPorId(int idAstronauta) {
-    Astronauta astronauta = null;
-    Connection con = null;
-    PreparedStatement stm = null;
-    ResultSet rs = null;
+    
+    public java.util.List<Astronauta> obtenerAstronautas(Integer codigoMision) {
+        java.util.List<Astronauta> astronautas = new java.util.ArrayList<>();
+        Connection con;
+        PreparedStatement stmAstronautas = null;
+        ResultSet rsAstronautas;
 
-    try {
         con = this.getConexion();
-        stm = con.prepareStatement(
-            "SELECT a.id, a.nombre, a.nacionalidad, a.fechanacimiento " +
 
-            "FROM Astronauta a " +
+        try {
+            stmAstronautas = con.prepareStatement(
+                    "SELECT a.* " +
+                            "FROM Astronauta a join ParticiparMision p on a.id = p.astronauta " +
+                            "where p.mision = ? ");
+            stmAstronautas.setInt(1, codigoMision);
 
-            "WHERE a.id = ? " +
-            "GROUP BY a.id, a.nacionalidad, a.nombre, a.fechanacimiento"
-        );
-        stm.setInt(1, idAstronauta);
-        rs = stm.executeQuery();
-            if (rs.next()) {
-                astronauta = AstronautaFactory.crearAstronautaDesdeResultSet(rs);
+            rsAstronautas = stmAstronautas.executeQuery();
+
+            while (rsAstronautas.next()) {
+                Astronauta astronauta = AstronautaFactory.crearAstronautaDesdeResultSet(rsAstronautas);
+                astronautas.add(astronauta);
             }
 
-    } catch (SQLException e) {
-        System.out.println("Error buscando usuario por ID: " + e.getMessage());
-        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-    } finally {
-        try { if (stm != null) stm.close(); } catch (SQLException ignored) {}
-    }
+        } catch (SQLException e) {
+            System.out.println("Error obteniendo la lista de astronautas! " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stmAstronautas != null)
+                    stmAstronautas.close();
+            } catch (SQLException e) {
+                System.out.println("Error cerrando la transacción de obtener astronautas.");
+            }
+        }
 
-    return astronauta;
-}
+        return astronautas;
+    }
+    
+    public java.util.List<Astronauta> obtenerRestoAstronautas(Integer codigoMision) {
+        java.util.List<Astronauta> astronautas = new java.util.ArrayList<>();
+        Connection con;
+        PreparedStatement stmAstronautas = null;
+        ResultSet rsAstronautas;
+
+        con = this.getConexion();
+
+        try {
+            stmAstronautas = con.prepareStatement(
+                    " SELECT a.* " +
+                            " FROM astronauta a " +
+                            " WHERE a.id not in ( " +
+                            " SELECT a1.id " +
+                            " FROM Astronauta a1 join ParticiparMision p on a1.id = p.astronauta " +
+                            " WHERE p.mision = ? )");
+            stmAstronautas.setInt(1, codigoMision);
+
+            rsAstronautas = stmAstronautas.executeQuery();
+
+            while (rsAstronautas.next()) {
+                Astronauta astronauta = AstronautaFactory.crearAstronautaDesdeResultSet(rsAstronautas);
+                astronautas.add(astronauta);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error obteniendo la lista de astronautas! " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                if (stmAstronautas != null)
+                    stmAstronautas.close();
+            } catch (SQLException e) {
+                System.out.println("Error cerrando la transacción de obtener astronautas.");
+            }
+        }
+
+        return astronautas;
+    }
+    
+    public Astronauta buscarAstronautaPorId(int idAstronauta) {
+        Astronauta astronauta = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = this.getConexion();
+            stm = con.prepareStatement(
+                "SELECT a.id, a.nombre, a.nacionalidad, a.fechanacimiento " +
+
+                "FROM Astronauta a " +
+
+                "WHERE a.id = ? " +
+                "GROUP BY a.id, a.nacionalidad, a.nombre, a.fechanacimiento"
+            );
+            stm.setInt(1, idAstronauta);
+            rs = stm.executeQuery();
+                if (rs.next()) {
+                    astronauta = AstronautaFactory.crearAstronautaDesdeResultSet(rs);
+                }
+
+        } catch (SQLException e) {
+            System.out.println("Error buscando astronauta por ID: " + e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try { if (stm != null) stm.close(); } catch (SQLException ignored) {}
+        }
+
+        return astronauta;
+    }
 
     public boolean obtenerAstronautaPorId(int idAstronauta) {
         boolean exito = false;
@@ -222,8 +300,6 @@ public Astronauta buscarAstronautaPorId(int idAstronauta) {
         }
     }
 
-
-    
     public void borrarAstronauta(int IdAstronauta){
         Connection con;
         PreparedStatement stmAstronauta=null;
@@ -316,8 +392,52 @@ public Astronauta buscarAstronautaPorId(int idAstronauta) {
             }
         }
     }
+    
+    public void borrarAstronautasMisiones(Integer codigoMision) {
+        Connection con;
+        PreparedStatement stmAstronauta=null;
 
+        con=super.getConexion();
 
+        try {
+        stmAstronauta=con.prepareStatement("delete from ParticiparMision where mision = ?");
+        stmAstronauta.setInt(1, codigoMision);
+        stmAstronauta.executeUpdate();
 
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmAstronauta.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
+    
+    public void actualizarAstronautasMisiones(Integer codigoMision, java.util.List<Astronauta> astronautas) {
+        Connection con;
+        PreparedStatement stmAstronauta=null;
+
+        con=super.getConexion();
+
+        try {
+            stmAstronauta = con.prepareStatement(
+                "INSERT INTO ParticiparMision(mision, astronauta) VALUES (?, ?)"
+            );
+
+            for (Astronauta astronauta : astronautas) {
+                stmAstronauta.setInt(1, codigoMision);
+                stmAstronauta.setInt(2, astronauta.getIdAstronauta());
+                stmAstronauta.addBatch();
+            }
+
+            stmAstronauta.executeBatch();
+            stmAstronauta.close();
+
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmAstronauta.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+    }
 
 }

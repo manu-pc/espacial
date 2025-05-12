@@ -161,6 +161,14 @@ public class FachadaBaseDatos {
     public java.util.List<Astronauta> obtenerAstronautas() {
         return daoAstronautas.obtenerAstronautas();
     }
+    
+    public java.util.List<Astronauta> obtenerAstronautas(Integer codigoMision) {
+        return daoAstronautas.obtenerAstronautas(codigoMision);
+    }
+    
+    public java.util.List<Astronauta> obtenerRestoAstronautas(Integer codigoMision) {
+        return daoAstronautas.obtenerRestoAstronautas(codigoMision);
+    }
 
     public java.util.List<Astronauta> buscarAstronautasPorNombre(String nombre) {
         return daoAstronautas.buscarAstronautasPorNombre(nombre);
@@ -180,6 +188,12 @@ public class FachadaBaseDatos {
     public void modificarAstronauta(Astronauta astronauta, int idAgenciaActual, int idAgenciaNueva){
        daoAstronautas.modificarAstronauta(astronauta, idAgenciaActual, idAgenciaNueva);
     }
+            
+    public void actualizarAstronautasMisiones(Integer codigoMision, java.util.List<Astronauta> astronautas) {
+        daoAstronautas.borrarAstronautasMisiones(codigoMision);
+        daoAstronautas.actualizarAstronautasMisiones(codigoMision, astronautas);
+    }
+    
     public void borrarAstronauta(int idAstronauta){
         daoAstronautas.borrarAstronauta(idAstronauta);
     }

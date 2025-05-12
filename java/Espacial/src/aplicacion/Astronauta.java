@@ -34,6 +34,11 @@ public class Astronauta {
 
        return this.fecha;
    }
+   
+   @Override
+   public String toString() {
+       return this.nombre;
+   }
 
 
 }

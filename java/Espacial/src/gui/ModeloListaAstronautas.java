@@ -5,43 +5,45 @@
 
 package gui;
 
+import aplicacion.Astronauta;
+
 /**
  *
  * @author basesdatos
  */
-public class ModeloListaStrings extends javax.swing.AbstractListModel {
-    java.util.List<String> elementos;
+public class ModeloListaAstronautas extends javax.swing.AbstractListModel {
+    java.util.List<Astronauta> elementos;
 
-    public ModeloListaStrings(){
-        this.elementos=new java.util.ArrayList<String>();
+    public ModeloListaAstronautas(){
+        this.elementos=new java.util.ArrayList<>();
     }
 
     public int getSize(){
         return this.elementos.size();
     }
 
-    public String getElementAt(int i){
+    public Astronauta getElementAt(int i){
         return elementos.get(i);
     }
 
-    public void nuevoElemento(String e){
+    public void nuevoElemento(Astronauta e){
         this.elementos.add(e);
         fireIntervalAdded(this, this.elementos.size()-1, this.elementos.size()-1);
     }
 
     public void borrarElemento(int i){
         String e;
-        e=this.elementos.get(i);
+        e=this.elementos.get(i).toString();
         this.elementos.remove(i);
         fireIntervalRemoved(this,i,i);
     }
 
-    public void setElementos(java.util.List<String> elementos){
+    public void setElementos(java.util.List<Astronauta> elementos){
         this.elementos=elementos;
         fireContentsChanged(this, 0, elementos.size()-1);
     }
 
-    public java.util.List<String> getElementos(){
+    public java.util.List<Astronauta> getElementos(){
         return this.elementos;
     }
 }

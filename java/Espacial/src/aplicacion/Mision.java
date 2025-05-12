@@ -56,5 +56,4 @@ public class Mision {
     public String getObjetivo(){
         return this.objetivo;
     }
-
 }
