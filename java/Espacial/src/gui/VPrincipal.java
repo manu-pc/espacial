@@ -246,15 +246,10 @@ public class VPrincipal extends javax.swing.JFrame {
 
     private void btnEditarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLibroActionPerformed
         // TODO add your handling code here:
-        ModeloTablaLibros mtl = (ModeloTablaLibros) tablaLibros.getModel();
-        int idLibro;
-        idLibro = mtl.obtenerLibro(tablaLibros.getSelectedRow()).getIdLibro();
-        fa.visualizarLibro(idLibro);
     }//GEN-LAST:event_btnEditarLibroActionPerformed
 
     private void btnNuevoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoLibroActionPerformed
         // TODO add your handling code here:
-        fa.nuevoLibro();
     }//GEN-LAST:event_btnNuevoLibroActionPerformed
 
     private void gestionUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionUsuariosActionPerformed
@@ -310,14 +305,5 @@ public class VPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void buscarLibros(){
-        ModeloTablaLibros m;
-
-        m=(ModeloTablaLibros) tablaLibros.getModel();
-        m.setFilas(fa.obtenerLibros((buscaId.getText().isEmpty())?null:Integer.parseInt(buscaId.getText()), buscaTitulo.getText(), buscaIsbn.getText(), buscaAutor.getText()));
-        if (m.getRowCount() > 0) {
-            tablaLibros.setRowSelectionInterval(0, 0);
-            btnEditarLibro.setEnabled(true);
-        }
-        else btnEditarLibro.setEnabled(false);
     }
 }

@@ -4,9 +4,9 @@
  */
 package gui;
 
-import aplicacion.Categoria;
-import aplicacion.Libro;
+import aplicacion.Astronauta;
 import aplicacion.Ejemplar;
+import aplicacion.Mision;
 import aplicacion.Nave;
 
 
@@ -33,36 +33,12 @@ public class FachadaGui {
       va.setVisible(true);
     }
     
-   
-    public void visualizaLibro(Libro l, java.util.List<String>restoCategorias){
-        VLibro vl;
-        java.util.List<String> categorias = new java.util.ArrayList<String>();
-        
-        for(Categoria c:l.getCategorias()){
-            categorias.add(c.getNombre());
-        }
-        
-        vl=new VLibro(vp, true, fa, l, categorias, restoCategorias);
-        vl.setVisible(true);
-    }
-    
-    public void nuevoLibro(java.util.List<String>  restoCategorias){
-        VLibro vl;
-        vl=new VLibro(vp, true, fa, restoCategorias);
-        vl.setVisible(true);
-    }
-    
     public void abrirVentanaUsuarios(){
         VUsuario ventanaUsuarios = new VUsuario(vp, true, fa);
         ventanaUsuarios.setVisible(true);
         ventanaUsuarios.setLocationRelativeTo(null);
     }
     
-    public void abrirVentanaCategorias(){
-        VCategoria ventanaCategorias = new VCategoria(vp, true, fa);
-        ventanaCategorias.setVisible(true);
-        ventanaCategorias.setLocationRelativeTo(null);
-    }
     public void abrirVentanaHistorialAgencias(int idAstronauta){
         VHistorialAgencias ventanaHistorial = new VHistorialAgencias(vp, true, fa, idAstronauta);
         ventanaHistorial.setVisible(true);
@@ -94,7 +70,13 @@ public class FachadaGui {
         VMision ventanaMisiones = new VMision(vp, true, fa, nave);
         ventanaMisiones.setVisible(true);
         ventanaMisiones.setLocationRelativeTo(null);
-    }  
+    }
+    
+    public void abrirVentanaMisionesAstronautas(Integer codigoMision, java.util.List<Astronauta> astronautas, java.util.List<Astronauta> restoAstronautas) {
+        VMisionesAstronautas ventanaMisionesAstronautas = new VMisionesAstronautas(vp, true, fa, codigoMision, astronautas, restoAstronautas);
+        ventanaMisionesAstronautas.setVisible(true);
+        ventanaMisionesAstronautas.setLocationRelativeTo(null);
+    }
     public void nuevoPrestamo(Ejemplar ejemplar, java.awt.Dialog parent){
 
     }
