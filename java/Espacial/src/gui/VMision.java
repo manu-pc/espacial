@@ -4,6 +4,7 @@
  */
 package gui;
 
+import aplicacion.Astronauta;
 import aplicacion.Mision;
 import aplicacion.Nave;
 import java.time.LocalDate;
@@ -68,6 +69,9 @@ public class VMision extends javax.swing.JDialog {
         objetivoTextField = new javax.swing.JTextField();
         objetivoLabel = new javax.swing.JLabel();
         naveTextField = new javax.swing.JTextField();
+        astronautasLabel = new javax.swing.JLabel();
+        numeroAstronautasTextField = new javax.swing.JTextField();
+        modificarAstronautasBoton = new javax.swing.JButton();
         panelBotones = new javax.swing.JPanel();
         nuevoBoton = new javax.swing.JButton();
         modificarBoton = new javax.swing.JButton();
@@ -92,6 +96,15 @@ public class VMision extends javax.swing.JDialog {
 
         objetivoLabel.setText("Objetivo");
 
+        astronautasLabel.setText("Nº de astronautas");
+
+        modificarAstronautasBoton.setText("Añadir/Retirar astronautas");
+        modificarAstronautasBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarAstronautasBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelTextoLayout = new javax.swing.GroupLayout(panelTexto);
         panelTexto.setLayout(panelTextoLayout);
         panelTextoLayout.setHorizontalGroup(
@@ -99,6 +112,7 @@ public class VMision extends javax.swing.JDialog {
             .addGroup(panelTextoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(panelTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(astronautasLabel)
                     .addComponent(codigoLabel)
                     .addComponent(objetivoLabel)
                     .addComponent(descripcionLabel))
@@ -126,7 +140,12 @@ public class VMision extends javax.swing.JDialog {
                         .addGroup(panelTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(fechaFinTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                             .addComponent(fechaInicioTextField)))
-                    .addComponent(descripcionTextField))
+                    .addComponent(descripcionTextField)
+                    .addGroup(panelTextoLayout.createSequentialGroup()
+                        .addComponent(numeroAstronautasTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)
+                        .addComponent(modificarAstronautasBoton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelTextoLayout.setVerticalGroup(
@@ -151,10 +170,15 @@ public class VMision extends javax.swing.JDialog {
                         .addComponent(fechaFinLabel)
                         .addComponent(fechaFinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
-                .addGroup(panelTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descripcionLabel)
-                    .addComponent(descripcionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(descripcionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(descripcionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(astronautasLabel)
+                    .addComponent(numeroAstronautasTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificarAstronautasBoton))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         nuevoBoton.setText("Nuevo");
@@ -227,10 +251,10 @@ public class VMision extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrollPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+                    .addComponent(scrollPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(panelTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,11 +335,21 @@ public class VMision extends javax.swing.JDialog {
         descripcionTextField.setText(selectedMision.getDescripcion());
         naveTextField.setText(selectedMision.getNave().toString());
         objetivoTextField.setText(selectedMision.getObjetivo());
+        numeroAstronautasTextField.setText(String.valueOf(fa.obtenerAstronautas(selectedMision.getCodigo()).size()));
         modificarBoton.setEnabled(true);
         borrarBoton.setEnabled(true);
     }//GEN-LAST:event_tablaMisionesMouseClicked
 
+    private void modificarAstronautasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarAstronautasBotonActionPerformed
+        Integer codigoMision = Integer.parseInt(codigoTextField.getText());
+        java.util.List<Astronauta> astronautasMision = fa.obtenerAstronautas(codigoMision);
+        java.util.List<Astronauta> astronautasDisponibles = fa.obtenerRestoAstronautas(codigoMision);
+        
+        fa.abrirVentanaMisionesAstronautas(codigoMision, astronautasMision, astronautasDisponibles);
+    }//GEN-LAST:event_modificarAstronautasBotonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel astronautasLabel;
     private javax.swing.JButton borrarBoton;
     private javax.swing.JLabel codigoLabel;
     private javax.swing.JTextField codigoTextField;
@@ -325,12 +359,14 @@ public class VMision extends javax.swing.JDialog {
     private javax.swing.JTextField fechaFinTextField;
     private javax.swing.JLabel fechaInicioLabel;
     private javax.swing.JTextField fechaInicioTextField;
+    private javax.swing.JButton modificarAstronautasBoton;
     private javax.swing.JButton modificarBoton;
     private javax.swing.JLabel naveLabel;
     private javax.swing.JTextField naveTextField;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JButton nuevoBoton;
+    private javax.swing.JTextField numeroAstronautasTextField;
     private javax.swing.JLabel objetivoLabel;
     private javax.swing.JTextField objetivoTextField;
     private javax.swing.JPanel panelBotones;
@@ -348,7 +384,7 @@ public class VMision extends javax.swing.JDialog {
     
     if (m.getRowCount() > 0) {
             tablaMisiones.setRowSelectionInterval(0, 0);
-            Mision mision = m.obtenerMision(tablaMisiones.getSelectedRowCount() );
+            Mision mision = m.obtenerMision(tablaMisiones.getSelectedRowCount() - 1);
             codigoTextField.setText(String.valueOf(mision.getCodigo()));
             nombreTextField.setText(mision.getNombre());
             fechaInicioTextField.setText(mision.getFechaInicio().toString());
@@ -358,10 +394,10 @@ public class VMision extends javax.swing.JDialog {
             else {
                 fechaFinTextField.setText(mision.getFechaFin().toString());
             }
-            fechaFinTextField.setText(mision.getFechaFin().toString());
             descripcionTextField.setText(mision.getDescripcion());
             naveTextField.setText(mision.getNave().toString());
             objetivoTextField.setText(mision.getObjetivo());
+            numeroAstronautasTextField.setText(String.valueOf(fa.obtenerAstronautas(mision.getCodigo()).size()));
             modificarBoton.setEnabled(true);
             borrarBoton.setEnabled(true);
         }
@@ -394,6 +430,7 @@ public class VMision extends javax.swing.JDialog {
             descripcionTextField.setText(mision.getDescripcion());
             naveTextField.setText(mision.getNave().toString());
             objetivoTextField.setText(mision.getObjetivo());
+            numeroAstronautasTextField.setText(String.valueOf(fa.obtenerAstronautas(mision.getCodigo()).size()));
             modificarBoton.setEnabled(true);
             borrarBoton.setEnabled(true);
         }
