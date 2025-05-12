@@ -30,6 +30,12 @@ public class VGalaxia extends javax.swing.JDialog {
                 colocarInformacionSeleccionada(m);
             }
         });
+        
+        if (!fa.getSudo()){
+            nuevoButton.setVisible(false);
+            guardarButtn.setVisible(false);
+            borrarButtn.setVisible(false);
+        }
     }
 
     /**
@@ -116,6 +122,11 @@ public class VGalaxia extends javax.swing.JDialog {
         });
 
         salirButtn.setText("Salir");
+        salirButtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirButtnActionPerformed(evt);
+            }
+        });
 
         nombreGalaxiaModifText.setEditable(false);
 
@@ -249,6 +260,10 @@ public class VGalaxia extends javax.swing.JDialog {
     private void tiposGalaxiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiposGalaxiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tiposGalaxiaActionPerformed
+
+    private void salirButtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_salirButtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrarButtn;

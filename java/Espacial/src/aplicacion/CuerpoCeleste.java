@@ -18,6 +18,7 @@ public class CuerpoCeleste {
     private float temperaturaSuperficie;
     private String descripcion;
     private String galaxia;
+    private String orbitaA = null; //hace referencia al nombre de otro CUerpoCeleste
 
    public CuerpoCeleste (String nombreCuerpoCeleste, TipoCuerpoCeleste tipo, String ubicacion, Boolean habitabilidad, float masa, float tamanho, float temperaturaSuperficie, String descripcion, String galaxia){
     this.nombreCuerpoCeleste=nombreCuerpoCeleste;
@@ -29,6 +30,20 @@ public class CuerpoCeleste {
     this.temperaturaSuperficie=temperaturaSuperficie;
     this.descripcion=descripcion;
     this.galaxia=galaxia;
+   }
+   
+   public CuerpoCeleste (String nombreCuerpoCeleste, TipoCuerpoCeleste tipo, String ubicacion, Boolean habitabilidad, float masa, float tamanho, float temperaturaSuperficie, String descripcion, String galaxia, String orbitaA){
+    this.nombreCuerpoCeleste=nombreCuerpoCeleste;
+    this.tipo=tipo;
+    this.ubicacion=ubicacion;
+    this.habitabilidad=habitabilidad;
+    this.masa=masa;
+    this.tamanho=tamanho;
+    this.temperaturaSuperficie=temperaturaSuperficie;
+    this.descripcion=descripcion;
+    this.galaxia=galaxia;
+    this.orbitaA = orbitaA;
+    System.out.println(this.orbitaA);
    }
    
 public String getNombreCuerpoCeleste() {
@@ -65,6 +80,19 @@ public String getNombreCuerpoCeleste() {
 
     public String getGalaxia() {
         return galaxia;
+    }
+    
+    @Override
+    public String toString(){
+        return nombreCuerpoCeleste;
+    }
+    
+    public String getOrbitaA(){
+        return orbitaA;
+    }
+    
+    public void setOrbitaA(String cuerpo){
+        this.orbitaA = cuerpo;
     }
     
 

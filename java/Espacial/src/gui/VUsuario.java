@@ -21,15 +21,16 @@ public class VUsuario extends javax.swing.JDialog {
     private aplicacion.FachadaAplicacion fa;
     private Usuario miUsuario = null;
     private boolean avisado = false;
+    private boolean modoRegistrar = false;
 
     /**
      * Creates new form VUsuario
      */
-    public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa) {
+    public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion fa, boolean registrar) {
         super(padre, modal);
         this.fa = fa;
         initComponents();
-
+        if (!registrar){
         cargarUsuarios();
 
         tablaUsuarios_af.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -68,7 +69,41 @@ public class VUsuario extends javax.swing.JDialog {
                     actualizarCampos();
                 }
             }
-        });
+        });}
+        else {
+            this.modoRegistrar = true;
+            this.setTitle("Registro de usuario");
+            this.setSize(731, 250);
+            // se se creou unha ventana do tipo 'registrar usuario', non se poden ver os usuarios da tabla
+            panelBuscaAf.setVisible(false);
+            panelBuscaAd.setVisible(false);
+            panelBuscaEs.setVisible(false);
+            panelBuscaCi.setVisible(false);
+            
+            panelTablaAf.setVisible(false);
+            panelTablaAd.setVisible(false);
+            panelTablaEs.setVisible(false);
+            panelTablaCi.setVisible(false);
+            
+            
+            botonBorrar_af.setVisible(false);
+            botonBorrar_ad.setVisible(false);
+            botonBorrar_ci.setVisible(false);
+            botonBorrar_es.setVisible(false);
+            
+            botonColaboracion.setVisible(false); // teño que supoñer que esto levaría a problemas con un usuario en proceso de crear
+            
+            jTabbedPane1.remove(1); // e evidentemente non podes registrarte como administrador. para ter cuenta de admin ten que darcha un admin
+
+            // para evitar que cerrando a ventana de 'registrar' o usuario se salte a autenticacion
+            this.setDefaultCloseOperation(javax.swing.JDialog.DISPOSE_ON_CLOSE);
+            
+            
+
+            
+
+            
+        }
         
         
     }
@@ -170,10 +205,10 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         botonGuardar_af = new javax.swing.JButton();
         botonBorrar_af = new javax.swing.JButton();
         botonSalir_af = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        panelTablaAf = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios_af = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        panelBuscaAf = new javax.swing.JPanel();
         etiqueta_id_af = new javax.swing.JLabel();
         campo_id_af = new javax.swing.JTextField();
         boton_buscar_af = new javax.swing.JButton();
@@ -194,10 +229,10 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         botonGuardar_ad = new javax.swing.JButton();
         botonBorrar_ad = new javax.swing.JButton();
         botonSalir_ad = new javax.swing.JButton();
-        jPanel17 = new javax.swing.JPanel();
+        panelTablaAd = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaUsuarios_ad = new javax.swing.JTable();
-        jPanel18 = new javax.swing.JPanel();
+        panelBuscaAd = new javax.swing.JPanel();
         etiqueta_id_ad = new javax.swing.JLabel();
         campo_id_ad = new javax.swing.JTextField();
         boton_buscar_ad = new javax.swing.JButton();
@@ -220,10 +255,10 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         botonGuardar_es = new javax.swing.JButton();
         botonBorrar_es = new javax.swing.JButton();
         botonSalir_es = new javax.swing.JButton();
-        jPanel21 = new javax.swing.JPanel();
+        panelTablaEs = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tablaUsuarios_es = new javax.swing.JTable();
-        jPanel22 = new javax.swing.JPanel();
+        panelBuscaEs = new javax.swing.JPanel();
         etiqueta_id_es = new javax.swing.JLabel();
         campo_id_es = new javax.swing.JTextField();
         boton_buscar_es = new javax.swing.JButton();
@@ -243,12 +278,12 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         botonColaboracion = new javax.swing.JButton();
         botonNuevo5 = new javax.swing.JButton();
         botonGuardar5 = new javax.swing.JButton();
-        botonBorrar5 = new javax.swing.JButton();
+        botonBorrar_ci = new javax.swing.JButton();
         botonSalir5 = new javax.swing.JButton();
-        jPanel25 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        panelTablaCi = new javax.swing.JPanel();
+        panelTabla = new javax.swing.JScrollPane();
         tablaUsuarios_ci = new javax.swing.JTable();
-        jPanel26 = new javax.swing.JPanel();
+        panelBuscaCi = new javax.swing.JPanel();
         etiqueta_id_ci = new javax.swing.JLabel();
         campo_id_ci = new javax.swing.JTextField();
         boton_buscar_ci = new javax.swing.JButton();
@@ -311,7 +346,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                         .addGap(18, 18, 18)
                         .addComponent(etiqueta_ed_tipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selec_ed_tier_af, 0, 161, Short.MAX_VALUE))
+                        .addComponent(selec_ed_tier_af, 0, 292, Short.MAX_VALUE))
                     .addComponent(campo_ed_email_af))
                 .addContainerGap())
         );
@@ -426,15 +461,15 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             tablaUsuarios_af.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelTablaAfLayout = new javax.swing.GroupLayout(panelTablaAf);
+        panelTablaAf.setLayout(panelTablaAfLayout);
+        panelTablaAfLayout.setHorizontalGroup(
+            panelTablaAfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        panelTablaAfLayout.setVerticalGroup(
+            panelTablaAfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTablaAfLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -448,11 +483,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelBuscaAfLayout = new javax.swing.GroupLayout(panelBuscaAf);
+        panelBuscaAf.setLayout(panelBuscaAfLayout);
+        panelBuscaAfLayout.setHorizontalGroup(
+            panelBuscaAfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBuscaAfLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(etiqueta_id_af)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -460,11 +495,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boton_buscar_af))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        panelBuscaAfLayout.setVerticalGroup(
+            panelBuscaAfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscaAfLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBuscaAfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_id_af)
                     .addComponent(campo_id_af, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_af))
@@ -477,24 +512,24 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AficionadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelBuscaAf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
             .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AficionadoLayout.createSequentialGroup()
-                    .addContainerGap(74, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(69, Short.MAX_VALUE)))
+                .addGroup(AficionadoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
             .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AficionadoLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTablaAf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         AficionadoLayout.setVerticalGroup(
             AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AficionadoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBuscaAf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(411, Short.MAX_VALUE))
             .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AficionadoLayout.createSequentialGroup()
@@ -503,7 +538,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(AficionadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AficionadoLayout.createSequentialGroup()
                     .addGap(90, 90, 90)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTablaAf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(231, Short.MAX_VALUE)))
         );
 
@@ -550,15 +585,15 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                         .addGap(18, 18, 18)
                         .addComponent(etiqueta_ed_clave3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campo_ed_clave_ad, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(etiqueta_ed_tipo3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selec_ed_tier_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(selec_ed_tier_ad, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(campo_ed_email_ad))
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -623,8 +658,8 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addComponent(botonSalir_ad)
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
@@ -675,15 +710,15 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             tablaUsuarios_ad.getColumnModel().getColumn(3).setHeaderValue("Rango");
         }
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelTablaAdLayout = new javax.swing.GroupLayout(panelTablaAd);
+        panelTablaAd.setLayout(panelTablaAdLayout);
+        panelTablaAdLayout.setHorizontalGroup(
+            panelTablaAdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+        panelTablaAdLayout.setVerticalGroup(
+            panelTablaAdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTablaAdLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -697,11 +732,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             }
         });
 
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelBuscaAdLayout = new javax.swing.GroupLayout(panelBuscaAd);
+        panelBuscaAd.setLayout(panelBuscaAdLayout);
+        panelBuscaAdLayout.setHorizontalGroup(
+            panelBuscaAdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBuscaAdLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(etiqueta_id_ad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -709,11 +744,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boton_buscar_ad))
         );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+        panelBuscaAdLayout.setVerticalGroup(
+            panelBuscaAdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscaAdLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBuscaAdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_id_ad)
                     .addComponent(campo_id_ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_ad))
@@ -726,24 +761,24 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdministradoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelBuscaAd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
-                    .addContainerGap(48, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(46, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTablaAd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         AdministradoresLayout.setVerticalGroup(
             AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdministradoresLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBuscaAd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(411, Short.MAX_VALUE))
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdministradoresLayout.createSequentialGroup()
@@ -752,7 +787,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(AdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AdministradoresLayout.createSequentialGroup()
                     .addGap(90, 90, 90)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTablaAd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(231, Short.MAX_VALUE)))
         );
 
@@ -806,7 +841,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                         .addComponent(etiqueta_ed_clave4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campo_ed_email_es, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(campo_ed_email_es, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                     .addComponent(campo_ed_clave_es))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -931,17 +966,17 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             tablaUsuarios_es.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelTablaEsLayout = new javax.swing.GroupLayout(panelTablaEs);
+        panelTablaEs.setLayout(panelTablaEsLayout);
+        panelTablaEsLayout.setHorizontalGroup(
+            panelTablaEsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTablaEsLayout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 14, Short.MAX_VALUE))
         );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
+        panelTablaEsLayout.setVerticalGroup(
+            panelTablaEsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTablaEsLayout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 44, Short.MAX_VALUE))
         );
@@ -955,11 +990,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             }
         });
 
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelBuscaEsLayout = new javax.swing.GroupLayout(panelBuscaEs);
+        panelBuscaEs.setLayout(panelBuscaEsLayout);
+        panelBuscaEsLayout.setHorizontalGroup(
+            panelBuscaEsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBuscaEsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(etiqueta_id_es)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -967,11 +1002,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boton_buscar_es))
         );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+        panelBuscaEsLayout.setVerticalGroup(
+            panelBuscaEsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscaEsLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBuscaEsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_id_es)
                     .addComponent(campo_id_es, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_es))
@@ -986,25 +1021,25 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addContainerGap()
                 .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
-                        .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelBuscaEs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelTablaEs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
             .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
-                    .addContainerGap(65, Short.MAX_VALUE)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(58, Short.MAX_VALUE)))
+                .addGroup(EstudiantesLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         EstudiantesLayout.setVerticalGroup(
             EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EstudiantesLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBuscaEs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelTablaEs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(179, Short.MAX_VALUE))
             .addGroup(EstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstudiantesLayout.createSequentialGroup()
@@ -1060,7 +1095,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                         .addComponent(etiqueta_ed_clave5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campo_ed_email_ci, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(campo_ed_email_ci, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                     .addComponent(campo_ed_clave_ci))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1106,10 +1141,10 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             }
         });
 
-        botonBorrar5.setText("Borrar");
-        botonBorrar5.addActionListener(new java.awt.event.ActionListener() {
+        botonBorrar_ci.setText("Borrar");
+        botonBorrar_ci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBorrar5ActionPerformed(evt);
+                botonBorrar_ciActionPerformed(evt);
             }
         });
 
@@ -1134,7 +1169,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonGuardar5)
                         .addGap(12, 12, 12)
-                        .addComponent(botonBorrar5)
+                        .addComponent(botonBorrar_ci)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonSalir5)))
                 .addGap(0, 0, 0))
@@ -1147,7 +1182,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonNuevo5)
                     .addComponent(botonGuardar5)
-                    .addComponent(botonBorrar5)
+                    .addComponent(botonBorrar_ci)
                     .addComponent(botonSalir5))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -1175,7 +1210,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(tablaUsuarios_ci);
+        panelTabla.setViewportView(tablaUsuarios_ci);
         if (tablaUsuarios_ci.getColumnModel().getColumnCount() > 0) {
             tablaUsuarios_ci.getColumnModel().getColumn(0).setResizable(false);
             tablaUsuarios_ci.getColumnModel().getColumn(1).setResizable(false);
@@ -1183,17 +1218,17 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             tablaUsuarios_ci.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelTablaCiLayout = new javax.swing.GroupLayout(panelTablaCi);
+        panelTablaCi.setLayout(panelTablaCiLayout);
+        panelTablaCiLayout.setHorizontalGroup(
+            panelTablaCiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+        panelTablaCiLayout.setVerticalGroup(
+            panelTablaCiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTablaCiLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         etiqueta_id_ci.setText("ID:");
@@ -1205,11 +1240,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             }
         });
 
-        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel26Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelBuscaCiLayout = new javax.swing.GroupLayout(panelBuscaCi);
+        panelBuscaCi.setLayout(panelBuscaCiLayout);
+        panelBuscaCiLayout.setHorizontalGroup(
+            panelBuscaCiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBuscaCiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(etiqueta_id_ci)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1217,11 +1252,11 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boton_buscar_ci))
         );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+        panelBuscaCiLayout.setVerticalGroup(
+            panelBuscaCiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscaCiLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBuscaCiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqueta_id_ci)
                     .addComponent(campo_id_ci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_buscar_ci))
@@ -1234,24 +1269,24 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CientíficosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelBuscaCi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
-                    .addContainerGap(65, Short.MAX_VALUE)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(58, Short.MAX_VALUE)))
+                .addGroup(CientíficosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTablaCi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         CientíficosLayout.setVerticalGroup(
             CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CientíficosLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBuscaCi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(411, Short.MAX_VALUE))
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CientíficosLayout.createSequentialGroup()
@@ -1260,7 +1295,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             .addGroup(CientíficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CientíficosLayout.createSequentialGroup()
                     .addGap(90, 90, 90)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTablaCi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(231, Short.MAX_VALUE)))
         );
 
@@ -1304,139 +1339,139 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
        vaciarCampos();
     }//GEN-LAST:event_botonNuevo5ActionPerformed
 
-    private void botonGuardar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_esActionPerformed
-        int fila = tablaUsuarios_es.getSelectedRow();
-        ModeloTablaEstudiantes m = (ModeloTablaEstudiantes) tablaUsuarios_es.getModel();
-        String id = campo_ed_id_es.getText().trim();
-        String clave = campo_ed_clave_es.getText().trim();
-        String nombre = campo_ed_nombre_es.getText().trim();
-        String email = campo_ed_email_es.getText().trim();
-        String centro = campo_ed_centro_es.getText().trim();
-        String num = campo_ed_num_es.getText().trim();
-        int num_est;
+    
+    private void guardarUsuario(
+    javax.swing.JTable tabla,
+    String id,
+    String clave,
+    String nombre,
+    String email,
+    String campoExtra1,  // puede ser centro o tier, según el tipo
+    String campoExtra2,  // solo se usa para estudiante: num_est
+    String tipoUsuario    // "Estudiante", "Aficionado", etc.
+) {
+    int fila = tabla.getSelectedRow();
+    String id_previo = null;
+    if (fila != -1) {
+        id_previo = (String) tabla.getModel().getValueAt(fila, 0);
+    }
+
+    if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || campoExtra1.isEmpty()) {
+        fa.muestraExcepcion("Por favor, complete todos os campos.");
+        return;
+    }
+
+    // Validación especial para estudiantes
+    int num_est = -1;
+    if ("Estudiante".equals(tipoUsuario)) {
         try {
-            num_est = Integer.parseInt(num);
+            num_est = Integer.parseInt(campoExtra2);
         } catch (NumberFormatException e) {
             fa.muestraExcepcion("El número_estudante debe ser un valor numérico.");
             return;
         }
-        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
-            fa.muestraExcepcion("Por favor, complete todos os campos.");
+    }
+
+    if (fila == -1) { // Crear
+        if (clave.isEmpty()) {
+            fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
             return;
         }
-        if (fila==-1){
-            if (!clave.isEmpty())
-                fa.crearEstudiante(id, clave, nombre, email, centro, num_est);
-            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
+        switch (tipoUsuario) {
+            case "Estudiante":
+                fa.crearEstudiante(id, clave, nombre, email, campoExtra1, num_est);
+                break;
+            case "Aficionado":
+                fa.crearAficionado(id, clave, nombre, email, campoExtra1);
+                break;
+            case "Administrador":
+                fa.crearAdministrador(id, clave, nombre, email, campoExtra1);
+                break;
+            case "Cientifico":
+                fa.crearCientifico(id, clave, nombre, email, campoExtra1);
+                break;
         }
-        else {
-            String id_previo = (String) m.getValueAt(fila, 0);
-            fa.modificarEstudiante(id_previo, id, clave, nombre, email, centro, num_est);
-            if (miUsuario!=null && !id_previo.equals(id)){
-               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
-               this.dispose();
-               fa.iniciaInterfazUsuario();
-               return;
-            }
+    } else { // Modificar
+        switch (tipoUsuario) {
+            case "Estudiante":
+                fa.modificarEstudiante(id_previo, id, clave, nombre, email, campoExtra1, num_est);
+                break;
+            case "Aficionado":
+                fa.modificarAficionado(id_previo, id, clave, nombre, email, campoExtra1);
+                break;
+            case "Administrador":
+                fa.modificarAdministrador(id_previo, id, clave, nombre, email, campoExtra1);
+                break;
+            case "Cientifico":
+                fa.modificarCientifico(id_previo, id, clave, nombre, email, campoExtra1);
+                break;
         }
-            cargarUsuarios();
+        if (miUsuario != null && !id_previo.equals(id)) {
+            fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
+            this.dispose();
+            fa.iniciaInterfazUsuario();
+            return;
+        }
+    }
 
+    if (!modoRegistrar) cargarUsuarios();
+    else {
+        fa.muestraMensaje("Ha creado su cuenta! Por favor, inicie sesión con sus nuevas credenciales.");
+        this.dispose();
+    }
+}
 
+    private void botonGuardar_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_esActionPerformed
+     guardarUsuario(
+        tablaUsuarios_es,
+        campo_ed_id_es.getText().trim(),
+        campo_ed_clave_es.getText().trim(),
+        campo_ed_nombre_es.getText().trim(),
+        campo_ed_email_es.getText().trim(),
+        campo_ed_centro_es.getText().trim(),
+        campo_ed_num_es.getText().trim(),
+        "Estudiante"
+    );
     }//GEN-LAST:event_botonGuardar_esActionPerformed
 
     private void botonGuardar_afActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_afActionPerformed
-        int fila = tablaUsuarios_af.getSelectedRow();
-                ModeloTablaAficionados m = (ModeloTablaAficionados) tablaUsuarios_af.getModel();
-        String id = campo_ed_id_af.getText().trim();
-        String clave = campo_ed_clave_af.getText().trim();
-        String nombre = campo_ed_nombre_af.getText().trim();
-        String email = campo_ed_email_af.getText().trim();
-        String tier = (String) selec_ed_tier_af.getSelectedItem();
-        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
-            fa.muestraExcepcion("Por favor, complete todos os campos.");
-            return;
-        }
-        if (fila==-1){
-            if (!clave.isEmpty())
-                fa.crearAficionado(id, clave, nombre, email, tier);
-            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
-        }
-        else {
-                    String id_previo = (String) m.getValueAt(fila, 0);
-
-            fa.modificarAficionado(id_previo, id, clave, nombre, email, tier);
-                        if (miUsuario!=null && !id_previo.equals(id)){
-               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
-               this.dispose();
-               fa.iniciaInterfazUsuario();
-               return;
-            }
-        }
-            cargarUsuarios();
-
+    guardarUsuario(
+        tablaUsuarios_af,
+        campo_ed_id_af.getText().trim(),
+        campo_ed_clave_af.getText().trim(),
+        campo_ed_nombre_af.getText().trim(),
+        campo_ed_email_af.getText().trim(),
+        (String) selec_ed_tier_af.getSelectedItem(),
+        "", // sobra neste tipo de usuario
+        "Aficionado"
+    );
     }//GEN-LAST:event_botonGuardar_afActionPerformed
 
     private void botonGuardar_adActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar_adActionPerformed
-        int fila = tablaUsuarios_ad.getSelectedRow();
-                        ModeloTablaAdministradores m = (ModeloTablaAdministradores) tablaUsuarios_ad.getModel();
-        String id = campo_ed_id_ad.getText().trim();
-        String clave = campo_ed_clave_ad.getText().trim();
-        String nombre = campo_ed_nombre_ad.getText().trim();
-        String email = campo_ed_email_ad.getText().trim();
-        String tier = (String) selec_ed_tier_ad.getSelectedItem();
-        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || tier.isEmpty()) {
-            fa.muestraExcepcion("Por favor, complete todos os campos.");
-            return;
-        }
-        if (fila==-1){
-            if (!clave.isEmpty())
-                fa.crearAdministrador(id, clave, nombre, email, tier);
-            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
-        }
-        else {
-            String id_previo = (String) m.getValueAt(fila, 0);
-            fa.modificarAdministrador(id_previo, id, clave, nombre, email, tier);
-            if (miUsuario!=null && !id_previo.equals(id)){
-               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
-               this.dispose();
-               fa.iniciaInterfazUsuario();
-               return;
-            }
-        }
-            cargarUsuarios();
+    guardarUsuario(
+        tablaUsuarios_ad,
+        campo_ed_id_ad.getText().trim(),
+        campo_ed_clave_ad.getText().trim(),
+        campo_ed_nombre_ad.getText().trim(),
+        campo_ed_email_ad.getText().trim(),
+        (String) selec_ed_tier_ad.getSelectedItem(),
+        "",  // sobra neste tipo de usuario
+        "Administrador"
+    );
     }//GEN-LAST:event_botonGuardar_adActionPerformed
 
     private void botonGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardar5ActionPerformed
-        int fila = tablaUsuarios_ci.getSelectedRow();
-        ModeloTablaCientificos m = (ModeloTablaCientificos) tablaUsuarios_ci.getModel();
-        String id = campo_ed_id_ci.getText().trim();
-        String clave = campo_ed_clave_ci.getText().trim();
-        String nombre = campo_ed_nombre_ci.getText().trim();
-        String email = campo_ed_email_ci.getText().trim();
-        String centro = campo_ed_centro_ci.getText().trim();
-        if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || centro.isEmpty()) {
-            fa.muestraExcepcion("Por favor, complete todos os campos.");
-            return;
-        }
-        if (fila==-1){
-            if (!clave.isEmpty())
-                fa.crearCientifico(id, clave, nombre, email, centro);
-            else fa.muestraExcepcion("Debe escribir la clave del nuevo usuario.");
-        }
-        else {
-                    String id_previo = (String) m.getValueAt(fila, 0);
-
-            fa.modificarCientifico(id_previo, id, clave, nombre, email, centro);
-                        if (miUsuario!=null && !id_previo.equals(id)){
-               fa.muestraExcepcion("Ha modificado su id. Por seguridad, vuelva a iniciar sesión.");
-               this.dispose();
-               fa.iniciaInterfazUsuario();
-               return;
-            }
-        }
-        cargarUsuarios();
-
-
+    guardarUsuario(
+        tablaUsuarios_ci,
+        campo_ed_id_ci.getText().trim(),
+        campo_ed_clave_ci.getText().trim(),
+        campo_ed_nombre_ci.getText().trim(),
+        campo_ed_email_ci.getText().trim(),
+        campo_ed_centro_ci.getText().trim(),
+        "",  // sobra neste tipo de usuario
+        
+        "Cientifico"
+    );
     }//GEN-LAST:event_botonGuardar5ActionPerformed
 
 
@@ -1498,7 +1533,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
             cargarUsuarios();
     }//GEN-LAST:event_botonBorrar_esActionPerformed
 
-    private void botonBorrar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar5ActionPerformed
+    private void botonBorrar_ciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrar_ciActionPerformed
         
         if (miUsuario!= null) {
             borrarUsuarioPropio(miUsuario.getIdUsuario());
@@ -1511,7 +1546,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
         }
         fa.borrarUsuario(id);
             cargarUsuarios();
-    }//GEN-LAST:event_botonBorrar5ActionPerformed
+    }//GEN-LAST:event_botonBorrar_ciActionPerformed
 
     private void botonColaboracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonColaboracionActionPerformed
         int fila = tablaUsuarios_ci.getSelectedRow();
@@ -1538,6 +1573,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
 
     private void botonSalir_esActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_esActionPerformed
         this.dispose();
+
 
     }// GEN-LAST:event_botonSalir_esActionPerformed
     private void campo_ed_centro_ciActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_esActionPerformed
@@ -1567,7 +1603,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
 
     private void botonSalir_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_adActionPerformed
         this.dispose();
-    }// GEN-LAST:event_botonSalir_adActionPerformed
+  }// GEN-LAST:event_botonSalir_adActionPerformed
 
     private void selec_ed_tier_adActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_selec_ed_tier_adActionPerformed
         // TODO add your handling code here:
@@ -1589,6 +1625,8 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
 
     private void botonSalir_afActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir_afActionPerformed
         this.dispose();
+     
+        
     }// GEN-LAST:event_botonSalir_afActionPerformed
 
     private void selec_ed_tier_afActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_selec_ed_tier_afActionPerformed
@@ -1609,6 +1647,7 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
 
     private void botonSalir5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonSalir5ActionPerformed
         this.dispose();
+
     }// GEN-LAST:event_botonSalir5ActionPerformed
 
     private void boton_buscar_ciActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_boton_buscar_ciActionPerformed
@@ -1927,9 +1966,9 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     private javax.swing.JPanel Aficionado;
     private javax.swing.JPanel Científicos;
     private javax.swing.JPanel Estudiantes;
-    private javax.swing.JButton botonBorrar5;
     private javax.swing.JButton botonBorrar_ad;
     private javax.swing.JButton botonBorrar_af;
+    private javax.swing.JButton botonBorrar_ci;
     private javax.swing.JButton botonBorrar_es;
     private javax.swing.JButton botonColaboracion;
     private javax.swing.JButton botonGuardar5;
@@ -1996,28 +2035,28 @@ public VUsuario(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacio
     private javax.swing.JLabel etiqueta_id_af;
     private javax.swing.JLabel etiqueta_id_ci;
     private javax.swing.JLabel etiqueta_id_es;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel panelBuscaAd;
+    private javax.swing.JPanel panelBuscaAf;
+    private javax.swing.JPanel panelBuscaCi;
+    private javax.swing.JPanel panelBuscaEs;
+    private javax.swing.JScrollPane panelTabla;
+    private javax.swing.JPanel panelTablaAd;
+    private javax.swing.JPanel panelTablaAf;
+    private javax.swing.JPanel panelTablaCi;
+    private javax.swing.JPanel panelTablaEs;
     private javax.swing.JComboBox<String> selec_ed_tier_ad;
     private javax.swing.JComboBox<String> selec_ed_tier_af;
     private javax.swing.JTable tablaUsuarios_ad;

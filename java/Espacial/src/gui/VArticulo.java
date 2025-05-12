@@ -4,13 +4,11 @@
  */
 package gui;
 
-import aplicacion.FachadaAplicacion;
-import aplicacion.Articulo;
-import javax.swing.DefaultComboBoxModel;
+import aplicacion.*;
 import java.util.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -31,8 +29,36 @@ public class VArticulo extends javax.swing.JDialog {
         
         buscarArticulos();
         seleccionarPrimero();
+        
+        if (fa.getUsuarioActual() instanceof Cientifico){
+            jTextFieldAutor.setEditable(false);
+        }
+        else if (!(fa.getUsuarioActual() instanceof Administrador)){
+            jTextFieldAutor.setEditable(false);
+            jTextFieldID.setEditable(false);
+            selectCuerpo.setEditable(false);
+            jTextFieldFecha.setEditable(false);
+            jTextFieldNumPaginas.setEditable(false);
+            jTextAreaDescripcion.setEditable(false);
+            jButtonGuardar.setVisible(false);
+            jButtonNuevo.setVisible(false);
+            jButtonModificar.setVisible(false);
+            jButtonBorrar.setVisible(false);
+        }
+        cargarCuerpos();
     }
 
+            private void cargarCuerpos(){
+        ArrayList<CuerpoCeleste> listaCuerpos = (ArrayList<CuerpoCeleste>) fa.obtenerCuerpos("");
+
+        ArrayList<String> nombresCuerpos = new ArrayList<>();
+        nombresCuerpos.add("<Seleccione>"); 
+        for (CuerpoCeleste c : listaCuerpos)
+            nombresCuerpos.add(c.getNombreCuerpoCeleste());
+        
+        selectCuerpo.setModel(new DefaultComboBoxModel<>(nombresCuerpos.toArray(new String[0])));
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +72,6 @@ public class VArticulo extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldAutor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldCuerpo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldFecha = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -63,6 +88,8 @@ public class VArticulo extends javax.swing.JDialog {
         tablaArticulo = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescripcion = new javax.swing.JTextArea();
+        selectCuerpo = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de Artículos");
@@ -72,12 +99,6 @@ public class VArticulo extends javax.swing.JDialog {
         jLabel2.setText("Autor:");
 
         jLabel3.setText("Cuerpo:");
-
-        jTextFieldCuerpo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCuerpoActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Fecha publicación:");
 
@@ -146,6 +167,15 @@ public class VArticulo extends javax.swing.JDialog {
         jTextAreaDescripcion.setRows(5);
         jScrollPane1.setViewportView(jTextAreaDescripcion);
 
+        selectCuerpo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setText("Hoy");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,23 +207,29 @@ public class VArticulo extends javax.swing.JDialog {
                                 .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldNumPaginas, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, Short.MAX_VALUE)
+                                        .addComponent(selectCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldNumPaginas)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(40, 40, 40))
         );
@@ -209,13 +245,14 @@ public class VArticulo extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextFieldCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldNumPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNumPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -238,15 +275,15 @@ public class VArticulo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldCuerpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCuerpoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCuerpoActionPerformed
-
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
+        if (fa.getUsuarioActual() instanceof Cientifico){
+              jTextFieldAutor.setText(fa.getUsuarioActual().getIdUsuario());
+        }
+        else
+            jTextFieldAutor.setText("");
         jTextFieldID.setText("");
-        jTextFieldAutor.setText("");
-        jTextFieldCuerpo.setText("");
+        selectCuerpo.setSelectedItem("<Seleccione>");
         jTextFieldFecha.setText("");
         jTextFieldNumPaginas.setText("");
         jTextAreaDescripcion.setText("");
@@ -256,15 +293,22 @@ public class VArticulo extends javax.swing.JDialog {
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
         
+        if (selectCuerpo.getSelectedItem().equals("<Seleccione>")){
+            fa.muestraExcepcion("Seleccione un cuerpo celeste.");
+            return;
+        }
+       try {
         Articulo a = new Articulo(
+                
             LocalDate.parse(jTextFieldFecha.getText(), DateTimeFormatter.ISO_LOCAL_DATE),
             jTextFieldAutor.getText(), 
-            jTextFieldCuerpo.getText(),
+            (String) selectCuerpo.getSelectedItem(),
             jTextAreaDescripcion.getText(),
             Integer.parseInt(jTextFieldNumPaginas.getText())
+                
+           
         );
-
-        fa.guardarArticulo(a);
+                fa.guardarArticulo(a);
 
         jButtonBorrar.setEnabled(true);
 
@@ -272,22 +316,32 @@ public class VArticulo extends javax.swing.JDialog {
         jTextFieldID.setText("");
         jTextFieldID.setEditable(false);
         jTextFieldAutor.setText("");
-        jTextFieldCuerpo.setText("");
+        selectCuerpo.setSelectedItem("<Seleccione>");
         jTextFieldFecha.setText("");
         jTextFieldNumPaginas.setText("");
         jTextAreaDescripcion.setText("");
+       }
+       catch (Exception e){
+           fa.muestraExcepcion("Verifica el contenido de los campos. La fecha debe estar en formato YYYY-MM-DD y el nº de páginas debe ser numérico.");
+           return;
+       }
+
+
 
         buscarArticulos();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
-        
+                if (selectCuerpo.getSelectedItem().equals("<Seleccione>")){
+            fa.muestraExcepcion("Seleccione un cuerpo celeste.");
+            return;
+        }
         Articulo a = new Articulo(
             Integer.parseInt(jTextFieldID.getText()),
             LocalDate.parse(jTextFieldFecha.getText(), DateTimeFormatter.ISO_LOCAL_DATE),
             jTextFieldAutor.getText(), 
-            jTextFieldCuerpo.getText(),
+            (String) selectCuerpo.getSelectedItem(),
             jTextAreaDescripcion.getText(),
             Integer.parseInt(jTextFieldNumPaginas.getText())
         );
@@ -300,7 +354,7 @@ public class VArticulo extends javax.swing.JDialog {
         jTextFieldID.setText("");
         jTextFieldID.setEditable(false);
         jTextFieldAutor.setText("");
-        jTextFieldCuerpo.setText("");
+        selectCuerpo.setSelectedItem("<Seleccione>");
         jTextFieldFecha.setText("");
         jTextFieldNumPaginas.setText("");
         jTextAreaDescripcion.setText("");
@@ -314,7 +368,7 @@ public class VArticulo extends javax.swing.JDialog {
             Integer.parseInt(jTextFieldID.getText()),
             LocalDate.parse(jTextFieldFecha.getText(), DateTimeFormatter.ISO_LOCAL_DATE),
             jTextFieldAutor.getText(), 
-            jTextFieldCuerpo.getText(),
+            (String) selectCuerpo.getSelectedItem(),
             jTextAreaDescripcion.getText(),
             Integer.parseInt(jTextFieldNumPaginas.getText())
         );
@@ -325,7 +379,7 @@ public class VArticulo extends javax.swing.JDialog {
         jTextFieldID.setText("");
         jTextFieldID.setEditable(false);
         jTextFieldAutor.setText("");
-        jTextFieldCuerpo.setText("");
+        selectCuerpo.setSelectedItem("<Seleccione>");
         jTextFieldFecha.setText("");
         jTextFieldNumPaginas.setText("");
         jTextAreaDescripcion.setText("");
@@ -354,7 +408,7 @@ public class VArticulo extends javax.swing.JDialog {
             jTextFieldID.setText(String.valueOf(a.getId()));
             jTextFieldID.setEditable(false);
             jTextFieldAutor.setText(a.getAutor());
-            jTextFieldCuerpo.setText(a.getCuerpoCeleste());
+            selectCuerpo.setSelectedItem(a.getCuerpoCeleste());
             jTextFieldFecha.setText(a.getFechaPublicacion().toString());
             jTextFieldNumPaginas.setText(String.valueOf(a.getNumPaginas()));
             jTextAreaDescripcion.setText(a.getDescripcion());
@@ -372,12 +426,17 @@ public class VArticulo extends javax.swing.JDialog {
             jTextFieldID.setText(String.valueOf(a.getId()));
             jTextFieldID.setEditable(false);
             jTextFieldAutor.setText(a.getAutor());
-            jTextFieldCuerpo.setText(a.getCuerpoCeleste());
+            selectCuerpo.setSelectedItem(a.getCuerpoCeleste());
             jTextFieldFecha.setText(a.getFechaPublicacion().toString());
             jTextFieldNumPaginas.setText(String.valueOf(a.getNumPaginas()));
             jTextAreaDescripcion.setText(a.getDescripcion());
         }
     }//GEN-LAST:event_tablaArticuloMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   java.time.LocalDate hoy = java.time.LocalDate.now();
+    jTextFieldFecha.setText(hoy.toString()); 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void seleccionarPrimero() {
     
@@ -393,7 +452,7 @@ public class VArticulo extends javax.swing.JDialog {
         jTextFieldID.setText(String.valueOf(a.getId()));
         jTextFieldID.setEditable(false);
         jTextFieldAutor.setText(a.getAutor());
-        jTextFieldCuerpo.setText(a.getCuerpoCeleste());
+        selectCuerpo.setSelectedItem(a.getCuerpoCeleste());
         jTextFieldFecha.setText(a.getFechaPublicacion().toString());
         jTextFieldNumPaginas.setText(String.valueOf(a.getNumPaginas()));
         jTextAreaDescripcion.setText(a.getDescripcion());
@@ -407,6 +466,7 @@ public class VArticulo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonModificar;
@@ -423,10 +483,10 @@ public class VArticulo extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaDescripcion;
     private javax.swing.JTextField jTextFieldAutor;
-    private javax.swing.JTextField jTextFieldCuerpo;
     private javax.swing.JTextField jTextFieldFecha;
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldNumPaginas;
+    private javax.swing.JComboBox<String> selectCuerpo;
     private javax.swing.JTable tablaArticulo;
     // End of variables declaration//GEN-END:variables
 }

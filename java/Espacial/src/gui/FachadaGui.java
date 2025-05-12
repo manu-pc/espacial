@@ -30,7 +30,7 @@ public class FachadaGui {
     }
 
     public void abrirVentanaUsuarios() {
-        VUsuario ventanaUsuarios = new VUsuario(vp, true, fa);
+        VUsuario ventanaUsuarios = new VUsuario(vp, true, fa, false);
         ventanaUsuarios.setVisible(true);
         ventanaUsuarios.setLocationRelativeTo(null);
     }
@@ -48,8 +48,8 @@ public class FachadaGui {
         va.setVisible(true);
     }
 
-    public void actualizarAdmin(boolean modoAdmin) {
-        vp.setVisAdmin(modoAdmin);
+    public void actualizarAdmin() {
+        vp.setVisAdmin(this.usuarioActual instanceof Administrador);
     }
 
     public void abrirColaboraciones(Cientifico cientifico, java.awt.Dialog parent) {
@@ -59,8 +59,8 @@ public class FachadaGui {
 
     public void setUsuarioActual(Usuario u) {
         this.usuarioActual = u;
-        System.out.println("Usuario actual: " + u.getIdUsuario());
         vp.setUsuarioActual(u);
+        actualizarAdmin();
         vp.inicializar();
     }
 
@@ -105,6 +105,11 @@ public class FachadaGui {
     public void abrirVentanaArticulos() {
         VArticulo va = new VArticulo(this.vp, true, fa);
         va.setVisible(true);
+    }
+    
+    public void registrarUsuario(){
+        VUsuario vu = new VUsuario(this.vp, true, fa, true);
+        vu.setVisible(true);
     }
 
 }

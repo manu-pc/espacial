@@ -176,7 +176,7 @@ public class VLeerEntrada extends javax.swing.JDialog {
 
     private void botonEliminarForoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonEliminarForoActionPerformed
 
-        fa.eliminarEntrada(this.usuario, this.entrada.getNumEntrada());
+        fa.eliminarEntrada(this.entrada);
         fa.notificarNuevaEntrada();
         this.dispose();
 

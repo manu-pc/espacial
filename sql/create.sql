@@ -1,20 +1,19 @@
-DROP TABLE IF EXISTS Colaboracion;
-DROP TABLE IF EXISTS Artículo;
-DROP TABLE IF EXISTS EntradaForo;
-DROP TABLE IF EXISTS Administrador;
-DROP TABLE IF EXISTS Cientifico;
-DROP TABLE IF EXISTS Estudiante;
-DROP TABLE IF EXISTS Aficionado;
-DROP TABLE IF EXISTS Usuario;
-DROP TABLE IF EXISTS ParticiparMision;
-DROP TABLE IF EXISTS Mision;
-DROP TABLE IF EXISTS PertenecerAgencia;
-DROP TABLE IF EXISTS Agencia;
-DROP TABLE IF EXISTS Astronauta;
-DROP TABLE IF EXISTS Nave;
-DROP TABLE IF EXISTS OrbitaAlrededor;
-DROP TABLE IF EXISTS CuerpoCeleste;
-DROP TABLE IF EXISTS Galaxia;
+DROP TABLE IF EXISTS Colaboracion CASCADE;
+DROP TABLE IF EXISTS Articulo CASCADE;
+DROP TABLE IF EXISTS EntradaForo CASCADE;
+DROP TABLE IF EXISTS Administrador CASCADE;
+DROP TABLE IF EXISTS Estudiante CASCADE;
+DROP TABLE IF EXISTS Aficionado CASCADE;
+DROP TABLE IF EXISTS ParticiparMision CASCADE;
+DROP TABLE IF EXISTS Mision CASCADE;
+DROP TABLE IF EXISTS PertenecerAgencia CASCADE;
+DROP TABLE IF EXISTS Agencia CASCADE;
+DROP TABLE IF EXISTS Astronauta CASCADE;
+DROP TABLE IF EXISTS Nave CASCADE;
+DROP TABLE IF EXISTS CuerpoCeleste CASCADE;
+DROP TABLE IF EXISTS Galaxia CASCADE;
+DROP TABLE IF EXISTS Cientifico CASCADE;
+DROP TABLE IF EXISTS Usuario CASCADE;
 
 CREATE TABLE Galaxia(
     nombre VARCHAR(50) PRIMARY KEY,
@@ -26,10 +25,8 @@ CREATE TABLE Galaxia(
 CREATE TABLE CuerpoCeleste (
     nombre VARCHAR(50) PRIMARY KEY,
     tipo VARCHAR(50) NOT NULL,
-    -- planeta, estrella, luna, asteroide
     ubicacion VARCHAR(50) NOT NULL,
     habitabilidad BOOLEAN NOT NULL,
-    -- boolean é raro pero lol
     masa float NOT NULL,
     --kg
     tamano float NOT NULL,
@@ -39,22 +36,16 @@ CREATE TABLE CuerpoCeleste (
     descripcion VARCHAR(255) NOT NULL,
     --
     galaxia VARCHAR(50) NOT NULL,
-    FOREIGN KEY (galaxia) REFERENCES Galaxia(nombre) ON DELETE NO ACTION ON UPDATE CASCADE
+    orbitaA VARCHAR(50),
+    FOREIGN KEY (galaxia) REFERENCES Galaxia(nombre) ON DELETE NO ACTION ON UPDATE CASCADE,
+    FOREIGN KEY (orbitaA) references CuerpoCeleste(nombre) ON DELETE SET NULL ON UPDATE CASCADE
+   
 );
 
-CREATE TABLE OrbitaAlrededor(
-    orbitador VARCHAR(50) NOT NULL,
-    orbitaA VARCHAR(50) NOT NULL,
-    diametro float NOT NULL,
-    --km
-    periodo float NOT NULL,
-    --dias
-    FOREIGN KEY (orbitador) REFERENCES CuerpoCeleste(nombre) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (orbitaA) REFERENCES CuerpoCeleste(nombre) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (orbitador, orbitaA)
-);
+
+
 CREATE TABLE Nave(
-    id INT PRIMARY KEY,
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     -- satélite, exploración, transporte
@@ -63,13 +54,13 @@ CREATE TABLE Nave(
     masa float NOT NULL --kg
 );
 CREATE TABLE Astronauta(
-    id int PRIMARY KEY,
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     nacionalidad VARCHAR(50) NOT NULL,
     fechaNacimiento DATE NOT NULL
 );
 CREATE TABLE Agencia(
-    id INT PRIMARY KEY,
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     localizacion VARCHAR(50) NOT NULL -- para evitar trigger, num_astronautas irá nunha vista
 );
@@ -83,7 +74,7 @@ CREATE TABLE PertenecerAgencia(
     PRIMARY KEY (astronauta_id, agencia_id, fechaInicio)
 );
 CREATE TABLE Mision(
-    codigo INT PRIMARY KEY,
+    codigo INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     fechaInicio DATE NOT NULL,
     fechaFin DATE,
@@ -103,7 +94,7 @@ CREATE TABLE Usuario(
     id VARCHAR(50) PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    clave VARCHAR(50) NOT NULL
+    clave VARCHAR(60) NOT NULL
 );
 CREATE TABLE Aficionado(
     id VARCHAR(50) PRIMARY KEY,
@@ -137,7 +128,7 @@ CREATE TABLE EntradaForo(
     FOREIGN KEY (autor) REFERENCES Usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (numeroEntrada, autor)
 );
-CREATE TABLE Artículo(
+CREATE TABLE Articulo(
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     fechaPublicacion DATE NOT NULL,
     autor VARCHAR(50) NOT NULL,
@@ -150,7 +141,7 @@ CREATE TABLE Artículo(
 CREATE TABLE Colaboracion(
     fechaInicio DATE NOT NULL,
     fechaFin DATE,
-    cientifico INT NOT NULL,
+    cientifico VARCHAR(50) NOT NULL,
     agencia INT NOT NULL,
     FOREIGN KEY (cientifico) REFERENCES Cientifico(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (agencia) REFERENCES Agencia(id) ON DELETE NO ACTION ON UPDATE CASCADE,

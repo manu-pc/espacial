@@ -10,6 +10,8 @@ import aplicacion.CuerpoCeleste;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import aplicacion.CustomException;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -25,8 +27,16 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         this.fa = fa;
         initComponents();
         initManualComponents();
+        cargarOrbitaAlrededor();
+        if (!fa.getSudo()){
+            nuevo_cuerpoButton.setVisible(false);
+            guardar_cuerpoButton.setVisible(false);
+            borrar_cuerpoButton.setVisible(false);
+        }
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +44,7 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         nombre_cuerpoceleste = new javax.swing.JLabel();
@@ -62,7 +72,8 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         habitabilidadBox = new javax.swing.JCheckBox();
         descripcionModif = new javax.swing.JLabel();
         descModifText = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        selectOrbita = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -118,8 +129,7 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
 
         galaxiaModif.setText("Galaxia");
 
-        tiposCombo.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Planeta", "Estrella", "Luna" }));
+        tiposCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Planeta", "Estrella", "Satelite" }));
 
         buscarButton.setText("Buscar");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -138,175 +148,120 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Galaxias");
+        jLabel1.setText("Orbita a:");
+
+        selectOrbita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(nombre_cuerpoceleste)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(nombre_cuerpoceleste_text,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 142,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(buscarButton)
-                                                .addGap(33, 33, 33))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                false)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout
-                                                                .createSequentialGroup()
-                                                                .addComponent(descripcionModif)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(descModifText))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(nuevo_cuerpoButton)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(borrar_cuerpoButton)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(guardar_cuerpoButton)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jButton1)
-                                                                .addGap(264, 264, 264)
-                                                                .addComponent(salirButton))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout
-                                                                .createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(nombreModif)
-                                                                        .addComponent(tamanhoModif))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                        .addComponent(tamanhoModifText,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                110, Short.MAX_VALUE)
-                                                                        .addComponent(nombreModifText))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(TSuperfModif)
-                                                                        .addComponent(ubicacionModif))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                        .addComponent(TSuperfModifText,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                113, Short.MAX_VALUE)
-                                                                        .addComponent(ubicacionModifText))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(galaxiaModif)
-                                                                                .addGap(5, 5, 5))
-                                                                        .addGroup(
-                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                layout.createSequentialGroup()
-                                                                                        .addComponent(masaModif)
-                                                                                        .addPreferredGap(
-                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                        .addComponent(galaxiaModifText,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                110, Short.MAX_VALUE)
-                                                                        .addComponent(masaModifText))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                        .addComponent(tiposCombo, 0,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(habitabilidadBox,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)))
-                                                        .addComponent(jScrollPane1,
-                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 700,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addContainerGap(62, Short.MAX_VALUE)))));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(nombre_cuerpoceleste)
-                                        .addComponent(nombre_cuerpoceleste_text, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(buscarButton))
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(nombre_cuerpoceleste)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nombre_cuerpoceleste_text, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buscarButton)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nuevo_cuerpoButton)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nombreModifText, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE, 27,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(nombreModif)
-                                                .addComponent(ubicacionModif)
-                                                .addComponent(ubicacionModifText,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(masaModif)
-                                                .addComponent(masaModifText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(tiposCombo, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(borrar_cuerpoButton)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(tamanhoModifText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tamanhoModif)
-                                        .addComponent(TSuperfModif)
-                                        .addComponent(TSuperfModifText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(galaxiaModif)
-                                        .addComponent(galaxiaModifText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(habitabilidadBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(guardar_cuerpoButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(salirButton))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(descripcionModif)
-                                        .addComponent(descModifText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(guardar_cuerpoButton)
-                                        .addComponent(borrar_cuerpoButton)
-                                        .addComponent(nuevo_cuerpoButton)
-                                        .addComponent(salirButton)
-                                        .addComponent(jButton1))
-                                .addGap(23, 23, 23)));
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(descModifText))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(nombreModif)
+                                            .addComponent(tamanhoModif))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tamanhoModifText, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                            .addComponent(nombreModifText))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(TSuperfModif)
+                                            .addComponent(ubicacionModif))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(TSuperfModifText, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                            .addComponent(ubicacionModifText))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(galaxiaModif)
+                                                .addGap(5, 5, 5))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(masaModif)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(galaxiaModifText, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                            .addComponent(masaModifText))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(habitabilidadBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tiposCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(selectOrbita, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(50, 50, 50))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombre_cuerpoceleste)
+                    .addComponent(nombre_cuerpoceleste_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarButton))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombreModifText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nombreModif)
+                        .addComponent(ubicacionModif)
+                        .addComponent(ubicacionModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(masaModif)
+                        .addComponent(masaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tiposCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tamanhoModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tamanhoModif)
+                    .addComponent(TSuperfModif)
+                    .addComponent(TSuperfModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(galaxiaModif)
+                    .addComponent(galaxiaModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(habitabilidadBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(descripcionModif)
+                    .addComponent(descModifText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(selectOrbita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardar_cuerpoButton)
+                    .addComponent(borrar_cuerpoButton)
+                    .addComponent(nuevo_cuerpoButton)
+                    .addComponent(salirButton))
+                .addGap(23, 23, 23))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -327,6 +282,7 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buscarButtonActionPerformed
         buscarCuerposCelestes();
+        cargarOrbitaAlrededor();
     }// GEN-LAST:event_buscarButtonActionPerformed
 
     private void descModifTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_descModifTextActionPerformed
@@ -341,6 +297,7 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         VAltaCuerpo dialog = new VAltaCuerpo(new javax.swing.JFrame(), true, fa);
 
         dialog.setVisible(true);
+        
     }// GEN-LAST:event_nuevo_cuerpoButtonActionPerformed
 
     private void nombreModifTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nombreModifTextActionPerformed
@@ -351,6 +308,18 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         modificarCuerpo();
     }// GEN-LAST:event_guardar_cuerpoButtonActionPerformed
 
+        private void cargarOrbitaAlrededor(){
+        ArrayList<CuerpoCeleste> listaCuerpos = (ArrayList<CuerpoCeleste>) fa.obtenerCuerpos("");
+
+        ArrayList<String> nombresCuerpos = new ArrayList<>();
+        nombresCuerpos.add("<ninguno>"); 
+        for (CuerpoCeleste c : listaCuerpos)
+            nombresCuerpos.add(c.getNombreCuerpoCeleste());
+        
+        selectOrbita.setModel(new DefaultComboBoxModel<>(nombresCuerpos.toArray(new String[0])));
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TSuperfModif;
     private javax.swing.JTextField TSuperfModifText;
@@ -362,7 +331,7 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
     private javax.swing.JTextField galaxiaModifText;
     private javax.swing.JButton guardar_cuerpoButton;
     private javax.swing.JCheckBox habitabilidadBox;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel masaModif;
     private javax.swing.JTextField masaModifText;
@@ -372,6 +341,7 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
     private javax.swing.JTextField nombre_cuerpoceleste_text;
     private javax.swing.JButton nuevo_cuerpoButton;
     private javax.swing.JButton salirButton;
+    private javax.swing.JComboBox<String> selectOrbita;
     private javax.swing.JTable tablaCuerpos;
     private javax.swing.JLabel tamanhoModif;
     private javax.swing.JTextField tamanhoModifText;
@@ -396,13 +366,12 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         } else {
             guardar_cuerpoButton.setEnabled(false);
             borrar_cuerpoButton.setEnabled(false);
-            System.out.println("consulta vacía");
         }
 
     }
 
     private void colocarInformacionSeleccionada(ModeloTablaCuerposCelestes m) {
-
+        
         if (tablaCuerpos.getSelectedRow() >= 0) {
             CuerpoCeleste seleccionado = m.obtenerCuerpo(tablaCuerpos.getSelectedRow());
 
@@ -415,6 +384,12 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
             descModifText.setText(seleccionado.getDescripcion());
             galaxiaModifText.setText(seleccionado.getGalaxia());
             tiposCombo.setSelectedItem(seleccionado.getTipo().name());
+            if (seleccionado.getOrbitaA() != null){
+                selectOrbita.setSelectedItem(seleccionado.getOrbitaA());
+            }
+            else {
+                selectOrbita.setSelectedItem("<ninguno>");
+            }
             guardar_cuerpoButton.setEnabled(true);
             borrar_cuerpoButton.setEnabled(true);
         }
@@ -453,19 +428,20 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
                 } else {
                     tipo = TipoCuerpoCeleste.valueOf((String) tiposCombo.getSelectedItem());
                 }
-                CuerpoCeleste modificado = new CuerpoCeleste(nombreCuerpo, tipo, ubicacion, habitabilidad, masa,
-                        tamanho, temp, desc, galaxia);
-                fa.modificarCuerpo(modificado);
-
-                buscarButton.doClick();
-                ModeloTablaCuerposCelestes m = (ModeloTablaCuerposCelestes) tablaCuerpos.getModel();
-                int index = 0;
-                for (int i = 0; i < m.getCuerpos().size(); i++) {
-                    if (m.getCuerpos().get(i).getNombreCuerpoCeleste().equals(nombreCuerpo)) {
-                        index = i;
-                    }
+                CuerpoCeleste modificado;
+                if (selectOrbita.getSelectedItem().equals("<ninguno>")){
+                modificado = new CuerpoCeleste(nombreCuerpo, tipo, ubicacion, habitabilidad, masa, tamanho, temp, desc,
+                        galaxia);}
+                else {
+                    
+                    String orbitaA = (String) selectOrbita.getSelectedItem();
+                        modificado = new CuerpoCeleste(nombreCuerpo, tipo, ubicacion, habitabilidad, masa, tamanho, temp, desc,
+                        galaxia, orbitaA);
                 }
-                tablaCuerpos.setRowSelectionInterval(index, index);
+                fa.modificarCuerpo(modificado);
+                buscarButton.doClick();
+
+                tablaCuerpos.setRowSelectionInterval(0, 0);
 
             } catch (CustomException exception) {
                 fa.muestraExcepcion(exception.getMessage());
@@ -475,6 +451,8 @@ public class VCuerpoCeleste extends javax.swing.JDialog {
         } else {
             fa.muestraExcepcion("Los usuarios normales no tienen permiso para modificar cuerpos celestes");
         }
+        
+        cargarOrbitaAlrededor();
 
     }
 

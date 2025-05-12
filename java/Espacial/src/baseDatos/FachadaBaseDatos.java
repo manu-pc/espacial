@@ -152,13 +152,10 @@ public class FachadaBaseDatos {
         return daoForo.buscarEntradasPorTitulo(titulo);
     }
 
-    public void eliminarEntrada(Usuario autor, Integer idEntrada) {
-        daoForo.eliminarEntrada(autor, idEntrada);
+    public void eliminarEntrada(EntradaForo entrada) {
+        daoForo.eliminarEntrada(entrada);
     }
 
-    public CuerpoCeleste validarCuerpo(String nombreCuerpo, String ubicacion) {
-        return daocuerpos.validarCuerpo(nombreCuerpo, ubicacion);
-    }
 
     public List<CuerpoCeleste> obtenerCuerpoCeleste(String text) {
 

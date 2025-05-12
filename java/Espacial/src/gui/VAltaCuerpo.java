@@ -4,11 +4,9 @@
  */
 package gui;
 
-import aplicacion.CustomException;
-import aplicacion.FachadaAplicacion;
-import aplicacion.TipoCuerpoCeleste;
-import aplicacion.CuerpoCeleste;
-
+import aplicacion.*;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 /**
  *
  * @author alumnogreibd
@@ -22,7 +20,8 @@ public class VAltaCuerpo extends javax.swing.JDialog {
         super(parent, modal);
         this.fa = fa;
         initComponents();
-    }
+        cargarOrbitaAlrededor();
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +30,7 @@ public class VAltaCuerpo extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         nombreLabel = new javax.swing.JLabel();
@@ -53,6 +52,8 @@ public class VAltaCuerpo extends javax.swing.JDialog {
         tipoCombo = new javax.swing.JComboBox<>();
         salirButton = new javax.swing.JButton();
         guardarButtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        selectOrbita = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,8 +87,7 @@ public class VAltaCuerpo extends javax.swing.JDialog {
 
         jLabel7.setText("Tipo");
 
-        tipoCombo.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Estrella", "Luna", "Planeta" }));
+        tipoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Estrella", "Luna", "Planeta" }));
         tipoCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoComboActionPerformed(evt);
@@ -108,173 +108,125 @@ public class VAltaCuerpo extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("Orbita alrededor de:");
+
+        selectOrbita.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(guardarButtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salirButton)
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(galaxiaText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(tipoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(selectOrbita, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(guardarButtn)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(salirButton)
-                                                .addGap(25, 25, 25))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                false)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout
-                                                                .createSequentialGroup()
-                                                                .addComponent(jLabel6)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(galaxiaText,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 110,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(jLabel7)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(tipoCombo,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout
-                                                                .createSequentialGroup()
-                                                                .addGap(6, 6, 6)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addGroup(layout.createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(jLabel3)
-                                                                                        .addComponent(nombreLabel))
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addGroup(layout.createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                        .addComponent(nombreText,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                110,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(tamanhoText,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                110,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addGroup(layout.createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                        .addGroup(layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addComponent(jLabel4)
-                                                                                                .addGap(8, 8, 8)
-                                                                                                .addComponent(tempText,
-                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                        108,
-                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                        .addGroup(layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addComponent(
-                                                                                                        ubicacionLabel)
-                                                                                                .addPreferredGap(
-                                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                .addComponent(
-                                                                                                        ubicacionText,
-                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                        131,
-                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                .addGap(18, 18, 18)
-                                                                                .addGroup(layout.createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                        false)
-                                                                                        .addGroup(layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGap(0, 19,
-                                                                                                        Short.MAX_VALUE)
-                                                                                                .addComponent(jLabel2)
-                                                                                                .addPreferredGap(
-                                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                .addComponent(masaText,
-                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                        108,
-                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                        .addGroup(layout
-                                                                                                .createSequentialGroup()
-                                                                                                .addComponent(
-                                                                                                        habitabilidadCombo)
-                                                                                                .addGap(0, 0,
-                                                                                                        Short.MAX_VALUE))))
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(jLabel5,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(descText,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        478,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                                .addContainerGap(72, Short.MAX_VALUE)))));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(nombreLabel)
-                                        .addComponent(nombreText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ubicacionLabel)
-                                        .addComponent(ubicacionText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2)
-                                        .addComponent(masaText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel3)
-                                        .addComponent(tamanhoText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(nombreLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nombreText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tamanhoText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
-                                        .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(habitabilidadCombo))
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel5)
-                                        .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(84, 84, 84)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7)
-                                        .addComponent(galaxiaText, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tipoCombo, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95,
-                                        Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(salirButton)
-                                        .addComponent(guardarButtn))
-                                .addGap(22, 22, 22)));
+                                        .addGap(8, 8, 8)
+                                        .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(ubicacionLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ubicacionText, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 19, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(masaText, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(habitabilidadCombo)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(72, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreLabel)
+                    .addComponent(nombreText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ubicacionLabel)
+                    .addComponent(ubicacionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(masaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tamanhoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(tempText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(habitabilidadCombo))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(descText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(selectOrbita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(galaxiaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salirButton)
+                    .addComponent(guardarButtn))
+                .addGap(22, 22, 22))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void cargarOrbitaAlrededor(){
+        ArrayList<CuerpoCeleste> listaCuerpos = (ArrayList<CuerpoCeleste>) fa.obtenerCuerpos("");
+
+        ArrayList<String> nombresCuerpos = new ArrayList<>();
+        nombresCuerpos.add("<ninguno>"); 
+        for (CuerpoCeleste c : listaCuerpos)
+            nombresCuerpos.add(c.getNombreCuerpoCeleste());
+        
+        selectOrbita.setModel(new DefaultComboBoxModel<>(nombresCuerpos.toArray(new String[0])));
+        
+    }
     private void guardarButtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_guardarButtnActionPerformed
         darDeAltaCuerpo();
     }// GEN-LAST:event_guardarButtnActionPerformed
@@ -297,6 +249,7 @@ public class VAltaCuerpo extends javax.swing.JDialog {
     private javax.swing.JTextField galaxiaText;
     private javax.swing.JButton guardarButtn;
     private javax.swing.JCheckBox habitabilidadCombo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -307,6 +260,7 @@ public class VAltaCuerpo extends javax.swing.JDialog {
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreText;
     private javax.swing.JButton salirButton;
+    private javax.swing.JComboBox<String> selectOrbita;
     private javax.swing.JTextField tamanhoText;
     private javax.swing.JTextField tempText;
     private javax.swing.JComboBox<String> tipoCombo;
@@ -349,8 +303,15 @@ public class VAltaCuerpo extends javax.swing.JDialog {
                     throw new CustomException("Debe rellenarse la galaxia.");
                 }
                 Boolean habitabilidad = habitabilidadCombo.isSelected();
-                CuerpoCeleste nuevo = new CuerpoCeleste(nombre, tipo, ubic, habitabilidad, masa, tamanho, temp, desc,
-                        galax);
+                CuerpoCeleste nuevo;
+                if (selectOrbita.getSelectedItem().equals("<ninguno>")){
+                nuevo = new CuerpoCeleste(nombre, tipo, ubic, habitabilidad, masa, tamanho, temp, desc,
+                        galax);}
+                else {
+                    String orbitaA = (String) selectOrbita.getSelectedItem();
+                        nuevo = new CuerpoCeleste(nombre, tipo, ubic, habitabilidad, masa, tamanho, temp, desc,
+                        galax, orbitaA);
+                }
                 fa.darDeAltaCuerpo(nuevo);
 
             } catch (CustomException exception) {

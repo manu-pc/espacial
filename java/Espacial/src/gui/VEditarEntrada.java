@@ -172,7 +172,7 @@ public class VEditarEntrada extends javax.swing.JDialog {
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonBorrarActionPerformed
         if (this.entrada != null) {
-            fa.eliminarEntrada(this.autor, entrada.getNumEntrada());
+            fa.eliminarEntrada(this.entrada);
         }
 
     }// GEN-LAST:event_botonBorrarActionPerformed

@@ -100,7 +100,7 @@ public class DAOForo extends AbstractDAO {
         }
     }
 
-    public void eliminarEntrada(Usuario u, Integer numEntrada) {
+    public void eliminarEntrada(EntradaForo entrada) {
         Connection con = null;
         PreparedStatement stmEliminar = null;
 
@@ -110,8 +110,8 @@ public class DAOForo extends AbstractDAO {
 
             String consulta = "DELETE FROM EntradaForo WHERE numeroEntrada = ? AND autor = ?";
             stmEliminar = con.prepareStatement(consulta);
-            stmEliminar.setInt(1, numEntrada);
-            stmEliminar.setString(2, u.getIdUsuario());
+            stmEliminar.setInt(1, entrada.getNumEntrada());
+            stmEliminar.setString(2, entrada.getAutorId());
 
             if (stmEliminar.executeUpdate() == 0) {
                 throw new SQLException("¡No se ha encontrado la entrada! Puede que haya sido eliminada recientemente.");

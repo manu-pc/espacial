@@ -27,22 +27,7 @@ public class GestionUsuarios {
     public Usuario comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u;
         u = fbd.validarUsuario(idUsuario, clave);
-        if (u == null) {
-            fgui.actualizarAdmin(true);
-            System.out.println("debug: auth fallida. iniciando sesion como 'id' 'clave'...");
-            return fbd.validarUsuario("id", "clave");
-
-        } else {
-            if (u instanceof Administrador) {
-                fgui.actualizarAdmin(true);
-                System.out.println("Modo admin activado!");
-            } else {
-                fgui.actualizarAdmin(false);
-                System.out.println("Modo admin desactivado");
-            }
-            return u;
-
-        }
+        return u;
     }
 
     public void abrirVentanaUsuarios() {

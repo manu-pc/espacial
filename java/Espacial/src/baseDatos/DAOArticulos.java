@@ -33,7 +33,7 @@ public class DAOArticulos extends AbstractDAO {
         try {
             stmArticulos = con.prepareStatement(
                 "SELECT id, fechaPublicacion, autor, cuerpo, descripcion, numPaginas " +
-                "FROM Artículo"
+                "FROM Articulo"
             );
 
             rsArticulos = stmArticulos.executeQuery();
@@ -55,13 +55,13 @@ public class DAOArticulos extends AbstractDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("Error en la consulta de artículos! " + e.getMessage());
+            System.out.println("Error en la consulta de articulos! " + e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         } finally {
             try {
                 if (stmArticulos != null) stmArticulos.close();
             } catch (SQLException e) {
-                System.out.println("Se ha producido un error cerrando la transacción de artículos.");
+                System.out.println("Se ha producido un error cerrando la transacción de articulos.");
             }
         }
 
@@ -75,11 +75,11 @@ public class DAOArticulos extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            String sql = "INSERT INTO Artículo (fechaPublicacion, autor, cuerpo, descripcion, numPaginas) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Articulo (fechaPublicacion, autor, cuerpo, descripcion, numPaginas) VALUES (?, ?, ?, ?, ?)";
 
             stmInsertarArticulo = con.prepareStatement(sql);
 
-            // Asignar los valores del artículo a los parámetros del PreparedStatement
+            // Asignar los valores del articulo a los parámetros del PreparedStatement
             stmInsertarArticulo.setDate(1, java.sql.Date.valueOf(articulo.getFechaPublicacion())); // Convertir LocalDate a java.sql.Date
             stmInsertarArticulo.setString(2, articulo.getAutor());
             stmInsertarArticulo.setString(3, articulo.getCuerpoCeleste());
@@ -90,7 +90,7 @@ public class DAOArticulos extends AbstractDAO {
             stmInsertarArticulo.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("Error al insertar el artículo! " + e.getMessage());
+            System.out.println("Error al insertar el articulo! " + e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         } finally {
             try {
@@ -110,7 +110,7 @@ public class DAOArticulos extends AbstractDAO {
 
         try {
             stmArticulo = con.prepareStatement(
-                "UPDATE Artículo " +
+                "UPDATE Articulo " +
                 "SET fechaPublicacion = ?, " +
                 "    autor = ?, " +
                 "    cuerpo = ?, " +
@@ -119,7 +119,7 @@ public class DAOArticulos extends AbstractDAO {
                 "WHERE id = ?"
             );
 
-            // Asignar los valores del artículo a los parámetros del PreparedStatement
+            // Asignar los valores del articulo a los parámetros del PreparedStatement
             stmArticulo.setDate(1, java.sql.Date.valueOf(articulo.getFechaPublicacion())); // Convertir LocalDate a java.sql.Date
             stmArticulo.setString(2, articulo.getAutor());
             stmArticulo.setString(3, articulo.getCuerpoCeleste());
@@ -151,10 +151,10 @@ public class DAOArticulos extends AbstractDAO {
 
         try {
             stmArticulo = con.prepareStatement(
-                "DELETE FROM Artículo WHERE id = ?"
+                "DELETE FROM Articulo WHERE id = ?"
             );
 
-            // Establecemos el valor del parámetro 'id' con el id del artículo a eliminar
+            // Establecemos el valor del parámetro 'id' con el id del articulo a eliminar
             stmArticulo.setInt(1, articulo.getId());
 
             // Ejecutar la eliminación

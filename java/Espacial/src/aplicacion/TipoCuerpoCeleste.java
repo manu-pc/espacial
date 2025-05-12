@@ -10,7 +10,7 @@ package aplicacion;
  */
 public enum TipoCuerpoCeleste {
     Planeta,
-    Luna,
+    Satelite,
     Estrella
 
 }

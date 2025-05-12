@@ -42,7 +42,7 @@ public class GestionForo {
         return fbd.buscarEntradasPorTitulo(titulo);
     }
 
-    public void eliminarEntrada(Usuario autor, Integer idEntrada) {
-        fbd.eliminarEntrada(autor, idEntrada);
+    public void eliminarEntrada( EntradaForo entrada) {
+        fbd.eliminarEntrada(entrada);
     }
 }

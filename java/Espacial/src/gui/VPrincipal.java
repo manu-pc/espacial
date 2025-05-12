@@ -25,6 +25,7 @@ public class VPrincipal extends javax.swing.JFrame {
     public VPrincipal(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
         initComponents();
+        textoIntro.setVisible(false);
         tablaLibros.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -72,14 +73,13 @@ public class VPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         buscaId = new javax.swing.JTextField();
         boton_miPerfil1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        textoIntro = new javax.swing.JLabel();
         botonCuerposCelestes = new javax.swing.JButton();
         botonGalaxias = new javax.swing.JButton();
         jButtonArticulos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         gestionUsuarios = new javax.swing.JMenuItem();
-        gestionCategorias = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,6 +145,7 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon("/home/alumnogreibd/Descargas/spacehub4(1).png")); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(1000, 333));
         jLabel4.setMinimumSize(new java.awt.Dimension(1000, 333));
         jLabel4.setName(""); // NOI18N
@@ -157,12 +158,12 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("¡Bienvenido a nuestro foro!");
-        jLabel1.setToolTipText("");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        textoIntro.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        textoIntro.setForeground(new java.awt.Color(0, 0, 153));
+        textoIntro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoIntro.setText("¡Bienvenido a nuestro foro!");
+        textoIntro.setToolTipText("");
+        textoIntro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         botonCuerposCelestes.setText("Cuerpos Celestes");
         botonCuerposCelestes.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +188,7 @@ public class VPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Administración");
 
+        gestionUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         gestionUsuarios.setText("Usuarios");
         gestionUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,14 +196,6 @@ public class VPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(gestionUsuarios);
-
-        gestionCategorias.setText("Categorías");
-        gestionCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gestionCategoriasActionPerformed(evt);
-            }
-        });
-        jMenu1.add(gestionCategorias);
 
         jMenuBar1.add(jMenu1);
 
@@ -241,7 +235,7 @@ public class VPrincipal extends javax.swing.JFrame {
                                     .addComponent(jButtonArticulos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(textoIntro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -270,7 +264,7 @@ public class VPrincipal extends javax.swing.JFrame {
                     .addComponent(btnBuscar)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(textoIntro)
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -309,6 +303,9 @@ public class VPrincipal extends javax.swing.JFrame {
 
     public void setUsuarioActual(aplicacion.Usuario u) {
         this.usuarioActual = u;
+        this.textoIntro.setText("¡Bienvenido a nuestro foro, " + u.getIdUsuario() + "!");
+        this.textoIntro.setVisible(true);
+        
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBuscarActionPerformed
@@ -348,10 +345,8 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField buscaId;
     private javax.swing.JTextField buscaTitulo;
     private javax.swing.JLabel etiquetaTitulo;
-    private javax.swing.JMenuItem gestionCategorias;
     private javax.swing.JMenuItem gestionUsuarios;
     private javax.swing.JButton jButtonArticulos;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -359,6 +354,7 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaLibros;
+    private javax.swing.JLabel textoIntro;
     // End of variables declaration//GEN-END:variables
 
     public void buscarLibros() {

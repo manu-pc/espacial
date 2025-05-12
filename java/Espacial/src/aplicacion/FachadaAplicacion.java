@@ -50,27 +50,26 @@ public class FachadaAplicacion {
     public void muestraMensaje(String m) {
         fgui.muestraMensaje(m);
     }
-
+    public Usuario getUsuarioActual(){
+        return this.usuarioActual;
+    }
     public void abrirVentanaUsuarios() {
         cu.abrirVentanaUsuarios();
     }
 
-    public Usuario comprobarAutentificacion(String idUsuario, String clave) {
+    public boolean comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u = cu.comprobarAutentificacion(idUsuario, clave);
         if (u != null) {
             fgui.setUsuarioActual(u);
             this.usuarioActual = u;
+            return true;
         }
-        return u;
+        return false;
     }
 
     public boolean getSudo() {
         if (this.usuarioActual == null) {
-            System.out.println("Error autenticando!");
             return false;
-        }
-        if (this.usuarioActual instanceof Administrador) {
-            System.out.println("permiso sudo concedido!");
         }
         return this.usuarioActual instanceof Administrador;
     }
@@ -180,8 +179,8 @@ public class FachadaAplicacion {
         return cg.buscarEntradasPorTitulo(titulo);
     }
 
-    public void eliminarEntrada(Usuario autor, Integer idEntrada) {
-        cg.eliminarEntrada(autor, idEntrada);
+    public void eliminarEntrada(EntradaForo entrada) {
+        cg.eliminarEntrada(entrada);
     }
 
     public void notificarNuevaEntrada() {
@@ -197,6 +196,10 @@ public class FachadaAplicacion {
     }
 
     public void modificarCuerpo(CuerpoCeleste cuerpo) {
+        if (cuerpo.getNombreCuerpoCeleste().equals(cuerpo.getOrbitaA())){
+            muestraExcepcion("El cuerpo no puede orbitar sobre sí mismo!");
+            return;
+        }
         gc.modificarCuerpo(cuerpo);
     }
 
@@ -213,6 +216,10 @@ public class FachadaAplicacion {
     }
 
     public void darDeAltaCuerpo(CuerpoCeleste nuevo) {
+                if (nuevo.getNombreCuerpoCeleste().equals(nuevo.getOrbitaA())){
+            muestraExcepcion("El cuerpo no puede orbitar sobre sí mismo!");
+            return;
+        }
         gc.darDeAltaCuerpo(nuevo);
     }
 
@@ -237,14 +244,26 @@ public class FachadaAplicacion {
     }
     
     public void guardarArticulo(Articulo a){
-        ca.guardarArticulo(a);
+
+        if ((usuarioActual instanceof Cientifico && usuarioActual.getIdUsuario().equals(a.getAutor()))|| usuarioActual instanceof Administrador)
+            ca.guardarArticulo(a);
+        else
+            muestraExcepcion("No tienes permiso para publicar este artículo!");
     }
     
     public void modificarArticulo(Articulo a){
-        ca.modificarArticulo(a);
-    }
+        if ((usuarioActual instanceof Cientifico && usuarioActual.getIdUsuario().equals(a.getAutor()))|| usuarioActual instanceof Administrador)
+            ca.modificarArticulo(a);
+        else
+            muestraExcepcion("No tienes permiso para modificar este artículo!");    }
     
     public void borrarArticulo(Articulo a){
-        ca.borrarArticulo(a);
+        if ((usuarioActual instanceof Cientifico && usuarioActual.getIdUsuario().equals(a.getAutor()))|| usuarioActual instanceof Administrador)
+            ca.borrarArticulo(a);
+        else
+            muestraExcepcion("No tienes permiso para borrar este artículo!");       }
+    
+    public void registrarUsuario(){
+        fgui.registrarUsuario();
     }
 }

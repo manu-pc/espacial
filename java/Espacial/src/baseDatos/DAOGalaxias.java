@@ -18,182 +18,216 @@ public class DAOGalaxias extends AbstractDAO {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
-
+    
     public Galaxia validarGalaxia(String nombre) {
-        Galaxia resultado = null;
-        Connection con;
-        PreparedStatement stmGalaxia = null;
-        ResultSet rsGalaxia;
+    Galaxia resultado = null;
+    Connection con = null;
+    PreparedStatement stmGalaxia = null;
+    ResultSet rsGalaxia = null;
 
+    try {
         con = this.getConexion();
+        stmGalaxia = con.prepareStatement("SELECT nombre, tipo, ubicacion, descripcion FROM galaxia WHERE nombre = ?");
+        stmGalaxia.setString(1, nombre);
+        rsGalaxia = stmGalaxia.executeQuery();
 
-        try {
-            stmGalaxia = con.prepareStatement("select nombre, tipo, ubicacion, descripcion "
-                    + "from galaxia "
-                    + "where nombre = ?");
-            stmGalaxia.setString(1, nombre);
-            rsGalaxia = stmGalaxia.executeQuery();
-            if (rsGalaxia.next()) {
-                resultado = new Galaxia(rsGalaxia.getString("nombre"), TipoGalaxia.valueOf(rsGalaxia.getString("tipo")),
-                        rsGalaxia.getString("ubicacion"), rsGalaxia.getString("descripcion"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        } finally {
-            try {
-                stmGalaxia.close();
-            } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
-            }
+        if (rsGalaxia.next()) {
+            resultado = new Galaxia(
+                rsGalaxia.getString("nombre"),
+                TipoGalaxia.valueOf(rsGalaxia.getString("tipo")),
+                rsGalaxia.getString("ubicacion"),
+                rsGalaxia.getString("descripcion")
+            );
         }
-        return resultado;
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (rsGalaxia != null) rsGalaxia.close();
+            if (stmGalaxia != null) stmGalaxia.close();
+        } catch (SQLException e) {
+            System.out.println("Imposible cerrar recursos.");
+        }
     }
+    return resultado;
+}
 
+    
     public java.util.List<Galaxia> obtenerGalaxia(String nombre) {
-        java.util.List<Galaxia> resultado = new java.util.ArrayList<Galaxia>();
-        Galaxia galaxiaActual;
-        Connection con;
-        PreparedStatement strGalaxias = null;
-        ResultSet rslGalaxias;
+    java.util.List<Galaxia> resultado = new java.util.ArrayList<>();
+    Connection con = null;
+    PreparedStatement strGalaxias = null;
+    ResultSet rslGalaxias = null;
 
+    try {
         con = this.getConexion();
-        String consulta = "select nombre, tipo, ubicacion, descripcion "
-                + "from galaxia ";
+        String consulta = "SELECT nombre, tipo, ubicacion, descripcion FROM galaxia ";
         if (!nombre.isEmpty()) {
-            consulta = consulta + "where nombre like '%" + nombre + "%' ";
+            consulta += "WHERE nombre LIKE ?";
         }
+
+        strGalaxias = con.prepareStatement(consulta);
+        if (!nombre.isEmpty()) {
+            strGalaxias.setString(1, "%" + nombre + "%");
+        }
+
+        rslGalaxias = strGalaxias.executeQuery();
+
+        while (rslGalaxias.next()) {
+            Galaxia galaxiaActual = new Galaxia(
+                rslGalaxias.getString("nombre"),
+                TipoGalaxia.valueOf(rslGalaxias.getString("tipo")),
+                rslGalaxias.getString("ubicacion"),
+                rslGalaxias.getString("descripcion")
+            );
+            resultado.add(galaxiaActual);
+        }
+
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
         try {
-            strGalaxias = con.prepareStatement(consulta);
-            rslGalaxias = strGalaxias.executeQuery();
-
-            while (rslGalaxias.next()) {
-                galaxiaActual = new Galaxia(rslGalaxias.getString("nombre"), TipoGalaxia.valueOf(rslGalaxias.getString("tipo")),
-                        rslGalaxias.getString("ubicacion"),rslGalaxias.getString("descripcion"));
-                resultado.add(galaxiaActual);
-
-            }
-
+            if (rslGalaxias != null) rslGalaxias.close();
+            if (strGalaxias != null) strGalaxias.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        } finally {
-            try {
-                strGalaxias.close();
-            } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
-            }
+            System.out.println("Imposible cerrar recursos.");
         }
-
-        return resultado;
     }
 
+    return resultado;
+}
+
+    
+    
     public void DarDeAltaGalaxia(Galaxia galaxia) {
-        Connection con;
-        PreparedStatement stmGalaxia = null;
+    Connection con = null;
+    PreparedStatement stmGalaxia = null;
 
-        con = super.getConexion();
+    try {
+        con = this.getConexion();
+        con.setAutoCommit(false);
 
+        stmGalaxia = con.prepareStatement(
+            "INSERT INTO galaxia(nombre, tipo, ubicacion, descripcion) VALUES (?, ?, ?, ?)"
+        );
+
+        stmGalaxia.setString(1, galaxia.getNombreGalaxia());
+        stmGalaxia.setString(2, galaxia.getTipoGalaxia().name());
+        stmGalaxia.setString(3, galaxia.getUbicacionGalaxia());
+        stmGalaxia.setString(4, galaxia.getDescGalaxia());
+
+        stmGalaxia.executeUpdate();
+        con.commit();
+
+    } catch (SQLException e) {
         try {
-            stmGalaxia = con.prepareStatement("insert into galaxia(nombre, tipo, ubicacion, descripcion) "
-                    + "values (?,?,?,?)");
-            stmGalaxia.setString(1, galaxia.getNombreGalaxia());
-            stmGalaxia.setString(2, galaxia.getTipoGalaxia().name());
-            stmGalaxia.setString(3, galaxia.getUbicacionGalaxia());
-            stmGalaxia.setString(4, galaxia.getDescGalaxia());
-
-            stmGalaxia.executeUpdate();
-
+            if (con != null) con.rollback();
+        } catch (SQLException ex) {
+        }
+        System.out.println(e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (stmGalaxia != null) stmGalaxia.close();
+            if (con != null) con.setAutoCommit(true);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        } finally {
-            try {
-                stmGalaxia.close();
-            } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
-            }
+            System.out.println("Imposible cerrar recursos.");
         }
     }
+}
 
+    
     public void modificarGalaxia(Galaxia galaxia) {
-        Connection con;
-        PreparedStatement stmGalaxia = null;
+    Connection con = null;
+    PreparedStatement stmGalaxia = null;
 
-        con = super.getConexion();
+    try {
+        con = this.getConexion();
+        con.setAutoCommit(false);
 
+        stmGalaxia = con.prepareStatement(
+            "UPDATE galaxia SET nombre=?, tipo=?, ubicacion=?, descripcion=? WHERE nombre=?"
+        );
+
+        stmGalaxia.setString(1, galaxia.getNombreGalaxia());
+        stmGalaxia.setString(2, galaxia.getTipoGalaxia().name());
+        stmGalaxia.setString(3, galaxia.getUbicacionGalaxia());
+        stmGalaxia.setString(4, galaxia.getDescGalaxia());
+        stmGalaxia.setString(5, galaxia.getNombreGalaxia());
+
+        if (stmGalaxia.executeUpdate() == 0) {
+            throw new SQLException("No se ha encontrado la galaxia para modificar.");
+        }
+
+        con.commit();
+    } catch (SQLException e) {
         try {
-            stmGalaxia = con.prepareStatement("update galaxia "
-                    + "set nombre=?, "
-                    + "    tipo=?, "
-                    + "    ubicacion=?, "
-                    + "    descripcion=? "
-                    + "where nombre=?");
-            stmGalaxia.setString(1, galaxia.getNombreGalaxia());
-            stmGalaxia.setString(2, galaxia.getTipoGalaxia().name());
-            stmGalaxia.setString(3, galaxia.getUbicacionGalaxia());
-            stmGalaxia.setString(4, galaxia.getDescGalaxia());
-            stmGalaxia.setString(5, galaxia.getNombreGalaxia());
-
-            stmGalaxia.executeUpdate();
-
+            if (con != null) con.rollback();
+        } catch (SQLException ex) {
+        }
+        System.out.println(e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (stmGalaxia != null) stmGalaxia.close();
+            if (con != null) con.setAutoCommit(true);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        } finally {
-            try {
-                stmGalaxia.close();
-            } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
-            }
+            System.out.println("Imposible cerrar recursos.");
         }
     }
+}
 
-    public void borrarGalaxia(String nombre) {
+public void borrarGalaxia(String nombre) {
+    Connection con = null;
+    PreparedStatement psCheck = null;
+    PreparedStatement psDelete = null;
+    ResultSet rs = null;
 
-        Connection con = getConexion();
-        PreparedStatement psCheck = null;
-        PreparedStatement psDelete = null;
-        ResultSet rs = null;
+    try {
+        con = this.getConexion();
+        con.setAutoCommit(false);
 
+        psCheck = con.prepareStatement(
+            "SELECT 1 FROM galaxia g " +
+            "LEFT JOIN cuerpoceleste cc ON g.nombre = cc.galaxia " +
+            "WHERE g.nombre = ? AND cc.galaxia IS NOT NULL"
+        );
+        psCheck.setString(1, nombre);
+        rs = psCheck.executeQuery();
+
+        if (rs.next()) {
+            this.getFachadaAplicacion().muestraExcepcion(
+                "No se puede eliminar: la galaxia está relacionada con cuerpos celestes."
+            );
+        } else {
+            psDelete = con.prepareStatement("DELETE FROM galaxia WHERE nombre = ?");
+            psDelete.setString(1, nombre);
+            if (psDelete.executeUpdate() == 0) {
+                throw new SQLException("La galaxia no existe.");
+            }
+            System.out.println("Galaxia eliminada correctamente.");
+        }
+
+        con.commit();
+    } catch (SQLException e) {
         try {
-            psCheck = con.prepareStatement("SELECT 1 "
-        +"FROM galaxia g "
-        +"LEFT JOIN cuerpoceleste cc ON g.nombre = cc.galaxia "
-        +"WHERE g.nombre = ? AND (cc.galaxia IS NOT NULL)");
-            psCheck.setString(1, nombre);
-            rs = psCheck.executeQuery();
-
-            if (rs.next()) {
-                 this.getFachadaAplicacion().muestraExcepcion("No se puede eliminar: la galaxia está relacionada con cuerpos celestes.");
-            } else {
-                psDelete = con.prepareStatement("DELETE FROM galaxia WHERE nombre = ?");
-                psDelete.setString(1, nombre);
-                psDelete.executeUpdate();
-                System.out.println("Galaxia eliminado correctamente.");
-            }
+            if (con != null) con.rollback();
+        } catch (SQLException ex) {
+        }
+        System.out.println("Error eliminando galaxia: " + e.getMessage());
+        this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (psCheck != null) psCheck.close();
+            if (psDelete != null) psDelete.close();
+            if (con != null) con.setAutoCommit(true);
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException e) {
-            }
-            try {
-                if (psCheck != null) {
-                    psCheck.close();
-                }
-            } catch (SQLException e) {
-            }
-            try {
-                if (psDelete != null) {
-                    psDelete.close();
-                }
-            } catch (SQLException e) {
-            }
+            System.out.println("Imposible cerrar recursos.");
         }
     }
+}
 
 }
