@@ -199,10 +199,10 @@ public class VMisionesAstronautas extends javax.swing.JDialog {
         astronautasMision = (ModeloListaAstronautas) listaAstronautasMision.getModel();
         astronautasDisponibles.nuevoElemento(astronautasMision.getElementAt(listaAstronautasMision.getSelectedIndex()));
         astronautasMision.borrarElemento(listaAstronautasMision.getSelectedIndex());
-        if (astronautasMision.getSize()==0) botonIzquierda.setEnabled(false);
+        if (astronautasMision.getSize()==0) botonDerecha.setEnabled(false);
         else listaAstronautasMision.setSelectedIndex(0);
         listaAstronautasDisponibles.setSelectedIndex(astronautasDisponibles.getSize()-1);
-        botonDerecha.setEnabled(true);
+        botonIzquierda.setEnabled(true);
     }//GEN-LAST:event_botonDerechaActionPerformed
 
     private void botonIzquierdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIzquierdaActionPerformed
@@ -213,10 +213,10 @@ public class VMisionesAstronautas extends javax.swing.JDialog {
         astronautasMision = (ModeloListaAstronautas) listaAstronautasMision.getModel();
         astronautasMision.nuevoElemento(astronautasDisponibles.getElementAt(listaAstronautasDisponibles.getSelectedIndex()));
         astronautasDisponibles.borrarElemento(listaAstronautasDisponibles.getSelectedIndex());
-        if (astronautasDisponibles.getSize()==0) botonDerecha.setEnabled(false);
+        if (astronautasDisponibles.getSize()==0) botonIzquierda.setEnabled(false);
         else listaAstronautasDisponibles.setSelectedIndex(0);
         listaAstronautasMision.setSelectedIndex(astronautasMision.getSize()-1);
-        botonIzquierda.setEnabled(true);
+        botonDerecha.setEnabled(true);
     }//GEN-LAST:event_botonIzquierdaActionPerformed
 
     private void botonsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonsalirActionPerformed
