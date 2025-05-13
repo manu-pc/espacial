@@ -7,11 +7,8 @@ package baseDatos;
 
 import aplicacion.Astronauta;
 import aplicacion.Agencia;
-import aplicacion.Ejemplar;
 import aplicacion.Usuario;
-import aplicacion.Categoria;
 import aplicacion.HistorialAgencias;
-import aplicacion.Libro;
 import aplicacion.Mision;
 import aplicacion.Nave;
 import java.io.FileInputStream;
@@ -29,10 +26,7 @@ import java.util.Properties;
 public class FachadaBaseDatos {
     private aplicacion.FachadaAplicacion fa;
     private java.sql.Connection conexion;
-    private DAOLibros daoLibros;
-    private DAOCategorias daoCategorias;
     private DAOUsuarios daoUsuarios;
-    private DAOPrestamos daoPrestamos;
     private DAOAstronautas daoAstronautas;
     private DAOAgencias daoAgencias;
     private DAOPertenecerAgencia daoPertenecerAgencia;
@@ -63,10 +57,7 @@ public class FachadaBaseDatos {
                     configuracion.getProperty("baseDatos"),
                     usuario);
 
-            daoLibros = new DAOLibros(conexion, fa);
-            daoCategorias = new DAOCategorias(conexion, fa);
             daoUsuarios = new DAOUsuarios(conexion, fa);
-            daoPrestamos = new DAOPrestamos(conexion, fa);
             daoAstronautas = new DAOAstronautas(conexion, fa);
             daoAgencias = new DAOAgencias(conexion, fa);
             daoNaves = new DAONave(conexion,fa);
@@ -87,64 +78,10 @@ public class FachadaBaseDatos {
 
     }
 
-    public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor) {
-        return daoLibros.consultarCatalogo(id, titulo, isbn, autor);
-    }
-
-    public Libro consultarLibro(Integer idLibro) {
-        return daoLibros.consultarLibro(idLibro);
-    }
-
-    public java.util.List<Ejemplar> consultarEjemplaresLibro(Integer idLibro) {
-        return daoLibros.consultarEjemplaresLibro(idLibro);
-    }
-
-    public java.util.List<String> obtenerRestoCategorias(Integer idLibro) {
-        return daoLibros.obtenerRestoCategorias(idLibro);
-    }
-
-    public Integer insertarLibro(Libro libro) {
-        return daoLibros.insertarLibro(libro);
-    }
-
-    public void borrarLibro(Integer idLibro) {
-        daoLibros.borrarLibro(idLibro);
-    }
-
-    public void modificarLibro(Libro libro) {
-        daoLibros.modificarLibro(libro);
-    }
-
-    public void modificarCategoriasLibro(Integer idLibro, java.util.List<String> categorias) {
-        daoLibros.modificarCategoriasLibro(idLibro, categorias);
-    }
-
-    public void insertarEjemplarLibro(Integer idLibro, Ejemplar ejemplar) {
-        daoLibros.insertarEjemplarLibro(idLibro, ejemplar);
-    }
-
-    public void borrarEjemplaresLibro(Integer idLibro, java.util.List<Integer> numsEjemplar) {
-        daoLibros.borrarEjemplaresLibro(idLibro, numsEjemplar);
-    }
-
-    public void modificarEjemplarLibro(Integer idLibro, Ejemplar ejemplar) {
-        daoLibros.modificarEjemplarLibro(idLibro, ejemplar);
-    }
+ 
 
     public Usuario validarUsuario(String idUsuario, String clave) {
         return daoUsuarios.validarUsuario(idUsuario, clave);
-    }
-
-    public java.util.List<Categoria> consultarCategorias() {
-        return daoCategorias.consultarCategorias();
-    }
-
-    public void insertarCategoria(String nombre, String descripcion) {
-        daoCategorias.insertarCategoria(nombre, descripcion);
-    }
-
-    public void eliminarCategoria(String nombre) {
-        daoCategorias.eliminarCategoria(nombre);
     }
 
     public java.util.List<Usuario> obtenerUsuarios() {

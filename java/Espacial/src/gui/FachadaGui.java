@@ -5,7 +5,6 @@
 package gui;
 
 import aplicacion.Astronauta;
-import aplicacion.Ejemplar;
 import aplicacion.Mision;
 import aplicacion.Nave;
 
@@ -77,9 +76,7 @@ public class FachadaGui {
         ventanaMisionesAstronautas.setVisible(true);
         ventanaMisionesAstronautas.setLocationRelativeTo(null);
     }
-    public void nuevoPrestamo(Ejemplar ejemplar, java.awt.Dialog parent){
 
-    }
     
     
 
