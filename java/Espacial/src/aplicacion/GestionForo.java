@@ -4,22 +4,23 @@
  */
 
 package aplicacion;
+
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
 import java.util.ArrayList;
+
 /**
  *
  * @author basesdatos
  */
-public class GestionCategorias{
+public class GestionForo {
     FachadaGui fgui;
     FachadaBaseDatos fbd;
-    
-    public GestionCategorias(FachadaGui fgui, FachadaBaseDatos fbd){
-     this.fgui=fgui;
-     this.fbd=fbd;
-    }
 
+    public GestionForo(FachadaGui fgui, FachadaBaseDatos fbd) {
+        this.fgui = fgui;
+        this.fbd = fbd;
+    }
 
     public void nuevaEntrada(Usuario u, String titulo, String contenido) {
         fbd.nuevaEntrada(u, titulo, contenido);
@@ -40,7 +41,8 @@ public class GestionCategorias{
     public ArrayList<EntradaForo> buscarEntradasPorTitulo(String titulo) {
         return fbd.buscarEntradasPorTitulo(titulo);
     }
-    public void eliminarEntrada(Usuario autor, Integer idEntrada) {
-        fbd.eliminarEntrada(autor, idEntrada);
+
+    public void eliminarEntrada( EntradaForo entrada) {
+        fbd.eliminarEntrada(entrada);
     }
 }

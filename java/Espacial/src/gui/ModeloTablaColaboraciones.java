@@ -55,8 +55,8 @@ public class ModeloTablaColaboraciones extends AbstractTableModel {
     }
 
     @Override
-    public Class getColumnClass(int col) {
-        Class clase = null;
+    public Class <?> getColumnClass(int col) {
+        Class <?> clase = null;
 
         switch (col) {
             case 0:

@@ -215,6 +215,7 @@ public class DAOUsuarios extends AbstractDAO {
     public void crearUsuario(Usuario usuario) {
         Connection con = null;
         PreparedStatement stmUsuario = null;
+        PreparedStatement stmForo = null;
         PreparedStatement stmSubtipo = null;
 
         con = this.getConexion();
@@ -268,6 +269,16 @@ public class DAOUsuarios extends AbstractDAO {
                 stmSubtipo.executeUpdate();
             }
 
+            
+            // COMO PARTE DE LA MISMA TRANSACCIÓN (para asegurar que o se hace todo o o nada): se crea la entrada de descripcion del usuario
+            stmForo = con.prepareStatement("INSERT INTO EntradaForo (autor, fecha, titulo, contenido) VALUES (?, CURRENT_DATE, ?, ?)");
+            stmForo.setString(1, usuario.getIdUsuario());
+            String titulo = "¡Hola, soy " + usuario.getIdUsuario() + "!";
+            String contenido = "¡Acabo de unirme a este foro!";
+            stmForo.setString(2, titulo);
+            stmForo.setString(3, contenido);
+            stmForo.executeUpdate();
+            // si hubiese un error entre crear el usuario y crear su entrada de introduccion, no se crea la entrada ni el usuario
             con.commit();
 
         } catch (SQLException e) {
