@@ -20,6 +20,11 @@ public class FachadaAplicacion {
     GestionCuerposCelestes gc;
     GestionGalaxias gg;
     Usuario usuarioActual;
+    GestionAgencias ga;
+    GestionAstronautas gs;
+    GestionMisiones gm;
+    GestionPertenenciaAgencias gp;
+    GestionNaves gn;
     GestionArticulos ca;
 
     public FachadaAplicacion() {
@@ -27,10 +32,14 @@ public class FachadaAplicacion {
         fbd = new baseDatos.FachadaBaseDatos(this);
         cu = new GestionUsuarios(fgui, fbd);
         cg = new GestionForo(fgui, fbd);
-
         gc = new GestionCuerposCelestes(fgui, fbd);
         gg = new GestionGalaxias(fgui, fbd);
         ca = new GestionArticulos(fgui, fbd);
+        ga = new GestionAgencias(fgui, fbd);
+        gs = new GestionAstronautas(fgui,fbd);
+        gm = new GestionMisiones(fgui,fbd);
+        gn = new GestionNaves(fgui, fbd);
+        gp = new GestionPertenenciaAgencias(fgui, fbd);
     }
 
     public static void main(String args[]) {
@@ -266,4 +275,141 @@ public class FachadaAplicacion {
     public void registrarUsuario(){
         fgui.registrarUsuario();
     }
+    
+    
+    public void abrirVentanaNaves(){
+        fgui.abrirVentanaNaves();
+    }
+    
+    public void abrirVentanaAgencias(){
+        fgui.abrirVentanaAgencias();
+    }
+    
+    public void abrirVentanaAstronautas(){
+        fgui.abrirVentanaAstronautas();
+    }
+    
+    public void abrirVentanaMisiones(){
+        fgui.abrirVentanaMisiones();
+    }
+    
+     public void abrirVentanaMisiones(Nave nave){
+        fgui.abrirVentanaMisiones(nave);
+    }
+    
+    
+    
+    
+    public java.util.List<Astronauta> obtenerAstronautas() {
+        return gs.obtenerAstronautas();
+    }
+    
+    public java.util.List<HistorialAgencias> obtenerHistorialAstronauta(int idAstronauta) {
+        return gp.obtenerHistorialAstronauta(idAstronauta);
+    }
+
+    public java.util.List<Astronauta> buscarAstronautasPorNombre(String nombre) {
+        return gs.buscarAstronautasPorNombre(nombre);
+    }
+    
+    public Astronauta buscarAstronautaPorId(int id){
+        return gs.buscarAstronautaPorId(id);
+    }
+    
+    public void actualizarAstronauta(Astronauta a, int idAgenciaActual, int idAgenciaNueva){
+        gs.actualizarAstronauta(a, idAgenciaActual, idAgenciaNueva);
+    }
+    public void borrarAstronauta(int idAstronauta){
+       gs.borrarAstronauta(idAstronauta);
+    }
+    
+    public java.util.List<Agencia> obtenerAgencias() {
+        return ga.obtenerAgencias();
+    }
+
+    public java.util.List<Agencia> buscarAgenciasPorNombre(String nombre) {
+        return ga.buscarAgenciasPorNombre(nombre);
+    }
+    
+    public Agencia buscarAgenciaPorId(int id){
+        return ga.buscarAgenciaPorId(id);
+    }
+    
+    public void actualizarAgencia(Agencia a){
+        ga.actualizarAgencia(a);
+    }
+    public void borrarAgencia(int idAgencia){
+       ga.borrarAgencia(idAgencia);
+    }
+    public List<Nave> obtenerNaves() {
+        return gn.obtenerNaves();
+    }
+    
+    public int obtenerAgenciaActual(int idAstronauta){
+        return gp.obtenerAgenciaActual(idAstronauta);
+    }
+
+    public void borrarNave(Nave nave) {
+        gn.borrarNave(nave);
+    }
+
+    public void añadirNave(Nave naveEspacial) {
+        gn.añadirNave(naveEspacial);
+    }
+
+    public void actualizarNave(Nave naveActualizada) {
+        gn.actualizarNave(naveActualizada);
+    }
+
+    public List<Nave> buscarNavePorId(Integer id) {
+        return gn.buscarNavePorId(id);
+    }
+    
+    public List<Nave> buscarNavePorNombre(String nombre) {
+        return gn.buscarNavePorNombre(nombre);
+    }
+    
+    public java.util.List<Mision> obtenerMisiones() {
+        return gm.obtenerMisiones();
+    }
+    public java.util.List<Mision> obtenerMisiones(Nave nave) {
+        return gm.obtenerMisiones(nave);
+    }
+    
+    public java.util.List<Astronauta> obtenerAstronautas(Integer codigoMision) {
+        return gs.obtenerAstronautas(codigoMision);
+    }
+    
+    public java.util.List<Astronauta> obtenerRestoAstronautas(Integer codigoMision) {
+        return gs.obtenerRestoAstronautas(codigoMision);
+    }
+    
+    public void actualizarAstronautasMisiones(Integer codigoMision, java.util.List<Astronauta> astronautas) {
+        gs.actualizarAstronautasMisiones(codigoMision, astronautas);
+    }
+    
+    public void añadirMision(Mision m) {
+        gm.añadirMision(m);
+    }
+    
+    public void modificarMision(Mision m) {
+        gm.modificarMision(m);
+    }
+    
+    public void borrarMision(Integer codigo) {
+        gm.borrarMision(codigo);
+    }
+    
+    public void desvincularAgencia(int idAstronauta){
+        gp.desvincularAgencia(idAstronauta);
+    }    
+    
+    public void abrirVentanaHistorialAgencias(int id){
+        fgui.abrirVentanaHistorialAgencias(id);
+    }
+    
+    public void abrirVentanaMisionesAstronautas(Integer codigoMision, java.util.List<Astronauta> astronautas, java.util.List<Astronauta> restoAstronautas) {
+        fgui.abrirVentanaMisionesAstronautas(codigoMision, astronautas, restoAstronautas);
+    }
+
 }

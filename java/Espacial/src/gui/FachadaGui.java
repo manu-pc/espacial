@@ -111,5 +111,43 @@ public class FachadaGui {
         VUsuario vu = new VUsuario(this.vp, true, fa, true);
         vu.setVisible(true);
     }
+        
+    public void abrirVentanaAstronautas(){
+        VAstronauta ventanaAstronautas = new VAstronauta(vp, true, fa);
+        ventanaAstronautas.setVisible(true);
+        ventanaAstronautas.setLocationRelativeTo(null);
+    }  
+    public void abrirVentanaAgencias(){
+        VAgencia ventanaAgencias = new VAgencia(vp, true, fa);
+        ventanaAgencias.setVisible(true);
+        ventanaAgencias.setLocationRelativeTo(null);
+    } 
+    public void abrirVentanaMisiones(){
+        VMision ventanaMisiones = new VMision(vp, true, fa);
+        ventanaMisiones.setVisible(true);
+        ventanaMisiones.setLocationRelativeTo(null);
+    } 
+    
+    public void abrirVentanaNaves(){
+        VNave ventanaNaves = new VNave(vp, true, fa);
+        ventanaNaves.setVisible(true);
+        ventanaNaves.setLocationRelativeTo(null);
+    }
 
+        public void abrirVentanaMisiones(Nave nave){
+        VMision ventanaMisiones = new VMision(vp, true, fa, nave);
+        ventanaMisiones.setVisible(true);
+        ventanaMisiones.setLocationRelativeTo(null);
+    }
+    
+    public void abrirVentanaMisionesAstronautas(Integer codigoMision, java.util.List<Astronauta> astronautas, java.util.List<Astronauta> restoAstronautas) {
+        VMisionesAstronautas ventanaMisionesAstronautas = new VMisionesAstronautas(vp, true, fa, codigoMision, astronautas, restoAstronautas);
+        ventanaMisionesAstronautas.setVisible(true);
+        ventanaMisionesAstronautas.setLocationRelativeTo(null);
+    }
+    public void abrirVentanaHistorialAgencias(int idAstronauta){
+        VHistorialAgencias ventanaHistorial = new VHistorialAgencias(vp, true, fa, idAstronauta);
+        ventanaHistorial.setVisible(true);
+        ventanaHistorial.setLocationRelativeTo(null);
+    }
 }

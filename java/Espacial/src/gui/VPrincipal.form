@@ -92,19 +92,29 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="textoIntro" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonArticulos" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botonGalaxias" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botonCuerposCelestes" alignment="0" max="32767" attributes="0"/>
+                          <Component id="boton_miPerfil" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" pref="512" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jButton2" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButton3" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="botonCuerposCelestes" max="32767" attributes="0"/>
-                                  <Component id="boton_miPerfil" max="32767" attributes="0"/>
-                                  <Component id="botonGalaxias" max="32767" attributes="0"/>
-                                  <Component id="jButtonArticulos" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" pref="512" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="textoIntro" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -115,20 +125,26 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="175" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jLabel4" min="-2" pref="175" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Component id="boton_miPerfil" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="botonCuerposCelestes" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Component id="botonGalaxias" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="jButtonArticulos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="botonCuerposCelestes" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="botonGalaxias" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -232,6 +248,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="boton_miPerfil">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="ff" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mi perfil"/>
       </Properties>
       <Events>
@@ -281,6 +300,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonCuerposCelestes">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cuerpos Celestes"/>
       </Properties>
       <Events>
@@ -289,6 +311,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonGalaxias">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Galaxias"/>
       </Properties>
       <Events>
@@ -297,10 +322,57 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonArticulos">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Articulos"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonArticulosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Naves"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="56" green="8a" red="a4" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Misiones"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton3">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="99" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Agencias"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton4">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Astronautas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
