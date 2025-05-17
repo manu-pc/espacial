@@ -26,9 +26,9 @@ public class VMision extends javax.swing.JDialog {
     public VMision(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa) {
         super(parent, modal);
         this.fa = fa;
-        codigoTextField.setEditable(false);
         initComponents();
         cargarMisiones();
+        codigoTextField.setEditable(false);
         this.nave = null;
         if (!fa.getSudo()) {
             nuevoBoton.setVisible(false);
@@ -42,9 +42,9 @@ public class VMision extends javax.swing.JDialog {
     public VMision(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Nave nave) {
         super(parent, modal);
         this.fa = fa;
-        codigoTextField.setEditable(false);
         initComponents();
         cargarMisiones(nave);
+        codigoTextField.setEditable(false);
         this.nave = nave;
         if (!fa.getSudo()) {
             nuevoBoton.setVisible(false);
