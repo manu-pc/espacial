@@ -26,6 +26,7 @@ public class VMision extends javax.swing.JDialog {
     public VMision(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa) {
         super(parent, modal);
         this.fa = fa;
+        codigoTextField.setEditable(false);
         initComponents();
         cargarMisiones();
         this.nave = null;
@@ -33,6 +34,7 @@ public class VMision extends javax.swing.JDialog {
             nuevoBoton.setVisible(false);
             modificarBoton.setVisible(false);
             borrarBoton.setVisible(false);
+            modificarAstronautasBoton.setVisible(false);
         }
     }
     // Se abre la ventana misión pero en vez de mostrar todas las misiones
@@ -40,6 +42,7 @@ public class VMision extends javax.swing.JDialog {
     public VMision(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa, Nave nave) {
         super(parent, modal);
         this.fa = fa;
+        codigoTextField.setEditable(false);
         initComponents();
         cargarMisiones(nave);
         this.nave = nave;
@@ -47,6 +50,7 @@ public class VMision extends javax.swing.JDialog {
             nuevoBoton.setVisible(false);
             modificarBoton.setVisible(false);
             borrarBoton.setVisible(false);
+            modificarAstronautasBoton.setVisible(false);
         }
         
         // Cuando la ventana sólo debe mostrar las misiones de una nave
