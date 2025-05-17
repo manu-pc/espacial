@@ -27,6 +27,12 @@ public class VAstronauta extends javax.swing.JDialog {
         this.fa = fa;
         initComponents();
         cargarAstronautas();
+        if (!fa.getSudo()) {
+            buttonNuevo.setVisible(false);
+            buttonGuardar.setVisible(false);
+            buttonBorrar.setVisible(false);
+            boton_desvincular_agencia.setVisible(false);
+        }
         javax.swing.SwingUtilities.invokeLater(() -> {
         tablaAstronautas.setRowSelectionInterval(0, 0);
         tablaAstronautas.scrollRectToVisible(tablaAstronautas.getCellRect(0, 0, true));
@@ -65,7 +71,9 @@ public class VAstronauta extends javax.swing.JDialog {
                 boton_desvincular_agencia.setVisible(false);
 
             } else{
-                boton_desvincular_agencia.setVisible(true);
+                if (fa.getSudo()) {
+                    boton_desvincular_agencia.setVisible(true);
+                }
             }
         }
     }

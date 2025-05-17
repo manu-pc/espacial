@@ -34,6 +34,11 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
     mt.setFilas(fa.obtenerNaves());
     
     checkbox_id.setSelected(true);
+    if (!fa.getSudo()) {
+        añadirBoton.setVisible(false);
+        Actualizar.setVisible(false);
+        borrarBoton.setVisible(false);
+    }
 }
 
 

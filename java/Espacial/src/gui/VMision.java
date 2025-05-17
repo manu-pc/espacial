@@ -29,6 +29,11 @@ public class VMision extends javax.swing.JDialog {
         initComponents();
         cargarMisiones();
         this.nave = null;
+        if (!fa.getSudo()) {
+            nuevoBoton.setVisible(false);
+            modificarBoton.setVisible(false);
+            borrarBoton.setVisible(false);
+        }
     }
     // Se abre la ventana misión pero en vez de mostrar todas las misiones
     // se muestran sólo las misiones en las que participa la nave
@@ -38,6 +43,11 @@ public class VMision extends javax.swing.JDialog {
         initComponents();
         cargarMisiones(nave);
         this.nave = nave;
+        if (!fa.getSudo()) {
+            nuevoBoton.setVisible(false);
+            modificarBoton.setVisible(false);
+            borrarBoton.setVisible(false);
+        }
         
         // Cuando la ventana sólo debe mostrar las misiones de una nave
         // no se permite modificar el campo con la id de la nave

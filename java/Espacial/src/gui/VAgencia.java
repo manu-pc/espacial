@@ -26,6 +26,11 @@ public class VAgencia extends javax.swing.JDialog {
         this.fa = fa;
         initComponents();
         cargarAgencias();
+        if (!fa.getSudo()) {
+            buttonNuevo.setVisible(false);
+            buttonGuardar.setVisible(false);
+            buttonBorrar.setVisible(false);
+        }
         javax.swing.SwingUtilities.invokeLater(() -> {
         tablaAgencias.setRowSelectionInterval(0, 0);
         tablaAgencias.scrollRectToVisible(tablaAgencias.getCellRect(0, 0, true));
