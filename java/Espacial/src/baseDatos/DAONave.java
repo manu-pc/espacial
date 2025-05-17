@@ -86,13 +86,12 @@ public class DAONave extends AbstractDAO {
 
         try {
             stmInsertar = con.prepareStatement(
-                "INSERT INTO nave (id, nombre, tipo, tamano, masa) VALUES (?, ?, ?, ?, ?)"
+                "INSERT INTO nave (nombre, tipo, tamano, masa) VALUES (?, ?, ?, ?)"
             );
-            stmInsertar.setInt(1, nave.getIDNave());
-            stmInsertar.setString(2, nave.getNombre());
-            stmInsertar.setString(3, nave.getTipo());
-            stmInsertar.setFloat(4, nave.getTamanho());
-            stmInsertar.setFloat(5, nave.getMasa());
+            stmInsertar.setString(1, nave.getNombre());
+            stmInsertar.setString(2, nave.getTipo());
+            stmInsertar.setFloat(3, nave.getTamanho());
+            stmInsertar.setFloat(4, nave.getMasa());
 
             stmInsertar.executeUpdate();
 

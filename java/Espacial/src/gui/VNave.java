@@ -323,7 +323,13 @@ public VNave(java.awt.Frame padre, boolean modal, aplicacion.FachadaAplicacion f
         
    
         String nave = CampoIDNave.getText();
-        Integer id = Integer.parseInt(nave);
+        Integer id;
+        if (nave.isEmpty()) {
+            id = 0; // Un valor cualquiera ya que luego se genera sólo
+        }
+        else {
+            id = Integer.parseInt(nave);
+        }
         String tamaño = CampoTamanho.getText();
         Float tam = Float.parseFloat(tamaño);
         String masa = CampoMasa.getText();
