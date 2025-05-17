@@ -158,20 +158,19 @@ public class DAOMisiones extends AbstractDAO {
 
         try {
             stmMisiones = con.prepareStatement(
-                        "INSERT INTO mision (codigo, nombre, fechaInicio, fechaFin, descripcion, nave, objetivo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                        "INSERT INTO mision (nombre, fechaInicio, fechaFin, descripcion, nave, objetivo) VALUES (?, ?, ?, ?, ?, ?)");
             
-            stmMisiones.setInt(1, m.getCodigo());
-            stmMisiones.setString(2, m.getNombre());
-            stmMisiones.setDate(3, java.sql.Date.valueOf(m.getFechaInicio()));
+            stmMisiones.setString(1, m.getNombre());
+            stmMisiones.setDate(2, java.sql.Date.valueOf(m.getFechaInicio()));
             if (m.getFechaFin() == null) {
-                stmMisiones.setDate(4, null);
+                stmMisiones.setDate(3, null);
             }
             else {
-                stmMisiones.setDate(4, java.sql.Date.valueOf(m.getFechaFin()));
+                stmMisiones.setDate(3, java.sql.Date.valueOf(m.getFechaFin()));
             }
-            stmMisiones.setString(5, m.getDescripcion());
-            stmMisiones.setInt(6, m.getNave());
-            stmMisiones.setString(7, m.getObjetivo());
+            stmMisiones.setString(4, m.getDescripcion());
+            stmMisiones.setInt(5, m.getNave());
+            stmMisiones.setString(6, m.getObjetivo());
 
             stmMisiones.executeUpdate();
 
@@ -197,8 +196,7 @@ public class DAOMisiones extends AbstractDAO {
         try {
             stmMisiones = con.prepareStatement(
                         "UPDATE mision "+
-                        "set codigo=?, " +
-                        "    nombre=?, " +
+                        "set nombre=?, " +
                         "    fechaInicio=?, "+
                         "    fechaFin=?, "+
                         "    descripcion=?, "+
@@ -206,19 +204,18 @@ public class DAOMisiones extends AbstractDAO {
                         "    objetivo=? "+
                         "where codigo=?");
             
-            stmMisiones.setInt(1, m.getCodigo());
-            stmMisiones.setString(2, m.getNombre());
-            stmMisiones.setDate(3, java.sql.Date.valueOf(m.getFechaInicio()));
+            stmMisiones.setString(1, m.getNombre());
+            stmMisiones.setDate(2, java.sql.Date.valueOf(m.getFechaInicio()));
             if (m.getFechaFin() == null) {
-                stmMisiones.setDate(4, null);
+                stmMisiones.setDate(3, null);
             }
             else {
-                stmMisiones.setDate(4, java.sql.Date.valueOf(m.getFechaFin()));
+                stmMisiones.setDate(3, java.sql.Date.valueOf(m.getFechaFin()));
             }
-            stmMisiones.setString(5, m.getDescripcion());
-            stmMisiones.setInt(6, m.getNave());
-            stmMisiones.setString(7, m.getObjetivo());
-            stmMisiones.setInt(8, m.getCodigo());
+            stmMisiones.setString(4, m.getDescripcion());
+            stmMisiones.setInt(5, m.getNave());
+            stmMisiones.setString(6, m.getObjetivo());
+            stmMisiones.setInt(7, m.getCodigo());
 
             stmMisiones.executeUpdate();
 
